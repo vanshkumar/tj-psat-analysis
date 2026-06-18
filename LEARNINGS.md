@@ -89,6 +89,16 @@
 - Action: Refresh `data/manual/public_school_nces_ids.csv` with `scripts/build_school_roster.py --ccd-directory-zip ...`; avoid name-only NCES matching for duplicated school names.
 - Confidence: high
 
+**2026-06-18 — NMSF panel integration**
+- Observation: `data/interim/panel_nmsf.csv` is built from `data/interim/panel_seed.csv`, so it does not include Milestone 3 denominators from `data/processed/enrollment_panel.csv`; Class 2026 parsed NMSF rows still have blank rates there.
+- Action: Use `data/processed/enrollment_panel.csv` when auditing post-Milestone-3 rates, and build the future analysis panel by joining NMSF observations to that processed enrollment panel rather than relying on `panel_nmsf.csv` alone.
+- Confidence: high
+
+**2026-06-18 — NMSF observation layer**
+- Observation: `scripts/build_nmsf_observations.py` validates `data/sources/source_manifest.yml`, emits `data/processed/nmsf_observations.csv`, and keeps NMSF observations separate from enrollment/rate calculations.
+- Action: Add future NMSF sources to both the manifest and `data/sources/nmsf_counts.csv`, then regenerate observations; use `verified_zero` only through manifest-declared complete source scopes.
+- Confidence: high
+
 **2026-06-18 - Operating-year roster status**
 - Observation: Independence, Lightridge, and Gainesville have in-panel opening years, so pre-opening class-years should be blank `not_operating` rows rather than `source_pending` NMSF rows or NCES dagger-style `not_applicable` enrollment rows.
 - Action: Keep first operating class years in `FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID` and regenerate seed outputs after changing school-history rules.

@@ -1,8 +1,9 @@
-schema_version: 1
+schema_version: 2
 description: >
-  Source manifest for National Merit Semifinalist counts. No numeric count
-  should enter the panel unless it is tied to a manifest entry with URL, title,
-  date, hash, source scope, and completeness notes.
+  Source manifest for National Merit Semifinalist observations. No numeric
+  count, including an inferred zero, should enter the observation layer unless
+  it is tied to a manifest entry with URL, title, date, hash, source scope,
+  completeness scope, and parser provenance.
 
 required_for_numeric_nmsf_counts:
   - source_url
@@ -10,14 +11,14 @@ required_for_numeric_nmsf_counts:
   - source_date
   - source_hash
 
-valid_count_statuses:
-  - source_pending
-  - source_found_not_parsed
-  - parsed
+observation_statuses:
+  - verified_count
   - verified_zero
-  - incomplete_source_blank
-  - no_complete_source_found
+  - missing_source
+  - source_incomplete
+  - ambiguous_school
   - not_operating
+  - not_applicable
 
 providers:
   - fcps
@@ -32,28 +33,61 @@ providers:
 sources:
   - source_id: fcps_2024_semifinalists
     provider: fcps
+    graduating_class: 2024
+    geography_or_district: FCPS high schools
     source_title: 264 FCPS Students Named 2024 National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2023-09-13
     source_url: https://www.fcps.edu/news/264-fcps-students-named-2024-national-merit-semifinalists
-    source_date: 2023-09-13
-    source_hash: 7c515347de203c9607145a66c4af18a42921d73236a8be58f79863b31335468d
-    source_scope: FCPS high schools
-    source_completeness: Complete named FCPS list only; not complete for non-FCPS schools.
+    retrieval_date: 2026-06-18
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path:
+    archived_file_sha256:
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 3eb4c9eb50b4369dc0125e0b6a7ed7b889954460e07a9b32c86c6b4f24af287a
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list.
   - source_id: fcps_2025_semifinalists
     provider: fcps
+    graduating_class: 2025
+    geography_or_district: FCPS high schools
     source_title: 191 FCPS Students Named 2025 National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2024-09-12
     source_url: https://www.fcps.edu/news/191-fcps-students-named-2025-national-merit-semifinalists
-    source_date: 2024-09-12
-    source_hash: d06b5e4a64bdde5b976bfc421eafd5383035bf8a267403cf10e7e239703b7104
-    source_scope: FCPS high schools
-    source_completeness: Complete named FCPS list only; not complete for non-FCPS schools.
+    retrieval_date: 2026-06-18
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path:
+    archived_file_sha256:
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 3bd8166a9806cc11cef97772210b09161eb5f74a99eac7c22a718dc4b32d3902
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list.
   - source_id: fcps_2026_semifinalists
     provider: fcps
+    graduating_class: 2026
+    geography_or_district: FCPS high schools
     source_title: 262 FCPS Students Named 2026 National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2025-09-11
     source_url: https://www.fcps.edu/news/262-fcps-students-named-2026-national-merit-semifinalists-0
-    source_date: 2025-09-11
-    source_hash: 676b4cdb98270c89c398cadb4a3abd07608d5d9b35297bf3c7753891fc8b54e8
-    source_scope: FCPS high schools
-    source_completeness: Complete named FCPS list only; not complete for non-FCPS schools.
+    retrieval_date: 2026-06-18
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path:
+    archived_file_sha256:
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: d74b3aef8369eb2eec2204c452ace892ca8de8bbc0ff8f7e9a3254ed723daaa3
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list.

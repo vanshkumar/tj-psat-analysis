@@ -24,7 +24,7 @@ REQUIRED_MANUAL_COUNT_FIELDS = (
     "source_completeness",
 )
 
-VALID_NUMERIC_STATUSES = {"parsed", "verified_zero"}
+VALID_NUMERIC_STATUSES = {"verified_count", "verified_zero"}
 
 
 @dataclass(frozen=True)

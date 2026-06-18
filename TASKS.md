@@ -159,39 +159,49 @@ statuses; no adjacent-year values are estimated.
 
 ## Milestone 4 — NMSF source registry and parser framework
 
-- [ ] Define a source-manifest schema.
-- [ ] Store, at minimum:
-  - source ID
-  - graduating class
-  - geography or district covered
-  - source title
-  - publisher
-  - publication date
-  - URL
-  - retrieval date
-  - source type
-  - completeness scope
-  - local file hash when archived
-  - parser name and version
-  - notes
-- [ ] Define observation statuses:
-  - `verified_count`
-  - `verified_zero`
-  - `missing_source`
-  - `source_incomplete`
-  - `ambiguous_school`
-  - `not_operating`
-  - `not_applicable`
-- [ ] Build parsers for structured HTML, PDFs, and manually reviewed source tables.
+- [x] Define a source-manifest schema.
+- [x] Store, at minimum:
+  - [x] source ID
+  - [x] graduating class
+  - [x] geography or district covered
+  - [x] source title
+  - [x] publisher
+  - [x] publication date
+  - [x] URL
+  - [x] retrieval date
+  - [x] source type
+  - [x] completeness scope
+  - [x] local file hash when archived
+  - [x] parser name and version
+  - [x] notes
+- [x] Define observation statuses:
+  - [x] `verified_count`
+  - [x] `verified_zero`
+  - [x] `missing_source`
+  - [x] `source_incomplete`
+  - [x] `ambiguous_school`
+  - [x] `not_operating`
+  - [x] `not_applicable`
+- [x] Build parser registry/framework entries for structured HTML, PDFs, and manually reviewed source tables.
 - [ ] Archive permissible source files or snapshots under `data/raw/`.
-- [ ] Add parser tests using fixed fixtures.
-- [ ] Add a validation that rejects numeric NMSF counts without source metadata.
+- [x] Add parser tests using fixed fixtures.
+- [x] Add a validation that rejects numeric NMSF counts without source metadata.
+
+Status note: `data/sources/source_manifest.yml` is now schema-validated by
+`scripts/build_nmsf_observations.py`. The processed NMSF observation layer
+stores source-backed positive counts as `verified_count`, infers
+`verified_zero` only for complete FCPS source scopes, and leaves all
+out-of-scope schools as `missing_source`. Enrollment denominators and rates are
+intentionally excluded until Milestone 7 joins observations to
+`data/processed/enrollment_panel.csv`.
 
 ### Deliverables
 
 - `data/sources/source_manifest.yml`
 - `src/.../nmsf/` parser modules
 - `tests/fixtures/nmsf/`
+- `data/processed/nmsf_observations.csv`
+- `reports/data_quality/nmsf_source_registry.md`
 - source-provenance tests
 
 ### Definition of done

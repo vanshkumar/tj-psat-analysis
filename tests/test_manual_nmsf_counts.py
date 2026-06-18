@@ -56,7 +56,7 @@ class ManualNmsfCountsTest(unittest.TestCase):
     def test_applied_counts_have_required_source_metadata_and_rates(self) -> None:
         tj_2025 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2025)
         self.assertEqual(tj_2025["nmsf_count"], "81")
-        self.assertEqual(tj_2025["nmsf_status"], "parsed")
+        self.assertEqual(tj_2025["nmsf_status"], "verified_count")
         self.assertEqual(
             tj_2025["nmsf_source_url"],
             "https://www.fcps.edu/news/191-fcps-students-named-2025-national-merit-semifinalists",
@@ -87,7 +87,7 @@ class ManualNmsfCountsTest(unittest.TestCase):
             class_year=2025,
             school_name_source="Not A Real TJ Area School",
             nmsf_count=1,
-            nmsf_status="parsed",
+            nmsf_status="verified_count",
             source_title="Example Source",
             source_url="https://example.test/source",
             source_date="2025-09-01",

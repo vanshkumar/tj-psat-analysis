@@ -23,6 +23,7 @@ mechanism claims.
 python scripts/build_seed_data.py
 python scripts/build_school_roster.py
 python scripts/apply_nmsf_counts.py
+python scripts/build_nmsf_observations.py
 python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 python -m unittest discover -s tests
 ```
@@ -35,6 +36,7 @@ Generated first- and second-milestone outputs:
 - `data/interim/public_grade11_enrollment.csv`
 - `data/interim/panel_seed.csv`
 - `data/interim/panel_nmsf.csv`
+- `data/processed/nmsf_observations.csv`
 - `data/processed/schools.csv`
 - `data/processed/school_roster.csv`
 - `data/processed/public_enrollment.csv`
@@ -99,9 +101,14 @@ for Classes 2024, 2025, and 2026. The importer computes source hashes from the
 source metadata plus transcribed count rows, matches schools against the
 canonical roster, and writes `data/interim/panel_nmsf.csv`.
 
-The importer does not infer zeros from complete source lists yet. Schools not
-explicitly transcribed remain `source_pending` until zero-generation is added as
-a separate audited step.
+`scripts/build_nmsf_observations.py` builds the Milestone 4 count-observation
+layer at `data/processed/nmsf_observations.csv`. It validates
+`data/sources/source_manifest.yml`, keeps NMSF observations separate from
+enrollment denominators, and uses `verified_zero` only for manifest sources
+marked complete for the relevant scope. The current FCPS 2024-2026 sources are
+complete named FCPS lists, so absent rostered FCPS public schools receive
+source-backed zero observations for those classes. Schools outside the source
+scope remain `missing_source`.
 
 ## Source Discipline
 
@@ -109,6 +116,7 @@ a separate audited step.
 - Numeric NMSF counts require URL, title, date, and source hash.
 - Missing schools in incomplete articles are blank, not zero.
 - `verified_zero` is only valid for complete named lists for the geography and year.
+- `verified_count` is the status for positive source-backed counts.
 - TJHSST stays as a single school row.
 - Private-school observations are not allocated to public TJ pathways by school
   location alone; Regulation 3355.16 puts non-public applicants in the

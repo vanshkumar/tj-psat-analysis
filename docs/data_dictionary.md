@@ -8,7 +8,8 @@
 - `data/interim/public_grade11_enrollment_2024_25.csv`: Class 2026 public-school grade 11 enrollment extracted from the NCES CCD 2024-25 school membership file by NCES school ID.
 - `data/interim/private_grade11_enrollment.csv`: private-school PSS survey-year grade 11 enrollment extract using `P290`, with `F_P290` preserved as `pss_imputation_flag`.
 - `data/interim/panel_seed.csv`: school-by-class-year panel with blank NMSF counts and source-pending statuses.
-- `data/interim/panel_nmsf.csv`: `panel_seed.csv` plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`.
+- `data/interim/panel_nmsf.csv`: legacy interim seed panel plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`; it should not be treated as the final analytical panel because it is seed-based and does not include all Milestone 3 denominator updates.
+- `data/processed/nmsf_observations.csv`: Milestone 4 NMSF observation layer with one row per school/class year, source-backed positive counts, source-backed complete-list zeros, explicit missingness, and no enrollment denominators or rates.
 - `data/processed/school_roster.csv`: Milestone 2 roster with canonical school IDs, pathway status, pathway assignment method, pathway source metadata, sector, district, NCES IDs where source-backed, and operating-year boundaries.
 - `data/processed/enrollment_panel.csv`: Milestone 3 school-by-class-year grade 11 enrollment denominator panel for public and private schools, with source metadata and explicit missingness statuses.
 - `data/manual/school_aliases.csv`: deterministic alias table. Rows with `join_allowed=false` are known ambiguous aliases and must not be used for automatic observation joins.
@@ -18,6 +19,7 @@
 - `reports/data_quality/roster_review.md`: Milestone 2 roster coverage, alias conflicts, history review, admissions-pathway source summary, and pathway review status.
 - `reports/data_quality/enrollment_coverage.csv`: one coverage row for each school and class year in `data/processed/enrollment_panel.csv`.
 - `reports/data_quality/enrollment_coverage.md`: Milestone 3 denominator coverage summary, source list, and no-estimation rules.
+- `reports/data_quality/nmsf_source_registry.md`: Milestone 4 source-registry summary for NMSF observations, including status counts, source counts, and zero-inference rules.
 
 ## Source Notes
 
@@ -27,16 +29,20 @@
 ## Source CSVs
 
 - `data/sources/nmsf_counts.csv`: manual NMSF count transcriptions from named public sources. Each row must include source ID, provider, class year, school name, count, status, title, URL, date, scope, and completeness notes.
-- `data/sources/source_manifest.yml`: source-level metadata and computed source hashes for NMSF count sources.
+- `data/sources/source_manifest.yml`: source-level registry with publisher, publication date, URL, retrieval date, source type, completeness scope, zero-inference scope, parser name/version, notes, and computed source hashes for NMSF count sources.
 
 ## NMSF Source Rules
 
-- `nmsf_count` must remain blank until a source-backed count is parsed or entered.
+- `nmsf_count` must remain blank until a source-backed count is parsed, entered, or inferred as zero from a complete named source for the relevant scope.
 - Any numeric `nmsf_count`, including zero, must have `nmsf_source_title`, `nmsf_source_url`, `nmsf_source_date`, and `nmsf_source_hash`.
+- Use `verified_count` for positive source-backed NMSF counts.
 - Use `verified_zero` only when the source is a complete named list for the relevant geography and year.
 - Missing schools in incomplete articles remain blank with an explanatory status.
-- `parsed` means the count was transcribed from a named source row or list and matched to the canonical roster.
+- `missing_source` means no source-backed observation has been recorded for that school/class year.
+- `source_incomplete` means a source exists but cannot establish a count or zero for the observation.
+- `ambiguous_school` means a source row cannot be joined safely to one canonical school.
 - `not_operating` means the school was not operating for that class-year; it is not a zero NMSF count.
+- `not_applicable` is reserved for rows outside the relevant observation scope.
 - `source_hash` values for manual transcriptions are computed from the source metadata plus sorted transcribed count rows.
 
 ## Enrollment Statuses

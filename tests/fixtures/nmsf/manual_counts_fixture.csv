@@ -1,0 +1,2 @@
+source_id,provider,class_year,school_name_source,nmsf_count,nmsf_status,source_title,source_url,source_date,source_scope,source_completeness,source_notes
+fixture_source,fcps,2026,Example High School,1,verified_count,Fixture Source,https://example.test/fixture,2025-09-01,Fixture scope,complete fixture list,fixture row
