@@ -1,0 +1,421 @@
+source_row_id,source_sheet,source_row,school_name_source,state_name,school_year,grade11_students,grade11_status,grades9_12_students,grades9_12_status
+sheet6_row_008,Sheet6,8,ANNANDALE HIGH,Virginia,2023-24,569,reported,2192,reported
+sheet6_row_008,Sheet6,8,ANNANDALE HIGH,Virginia,2022-23,562,reported,2182,reported
+sheet6_row_008,Sheet6,8,ANNANDALE HIGH,Virginia,2021-22,511,reported,2252,reported
+sheet6_row_008,Sheet6,8,ANNANDALE HIGH,Virginia,2020-21,601,reported,2233,reported
+sheet6_row_008,Sheet6,8,ANNANDALE HIGH,Virginia,2019-20,568,reported,2218,reported
+sheet6_row_008,Sheet6,8,ANNANDALE HIGH,Virginia,2018-19,541,reported,2240,reported
+sheet6_row_008,Sheet6,8,ANNANDALE HIGH,Virginia,2017-18,596,reported,2187,reported
+sheet6_row_009,Sheet6,9,BATTLEFIELD HIGH,Virginia,2023-24,551,reported,2137,reported
+sheet6_row_009,Sheet6,9,BATTLEFIELD HIGH,Virginia,2022-23,582,reported,2322,reported
+sheet6_row_009,Sheet6,9,BATTLEFIELD HIGH,Virginia,2021-22,640,reported,2555,reported
+sheet6_row_009,Sheet6,9,BATTLEFIELD HIGH,Virginia,2020-21,767,reported,2928,reported
+sheet6_row_009,Sheet6,9,BATTLEFIELD HIGH,Virginia,2019-20,704,reported,2962,reported
+sheet6_row_009,Sheet6,9,BATTLEFIELD HIGH,Virginia,2018-19,804,reported,3032,reported
+sheet6_row_009,Sheet6,9,BATTLEFIELD HIGH,Virginia,2017-18,735,reported,2964,reported
+sheet6_row_010,Sheet6,10,BRENTSVILLE DISTRICT HIGH,Virginia,2023-24,218,reported,861,reported
+sheet6_row_010,Sheet6,10,BRENTSVILLE DISTRICT HIGH,Virginia,2022-23,232,reported,883,reported
+sheet6_row_010,Sheet6,10,BRENTSVILLE DISTRICT HIGH,Virginia,2021-22,205,reported,940,reported
+sheet6_row_010,Sheet6,10,BRENTSVILLE DISTRICT HIGH,Virginia,2020-21,264,reported,981,reported
+sheet6_row_010,Sheet6,10,BRENTSVILLE DISTRICT HIGH,Virginia,2019-20,242,reported,998,reported
+sheet6_row_010,Sheet6,10,BRENTSVILLE DISTRICT HIGH,Virginia,2018-19,254,reported,1019,reported
+sheet6_row_010,Sheet6,10,BRENTSVILLE DISTRICT HIGH,Virginia,2017-18,268,reported,1034,reported
+sheet6_row_011,Sheet6,11,BRIAR WOODS HIGH,Virginia,2023-24,454,reported,1763,reported
+sheet6_row_011,Sheet6,11,BRIAR WOODS HIGH,Virginia,2022-23,412,reported,1757,reported
+sheet6_row_011,Sheet6,11,BRIAR WOODS HIGH,Virginia,2021-22,445,reported,1799,reported
+sheet6_row_011,Sheet6,11,BRIAR WOODS HIGH,Virginia,2020-21,467,reported,1795,reported
+sheet6_row_011,Sheet6,11,BRIAR WOODS HIGH,Virginia,2019-20,473,reported,1850,reported
+sheet6_row_011,Sheet6,11,BRIAR WOODS HIGH,Virginia,2018-19,441,reported,1863,reported
+sheet6_row_011,Sheet6,11,BRIAR WOODS HIGH,Virginia,2017-18,419,reported,1764,reported
+sheet6_row_012,Sheet6,12,BROAD RUN HIGH,Virginia,2023-24,394,reported,1586,reported
+sheet6_row_012,Sheet6,12,BROAD RUN HIGH,Virginia,2022-23,407,reported,1583,reported
+sheet6_row_012,Sheet6,12,BROAD RUN HIGH,Virginia,2021-22,379,reported,1570,reported
+sheet6_row_012,Sheet6,12,BROAD RUN HIGH,Virginia,2020-21,410,reported,1582,reported
+sheet6_row_012,Sheet6,12,BROAD RUN HIGH,Virginia,2019-20,382,reported,1563,reported
+sheet6_row_012,Sheet6,12,BROAD RUN HIGH,Virginia,2018-19,405,reported,1600,reported
+sheet6_row_012,Sheet6,12,BROAD RUN HIGH,Virginia,2017-18,407,reported,1554,reported
+sheet6_row_013,Sheet6,13,C.D. HYLTON HIGH,Virginia,2023-24,418,reported,1891,reported
+sheet6_row_013,Sheet6,13,C.D. HYLTON HIGH,Virginia,2022-23,501,reported,1960,reported
+sheet6_row_013,Sheet6,13,C.D. HYLTON HIGH,Virginia,2021-22,523,reported,2068,reported
+sheet6_row_013,Sheet6,13,C.D. HYLTON HIGH,Virginia,2020-21,545,reported,2140,reported
+sheet6_row_013,Sheet6,13,C.D. HYLTON HIGH,Virginia,2019-20,541,reported,2216,reported
+sheet6_row_013,Sheet6,13,C.D. HYLTON HIGH,Virginia,2018-19,540,reported,2296,reported
+sheet6_row_013,Sheet6,13,C.D. HYLTON HIGH,Virginia,2017-18,527,reported,2288,reported
+sheet6_row_014,Sheet6,14,CENTREVILLE HIGH,Virginia,2023-24,651,reported,2487,reported
+sheet6_row_014,Sheet6,14,CENTREVILLE HIGH,Virginia,2022-23,653,reported,2623,reported
+sheet6_row_014,Sheet6,14,CENTREVILLE HIGH,Virginia,2021-22,653,reported,2588,reported
+sheet6_row_014,Sheet6,14,CENTREVILLE HIGH,Virginia,2020-21,632,reported,2623,reported
+sheet6_row_014,Sheet6,14,CENTREVILLE HIGH,Virginia,2019-20,653,reported,2641,reported
+sheet6_row_014,Sheet6,14,CENTREVILLE HIGH,Virginia,2018-19,655,reported,2614,reported
+sheet6_row_014,Sheet6,14,CENTREVILLE HIGH,Virginia,2017-18,685,reported,2602,reported
+sheet6_row_015,Sheet6,15,CHANTILLY HIGH,Virginia,2023-24,715,reported,3006,reported
+sheet6_row_015,Sheet6,15,CHANTILLY HIGH,Virginia,2022-23,728,reported,2937,reported
+sheet6_row_015,Sheet6,15,CHANTILLY HIGH,Virginia,2021-22,703,reported,2962,reported
+sheet6_row_015,Sheet6,15,CHANTILLY HIGH,Virginia,2020-21,739,reported,2947,reported
+sheet6_row_015,Sheet6,15,CHANTILLY HIGH,Virginia,2019-20,700,reported,2936,reported
+sheet6_row_015,Sheet6,15,CHANTILLY HIGH,Virginia,2018-19,700,reported,2863,reported
+sheet6_row_015,Sheet6,15,CHANTILLY HIGH,Virginia,2017-18,693,reported,2810,reported
+sheet6_row_016,Sheet6,16,CHARLES J. COLGAN SR. HIGH,VIRGINIA,2023-24,684,reported,2925,reported
+sheet6_row_016,Sheet6,16,CHARLES J. COLGAN SR. HIGH,VIRGINIA,2022-23,762,reported,2887,reported
+sheet6_row_016,Sheet6,16,CHARLES J. COLGAN SR. HIGH,VIRGINIA,2021-22,690,reported,2852,reported
+sheet6_row_016,Sheet6,16,CHARLES J. COLGAN SR. HIGH,VIRGINIA,2020-21,692,reported,2934,reported
+sheet6_row_016,Sheet6,16,CHARLES J. COLGAN SR. HIGH,VIRGINIA,2019-20,712,reported,2810,reported
+sheet6_row_016,Sheet6,16,CHARLES J. COLGAN SR. HIGH,VIRGINIA,2018-19,672,reported,2564,reported
+sheet6_row_016,Sheet6,16,CHARLES J. COLGAN SR. HIGH,VIRGINIA,2017-18,486,reported,2267,reported
+sheet6_row_017,Sheet6,17,DOMINION HIGH,Virginia,2023-24,396,reported,1464,reported
+sheet6_row_017,Sheet6,17,DOMINION HIGH,Virginia,2022-23,337,reported,1487,reported
+sheet6_row_017,Sheet6,17,DOMINION HIGH,Virginia,2021-22,368,reported,1461,reported
+sheet6_row_017,Sheet6,17,DOMINION HIGH,Virginia,2020-21,362,reported,1500,reported
+sheet6_row_017,Sheet6,17,DOMINION HIGH,Virginia,2019-20,391,reported,1606,reported
+sheet6_row_017,Sheet6,17,DOMINION HIGH,Virginia,2018-19,409,reported,1572,reported
+sheet6_row_017,Sheet6,17,DOMINION HIGH,Virginia,2017-18,353,reported,1560,reported
+sheet6_row_018,Sheet6,18,EDISON HIGH,Virginia,2023-24,621,reported,2285,reported
+sheet6_row_018,Sheet6,18,EDISON HIGH,Virginia,2022-23,516,reported,2267,reported
+sheet6_row_018,Sheet6,18,EDISON HIGH,Virginia,2021-22,535,reported,2185,reported
+sheet6_row_018,Sheet6,18,EDISON HIGH,Virginia,2020-21,521,reported,2151,reported
+sheet6_row_018,Sheet6,18,EDISON HIGH,Virginia,2019-20,530,reported,2189,reported
+sheet6_row_018,Sheet6,18,EDISON HIGH,Virginia,2018-19,573,reported,2119,reported
+sheet6_row_018,Sheet6,18,EDISON HIGH,Virginia,2017-18,538,reported,2093,reported
+sheet6_row_019,Sheet6,19,FAIRFAX HIGH,Virginia,2023-24,615,reported,2351,reported
+sheet6_row_019,Sheet6,19,FAIRFAX HIGH,Virginia,2022-23,624,reported,2371,reported
+sheet6_row_019,Sheet6,19,FAIRFAX HIGH,Virginia,2021-22,583,reported,2305,reported
+sheet6_row_019,Sheet6,19,FAIRFAX HIGH,Virginia,2020-21,604,reported,2341,reported
+sheet6_row_019,Sheet6,19,FAIRFAX HIGH,Virginia,2019-20,557,reported,2366,reported
+sheet6_row_019,Sheet6,19,FAIRFAX HIGH,Virginia,2018-19,639,reported,2325,reported
+sheet6_row_019,Sheet6,19,FAIRFAX HIGH,Virginia,2017-18,609,reported,2373,reported
+sheet6_row_020,Sheet6,20,FALLS CHURCH HIGH,Virginia,2023-24,620,reported,2154,reported
+sheet6_row_020,Sheet6,20,FALLS CHURCH HIGH,Virginia,2022-23,543,reported,2118,reported
+sheet6_row_020,Sheet6,20,FALLS CHURCH HIGH,Virginia,2021-22,509,reported,1985,reported
+sheet6_row_020,Sheet6,20,FALLS CHURCH HIGH,Virginia,2020-21,487,reported,1984,reported
+sheet6_row_020,Sheet6,20,FALLS CHURCH HIGH,Virginia,2019-20,551,reported,2068,reported
+sheet6_row_020,Sheet6,20,FALLS CHURCH HIGH,Virginia,2018-19,588,reported,2111,reported
+sheet6_row_020,Sheet6,20,FALLS CHURCH HIGH,Virginia,2017-18,606,reported,2166,reported
+sheet6_row_021,Sheet6,21,FOREST PARK HIGH,Virginia,2023-24,593,reported,2326,reported
+sheet6_row_021,Sheet6,21,FOREST PARK HIGH,Virginia,2022-23,504,reported,2308,reported
+sheet6_row_021,Sheet6,21,FOREST PARK HIGH,Virginia,2021-22,564,reported,2308,reported
+sheet6_row_021,Sheet6,21,FOREST PARK HIGH,Virginia,2020-21,566,reported,2265,reported
+sheet6_row_021,Sheet6,21,FOREST PARK HIGH,Virginia,2019-20,486,reported,2271,reported
+sheet6_row_021,Sheet6,21,FOREST PARK HIGH,Virginia,2018-19,517,reported,2229,reported
+sheet6_row_021,Sheet6,21,FOREST PARK HIGH,Virginia,2017-18,519,reported,2215,reported
+sheet6_row_022,Sheet6,22,FREEDOM HIGH,Virginia,2023-24,513,reported,1968,reported
+sheet6_row_022,Sheet6,22,FREEDOM HIGH,Virginia,2022-23,508,reported,1998,reported
+sheet6_row_022,Sheet6,22,FREEDOM HIGH,Virginia,2021-22,501,reported,2052,reported
+sheet6_row_022,Sheet6,22,FREEDOM HIGH,Virginia,2020-21,548,reported,2120,reported
+sheet6_row_022,Sheet6,22,FREEDOM HIGH,Virginia,2019-20,540,reported,2117,reported
+sheet6_row_022,Sheet6,22,FREEDOM HIGH,Virginia,2018-19,486,reported,2073,reported
+sheet6_row_022,Sheet6,22,FREEDOM HIGH,Virginia,2017-18,462,reported,1921,reported
+sheet6_row_023,Sheet6,23,FREEDOM HIGH,Virginia,2023-24,441,reported,2341,reported
+sheet6_row_023,Sheet6,23,FREEDOM HIGH,Virginia,2022-23,495,reported,2345,reported
+sheet6_row_023,Sheet6,23,FREEDOM HIGH,Virginia,2021-22,470,reported,2193,reported
+sheet6_row_023,Sheet6,23,FREEDOM HIGH,Virginia,2020-21,488,reported,2224,reported
+sheet6_row_023,Sheet6,23,FREEDOM HIGH,Virginia,2019-20,486,reported,2236,reported
+sheet6_row_023,Sheet6,23,FREEDOM HIGH,Virginia,2018-19,546,reported,2247,reported
+sheet6_row_023,Sheet6,23,FREEDOM HIGH,Virginia,2017-18,536,reported,2333,reported
+sheet6_row_024,Sheet6,24,GAINESVILLE HIGH,VIRGINIA,2023-24,679,reported,2416,reported
+sheet6_row_024,Sheet6,24,GAINESVILLE HIGH,VIRGINIA,2022-23,473,reported,2020,reported
+sheet6_row_024,Sheet6,24,GAINESVILLE HIGH,VIRGINIA,2021-22,224,reported,1371,reported
+sheet6_row_024,Sheet6,24,GAINESVILLE HIGH,VIRGINIA,2020-21,,not_applicable,,not_applicable
+sheet6_row_024,Sheet6,24,GAINESVILLE HIGH,VIRGINIA,2019-20,,not_applicable,,not_applicable
+sheet6_row_024,Sheet6,24,GAINESVILLE HIGH,VIRGINIA,2018-19,,not_applicable,,not_applicable
+sheet6_row_024,Sheet6,24,GAINESVILLE HIGH,VIRGINIA,2017-18,,not_applicable,,not_applicable
+sheet6_row_025,Sheet6,25,GAR-FIELD HIGH,Virginia,2023-24,612,reported,2520,reported
+sheet6_row_025,Sheet6,25,GAR-FIELD HIGH,Virginia,2022-23,568,reported,2515,reported
+sheet6_row_025,Sheet6,25,GAR-FIELD HIGH,Virginia,2021-22,524,reported,2479,reported
+sheet6_row_025,Sheet6,25,GAR-FIELD HIGH,Virginia,2020-21,536,reported,2344,reported
+sheet6_row_025,Sheet6,25,GAR-FIELD HIGH,Virginia,2019-20,510,reported,2411,reported
+sheet6_row_025,Sheet6,25,GAR-FIELD HIGH,Virginia,2018-19,612,reported,2386,reported
+sheet6_row_025,Sheet6,25,GAR-FIELD HIGH,Virginia,2017-18,597,reported,2472,reported
+sheet6_row_026,Sheet6,26,HAYFIELD SECONDARY,Virginia,2023-24,540,reported,2227,reported
+sheet6_row_026,Sheet6,26,HAYFIELD SECONDARY,Virginia,2022-23,548,reported,2175,reported
+sheet6_row_026,Sheet6,26,HAYFIELD SECONDARY,Virginia,2021-22,509,reported,2110,reported
+sheet6_row_026,Sheet6,26,HAYFIELD SECONDARY,Virginia,2020-21,501,reported,2140,reported
+sheet6_row_026,Sheet6,26,HAYFIELD SECONDARY,Virginia,2019-20,543,reported,2122,reported
+sheet6_row_026,Sheet6,26,HAYFIELD SECONDARY,Virginia,2018-19,502,reported,2127,reported
+sheet6_row_026,Sheet6,26,HAYFIELD SECONDARY,Virginia,2017-18,563,reported,2073,reported
+sheet6_row_027,Sheet6,27,HB WOODLAWN SECONDARY PROGRAM,Virginia,2023-24,,not_applicable,,not_applicable
+sheet6_row_027,Sheet6,27,HB WOODLAWN SECONDARY PROGRAM,Virginia,2022-23,,not_applicable,,not_applicable
+sheet6_row_027,Sheet6,27,HB WOODLAWN SECONDARY PROGRAM,Virginia,2021-22,,not_applicable,,not_applicable
+sheet6_row_027,Sheet6,27,HB WOODLAWN SECONDARY PROGRAM,Virginia,2020-21,,not_applicable,,not_applicable
+sheet6_row_027,Sheet6,27,HB WOODLAWN SECONDARY PROGRAM,Virginia,2019-20,,not_applicable,,not_applicable
+sheet6_row_027,Sheet6,27,HB WOODLAWN SECONDARY PROGRAM,Virginia,2018-19,,not_applicable,,not_applicable
+sheet6_row_027,Sheet6,27,HB WOODLAWN SECONDARY PROGRAM,Virginia,2017-18,,not_applicable,,not_applicable
+sheet6_row_028,Sheet6,28,HERITAGE HIGH,Virginia,2023-24,353,reported,1508,reported
+sheet6_row_028,Sheet6,28,HERITAGE HIGH,Virginia,2022-23,366,reported,1432,reported
+sheet6_row_028,Sheet6,28,HERITAGE HIGH,Virginia,2021-22,349,reported,1458,reported
+sheet6_row_028,Sheet6,28,HERITAGE HIGH,Virginia,2020-21,388,reported,1492,reported
+sheet6_row_028,Sheet6,28,HERITAGE HIGH,Virginia,2019-20,363,reported,1498,reported
+sheet6_row_028,Sheet6,28,HERITAGE HIGH,Virginia,2018-19,363,reported,1451,reported
+sheet6_row_028,Sheet6,28,HERITAGE HIGH,Virginia,2017-18,360,reported,1417,reported
+sheet6_row_029,Sheet6,29,HERNDON HIGH,Virginia,2023-24,654,reported,2360,reported
+sheet6_row_029,Sheet6,29,HERNDON HIGH,Virginia,2022-23,533,reported,2361,reported
+sheet6_row_029,Sheet6,29,HERNDON HIGH,Virginia,2021-22,605,reported,2317,reported
+sheet6_row_029,Sheet6,29,HERNDON HIGH,Virginia,2020-21,600,reported,2286,reported
+sheet6_row_029,Sheet6,29,HERNDON HIGH,Virginia,2019-20,583,reported,2384,reported
+sheet6_row_029,Sheet6,29,HERNDON HIGH,Virginia,2018-19,671,reported,2353,reported
+sheet6_row_029,Sheet6,29,HERNDON HIGH,Virginia,2017-18,682,reported,2390,reported
+sheet6_row_030,Sheet6,30,INDEPENDENCE HIGH,VIRGINIA,2023-24,524,reported,2073,reported
+sheet6_row_030,Sheet6,30,INDEPENDENCE HIGH,VIRGINIA,2022-23,482,reported,2013,reported
+sheet6_row_030,Sheet6,30,INDEPENDENCE HIGH,VIRGINIA,2021-22,449,reported,1825,reported
+sheet6_row_030,Sheet6,30,INDEPENDENCE HIGH,VIRGINIA,2020-21,381,reported,1576,reported
+sheet6_row_030,Sheet6,30,INDEPENDENCE HIGH,VIRGINIA,2019-20,255,reported,1063,reported
+sheet6_row_030,Sheet6,30,INDEPENDENCE HIGH,VIRGINIA,2018-19,,not_applicable,,not_applicable
+sheet6_row_030,Sheet6,30,INDEPENDENCE HIGH,VIRGINIA,2017-18,,not_applicable,,not_applicable
+sheet6_row_031,Sheet6,31,JOHN CHAMPE HIGH,Virginia,2023-24,431,reported,1740,reported
+sheet6_row_031,Sheet6,31,JOHN CHAMPE HIGH,Virginia,2022-23,381,reported,1598,reported
+sheet6_row_031,Sheet6,31,JOHN CHAMPE HIGH,Virginia,2021-22,344,reported,1689,reported
+sheet6_row_031,Sheet6,31,JOHN CHAMPE HIGH,Virginia,2020-21,530,reported,1871,reported
+sheet6_row_031,Sheet6,31,JOHN CHAMPE HIGH,Virginia,2019-20,605,reported,1857,reported
+sheet6_row_031,Sheet6,31,JOHN CHAMPE HIGH,Virginia,2018-19,540,reported,1651,reported
+sheet6_row_031,Sheet6,31,JOHN CHAMPE HIGH,Virginia,2017-18,469,reported,2047,reported
+sheet6_row_032,Sheet6,32,JUSTICE HIGH,Virginia,2023-24,607,reported,2404,reported
+sheet6_row_032,Sheet6,32,JUSTICE HIGH,Virginia,2022-23,582,reported,2362,reported
+sheet6_row_032,Sheet6,32,JUSTICE HIGH,Virginia,2021-22,543,reported,2224,reported
+sheet6_row_032,Sheet6,32,JUSTICE HIGH,Virginia,2020-21,563,reported,2256,reported
+sheet6_row_032,Sheet6,32,JUSTICE HIGH,Virginia,2019-20,589,reported,2378,reported
+sheet6_row_032,Sheet6,32,JUSTICE HIGH,Virginia,2018-19,614,reported,2241,reported
+sheet6_row_032,Sheet6,32,JUSTICE HIGH,Virginia,2017-18,582,reported,2215,reported
+sheet6_row_033,Sheet6,33,LAKE BRADDOCK SECONDARY,Virginia,2023-24,740,reported,2964,reported
+sheet6_row_033,Sheet6,33,LAKE BRADDOCK SECONDARY,Virginia,2022-23,680,reported,2910,reported
+sheet6_row_033,Sheet6,33,LAKE BRADDOCK SECONDARY,Virginia,2021-22,722,reported,2821,reported
+sheet6_row_033,Sheet6,33,LAKE BRADDOCK SECONDARY,Virginia,2020-21,709,reported,2824,reported
+sheet6_row_033,Sheet6,33,LAKE BRADDOCK SECONDARY,Virginia,2019-20,702,reported,2844,reported
+sheet6_row_033,Sheet6,33,LAKE BRADDOCK SECONDARY,Virginia,2018-19,698,reported,2846,reported
+sheet6_row_033,Sheet6,33,LAKE BRADDOCK SECONDARY,Virginia,2017-18,737,reported,2849,reported
+sheet6_row_034,Sheet6,34,LANGLEY HIGH,Virginia,2023-24,538,reported,2136,reported
+sheet6_row_034,Sheet6,34,LANGLEY HIGH,Virginia,2022-23,515,reported,2123,reported
+sheet6_row_034,Sheet6,34,LANGLEY HIGH,Virginia,2021-22,521,reported,2049,reported
+sheet6_row_034,Sheet6,34,LANGLEY HIGH,Virginia,2020-21,483,reported,2023,reported
+sheet6_row_034,Sheet6,34,LANGLEY HIGH,Virginia,2019-20,531,reported,1992,reported
+sheet6_row_034,Sheet6,34,LANGLEY HIGH,Virginia,2018-19,482,reported,1943,reported
+sheet6_row_034,Sheet6,34,LANGLEY HIGH,Virginia,2017-18,475,reported,1965,reported
+sheet6_row_035,Sheet6,35,LEWIS HIGH,Virginia,2023-24,443,reported,1673,reported
+sheet6_row_035,Sheet6,35,LEWIS HIGH,Virginia,2022-23,402,reported,1697,reported
+sheet6_row_035,Sheet6,35,LEWIS HIGH,Virginia,2021-22,423,reported,1704,reported
+sheet6_row_035,Sheet6,35,LEWIS HIGH,Virginia,2020-21,436,reported,1773,reported
+sheet6_row_035,Sheet6,35,LEWIS HIGH,Virginia,2019-20,410,reported,1806,reported
+sheet6_row_035,Sheet6,35,LEWIS HIGH,Virginia,2018-19,470,reported,1765,reported
+sheet6_row_035,Sheet6,35,LEWIS HIGH,Virginia,2017-18,485,reported,1786,reported
+sheet6_row_036,Sheet6,36,LIGHTRIDGE HIGH,VIRGINIA,2023-24,461,reported,1926,reported
+sheet6_row_036,Sheet6,36,LIGHTRIDGE HIGH,VIRGINIA,2022-23,421,reported,1771,reported
+sheet6_row_036,Sheet6,36,LIGHTRIDGE HIGH,VIRGINIA,2021-22,392,reported,1263,reported
+sheet6_row_036,Sheet6,36,LIGHTRIDGE HIGH,VIRGINIA,2020-21,167,reported,949,reported
+sheet6_row_036,Sheet6,36,LIGHTRIDGE HIGH,VIRGINIA,2019-20,,not_applicable,,not_applicable
+sheet6_row_036,Sheet6,36,LIGHTRIDGE HIGH,VIRGINIA,2018-19,,not_applicable,,not_applicable
+sheet6_row_036,Sheet6,36,LIGHTRIDGE HIGH,VIRGINIA,2017-18,,not_applicable,,not_applicable
+sheet6_row_037,Sheet6,37,LOUDOUN COUNTY HIGH,Virginia,2023-24,368,reported,1406,reported
+sheet6_row_037,Sheet6,37,LOUDOUN COUNTY HIGH,Virginia,2022-23,385,reported,1533,reported
+sheet6_row_037,Sheet6,37,LOUDOUN COUNTY HIGH,Virginia,2021-22,361,reported,1501,reported
+sheet6_row_037,Sheet6,37,LOUDOUN COUNTY HIGH,Virginia,2020-21,363,reported,1494,reported
+sheet6_row_037,Sheet6,37,LOUDOUN COUNTY HIGH,Virginia,2019-20,369,reported,1531,reported
+sheet6_row_037,Sheet6,37,LOUDOUN COUNTY HIGH,Virginia,2018-19,385,reported,1469,reported
+sheet6_row_037,Sheet6,37,LOUDOUN COUNTY HIGH,Virginia,2017-18,341,reported,1505,reported
+sheet6_row_038,Sheet6,38,LOUDOUN VALLEY HIGH,Virginia,2023-24,286,reported,1174,reported
+sheet6_row_038,Sheet6,38,LOUDOUN VALLEY HIGH,Virginia,2022-23,291,reported,1178,reported
+sheet6_row_038,Sheet6,38,LOUDOUN VALLEY HIGH,Virginia,2021-22,325,reported,1237,reported
+sheet6_row_038,Sheet6,38,LOUDOUN VALLEY HIGH,Virginia,2020-21,332,reported,1267,reported
+sheet6_row_038,Sheet6,38,LOUDOUN VALLEY HIGH,Virginia,2019-20,317,reported,1318,reported
+sheet6_row_038,Sheet6,38,LOUDOUN VALLEY HIGH,Virginia,2018-19,343,reported,1349,reported
+sheet6_row_038,Sheet6,38,LOUDOUN VALLEY HIGH,Virginia,2017-18,334,reported,1367,reported
+sheet6_row_039,Sheet6,39,MADISON HIGH,Virginia,2023-24,536,reported,2113,reported
+sheet6_row_039,Sheet6,39,MADISON HIGH,Virginia,2022-23,525,reported,2135,reported
+sheet6_row_039,Sheet6,39,MADISON HIGH,Virginia,2021-22,594,reported,2212,reported
+sheet6_row_039,Sheet6,39,MADISON HIGH,Virginia,2020-21,572,reported,2230,reported
+sheet6_row_039,Sheet6,39,MADISON HIGH,Virginia,2019-20,552,reported,2289,reported
+sheet6_row_039,Sheet6,39,MADISON HIGH,Virginia,2018-19,548,reported,2225,reported
+sheet6_row_039,Sheet6,39,MADISON HIGH,Virginia,2017-18,564,reported,2235,reported
+sheet6_row_040,Sheet6,40,MARSHALL HIGH,Virginia,2023-24,557,reported,2190,reported
+sheet6_row_040,Sheet6,40,MARSHALL HIGH,Virginia,2022-23,516,reported,2109,reported
+sheet6_row_040,Sheet6,40,MARSHALL HIGH,Virginia,2021-22,508,reported,2068,reported
+sheet6_row_040,Sheet6,40,MARSHALL HIGH,Virginia,2020-21,519,reported,2103,reported
+sheet6_row_040,Sheet6,40,MARSHALL HIGH,Virginia,2019-20,577,reported,2170,reported
+sheet6_row_040,Sheet6,40,MARSHALL HIGH,Virginia,2018-19,569,reported,2254,reported
+sheet6_row_040,Sheet6,40,MARSHALL HIGH,Virginia,2017-18,636,reported,2270,reported
+sheet6_row_041,Sheet6,41,MCLEAN HIGH,Virginia,2023-24,626,reported,2444,reported
+sheet6_row_041,Sheet6,41,MCLEAN HIGH,Virginia,2022-23,583,reported,2441,reported
+sheet6_row_041,Sheet6,41,MCLEAN HIGH,Virginia,2021-22,602,reported,2365,reported
+sheet6_row_041,Sheet6,41,MCLEAN HIGH,Virginia,2020-21,560,reported,2317,reported
+sheet6_row_041,Sheet6,41,MCLEAN HIGH,Virginia,2019-20,582,reported,2369,reported
+sheet6_row_041,Sheet6,41,MCLEAN HIGH,Virginia,2018-19,555,reported,2275,reported
+sheet6_row_041,Sheet6,41,MCLEAN HIGH,Virginia,2017-18,547,reported,2185,reported
+sheet6_row_042,Sheet6,42,MERIDIAN HIGH,Virginia,2023-24,225,reported,887,reported
+sheet6_row_042,Sheet6,42,MERIDIAN HIGH,Virginia,2022-23,197,reported,865,reported
+sheet6_row_042,Sheet6,42,MERIDIAN HIGH,Virginia,2021-22,195,reported,848,reported
+sheet6_row_042,Sheet6,42,MERIDIAN HIGH,Virginia,2020-21,226,reported,859,reported
+sheet6_row_042,Sheet6,42,MERIDIAN HIGH,Virginia,2019-20,207,reported,845,reported
+sheet6_row_042,Sheet6,42,MERIDIAN HIGH,Virginia,2018-19,196,reported,825,reported
+sheet6_row_042,Sheet6,42,MERIDIAN HIGH,Virginia,2017-18,211,reported,826,reported
+sheet6_row_043,Sheet6,43,MOUNT VERNON HIGH,Virginia,2023-24,498,reported,1953,reported
+sheet6_row_043,Sheet6,43,MOUNT VERNON HIGH,Virginia,2022-23,469,reported,1959,reported
+sheet6_row_043,Sheet6,43,MOUNT VERNON HIGH,Virginia,2021-22,449,reported,1968,reported
+sheet6_row_043,Sheet6,43,MOUNT VERNON HIGH,Virginia,2020-21,476,reported,2013,reported
+sheet6_row_043,Sheet6,43,MOUNT VERNON HIGH,Virginia,2019-20,473,reported,2002,reported
+sheet6_row_043,Sheet6,43,MOUNT VERNON HIGH,Virginia,2018-19,495,reported,2022,reported
+sheet6_row_043,Sheet6,43,MOUNT VERNON HIGH,Virginia,2017-18,562,reported,2083,reported
+sheet6_row_044,Sheet6,44,OAKTON HIGH,Virginia,2023-24,623,reported,2620,reported
+sheet6_row_044,Sheet6,44,OAKTON HIGH,Virginia,2022-23,690,reported,2701,reported
+sheet6_row_044,Sheet6,44,OAKTON HIGH,Virginia,2021-22,674,reported,2635,reported
+sheet6_row_044,Sheet6,44,OAKTON HIGH,Virginia,2020-21,666,reported,2715,reported
+sheet6_row_044,Sheet6,44,OAKTON HIGH,Virginia,2019-20,727,reported,2743,reported
+sheet6_row_044,Sheet6,44,OAKTON HIGH,Virginia,2018-19,662,reported,2749,reported
+sheet6_row_044,Sheet6,44,OAKTON HIGH,Virginia,2017-18,687,reported,2652,reported
+sheet6_row_045,Sheet6,45,OSBOURN PARK HIGH,Virginia,2023-24,684,reported,2740,reported
+sheet6_row_045,Sheet6,45,OSBOURN PARK HIGH,Virginia,2022-23,676,reported,2757,reported
+sheet6_row_045,Sheet6,45,OSBOURN PARK HIGH,Virginia,2021-22,651,reported,2757,reported
+sheet6_row_045,Sheet6,45,OSBOURN PARK HIGH,Virginia,2020-21,653,reported,2617,reported
+sheet6_row_045,Sheet6,45,OSBOURN PARK HIGH,Virginia,2019-20,585,reported,2573,reported
+sheet6_row_045,Sheet6,45,OSBOURN PARK HIGH,Virginia,2018-19,565,reported,2389,reported
+sheet6_row_045,Sheet6,45,OSBOURN PARK HIGH,Virginia,2017-18,492,reported,2201,reported
+sheet6_row_046,Sheet6,46,PARK VIEW HIGH,Virginia,2023-24,367,reported,1440,reported
+sheet6_row_046,Sheet6,46,PARK VIEW HIGH,Virginia,2022-23,370,reported,1455,reported
+sheet6_row_046,Sheet6,46,PARK VIEW HIGH,Virginia,2021-22,347,reported,1408,reported
+sheet6_row_046,Sheet6,46,PARK VIEW HIGH,Virginia,2020-21,348,reported,1404,reported
+sheet6_row_046,Sheet6,46,PARK VIEW HIGH,Virginia,2019-20,354,reported,1480,reported
+sheet6_row_046,Sheet6,46,PARK VIEW HIGH,Virginia,2018-19,386,reported,1390,reported
+sheet6_row_046,Sheet6,46,PARK VIEW HIGH,Virginia,2017-18,377,reported,1518,reported
+sheet6_row_047,Sheet6,47,PATRIOT HIGH,Virginia,2023-24,494,reported,2048,reported
+sheet6_row_047,Sheet6,47,PATRIOT HIGH,Virginia,2022-23,507,reported,2112,reported
+sheet6_row_047,Sheet6,47,PATRIOT HIGH,Virginia,2021-22,617,reported,2325,reported
+sheet6_row_047,Sheet6,47,PATRIOT HIGH,Virginia,2020-21,718,reported,2830,reported
+sheet6_row_047,Sheet6,47,PATRIOT HIGH,Virginia,2019-20,629,reported,2743,reported
+sheet6_row_047,Sheet6,47,PATRIOT HIGH,Virginia,2018-19,650,reported,2704,reported
+sheet6_row_047,Sheet6,47,PATRIOT HIGH,Virginia,2017-18,679,reported,2708,reported
+sheet6_row_048,Sheet6,48,POTOMAC FALLS HIGH,Virginia,2023-24,413,reported,1685,reported
+sheet6_row_048,Sheet6,48,POTOMAC FALLS HIGH,Virginia,2022-23,413,reported,1606,reported
+sheet6_row_048,Sheet6,48,POTOMAC FALLS HIGH,Virginia,2021-22,375,reported,1619,reported
+sheet6_row_048,Sheet6,48,POTOMAC FALLS HIGH,Virginia,2020-21,424,reported,1596,reported
+sheet6_row_048,Sheet6,48,POTOMAC FALLS HIGH,Virginia,2019-20,366,reported,1593,reported
+sheet6_row_048,Sheet6,48,POTOMAC FALLS HIGH,Virginia,2018-19,413,reported,1634,reported
+sheet6_row_048,Sheet6,48,POTOMAC FALLS HIGH,Virginia,2017-18,414,reported,1665,reported
+sheet6_row_049,Sheet6,49,POTOMAC HIGH,Virginia,2023-24,489,reported,2173,reported
+sheet6_row_049,Sheet6,49,POTOMAC HIGH,Virginia,2022-23,465,reported,2065,reported
+sheet6_row_049,Sheet6,49,POTOMAC HIGH,Virginia,2021-22,422,reported,2003,reported
+sheet6_row_049,Sheet6,49,POTOMAC HIGH,Virginia,2020-21,461,reported,1963,reported
+sheet6_row_049,Sheet6,49,POTOMAC HIGH,Virginia,2019-20,475,reported,1970,reported
+sheet6_row_049,Sheet6,49,POTOMAC HIGH,Virginia,2018-19,486,reported,1997,reported
+sheet6_row_049,Sheet6,49,POTOMAC HIGH,Virginia,2017-18,492,reported,2029,reported
+sheet6_row_050,Sheet6,50,RIVERSIDE HIGH,VIRGINIA,2023-24,456,reported,1749,reported
+sheet6_row_050,Sheet6,50,RIVERSIDE HIGH,VIRGINIA,2022-23,428,reported,1801,reported
+sheet6_row_050,Sheet6,50,RIVERSIDE HIGH,VIRGINIA,2021-22,467,reported,1819,reported
+sheet6_row_050,Sheet6,50,RIVERSIDE HIGH,VIRGINIA,2020-21,460,reported,1848,reported
+sheet6_row_050,Sheet6,50,RIVERSIDE HIGH,VIRGINIA,2019-20,459,reported,1882,reported
+sheet6_row_050,Sheet6,50,RIVERSIDE HIGH,VIRGINIA,2018-19,475,reported,1802,reported
+sheet6_row_050,Sheet6,50,RIVERSIDE HIGH,VIRGINIA,2017-18,379,reported,1593,reported
+sheet6_row_051,Sheet6,51,ROBINSON SECONDARY,Virginia,2023-24,599,reported,2498,reported
+sheet6_row_051,Sheet6,51,ROBINSON SECONDARY,Virginia,2022-23,618,reported,2531,reported
+sheet6_row_051,Sheet6,51,ROBINSON SECONDARY,Virginia,2021-22,640,reported,2519,reported
+sheet6_row_051,Sheet6,51,ROBINSON SECONDARY,Virginia,2020-21,648,reported,2579,reported
+sheet6_row_051,Sheet6,51,ROBINSON SECONDARY,Virginia,2019-20,657,reported,2658,reported
+sheet6_row_051,Sheet6,51,ROBINSON SECONDARY,Virginia,2018-19,670,reported,2615,reported
+sheet6_row_051,Sheet6,51,ROBINSON SECONDARY,Virginia,2017-18,647,reported,2696,reported
+sheet6_row_052,Sheet6,52,ROCK RIDGE HIGH,VIRGINIA,2023-24,364,reported,1517,reported
+sheet6_row_052,Sheet6,52,ROCK RIDGE HIGH,VIRGINIA,2022-23,348,reported,1433,reported
+sheet6_row_052,Sheet6,52,ROCK RIDGE HIGH,VIRGINIA,2021-22,340,reported,1376,reported
+sheet6_row_052,Sheet6,52,ROCK RIDGE HIGH,VIRGINIA,2020-21,354,reported,1394,reported
+sheet6_row_052,Sheet6,52,ROCK RIDGE HIGH,VIRGINIA,2019-20,353,reported,1543,reported
+sheet6_row_052,Sheet6,52,ROCK RIDGE HIGH,VIRGINIA,2018-19,520,reported,2204,reported
+sheet6_row_052,Sheet6,52,ROCK RIDGE HIGH,VIRGINIA,2017-18,498,reported,1931,reported
+sheet6_row_053,Sheet6,53,SOUTH COUNTY HIGH,Virginia,2023-24,566,reported,2200,reported
+sheet6_row_053,Sheet6,53,SOUTH COUNTY HIGH,Virginia,2022-23,565,reported,2273,reported
+sheet6_row_053,Sheet6,53,SOUTH COUNTY HIGH,Virginia,2021-22,575,reported,2296,reported
+sheet6_row_053,Sheet6,53,SOUTH COUNTY HIGH,Virginia,2020-21,570,reported,2287,reported
+sheet6_row_053,Sheet6,53,SOUTH COUNTY HIGH,Virginia,2019-20,565,reported,2241,reported
+sheet6_row_053,Sheet6,53,SOUTH COUNTY HIGH,Virginia,2018-19,539,reported,2251,reported
+sheet6_row_053,Sheet6,53,SOUTH COUNTY HIGH,Virginia,2017-18,574,reported,2241,reported
+sheet6_row_054,Sheet6,54,SOUTH LAKES HIGH,Virginia,2023-24,612,reported,2473,reported
+sheet6_row_054,Sheet6,54,SOUTH LAKES HIGH,Virginia,2022-23,622,reported,2530,reported
+sheet6_row_054,Sheet6,54,SOUTH LAKES HIGH,Virginia,2021-22,637,reported,2565,reported
+sheet6_row_054,Sheet6,54,SOUTH LAKES HIGH,Virginia,2020-21,626,reported,2593,reported
+sheet6_row_054,Sheet6,54,SOUTH LAKES HIGH,Virginia,2019-20,634,reported,2549,reported
+sheet6_row_054,Sheet6,54,SOUTH LAKES HIGH,Virginia,2018-19,625,reported,2512,reported
+sheet6_row_054,Sheet6,54,SOUTH LAKES HIGH,Virginia,2017-18,646,reported,2520,reported
+sheet6_row_055,Sheet6,55,STONE BRIDGE HIGH,Virginia,2023-24,432,reported,1697,reported
+sheet6_row_055,Sheet6,55,STONE BRIDGE HIGH,Virginia,2022-23,441,reported,1701,reported
+sheet6_row_055,Sheet6,55,STONE BRIDGE HIGH,Virginia,2021-22,416,reported,1737,reported
+sheet6_row_055,Sheet6,55,STONE BRIDGE HIGH,Virginia,2020-21,417,reported,1776,reported
+sheet6_row_055,Sheet6,55,STONE BRIDGE HIGH,Virginia,2019-20,480,reported,1785,reported
+sheet6_row_055,Sheet6,55,STONE BRIDGE HIGH,Virginia,2018-19,425,reported,1717,reported
+sheet6_row_055,Sheet6,55,STONE BRIDGE HIGH,Virginia,2017-18,384,reported,1669,reported
+sheet6_row_056,Sheet6,56,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,Virginia,2023-24,504,reported,2015,reported
+sheet6_row_056,Sheet6,56,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,Virginia,2022-23,441,reported,1967,reported
+sheet6_row_056,Sheet6,56,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,Virginia,2021-22,461,reported,1902,reported
+sheet6_row_056,Sheet6,56,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,Virginia,2020-21,454,reported,1809,reported
+sheet6_row_056,Sheet6,56,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,Virginia,2019-20,439,reported,1809,reported
+sheet6_row_056,Sheet6,56,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,Virginia,2018-19,446,reported,1781,reported
+sheet6_row_056,Sheet6,56,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,Virginia,2017-18,429,reported,1786,reported
+sheet6_row_057,Sheet6,57,TUSCARORA HIGH,Virginia,2023-24,380,reported,1420,reported
+sheet6_row_057,Sheet6,57,TUSCARORA HIGH,Virginia,2022-23,353,reported,1393,reported
+sheet6_row_057,Sheet6,57,TUSCARORA HIGH,Virginia,2021-22,325,reported,1376,reported
+sheet6_row_057,Sheet6,57,TUSCARORA HIGH,Virginia,2020-21,373,reported,1397,reported
+sheet6_row_057,Sheet6,57,TUSCARORA HIGH,Virginia,2019-20,327,reported,1422,reported
+sheet6_row_057,Sheet6,57,TUSCARORA HIGH,Virginia,2018-19,380,reported,1499,reported
+sheet6_row_057,Sheet6,57,TUSCARORA HIGH,Virginia,2017-18,405,reported,1486,reported
+sheet6_row_058,Sheet6,58,UNITY REED HIGH,Virginia,2023-24,493,reported,2173,reported
+sheet6_row_058,Sheet6,58,UNITY REED HIGH,Virginia,2022-23,452,reported,2316,reported
+sheet6_row_058,Sheet6,58,UNITY REED HIGH,Virginia,2021-22,578,reported,2452,reported
+sheet6_row_058,Sheet6,58,UNITY REED HIGH,Virginia,2020-21,597,reported,2769,reported
+sheet6_row_058,Sheet6,58,UNITY REED HIGH,Virginia,2019-20,592,reported,2699,reported
+sheet6_row_058,Sheet6,58,UNITY REED HIGH,Virginia,2018-19,643,reported,2588,reported
+sheet6_row_058,Sheet6,58,UNITY REED HIGH,Virginia,2017-18,625,reported,2700,reported
+sheet6_row_059,Sheet6,59,WAKEFIELD HIGH,Virginia,2023-24,722,reported,2716,reported
+sheet6_row_059,Sheet6,59,WAKEFIELD HIGH,Virginia,2022-23,675,reported,2766,reported
+sheet6_row_059,Sheet6,59,WAKEFIELD HIGH,Virginia,2021-22,637,reported,2763,reported
+sheet6_row_059,Sheet6,59,WAKEFIELD HIGH,Virginia,2020-21,613,reported,2561,reported
+sheet6_row_059,Sheet6,59,WAKEFIELD HIGH,Virginia,2019-20,581,reported,2490,reported
+sheet6_row_059,Sheet6,59,WAKEFIELD HIGH,Virginia,2018-19,549,reported,2339,reported
+sheet6_row_059,Sheet6,59,WAKEFIELD HIGH,Virginia,2017-18,534,reported,2248,reported
+sheet6_row_060,Sheet6,60,WASHINGTON-LIBERTY HIGH,Virginia,2023-24,693,reported,2900,reported
+sheet6_row_060,Sheet6,60,WASHINGTON-LIBERTY HIGH,Virginia,2022-23,621,reported,2715,reported
+sheet6_row_060,Sheet6,60,WASHINGTON-LIBERTY HIGH,Virginia,2021-22,663,reported,2549,reported
+sheet6_row_060,Sheet6,60,WASHINGTON-LIBERTY HIGH,Virginia,2020-21,629,reported,2436,reported
+sheet6_row_060,Sheet6,60,WASHINGTON-LIBERTY HIGH,Virginia,2019-20,561,reported,2493,reported
+sheet6_row_060,Sheet6,60,WASHINGTON-LIBERTY HIGH,Virginia,2018-19,619,reported,2482,reported
+sheet6_row_060,Sheet6,60,WASHINGTON-LIBERTY HIGH,Virginia,2017-18,697,reported,2437,reported
+sheet6_row_061,Sheet6,61,WEST POTOMAC HIGH,Virginia,2023-24,645,reported,2681,reported
+sheet6_row_061,Sheet6,61,WEST POTOMAC HIGH,Virginia,2022-23,645,reported,2764,reported
+sheet6_row_061,Sheet6,61,WEST POTOMAC HIGH,Virginia,2021-22,709,reported,2688,reported
+sheet6_row_061,Sheet6,61,WEST POTOMAC HIGH,Virginia,2020-21,649,reported,2664,reported
+sheet6_row_061,Sheet6,61,WEST POTOMAC HIGH,Virginia,2019-20,620,reported,2716,reported
+sheet6_row_061,Sheet6,61,WEST POTOMAC HIGH,Virginia,2018-19,693,reported,2654,reported
+sheet6_row_061,Sheet6,61,WEST POTOMAC HIGH,Virginia,2017-18,636,reported,2660,reported
+sheet6_row_062,Sheet6,62,WEST SPRINGFIELD HIGH,Virginia,2023-24,659,reported,2748,reported
+sheet6_row_062,Sheet6,62,WEST SPRINGFIELD HIGH,Virginia,2022-23,647,reported,2663,reported
+sheet6_row_062,Sheet6,62,WEST SPRINGFIELD HIGH,Virginia,2021-22,636,reported,2570,reported
+sheet6_row_062,Sheet6,62,WEST SPRINGFIELD HIGH,Virginia,2020-21,665,reported,2508,reported
+sheet6_row_062,Sheet6,62,WEST SPRINGFIELD HIGH,Virginia,2019-20,578,reported,2413,reported
+sheet6_row_062,Sheet6,62,WEST SPRINGFIELD HIGH,Virginia,2018-19,527,reported,2310,reported
+sheet6_row_062,Sheet6,62,WEST SPRINGFIELD HIGH,Virginia,2017-18,556,reported,2219,reported
+sheet6_row_063,Sheet6,63,WESTFIELD HIGH,Virginia,2023-24,664,reported,2746,reported
+sheet6_row_063,Sheet6,63,WESTFIELD HIGH,Virginia,2022-23,686,reported,2686,reported
+sheet6_row_063,Sheet6,63,WESTFIELD HIGH,Virginia,2021-22,617,reported,2646,reported
+sheet6_row_063,Sheet6,63,WESTFIELD HIGH,Virginia,2020-21,666,reported,2691,reported
+sheet6_row_063,Sheet6,63,WESTFIELD HIGH,Virginia,2019-20,703,reported,2651,reported
+sheet6_row_063,Sheet6,63,WESTFIELD HIGH,Virginia,2018-19,663,reported,2706,reported
+sheet6_row_063,Sheet6,63,WESTFIELD HIGH,Virginia,2017-18,700,reported,2682,reported
+sheet6_row_064,Sheet6,64,WOODBRIDGE HIGH,Virginia,2023-24,696,reported,2916,reported
+sheet6_row_064,Sheet6,64,WOODBRIDGE HIGH,Virginia,2022-23,672,reported,2905,reported
+sheet6_row_064,Sheet6,64,WOODBRIDGE HIGH,Virginia,2021-22,591,reported,2831,reported
+sheet6_row_064,Sheet6,64,WOODBRIDGE HIGH,Virginia,2020-21,714,reported,2821,reported
+sheet6_row_064,Sheet6,64,WOODBRIDGE HIGH,Virginia,2019-20,656,reported,2782,reported
+sheet6_row_064,Sheet6,64,WOODBRIDGE HIGH,Virginia,2018-19,645,reported,2750,reported
+sheet6_row_064,Sheet6,64,WOODBRIDGE HIGH,Virginia,2017-18,622,reported,2606,reported
+sheet6_row_065,Sheet6,65,WOODGROVE HIGH,Virginia,2023-24,402,reported,1525,reported
+sheet6_row_065,Sheet6,65,WOODGROVE HIGH,Virginia,2022-23,364,reported,1583,reported
+sheet6_row_065,Sheet6,65,WOODGROVE HIGH,Virginia,2021-22,392,reported,1544,reported
+sheet6_row_065,Sheet6,65,WOODGROVE HIGH,Virginia,2020-21,355,reported,1551,reported
+sheet6_row_065,Sheet6,65,WOODGROVE HIGH,Virginia,2019-20,399,reported,1624,reported
+sheet6_row_065,Sheet6,65,WOODGROVE HIGH,Virginia,2018-19,422,reported,1601,reported
+sheet6_row_065,Sheet6,65,WOODGROVE HIGH,Virginia,2017-18,391,reported,1620,reported
+sheet6_row_066,Sheet6,66,WOODSON HIGH,Virginia,2023-24,574,reported,2473,reported
+sheet6_row_066,Sheet6,66,WOODSON HIGH,Virginia,2022-23,663,reported,2478,reported
+sheet6_row_066,Sheet6,66,WOODSON HIGH,Virginia,2021-22,610,reported,2481,reported
+sheet6_row_066,Sheet6,66,WOODSON HIGH,Virginia,2020-21,652,reported,2516,reported
+sheet6_row_066,Sheet6,66,WOODSON HIGH,Virginia,2019-20,602,reported,2427,reported
+sheet6_row_066,Sheet6,66,WOODSON HIGH,Virginia,2018-19,568,reported,2410,reported
+sheet6_row_066,Sheet6,66,WOODSON HIGH,Virginia,2017-18,624,reported,2477,reported
+sheet6_row_067,Sheet6,67,YORKTOWN HIGH,Virginia,2023-24,649,reported,2494,reported
+sheet6_row_067,Sheet6,67,YORKTOWN HIGH,Virginia,2022-23,567,reported,2577,reported
+sheet6_row_067,Sheet6,67,YORKTOWN HIGH,Virginia,2021-22,701,reported,2531,reported
+sheet6_row_067,Sheet6,67,YORKTOWN HIGH,Virginia,2020-21,598,reported,2514,reported
+sheet6_row_067,Sheet6,67,YORKTOWN HIGH,Virginia,2019-20,614,reported,2496,reported
+sheet6_row_067,Sheet6,67,YORKTOWN HIGH,Virginia,2018-19,551,reported,2308,reported
+sheet6_row_067,Sheet6,67,YORKTOWN HIGH,Virginia,2017-18,528,reported,2190,reported

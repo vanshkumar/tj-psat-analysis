@@ -1,0 +1,31 @@
+schema_version: 1
+description: >
+  Source manifest for National Merit Semifinalist counts. No numeric count
+  should enter the panel unless it is tied to a manifest entry with URL, title,
+  date, hash, source scope, and completeness notes.
+
+required_for_numeric_nmsf_counts:
+  - source_url
+  - source_title
+  - source_date
+  - source_hash
+
+valid_count_statuses:
+  - source_pending
+  - source_found_not_parsed
+  - parsed
+  - verified_zero
+  - incomplete_source_blank
+  - no_complete_source_found
+
+providers:
+  - fcps
+  - lcps
+  - aps
+  - pwcs
+  - fccps
+  - school_release
+  - local_media
+  - nmsc_virginia_list
+
+sources: []
