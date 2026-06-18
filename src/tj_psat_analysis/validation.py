@@ -34,9 +34,7 @@ def nmsf_source_violations(rows: list[dict[str, str]]) -> list[str]:
         nmsf_count = row.get("nmsf_count", "")
         status = row.get("nmsf_status", "")
         if _is_numeric(nmsf_count):
-            missing = [
-                field for field in REQUIRED_NMSF_SOURCE_FIELDS if not row.get(field, "").strip()
-            ]
+            missing = [field for field in REQUIRED_NMSF_SOURCE_FIELDS if not row.get(field, "").strip()]
             if missing:
                 school = row.get("school", "<unknown school>")
                 class_year = row.get("class_year", "<unknown class>")
@@ -47,7 +45,5 @@ def nmsf_source_violations(rows: list[dict[str, str]]) -> list[str]:
         elif not status.strip():
             school = row.get("school", "<unknown school>")
             class_year = row.get("class_year", "<unknown class>")
-            violations.append(
-                f"row {index}: {school} class {class_year} blank NMSF count missing status"
-            )
+            violations.append(f"row {index}: {school} class {class_year} blank NMSF count missing status")
     return violations

@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import csv
 import hashlib
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 
 from tj_psat_analysis.normalize import normalize_school_name
-
 
 REQUIRED_MANUAL_COUNT_FIELDS = (
     "source_id",
@@ -48,11 +48,11 @@ def load_csv_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
+def write_csv(path: Path, rows: Sequence[Mapping[str, object]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = list(rows[0].keys()) if rows else []
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -61,19 +61,13 @@ def read_manual_nmsf_counts(path: Path) -> list[ManualNmsfCount]:
     rows = load_csv_rows(path)
     records: list[ManualNmsfCount] = []
     for row_number, row in enumerate(rows, start=2):
-        missing = [
-            field
-            for field in REQUIRED_MANUAL_COUNT_FIELDS
-            if not (row.get(field) or "").strip()
-        ]
+        missing = [field for field in REQUIRED_MANUAL_COUNT_FIELDS if not (row.get(field) or "").strip()]
         if missing:
             raise ValueError(f"{path} row {row_number} missing {', '.join(missing)}")
 
         status = row["nmsf_status"].strip()
         if status not in VALID_NUMERIC_STATUSES:
-            raise ValueError(
-                f"{path} row {row_number} has unsupported numeric status {status!r}"
-            )
+            raise ValueError(f"{path} row {row_number} has unsupported numeric status {status!r}")
 
         count_text = row["nmsf_count"].strip()
         try:

@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import csv
 import hashlib
 import re
+import shutil
+from collections import Counter
+from collections.abc import Iterable
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
 
 from openpyxl import load_workbook
 
@@ -63,9 +65,10 @@ def _string(value: object) -> str:
 def _rows_from_sheet(workbook_path: Path, sheet_name: str) -> Iterable[tuple[int, tuple[object, ...]]]:
     workbook = load_workbook(workbook_path, data_only=True, read_only=True)
     worksheet = workbook[sheet_name]
-    for row_index, row in enumerate(worksheet.iter_rows(values_only=True), start=1):
-        yield row_index, row
-    workbook.close()
+    try:
+        yield from enumerate(worksheet.iter_rows(values_only=True), start=1)
+    finally:
+        workbook.close()
 
 
 def read_roster(workbook_path: Path, source_workbook_label: str | None = None) -> list[SchoolRecord]:
@@ -128,15 +131,15 @@ def _parse_year_from_header(header: str, prefix: str) -> str | None:
 
 def read_public_enrollment_raw(workbook_path: Path) -> list[PublicEnrollmentRawRow]:
     rows = list(_rows_from_sheet(workbook_path, PUBLIC_ENROLLMENT_SHEET))
-    header_index = None
+    header_position = None
     header: list[str] = []
-    for row_index, row in rows:
-        values = [_string(value) for value in row]
-        if values and values[0] == "School Name":
-            header_index = row_index
-            header = values
+    for position, (_, row) in enumerate(rows):
+        header_values = [_string(value) for value in row]
+        if header_values and header_values[0] == "School Name":
+            header_position = position
+            header = header_values
             break
-    if header_index is None:
+    if header_position is None:
         raise ValueError(f"Could not find public enrollment header in {PUBLIC_ENROLLMENT_SHEET}")
 
     grade11_columns: dict[int, str] = {}
@@ -150,20 +153,20 @@ def read_public_enrollment_raw(workbook_path: Path) -> list[PublicEnrollmentRawR
             grades9_12_columns[index] = year
 
     records: list[PublicEnrollmentRawRow] = []
-    for row_index, row in rows[header_index:]:
-        values = list(row)
-        school_name = _string(values[0] if values else "")
+    for row_index, row in rows[header_position + 1 :]:
+        row_values: list[object] = list(row)
+        school_name = _string(row_values[0] if row_values else "")
         if not school_name:
             continue
         if school_name.startswith("Data Source:"):
             break
-        state_name = _string(values[1] if len(values) > 1 else "")
-        grade11 = {
-            year: values[index] if index < len(values) else None
+        state_name = _string(row_values[1] if len(row_values) > 1 else "")
+        grade11: dict[str, object] = {
+            year: row_values[index] if index < len(row_values) else None
             for index, year in grade11_columns.items()
         }
-        grades9_12 = {
-            year: values[index] if index < len(values) else None
+        grades9_12: dict[str, object] = {
+            year: row_values[index] if index < len(row_values) else None
             for index, year in grades9_12_columns.items()
         }
         records.append(
@@ -264,9 +267,7 @@ def public_raw_to_rows(raw_rows: list[PublicEnrollmentRawRow]) -> list[dict[str,
     for raw in raw_rows:
         for school_year, raw_value in raw.values_by_year.items():
             value, status = parse_nces_value(raw_value)
-            grades9_12, grades9_12_status = parse_nces_value(
-                raw.high_school_values_by_year.get(school_year)
-            )
+            grades9_12, grades9_12_status = parse_nces_value(raw.high_school_values_by_year.get(school_year))
             rows.append(
                 {
                     "source_row_id": raw.source_row_id,
@@ -323,12 +324,23 @@ def public_enrollment_long_rows(
     return rows
 
 
+def class_year_mapping_rows() -> list[dict[str, object]]:
+    return [
+        {
+            "class_year": class_year,
+            "qualifying_psat_year": f"Fall {class_year - 2}",
+            "grade11_school_year": grade11_school_year,
+        }
+        for class_year, grade11_school_year in CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR.items()
+    ]
+
+
 def seed_panel_rows(
     roster: list[SchoolRecord],
     public_enrollment_rows: list[dict[str, object]],
 ) -> list[dict[str, object]]:
     public_lookup = {
-        (row["school_id"], int(row["class_year"])): row for row in public_enrollment_rows
+        (str(row["school_id"]), int(str(row["class_year"]))): row for row in public_enrollment_rows
     }
     panel: list[dict[str, object]] = []
     for record in roster:
@@ -388,20 +400,275 @@ def seed_panel_rows(
     return panel
 
 
+def _markdown_table(headers: list[str], rows: list[list[object]]) -> str:
+    rendered = [
+        "| " + " | ".join(headers) + " |",
+        "| " + " | ".join("---" for _ in headers) + " |",
+    ]
+    for row in rows:
+        rendered.append("| " + " | ".join(str(value) for value in row) + " |")
+    return "\n".join(rendered)
+
+
+def _counter_rows(counter: Counter[str]) -> list[list[object]]:
+    return [[key or "(blank)", value] for key, value in sorted(counter.items())]
+
+
+def _format_review_rows(rows: list[list[object]], empty_message: str) -> str:
+    if not rows:
+        return empty_message
+    return _markdown_table(["School", "Review status", "Source rows", "Source names"], rows)
+
+
+def _roster_missing_required_fields(roster: list[SchoolRecord]) -> list[list[object]]:
+    required = ("school_id", "pathway", "division", "sector", "school")
+    missing_rows: list[list[object]] = []
+    for record in roster:
+        missing = [field for field in required if not str(getattr(record, field, "")).strip()]
+        if missing:
+            missing_rows.append([record.source_row, record.school or "(blank)", ", ".join(missing)])
+    return missing_rows
+
+
+def _duplicate_rows_by_normalized_name(roster: list[SchoolRecord]) -> list[list[object]]:
+    grouped: dict[str, list[SchoolRecord]] = {}
+    for record in roster:
+        key = normalize_school_name(record.school)
+        grouped.setdefault(key, []).append(record)
+
+    duplicates: list[list[object]] = []
+    for key, records in sorted(grouped.items()):
+        if len(records) > 1:
+            duplicates.append(
+                [
+                    key,
+                    len(records),
+                    "; ".join(record.school for record in records),
+                    "; ".join(record.school_id for record in records),
+                ]
+            )
+    return duplicates
+
+
+def _raw_enrollment_duplicate_rows(raw_rows: list[PublicEnrollmentRawRow]) -> list[list[object]]:
+    grouped: dict[str, list[PublicEnrollmentRawRow]] = {}
+    for row in raw_rows:
+        grouped.setdefault(normalize_school_name(row.school_name_source), []).append(row)
+
+    duplicates: list[list[object]] = []
+    for key, rows in sorted(grouped.items()):
+        if len(rows) > 1:
+            duplicates.append(
+                [
+                    key,
+                    len(rows),
+                    "; ".join(row.source_row_id for row in rows),
+                    "; ".join(row.school_name_source for row in rows),
+                ]
+            )
+    return duplicates
+
+
+def _enrollment_review_rows(
+    roster: list[SchoolRecord],
+    raw_rows: list[PublicEnrollmentRawRow],
+) -> list[list[object]]:
+    matches = match_public_enrollment_rows(roster, raw_rows)
+    review_rows: list[list[object]] = []
+    for record in roster:
+        if record.sector != "Public":
+            continue
+        status, candidates = matches[record.school_id]
+        if status in {"ambiguous_source_name", "source_row_not_found"}:
+            review_rows.append(
+                [
+                    record.school,
+                    status,
+                    "; ".join(row.source_row_id for row in candidates) or "(none)",
+                    "; ".join(row.school_name_source for row in candidates) or "(none)",
+                ]
+            )
+    return review_rows
+
+
+def _workbook_sheet_names(workbook_path: Path) -> list[str]:
+    workbook = load_workbook(workbook_path, read_only=True)
+    sheet_names = list(workbook.sheetnames)
+    workbook.close()
+    return sheet_names
+
+
+def _display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(Path.cwd()))
+    except ValueError:
+        return str(path)
+
+
+def build_workbook_ingestion_report(
+    workbook_path: Path,
+    workbook_hash: str,
+    roster: list[SchoolRecord],
+    public_raw: list[PublicEnrollmentRawRow],
+    public_long: list[dict[str, object]],
+    panel: list[dict[str, object]],
+    manual_workbook_copy: Path | None = None,
+) -> str:
+    sheet_names = _workbook_sheet_names(workbook_path)
+    used_sheets = [ROSTER_SHEET, PUBLIC_ENROLLMENT_SHEET]
+    ignored_sheets = [sheet for sheet in sheet_names if sheet not in used_sheets]
+    numeric_nmsf_rows = [row for row in panel if str(row.get("nmsf_count", "")).strip()]
+
+    lines = [
+        "# Workbook Ingestion Data Quality Report",
+        "",
+        "This report is generated from the seed workbook parser. It is deterministic",
+        "and records review queues rather than guessing through ambiguous data.",
+        "",
+        "## Source workbook",
+        "",
+        _markdown_table(
+            ["Field", "Value"],
+            [
+                ["Workbook path", _display_path(workbook_path)],
+                ["Workbook SHA-256", workbook_hash],
+                [
+                    "Manual copy path",
+                    _display_path(manual_workbook_copy) if manual_workbook_copy else "(not requested)",
+                ],
+                ["Sheets read", ", ".join(used_sheets)],
+                ["Sheets ignored", ", ".join(ignored_sheets) or "(none)"],
+            ],
+        ),
+        "",
+        "The parser reads only `raw` and `Sheet6`. It does not read values from",
+        "`nsmf 2019`, and the generated seed panel contains no numeric NMSF counts.",
+        "",
+        "## Output summary",
+        "",
+        _markdown_table(
+            ["Output", "Rows"],
+            [
+                ["canonical school roster", len(roster)],
+                ["public enrollment raw long rows", len(public_raw_to_rows(public_raw))],
+                ["public grade-11 enrollment rows", len(public_long)],
+                ["class-year mapping rows", len(CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR)],
+                ["seed panel rows", len(panel)],
+                ["numeric NMSF rows in seed panel", len(numeric_nmsf_rows)],
+            ],
+        ),
+        "",
+        "## Roster coverage",
+        "",
+        _markdown_table(["Sector", "Schools"], _counter_rows(Counter(row.sector for row in roster))),
+        "",
+        _markdown_table(["Pathway", "Schools"], _counter_rows(Counter(row.pathway for row in roster))),
+        "",
+        "## Enrollment status counts",
+        "",
+        _markdown_table(
+            ["Enrollment status", "Rows"],
+            _counter_rows(Counter(str(row["enrollment_status"]) for row in public_long)),
+        ),
+        "",
+        "## Missing required roster fields",
+        "",
+    ]
+
+    missing_required = _roster_missing_required_fields(roster)
+    if missing_required:
+        lines.append(_markdown_table(["Workbook row", "School", "Missing fields"], missing_required))
+    else:
+        lines.append("No missing required roster fields.")
+
+    duplicate_roster_rows = _duplicate_rows_by_normalized_name(roster)
+    lines.extend(["", "## Duplicate roster names", ""])
+    if duplicate_roster_rows:
+        lines.append(
+            _markdown_table(
+                ["Normalized name", "Rows", "Schools", "School IDs"],
+                duplicate_roster_rows,
+            )
+        )
+    else:
+        lines.append("No duplicate normalized roster school names.")
+
+    duplicate_source_rows = _raw_enrollment_duplicate_rows(public_raw)
+    lines.extend(["", "## Duplicate public enrollment source names", ""])
+    if duplicate_source_rows:
+        lines.append(
+            _markdown_table(
+                ["Normalized source name", "Rows", "Source row IDs", "Source names"],
+                duplicate_source_rows,
+            )
+        )
+    else:
+        lines.append("No duplicate normalized public enrollment source names.")
+
+    lines.extend(["", "## Enrollment review queue", ""])
+    lines.append(
+        _format_review_rows(
+            _enrollment_review_rows(roster, public_raw),
+            "No ambiguous or missing public enrollment source-name matches.",
+        )
+    )
+
+    lines.extend(
+        [
+            "",
+            "## NMSF exclusion check",
+            "",
+            _markdown_table(
+                ["Check", "Result"],
+                [
+                    ["`nsmf 2019` read by parser", "no"],
+                    ["Numeric NMSF rows in seed panel", len(numeric_nmsf_rows)],
+                    ["Default NMSF status", "source_pending"],
+                ],
+            ),
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
 def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = list(rows[0].keys()) if rows else []
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
 
-def build_seed_outputs(workbook_path: Path, output_dir: Path) -> dict[str, Path]:
+def write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
+def ensure_manual_workbook_copy(workbook_path: Path, manual_dir: Path) -> Path:
+    manual_dir.mkdir(parents=True, exist_ok=True)
+    target = manual_dir / workbook_path.name
+    if target.exists():
+        if sha256_file(target) != sha256_file(workbook_path):
+            raise ValueError(f"{target} exists but is not byte-identical to {workbook_path}")
+        return target
+    shutil.copy2(workbook_path, target)
+    return target
+
+
+def build_seed_outputs(
+    workbook_path: Path,
+    output_dir: Path,
+    processed_dir: Path | None = None,
+    report_dir: Path | None = None,
+    manual_dir: Path | None = None,
+) -> dict[str, Path]:
     workbook_path = workbook_path.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
     workbook_hash = sha256_file(workbook_path)
+    manual_workbook_copy = ensure_manual_workbook_copy(workbook_path, manual_dir) if manual_dir else None
     try:
         source_workbook_label = str(workbook_path.relative_to(Path.cwd()))
     except ValueError:
@@ -421,4 +688,35 @@ def build_seed_outputs(workbook_path: Path, output_dir: Path) -> dict[str, Path]
     write_csv(outputs["public_enrollment_raw"], public_raw_to_rows(public_raw))
     write_csv(outputs["public_grade11_enrollment"], public_long)
     write_csv(outputs["panel_seed"], panel)
+
+    if processed_dir:
+        processed_outputs = {
+            "schools": processed_dir / "schools.csv",
+            "public_enrollment": processed_dir / "public_enrollment.csv",
+            "class_year_mapping": processed_dir / "class_year_mapping.csv",
+        }
+        write_csv(processed_outputs["schools"], roster_to_rows(roster))
+        write_csv(processed_outputs["public_enrollment"], public_long)
+        write_csv(processed_outputs["class_year_mapping"], class_year_mapping_rows())
+        outputs.update(processed_outputs)
+
+    if report_dir:
+        report_path = report_dir / "workbook_ingestion.md"
+        write_text(
+            report_path,
+            build_workbook_ingestion_report(
+                workbook_path=workbook_path,
+                workbook_hash=workbook_hash,
+                roster=roster,
+                public_raw=public_raw,
+                public_long=public_long,
+                panel=panel,
+                manual_workbook_copy=manual_workbook_copy,
+            ),
+        )
+        outputs["workbook_ingestion_report"] = report_path
+
+    if manual_workbook_copy:
+        outputs["manual_workbook"] = manual_workbook_copy
+
     return outputs

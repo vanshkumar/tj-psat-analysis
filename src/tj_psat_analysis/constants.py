@@ -19,7 +19,5 @@ SEED_WORKBOOK_RELATIVE_PATH = "docs/source_notes/tj psat investigation.xlsx"
 ROSTER_SHEET = "raw"
 PUBLIC_ENROLLMENT_SHEET = "Sheet6"
 
-PUBLIC_ENROLLMENT_SOURCE_TITLE = (
-    'NCES CCD Public Elementary/Secondary School Universe Survey via ELSI export'
-)
+PUBLIC_ENROLLMENT_SOURCE_TITLE = "NCES CCD Public Elementary/Secondary School Universe Survey via ELSI export"
 PUBLIC_ENROLLMENT_SOURCE_URL = "http://nces.ed.gov/ccd/elsi/"

@@ -49,4 +49,24 @@
 - Action: Preserve source notes by default, but stage these specific deletions when publishing this repo state because the user explicitly confirmed them.
 - Confidence: high
 
+**2026-06-18 - Task plan status review**
+- Observation: `TASKS.md` is newly added with unchecked boxes, while the repo already contains tested first-milestone seed outputs and a partial FCPS NMSF pilot under `data/interim/` and `data/sources/`.
+- Action: Treat `TASKS.md` checkboxes as unsynced planning state until they are reconciled against repository artifacts and tests.
+- Confidence: high
+
+**2026-06-18 - Milestone 1 completion**
+- Observation: `scripts/build_seed_data.py` now emits both legacy interim files and milestone deliverables under `data/processed/`, plus `reports/data_quality/workbook_ingestion.md` and a byte-identical workbook copy under `data/manual/`.
+- Action: Use `python scripts/build_seed_data.py` as the single regeneration command for Milestone 1; keep `docs/source_notes/tj psat investigation.xlsx` and `data/manual/tj psat investigation.xlsx` hash-identical.
+- Confidence: high
+
+**2026-06-18 - Main-branch publishing**
+- Observation: The repository's active branch is `main` tracking `origin/main`, and the user's "merge & push everything" request applies directly to that branch rather than a feature branch PR.
+- Action: For this repo state, commit the confirmed Milestone 1 scope on `main` and push `origin/main`; do not create an extra `codex/` branch unless the user asks for PR-style review.
+- Confidence: high
+
+**2026-06-18 - Generated CSV line endings**
+- Observation: Python's default `csv.DictWriter` line endings caused generated CSVs to trip `git diff --check` as trailing whitespace.
+- Action: Set `lineterminator="\n"` in project CSV writers and regenerate CSV outputs before publishing.
+- Confidence: high
+
 ## What Has Failed

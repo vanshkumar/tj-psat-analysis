@@ -1,16 +1,16 @@
 from __future__ import annotations
 
 import csv
-from pathlib import Path
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from tj_psat_analysis.constants import CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR
-from tj_psat_analysis.seed_workbook import build_seed_outputs
+from tj_psat_analysis.seed_workbook import build_seed_outputs, sha256_file
 
 
 class SeedIngestionTest(unittest.TestCase):
@@ -60,7 +60,8 @@ class SeedIngestionTest(unittest.TestCase):
         freedom_2025 = [
             row
             for row in rows
-            if row["school"] in {
+            if row["school"]
+            in {
                 "Freedom High School (South Riding)",
                 "Freedom High School (Woodbridge)",
             }
@@ -72,10 +73,42 @@ class SeedIngestionTest(unittest.TestCase):
 
     def test_class_2026_public_enrollment_waits_for_2024_25_source(self) -> None:
         rows = self._read("public_grade11_enrollment")
-        class_2026_statuses = {
-            row["enrollment_status"] for row in rows if row["class_year"] == "2026"
-        }
+        class_2026_statuses = {row["enrollment_status"] for row in rows if row["class_year"] == "2026"}
         self.assertEqual(class_2026_statuses, {"source_year_not_in_seed"})
+
+    def test_milestone_one_deliverables_are_generated_without_mutating_workbook(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            workbook = ROOT / "docs" / "source_notes" / "tj psat investigation.xlsx"
+            before_hash = sha256_file(workbook)
+            outputs = build_seed_outputs(
+                workbook_path=workbook,
+                output_dir=root / "interim",
+                processed_dir=root / "processed",
+                report_dir=root / "reports" / "data_quality",
+                manual_dir=root / "manual",
+            )
+            after_hash = sha256_file(workbook)
+
+            self.assertEqual(before_hash, after_hash)
+            self.assertEqual(sha256_file(outputs["manual_workbook"]), before_hash)
+            self.assertTrue(outputs["schools"].exists())
+            self.assertTrue(outputs["public_enrollment"].exists())
+            self.assertTrue(outputs["class_year_mapping"].exists())
+            self.assertTrue(outputs["workbook_ingestion_report"].exists())
+
+            with outputs["schools"].open(newline="", encoding="utf-8") as handle:
+                schools = list(csv.DictReader(handle))
+            with outputs["class_year_mapping"].open(newline="", encoding="utf-8") as handle:
+                mapping = list(csv.DictReader(handle))
+            report = outputs["workbook_ingestion_report"].read_text(encoding="utf-8")
+
+        self.assertEqual(len(schools), 76)
+        self.assertEqual(len({row["school_id"] for row in schools}), 76)
+        self.assertEqual(mapping[0]["class_year"], "2019")
+        self.assertEqual(mapping[-1]["grade11_school_year"], "2024-25")
+        self.assertIn("`nsmf 2019` read by parser", report)
+        self.assertIn("ambiguous_source_name", report)
 
 
 if __name__ == "__main__":

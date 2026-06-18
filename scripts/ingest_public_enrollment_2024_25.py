@@ -10,8 +10,8 @@ from __future__ import annotations
 
 import argparse
 import csv
-from pathlib import Path
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -38,8 +38,7 @@ def main() -> int:
         reader = csv.DictReader(handle)
         if not reader.fieldnames or args.grade11_column not in reader.fieldnames:
             raise SystemExit(
-                f"Expected explicit 2024-25 grade 11 column {args.grade11_column!r}; "
-                "refusing to infer it."
+                f"Expected explicit 2024-25 grade 11 column {args.grade11_column!r}; refusing to infer it."
             )
         rows = list(reader)
 

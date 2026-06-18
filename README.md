@@ -18,11 +18,30 @@ python -m unittest discover -s tests
 
 Generated first-milestone outputs:
 
+- `data/manual/tj psat investigation.xlsx`
 - `data/interim/canonical_schools.csv`
 - `data/interim/public_enrollment_raw.csv`
 - `data/interim/public_grade11_enrollment.csv`
 - `data/interim/panel_seed.csv`
 - `data/interim/panel_nmsf.csv`
+- `data/processed/schools.csv`
+- `data/processed/public_enrollment.csv`
+- `data/processed/class_year_mapping.csv`
+- `reports/data_quality/workbook_ingestion.md`
+
+The build command reads the seed workbook from
+`docs/source_notes/tj psat investigation.xlsx`, preserves it unchanged, and
+creates a byte-identical copy under `data/manual/` for the manual source
+inventory required by the task plan.
+
+## Development Checks
+
+```bash
+python -m ruff format --check .
+python -m ruff check .
+python -m mypy
+python -m unittest discover -s tests
+```
 
 ## NMSF Count Ingestion
 
