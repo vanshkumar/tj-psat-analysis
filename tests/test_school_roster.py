@@ -53,6 +53,22 @@ class SchoolRosterTest(unittest.TestCase):
             freedom["freedom_high_school_woodbridge"]["nces_school_id"],
         )
 
+    def test_private_school_pathways_are_residency_based_from_policy_pdf(self) -> None:
+        roster = self._read("school_roster")
+        private_rows = [row for row in roster if row["sector"] == "private"]
+        self.assertEqual(len(private_rows), 16)
+        self.assertEqual({row["tj_pathway"] for row in private_rows}, {"Residency-based private"})
+        self.assertEqual(
+            {row["pathway_status"] for row in private_rows},
+            {"residency_based_private_applicant"},
+        )
+        self.assertEqual(
+            {row["pathway_assignment_method"] for row in private_rows},
+            {"applicant_residency"},
+        )
+        self.assertTrue(all(len(row["pathway_source_hash"]) == 64 for row in private_rows))
+        self.assertTrue(all(row["district_name"] == "" for row in private_rows))
+
     def test_join_allowed_aliases_are_unique_and_generic_freedom_alias_is_blocked(self) -> None:
         aliases = self._read("school_aliases")
         normalized_to_school_ids: dict[str, set[str]] = {}
@@ -84,7 +100,11 @@ class SchoolRosterTest(unittest.TestCase):
 
         report = self.outputs["roster_review"].read_text(encoding="utf-8")
         self.assertIn("Arlington Tech is not treated as a separate analytical unit", report)
-        self.assertIn("needs_private_fcps_region_assignment", report)
+        self.assertIn("private-school applicants", report)
+        self.assertIn("FCPS regional placement is based on the", report)
+        self.assertIn("student's base school", report)
+        self.assertIn("No pathway review rows.", report)
+        self.assertNotIn("needs_private_fcps_region_assignment", report)
 
 
 if __name__ == "__main__":

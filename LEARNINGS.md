@@ -64,6 +64,11 @@
 - Action: For this repo state, commit the confirmed Milestone 1 scope on `main` and push `origin/main`; do not create an extra `codex/` branch unless the user asks for PR-style review.
 - Confidence: high
 
+**2026-06-18 - TJ pathway assignment**
+- Observation: `docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf` says FCPS regional placement is based on the student's base school and private-school applicants are assigned by residency.
+- Action: Keep private-school rows as `Residency-based private`/`applicant_residency`; do not allocate private-school NMSF observations to FCPS regions or participating jurisdictions from school location alone.
+- Confidence: high
+
 **2026-06-18 - Generated CSV line endings**
 - Observation: Python's default `csv.DictWriter` line endings caused generated CSVs to trip `git diff --check` as trailing whitespace.
 - Action: Set `lineterminator="\n"` in project CSV writers and regenerate CSV outputs before publishing.

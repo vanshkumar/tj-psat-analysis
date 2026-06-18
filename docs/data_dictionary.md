@@ -7,11 +7,16 @@
 - `data/interim/public_grade11_enrollment.csv`: canonical public-school grade 11 enrollment by class year.
 - `data/interim/panel_seed.csv`: school-by-class-year panel with blank NMSF counts and source-pending statuses.
 - `data/interim/panel_nmsf.csv`: `panel_seed.csv` plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`.
-- `data/processed/school_roster.csv`: Milestone 2 roster with canonical school IDs, pathway status, sector, district, NCES IDs where source-backed, and operating-year boundaries.
+- `data/processed/school_roster.csv`: Milestone 2 roster with canonical school IDs, pathway status, pathway assignment method, pathway source metadata, sector, district, NCES IDs where source-backed, and operating-year boundaries.
 - `data/manual/school_aliases.csv`: deterministic alias table. Rows with `join_allowed=false` are known ambiguous aliases and must not be used for automatic observation joins.
 - `data/manual/school_history.csv`: source-noted rename, opening, and relocation events used to keep historical names and not-operating years explicit.
 - `data/manual/public_school_nces_ids.csv`: source-backed public-school NCES IDs matched from the NCES CCD 2023-24 directory by division and normalized alias.
-- `reports/data_quality/roster_review.md`: Milestone 2 roster coverage, alias conflicts, history review, and unresolved pathway queue.
+- `reports/data_quality/roster_review.md`: Milestone 2 roster coverage, alias conflicts, history review, admissions-pathway source summary, and pathway review status.
+
+## Source Notes
+
+- `docs/source_notes/tj psat investigation.xlsx`: seed workbook for roster and enrollment data.
+- `docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf`: admissions-pathway source used by `data/processed/school_roster.csv`. It establishes that FCPS regional placement is based on the student's base school, and private-school applicants are assigned by residency rather than by the private school's location.
 
 ## Source CSVs
 
@@ -42,7 +47,12 @@
 
 ## Roster Statuses
 
-- `pathway_status=assigned`: the roster row has a task-plan pathway.
-- `pathway_status=needs_private_fcps_region_assignment`: the seed workbook places a private school in Fairfax, but no source-backed FCPS region assignment has been ingested.
+- `pathway_status=assigned`: the public-school or TJHSST roster row has a source-backed task-plan pathway.
+- `pathway_status=residency_based_private_applicant`: the private-school row is intentionally not assigned to an FCPS region or participating-jurisdiction pathway by school location; the admissions proposal says private-school applicants are assigned by residency.
+- `pathway_assignment_method=base_school_region`: an FCPS public-school row is assigned from the student's base-school region.
+- `pathway_assignment_method=participating_jurisdiction`: a public-school row is assigned to Arlington, Falls Church City, Loudoun, or Prince William.
+- `pathway_assignment_method=single_tjhsst_row`: TJHSST remains one canonical school row.
+- `pathway_assignment_method=applicant_residency`: a private-school row is marked as residency-based because the school location alone does not determine the applicant's TJ pathway.
+- `pathway_source_title`, `pathway_source_path`, `pathway_source_date`, and `pathway_source_hash`: source metadata for the admissions-pathway rule applied to the roster row.
 - `identifier_status=matched_2023_24_ccd`: a public roster row matched exactly one 2023-24 NCES CCD school directory row within its division.
 - `identifier_status=private_pss_id_not_ingested`: private-school identifiers are pending NCES PSS ingestion.

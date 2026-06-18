@@ -22,17 +22,39 @@ or ambiguous school metadata.
 
 | TJ pathway | Schools |
 | --- | --- |
-| Arlington | 5 |
+| Arlington | 4 |
 | FCPS Region 1 | 5 |
 | FCPS Region 2 | 5 |
 | FCPS Region 3 | 5 |
 | FCPS Region 4 | 5 |
 | FCPS Region 5 | 4 |
-| Fairfax | 11 |
 | Falls Church City | 1 |
-| Loudoun | 19 |
-| Prince William | 15 |
+| Loudoun | 17 |
+| Prince William | 13 |
+| Residency-based private | 16 |
 | TJHSST | 1 |
+
+| Pathway assignment method | Schools |
+| --- | --- |
+| applicant_residency | 16 |
+| base_school_region | 24 |
+| participating_jurisdiction | 35 |
+| single_tjhsst_row | 1 |
+
+## Admissions Pathway Source
+
+| Field | Value |
+| --- | --- |
+| Source title | TJHSST Admissions Merit Lottery Proposal |
+| Source path | docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf |
+| Source date | 2020-09-15 |
+| Source SHA-256 | 286be572c544960d7bcdb3d439605de946ef7cca41ff4da6ba0313bbfc93c99b |
+
+The PDF establishes two pathway rules used here: private-school applicants
+are assigned by residency, and FCPS regional placement is based on the
+student's base school. Therefore private-school NMSF observations should
+not be allocated to FCPS regions or participating jurisdictions by school
+location alone.
 
 ## Identifier Coverage
 
@@ -56,19 +78,7 @@ Join-allowed aliases are unique by normalized alias. Blocked aliases: 2.
 
 ## Pathway Review Queue
 
-| School | Current pathway | Status |
-| --- | --- | --- |
-| BASIS Independent McLean | Fairfax | needs_private_fcps_region_assignment |
-| Flint Hill School | Fairfax | needs_private_fcps_region_assignment |
-| The Madeira School | Fairfax | needs_private_fcps_region_assignment |
-| Oakcrest School | Fairfax | needs_private_fcps_region_assignment |
-| Potomac School | Fairfax | needs_private_fcps_region_assignment |
-| Trinity Christian School | Fairfax | needs_private_fcps_region_assignment |
-| Trinity School at Meadow View | Fairfax | needs_private_fcps_region_assignment |
-| Immanuel Christian High School | Fairfax | needs_private_fcps_region_assignment |
-| Ideaventions Academy for Mathematics & Science | Fairfax | needs_private_fcps_region_assignment |
-| New School of Northern Virginia | Fairfax | needs_private_fcps_region_assignment |
-| Pinnacle Academy | Fairfax | needs_private_fcps_region_assignment |
+No pathway review rows.
 
 ## Operational History
 

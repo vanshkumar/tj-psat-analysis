@@ -15,6 +15,8 @@ from .constants import (
 from .normalize import normalize_school_name
 from .seed_workbook import SchoolRecord, read_roster, sha256_file, write_csv, write_text
 
+PRIVATE_RESIDENCY_BASED_PATHWAY = "Residency-based private"
+
 ALLOWED_TJ_PATHWAYS = {
     "Arlington",
     "Falls Church City",
@@ -26,6 +28,7 @@ ALLOWED_TJ_PATHWAYS = {
     "FCPS Region 4",
     "FCPS Region 5",
     "TJHSST",
+    PRIVATE_RESIDENCY_BASED_PATHWAY,
 }
 
 PATHWAY_RENAMES = {
@@ -45,6 +48,10 @@ CCD_DIRECTORY_SOURCE_TITLE = (
 )
 CCD_DIRECTORY_SOURCE_URL = "https://nces.ed.gov/ccd/Data/zip/ccd_sch_029_2324_w_1a_073124.zip"
 CCD_DIRECTORY_RETRIEVAL_DATE = "2026-06-18"
+
+ADMISSIONS_POLICY_RELATIVE_PATH = "docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf"
+ADMISSIONS_POLICY_SOURCE_TITLE = "TJHSST Admissions Merit Lottery Proposal"
+ADMISSIONS_POLICY_SOURCE_DATE = "2020-09-15"
 
 ARLINGTON_TECH_DECISION = (
     "Arlington Tech is not treated as a separate analytical unit for this roster. "
@@ -201,17 +208,48 @@ def _class_year_for_school_year(school_year: str) -> int:
     raise ValueError(f"No class-year mapping for school year {school_year!r}")
 
 
-def _standard_tj_pathway(pathway: str) -> str:
-    return PATHWAY_RENAMES.get(pathway, pathway)
+def _standard_tj_pathway(record: SchoolRecord) -> str:
+    if record.sector == "Private":
+        return PRIVATE_RESIDENCY_BASED_PATHWAY
+    return PATHWAY_RENAMES.get(record.pathway, record.pathway)
 
 
 def _pathway_status(record: SchoolRecord) -> str:
-    pathway = _standard_tj_pathway(record.pathway)
+    if record.sector == "Private":
+        return "residency_based_private_applicant"
+    pathway = _standard_tj_pathway(record)
     if pathway in ALLOWED_TJ_PATHWAYS:
         return "assigned"
-    if record.sector == "Private" and pathway == "Fairfax":
-        return "needs_private_fcps_region_assignment"
     return "invalid_pathway"
+
+
+def _pathway_assignment_method(record: SchoolRecord) -> str:
+    if record.sector == "Private":
+        return "applicant_residency"
+    if record.pathway.startswith("FCPS Region"):
+        return "base_school_region"
+    if record.school_id == "thomas_jefferson_high_school_for_science_and_technology":
+        return "single_tjhsst_row"
+    return "participating_jurisdiction"
+
+
+def _pathway_source_note(record: SchoolRecord) -> str:
+    if record.sector == "Private":
+        return (
+            "PDF slide 15 states that private school applicants are assigned a pathway "
+            "based on residency; do not assign private schools by school location."
+        )
+    if record.pathway.startswith("FCPS Region"):
+        return (
+            "PDF slide 16 states that FCPS regional placement is based on the student's "
+            "base school; the seed workbook supplies school-to-region rows."
+        )
+    if record.school_id == "thomas_jefferson_high_school_for_science_and_technology":
+        return "TJHSST remains one canonical school row per project data rules."
+    return (
+        "PDF slides 14-15 define participating jurisdiction pathways; the seed workbook "
+        "supplies school-to-jurisdiction rows."
+    )
 
 
 def _analytical_unit_type(record: SchoolRecord) -> str:
@@ -370,6 +408,8 @@ def extract_public_nces_id_rows(
 def build_school_roster_rows(
     roster: Sequence[SchoolRecord],
     nces_rows: Sequence[Mapping[str, str]],
+    admissions_policy_pdf_path: str,
+    admissions_policy_pdf_hash: str,
 ) -> list[dict[str, object]]:
     nces_by_school_id = _nces_lookup(nces_rows)
     output: list[dict[str, object]] = []
@@ -381,19 +421,27 @@ def build_school_roster_rows(
         nces = nces_by_school_id.get(record.school_id, {})
         if record.sector == "Public":
             identifier_status = "matched_2023_24_ccd" if nces else "public_nces_id_pending"
+            district_name = nces.get(
+                "nces_lea_name",
+                PUBLIC_LEA_NAME_BY_DIVISION.get(record.division, ""),
+            )
         else:
             identifier_status = "private_pss_id_not_ingested"
+            district_name = ""
         output.append(
             {
                 "school_id": record.school_id,
                 "school": record.school,
-                "tj_pathway": _standard_tj_pathway(record.pathway),
+                "tj_pathway": _standard_tj_pathway(record),
                 "pathway_status": _pathway_status(record),
+                "pathway_assignment_method": _pathway_assignment_method(record),
+                "pathway_source_title": ADMISSIONS_POLICY_SOURCE_TITLE,
+                "pathway_source_path": admissions_policy_pdf_path,
+                "pathway_source_date": ADMISSIONS_POLICY_SOURCE_DATE,
+                "pathway_source_hash": admissions_policy_pdf_hash,
+                "pathway_source_note": _pathway_source_note(record),
                 "division": record.division,
-                "district_name": nces.get(
-                    "nces_lea_name",
-                    PUBLIC_LEA_NAME_BY_DIVISION.get(record.division, ""),
-                ),
+                "district_name": district_name,
                 "sector": record.sector.lower(),
                 "analytical_unit_type": _analytical_unit_type(record),
                 "nces_school_id": nces.get("nces_school_id", ""),
@@ -457,9 +505,11 @@ def build_roster_review_report(
     alias_rows: Sequence[Mapping[str, object]],
     history_rows: Sequence[Mapping[str, object]],
     nces_rows: Sequence[Mapping[str, str]],
+    admissions_policy_pdf_path: str,
+    admissions_policy_pdf_hash: str,
 ) -> str:
     blocked_alias_rows = [row for row in alias_rows if row["join_allowed"] == "false"]
-    invalid_pathway_rows = [row for row in school_roster_rows if row["pathway_status"] != "assigned"]
+    invalid_pathway_rows = [row for row in school_roster_rows if row["pathway_status"] == "invalid_pathway"]
     public_rows = [row for row in school_roster_rows if row["sector"] == "public"]
     public_nces_matched = [row for row in public_rows if row["identifier_status"] == "matched_2023_24_ccd"]
     not_operating_rows: list[list[object]] = []
@@ -506,6 +556,29 @@ def build_roster_review_report(
             ["TJ pathway", "Schools"],
             _counter_rows(str(row["tj_pathway"]) for row in school_roster_rows),
         ),
+        "",
+        _markdown_table(
+            ["Pathway assignment method", "Schools"],
+            _counter_rows(str(row["pathway_assignment_method"]) for row in school_roster_rows),
+        ),
+        "",
+        "## Admissions Pathway Source",
+        "",
+        _markdown_table(
+            ["Field", "Value"],
+            [
+                ["Source title", ADMISSIONS_POLICY_SOURCE_TITLE],
+                ["Source path", admissions_policy_pdf_path],
+                ["Source date", ADMISSIONS_POLICY_SOURCE_DATE],
+                ["Source SHA-256", admissions_policy_pdf_hash],
+            ],
+        ),
+        "",
+        "The PDF establishes two pathway rules used here: private-school applicants",
+        "are assigned by residency, and FCPS regional placement is based on the",
+        "student's base school. Therefore private-school NMSF observations should",
+        "not be allocated to FCPS regions or participating jurisdictions by school",
+        "location alone.",
         "",
         "## Identifier Coverage",
         "",
@@ -602,12 +675,21 @@ def build_school_roster_outputs(
     report_dir: Path,
     nces_id_csv: Path,
     ccd_directory_zip: Path | None = None,
+    admissions_policy_pdf: Path | None = None,
 ) -> dict[str, Path]:
     try:
         source_workbook_label = str(workbook_path.resolve().relative_to(Path.cwd()))
     except ValueError:
         source_workbook_label = str(workbook_path)
     roster = read_roster(workbook_path, source_workbook_label)
+    admissions_policy_pdf = admissions_policy_pdf or Path(ADMISSIONS_POLICY_RELATIVE_PATH)
+    if not admissions_policy_pdf.exists():
+        raise ValueError(f"Admissions policy PDF not found: {admissions_policy_pdf}")
+    admissions_policy_pdf_hash = sha256_file(admissions_policy_pdf)
+    try:
+        admissions_policy_pdf_label = str(admissions_policy_pdf.resolve().relative_to(Path.cwd().resolve()))
+    except ValueError:
+        admissions_policy_pdf_label = str(admissions_policy_pdf)
 
     outputs: dict[str, Path] = {}
     if ccd_directory_zip:
@@ -616,7 +698,12 @@ def build_school_roster_outputs(
         outputs["public_school_nces_ids"] = nces_id_csv
     nces_rows = read_public_nces_id_rows(nces_id_csv)
 
-    school_roster_rows = build_school_roster_rows(roster, nces_rows)
+    school_roster_rows = build_school_roster_rows(
+        roster,
+        nces_rows,
+        admissions_policy_pdf_path=admissions_policy_pdf_label,
+        admissions_policy_pdf_hash=admissions_policy_pdf_hash,
+    )
     alias_rows = build_alias_rows(roster)
     history_rows = build_school_history_rows(roster)
 
@@ -635,6 +722,8 @@ def build_school_roster_outputs(
             alias_rows=alias_rows,
             history_rows=history_rows,
             nces_rows=nces_rows,
+            admissions_policy_pdf_path=admissions_policy_pdf_label,
+            admissions_policy_pdf_hash=admissions_policy_pdf_hash,
         ),
     )
     outputs.update(

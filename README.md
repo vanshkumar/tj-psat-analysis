@@ -7,6 +7,13 @@ panel from `docs/source_notes/tj psat investigation.xlsx`. National Merit
 Semifinalist counts are intentionally blank in the seed panel until each count
 has source metadata.
 
+The second milestone adds canonical aliases, school-history events, public
+NCES identifiers, and admissions-pathway metadata sourced from
+`docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf`. That PDF
+establishes that FCPS regional placement is based on the student's base school,
+while private-school applicants are assigned a pathway by residency rather than
+by the private school's location.
+
 ## First-Milestone Build
 
 ```bash
@@ -41,12 +48,15 @@ creates a byte-identical copy under `data/manual/` for the manual source
 inventory required by the task plan.
 
 `scripts/build_school_roster.py` builds the Milestone 2 roster deliverables
-from the seed roster and curated source files. To refresh public-school NCES
-IDs from the official CCD directory ZIP, run:
+from the seed roster, curated source files, and the admissions proposal PDF. To
+refresh public-school NCES IDs from the official CCD directory ZIP, run:
 
 ```bash
 python scripts/build_school_roster.py --ccd-directory-zip /path/to/ccd_sch_029_2324_w_1a_073124.zip
 ```
+
+The roster build accepts `--admissions-policy-pdf` if the admissions proposal
+PDF is moved from its default path.
 
 ## Development Checks
 
@@ -76,3 +86,6 @@ a separate audited step.
 - Missing schools in incomplete articles are blank, not zero.
 - `verified_zero` is only valid for complete named lists for the geography and year.
 - TJHSST stays as a single school row.
+- Private-school observations are not allocated to public TJ pathways by school
+  location alone; the admissions proposal says private-school applicants are
+  pathwayed by residency.

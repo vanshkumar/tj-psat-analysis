@@ -39,6 +39,9 @@ PSAT/NMSF cutoffs.
 
 The pathway groupings are geographic analysis buckets, not proof of actual
 TJHSST enrolled-by-pathway counts unless a source later provides those counts.
+Private-school rows need special handling: the admissions proposal says private
+school applicants are assigned by residency, so the project should not allocate
+private-school NMSF observations to public pathways from school location alone.
 
 ## What Would Support The Hypothesis
 

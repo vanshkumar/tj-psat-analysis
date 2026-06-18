@@ -11,7 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from tj_psat_analysis.constants import SEED_WORKBOOK_RELATIVE_PATH
-from tj_psat_analysis.school_roster import build_school_roster_outputs
+from tj_psat_analysis.school_roster import (
+    ADMISSIONS_POLICY_RELATIVE_PATH,
+    build_school_roster_outputs,
+)
 
 
 def main() -> int:
@@ -52,6 +55,12 @@ def main() -> int:
         default=None,
         help="Optional NCES CCD directory ZIP used to regenerate the NCES ID CSV.",
     )
+    parser.add_argument(
+        "--admissions-policy-pdf",
+        type=Path,
+        default=ROOT / ADMISSIONS_POLICY_RELATIVE_PATH,
+        help="Path to the TJHSST admissions pathway source PDF.",
+    )
     args = parser.parse_args()
 
     outputs = build_school_roster_outputs(
@@ -61,6 +70,7 @@ def main() -> int:
         report_dir=args.report_dir,
         nces_id_csv=args.nces_id_csv,
         ccd_directory_zip=args.ccd_directory_zip,
+        admissions_policy_pdf=args.admissions_policy_pdf,
     )
     for label, path in outputs.items():
         print(f"{label}: {path}")

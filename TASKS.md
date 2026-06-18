@@ -67,7 +67,7 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
 ## Milestone 2 — Canonical school roster and aliases
 
 - [x] Validate the full set of public and private schools in scope for Classes 2019-2026.
-- [ ] Assign each school to its TJ pathway:
+- [x] Assign each school to its TJ pathway:
   - Arlington
   - Falls Church City
   - Loudoun
@@ -78,6 +78,7 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
   - FCPS Region 4
   - FCPS Region 5
   - TJHSST
+  - Residency-based private applicant rows
 - [x] Record sector: public, private, homeschool, program, or other.
 - [x] Record district/division and NCES identifiers where available.
 - [x] Add aliases used in NMSC lists, district releases, and historical enrollment files.
@@ -93,10 +94,13 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
   - St. Paul VI relocation
 - [x] Decide whether Arlington Tech is treated as a separate analytical unit and document the choice.
 
-Status note: `data/processed/school_roster.csv` assigns source-backed pathways for
-all public schools and non-Fairfax private schools. Eleven Fairfax private
-schools remain in `reports/data_quality/roster_review.md` with
-`needs_private_fcps_region_assignment` rather than guessed FCPS regions.
+Status note: `data/processed/school_roster.csv` assigns source-backed pathways
+for public schools and TJHSST. Private-school rows are marked
+`Residency-based private` with `pathway_status=residency_based_private_applicant`
+because `docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf` says
+private-school applicants are assigned by residency, not by the school's
+location. `reports/data_quality/roster_review.md` now has no pathway review
+rows.
 
 ### Deliverables
 
