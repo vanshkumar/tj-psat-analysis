@@ -17,6 +17,7 @@ valid_count_statuses:
   - verified_zero
   - incomplete_source_blank
   - no_complete_source_found
+  - not_operating
 
 providers:
   - fcps

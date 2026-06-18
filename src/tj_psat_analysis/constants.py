@@ -15,6 +15,12 @@ CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR: dict[int, str] = {
 
 CLASS_YEARS: tuple[int, ...] = tuple(CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR)
 
+FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID: dict[str, int] = {
+    "independence_high_school": 2021,
+    "lightridge_high_school": 2022,
+    "gainesville_high_school": 2023,
+}
+
 SEED_WORKBOOK_RELATIVE_PATH = "docs/source_notes/tj psat investigation.xlsx"
 ROSTER_SHEET = "raw"
 PUBLIC_ENROLLMENT_SHEET = "Sheet6"

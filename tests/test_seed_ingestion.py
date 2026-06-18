@@ -76,6 +76,26 @@ class SeedIngestionTest(unittest.TestCase):
         class_2026_statuses = {row["enrollment_status"] for row in rows if row["class_year"] == "2026"}
         self.assertEqual(class_2026_statuses, {"source_year_not_in_seed"})
 
+    def test_pre_opening_school_years_are_not_operating(self) -> None:
+        panel = self._read("panel_seed")
+        independence_2020 = [
+            row
+            for row in panel
+            if row["school_id"] == "independence_high_school" and row["class_year"] == "2020"
+        ][0]
+        gainesville_2022 = [
+            row
+            for row in panel
+            if row["school_id"] == "gainesville_high_school" and row["class_year"] == "2022"
+        ][0]
+
+        self.assertEqual(independence_2020["nmsf_count"], "")
+        self.assertEqual(independence_2020["nmsf_status"], "not_operating")
+        self.assertEqual(independence_2020["grade11_enrollment"], "")
+        self.assertEqual(independence_2020["enrollment_status"], "not_operating")
+        self.assertEqual(gainesville_2022["nmsf_status"], "not_operating")
+        self.assertEqual(gainesville_2022["enrollment_status"], "not_operating")
+
     def test_milestone_one_deliverables_are_generated_without_mutating_workbook(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

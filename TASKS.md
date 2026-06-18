@@ -66,7 +66,7 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
 
 ## Milestone 2 — Canonical school roster and aliases
 
-- [ ] Validate the full set of public and private schools in scope for Classes 2019-2026.
+- [x] Validate the full set of public and private schools in scope for Classes 2019-2026.
 - [ ] Assign each school to its TJ pathway:
   - Arlington
   - Falls Church City
@@ -78,11 +78,11 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
   - FCPS Region 4
   - FCPS Region 5
   - TJHSST
-- [ ] Record sector: public, private, homeschool, program, or other.
-- [ ] Record district/division and NCES identifiers where available.
-- [ ] Add aliases used in NMSC lists, district releases, and historical enrollment files.
-- [ ] Resolve the two Freedom High Schools unambiguously.
-- [ ] Record school-history events, including:
+- [x] Record sector: public, private, homeschool, program, or other.
+- [x] Record district/division and NCES identifiers where available.
+- [x] Add aliases used in NMSC lists, district releases, and historical enrollment files.
+- [x] Resolve the two Freedom High Schools unambiguously.
+- [x] Record school-history events, including:
   - Washington-Lee → Washington-Liberty
   - George Mason → Meridian
   - Robert E. Lee → John R. Lewis
@@ -91,7 +91,12 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
   - Lightridge opening
   - Gainesville opening
   - St. Paul VI relocation
-- [ ] Decide whether Arlington Tech is treated as a separate analytical unit and document the choice.
+- [x] Decide whether Arlington Tech is treated as a separate analytical unit and document the choice.
+
+Status note: `data/processed/school_roster.csv` assigns source-backed pathways for
+all public schools and non-Fairfax private schools. Eleven Fairfax private
+schools remain in `reports/data_quality/roster_review.md` with
+`needs_private_fcps_region_assignment` rather than guessed FCPS regions.
 
 ### Deliverables
 

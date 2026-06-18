@@ -11,12 +11,13 @@ has source metadata.
 
 ```bash
 python scripts/build_seed_data.py
+python scripts/build_school_roster.py
 python scripts/apply_nmsf_counts.py
 python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 python -m unittest discover -s tests
 ```
 
-Generated first-milestone outputs:
+Generated first- and second-milestone outputs:
 
 - `data/manual/tj psat investigation.xlsx`
 - `data/interim/canonical_schools.csv`
@@ -25,14 +26,27 @@ Generated first-milestone outputs:
 - `data/interim/panel_seed.csv`
 - `data/interim/panel_nmsf.csv`
 - `data/processed/schools.csv`
+- `data/processed/school_roster.csv`
 - `data/processed/public_enrollment.csv`
 - `data/processed/class_year_mapping.csv`
+- `data/manual/public_school_nces_ids.csv`
+- `data/manual/school_aliases.csv`
+- `data/manual/school_history.csv`
 - `reports/data_quality/workbook_ingestion.md`
+- `reports/data_quality/roster_review.md`
 
 The build command reads the seed workbook from
 `docs/source_notes/tj psat investigation.xlsx`, preserves it unchanged, and
 creates a byte-identical copy under `data/manual/` for the manual source
 inventory required by the task plan.
+
+`scripts/build_school_roster.py` builds the Milestone 2 roster deliverables
+from the seed roster and curated source files. To refresh public-school NCES
+IDs from the official CCD directory ZIP, run:
+
+```bash
+python scripts/build_school_roster.py --ccd-directory-zip /path/to/ccd_sch_029_2324_w_1a_073124.zip
+```
 
 ## Development Checks
 

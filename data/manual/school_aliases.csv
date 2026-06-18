@@ -1,0 +1,102 @@
+school_id,school,alias,normalized_alias,alias_type,join_allowed,conflict_school_ids,source,notes
+wakefield_high_school,Wakefield High School,Wakefield High School,WAKEFIELD HIGH,canonical_name,true,,seed_workbook_raw,
+washington_liberty_high_school,Washington-Liberty High School,Washington-Liberty High School,WASHINGTON LIBERTY HIGH,canonical_name,true,,seed_workbook_raw,
+washington_liberty_high_school,Washington-Liberty High School,Washington-Lee High School,WASHINGTON LEE HIGH,historical_name,true,,task2_manual_alias_rule,Prior name through the 2018-19 school year.
+yorktown_high_school,Yorktown High School,Yorktown High School,YORKTOWN HIGH,canonical_name,true,,seed_workbook_raw,
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,H-B Woodlawn Secondary Program,H B WOODLAWN SECONDARY PROGRAM,canonical_name,true,,seed_workbook_raw,
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,H-B Woodlawn Secondary,H B WOODLAWN SECONDARY,seed_alias,true,,seed_workbook_raw,
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,HB Woodlawn Secondary Program,HB WOODLAWN SECONDARY PROGRAM,nces_name_variant,true,,task2_manual_alias_rule,Matches CCD directory spelling.
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,HB Woodlawn Secondary,HB WOODLAWN SECONDARY,short_name,true,,task2_manual_alias_rule,Variant without hyphen.
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,H-B Woodlawn,H B WOODLAWN,short_name,true,,task2_manual_alias_rule,Common program shorthand.
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,HB Woodlawn,HB WOODLAWN,short_name,true,,task2_manual_alias_rule,Common program shorthand without hyphen.
+meridian_high_school,Meridian High School,Meridian High School,MERIDIAN HIGH,canonical_name,true,,seed_workbook_raw,Renamed from George Mason HS in 2021
+meridian_high_school,Meridian High School,George Mason High School,GEORGE MASON HIGH,seed_alias,true,,seed_workbook_raw,Renamed from George Mason HS in 2021
+briar_woods_high_school,Briar Woods High School,Briar Woods High School,BRIAR WOODS HIGH,canonical_name,true,,seed_workbook_raw,
+broad_run_high_school,Broad Run High School,Broad Run High School,BROAD RUN HIGH,canonical_name,true,,seed_workbook_raw,
+dominion_high_school,Dominion High School,Dominion High School,DOMINION HIGH,canonical_name,true,,seed_workbook_raw,
+freedom_high_school_south_riding,Freedom High School (South Riding),Freedom High School (South Riding),FREEDOM HIGH SOUTH RIDING,canonical_name,true,,seed_workbook_raw,
+freedom_high_school_south_riding,Freedom High School (South Riding),Freedom High School,FREEDOM HIGH,seed_alias,false,freedom_high_school_south_riding|freedom_high_school_woodbridge,seed_workbook_raw,
+freedom_high_school_south_riding,Freedom High School (South Riding),Freedom High School (Loudoun),FREEDOM HIGH LOUDOUN,district_qualified,true,,task2_manual_alias_rule,Disambiguates the LCPS school.
+freedom_high_school_south_riding,Freedom High School (South Riding),Freedom High School LCPS,FREEDOM HIGH LCPS,district_qualified,true,,task2_manual_alias_rule,Disambiguates the LCPS school.
+heritage_high_school_leesburg,Heritage High School (Leesburg),Heritage High School (Leesburg),HERITAGE HIGH LEESBURG,canonical_name,true,,seed_workbook_raw,
+heritage_high_school_leesburg,Heritage High School (Leesburg),Heritage High School,HERITAGE HIGH,seed_alias,true,,seed_workbook_raw,
+independence_high_school,Independence High School,Independence High School,INDEPENDENCE HIGH,canonical_name,true,,seed_workbook_raw,Opened 2019–20
+john_champe_high_school,John Champe High School,John Champe High School,JOHN CHAMPE HIGH,canonical_name,true,,seed_workbook_raw,
+lightridge_high_school,Lightridge High School,Lightridge High School,LIGHTRIDGE HIGH,canonical_name,true,,seed_workbook_raw,Opened 2020–21
+loudoun_county_high_school,Loudoun County High School,Loudoun County High School,LOUDOUN COUNTY HIGH,canonical_name,true,,seed_workbook_raw,
+loudoun_valley_high_school,Loudoun Valley High School,Loudoun Valley High School,LOUDOUN VALLEY HIGH,canonical_name,true,,seed_workbook_raw,
+park_view_high_school,Park View High School,Park View High School,PARK VIEW HIGH,canonical_name,true,,seed_workbook_raw,
+potomac_falls_high_school,Potomac Falls High School,Potomac Falls High School,POTOMAC FALLS HIGH,canonical_name,true,,seed_workbook_raw,
+riverside_high_school,Riverside High School,Riverside High School,RIVERSIDE HIGH,canonical_name,true,,seed_workbook_raw,
+rock_ridge_high_school,Rock Ridge High School,Rock Ridge High School,ROCK RIDGE HIGH,canonical_name,true,,seed_workbook_raw,
+stone_bridge_high_school,Stone Bridge High School,Stone Bridge High School,STONE BRIDGE HIGH,canonical_name,true,,seed_workbook_raw,
+tuscarora_high_school,Tuscarora High School,Tuscarora High School,TUSCARORA HIGH,canonical_name,true,,seed_workbook_raw,
+woodgrove_high_school,Woodgrove High School,Woodgrove High School,WOODGROVE HIGH,canonical_name,true,,seed_workbook_raw,
+battlefield_high_school,Battlefield High School,Battlefield High School,BATTLEFIELD HIGH,canonical_name,true,,seed_workbook_raw,
+brentsville_district_high_school,Brentsville District High School,Brentsville District High School,BRENTSVILLE DISTRICT HIGH,canonical_name,true,,seed_workbook_raw,
+charles_j_colgan_sr_high_school,Charles J. Colgan Sr. High School,Charles J. Colgan Sr. High School,CHARLES J COLGAN SENIOR HIGH,canonical_name,true,,seed_workbook_raw,
+forest_park_high_school,Forest Park High School,Forest Park High School,FOREST PARK HIGH,canonical_name,true,,seed_workbook_raw,
+freedom_high_school_woodbridge,Freedom High School (Woodbridge),Freedom High School (Woodbridge),FREEDOM HIGH WOODBRIDGE,canonical_name,true,,seed_workbook_raw,
+freedom_high_school_woodbridge,Freedom High School (Woodbridge),Freedom High School,FREEDOM HIGH,seed_alias,false,freedom_high_school_south_riding|freedom_high_school_woodbridge,seed_workbook_raw,
+freedom_high_school_woodbridge,Freedom High School (Woodbridge),Freedom High School (Prince William),FREEDOM HIGH PRINCE WILLIAM,district_qualified,true,,task2_manual_alias_rule,Disambiguates the PWCS school.
+freedom_high_school_woodbridge,Freedom High School (Woodbridge),Freedom High School PWCS,FREEDOM HIGH PWCS,district_qualified,true,,task2_manual_alias_rule,Disambiguates the PWCS school.
+gar_field_high_school,Gar-Field High School,Gar-Field High School,GAR FIELD HIGH,canonical_name,true,,seed_workbook_raw,
+gainesville_high_school,Gainesville High School,Gainesville High School,GAINESVILLE HIGH,canonical_name,true,,seed_workbook_raw,Opened 2021–22
+c_d_hylton_high_school,C.D. Hylton High School,C.D. Hylton High School,C D HYLTON HIGH,canonical_name,true,,seed_workbook_raw,
+osbourn_park_high_school,Osbourn Park High School,Osbourn Park High School,OSBOURN PARK HIGH,canonical_name,true,,seed_workbook_raw,
+patriot_high_school,Patriot High School,Patriot High School,PATRIOT HIGH,canonical_name,true,,seed_workbook_raw,
+potomac_high_school,Potomac High School,Potomac High School,POTOMAC HIGH,canonical_name,true,,seed_workbook_raw,
+unity_reed_high_school,Unity Reed High School,Unity Reed High School,UNITY REED HIGH,canonical_name,true,,seed_workbook_raw,Renamed from Stonewall Jackson HS (2020)
+unity_reed_high_school,Unity Reed High School,Stonewall Jackson High School,STONEWALL JACKSON HIGH,seed_alias,true,,seed_workbook_raw,Renamed from Stonewall Jackson HS (2020)
+woodbridge_senior_high_school,Woodbridge Senior High School,Woodbridge Senior High School,WOODBRIDGE HIGH,canonical_name,true,,seed_workbook_raw,
+herndon_high_school,Herndon High School,Herndon High School,HERNDON HIGH,canonical_name,true,,seed_workbook_raw,
+langley_high_school,Langley High School,Langley High School,LANGLEY HIGH,canonical_name,true,,seed_workbook_raw,
+madison_high_school,Madison High School,Madison High School,MADISON HIGH,canonical_name,true,,seed_workbook_raw,Renamed from James Madison High School
+madison_high_school,Madison High School,James Madison High School,JAMES MADISON HIGH,seed_alias,true,,seed_workbook_raw,Renamed from James Madison High School
+oakton_high_school,Oakton High School,Oakton High School,OAKTON HIGH,canonical_name,true,,seed_workbook_raw,
+south_lakes_high_school,South Lakes High School,South Lakes High School,SOUTH LAKES HIGH,canonical_name,true,,seed_workbook_raw,
+annandale_high_school,Annandale High School,Annandale High School,ANNANDALE HIGH,canonical_name,true,,seed_workbook_raw,
+falls_church_high_school,Falls Church High School,Falls Church High School,FALLS CHURCH HIGH,canonical_name,true,,seed_workbook_raw,
+justice_high_school,Justice High School,Justice High School,JUSTICE HIGH,canonical_name,true,,seed_workbook_raw,
+mclean_high_school,McLean High School,McLean High School,MCLEAN HIGH,canonical_name,true,,seed_workbook_raw,
+marshall_high_school,Marshall High School,Marshall High School,MARSHALL HIGH,canonical_name,true,,seed_workbook_raw,Placed in Region 2 per 2020 plan
+edison_high_school,Edison High School,Edison High School,EDISON HIGH,canonical_name,true,,seed_workbook_raw,
+hayfield_secondary_school_hs,Hayfield Secondary School (HS),Hayfield Secondary School (HS),HAYFIELD SECONDARY HIGH,canonical_name,true,,seed_workbook_raw,
+hayfield_secondary_school_hs,Hayfield Secondary School (HS),Hayfield Secondary School,HAYFIELD SECONDARY,seed_alias,true,,seed_workbook_raw,
+lewis_high_school,Lewis High School,Lewis High School,LEWIS HIGH,canonical_name,true,,seed_workbook_raw,Renamed from Robert E. Lee HS (2020–21)
+lewis_high_school,Lewis High School,Robert E. Lee High School,ROBERT E LEE HIGH,seed_alias,true,,seed_workbook_raw,Renamed from Robert E. Lee HS (2020–21)
+lewis_high_school,Lewis High School,John R. Lewis High School,JOHN R LEWIS HIGH,formal_name,true,,task2_manual_alias_rule,Formal current name used by FCPS.
+mount_vernon_high_school,Mount Vernon High School,Mount Vernon High School,MOUNT VERNON HIGH,canonical_name,true,,seed_workbook_raw,
+west_potomac_high_school,West Potomac High School,West Potomac High School,WEST POTOMAC HIGH,canonical_name,true,,seed_workbook_raw,
+centreville_high_school,Centreville High School,Centreville High School,CENTREVILLE HIGH,canonical_name,true,,seed_workbook_raw,
+lake_braddock_secondary_school_hs,Lake Braddock Secondary School (HS),Lake Braddock Secondary School (HS),LAKE BRADDOCK SECONDARY HIGH,canonical_name,true,,seed_workbook_raw,
+lake_braddock_secondary_school_hs,Lake Braddock Secondary School (HS),Lake Braddock Secondary School,LAKE BRADDOCK SECONDARY,seed_alias,true,,seed_workbook_raw,
+robinson_secondary_school_hs,Robinson Secondary School (HS),Robinson Secondary School (HS),ROBINSON SECONDARY HIGH,canonical_name,true,,seed_workbook_raw,
+robinson_secondary_school_hs,Robinson Secondary School (HS),Robinson Secondary School,ROBINSON SECONDARY,seed_alias,true,,seed_workbook_raw,
+south_county_high_school,South County High School,South County High School,SOUTH COUNTY HIGH,canonical_name,true,,seed_workbook_raw,
+west_springfield_high_school,West Springfield High School,West Springfield High School,WEST SPRINGFIELD HIGH,canonical_name,true,,seed_workbook_raw,
+chantilly_high_school,Chantilly High School,Chantilly High School,CHANTILLY HIGH,canonical_name,true,,seed_workbook_raw,
+fairfax_high_school,Fairfax High School,Fairfax High School,FAIRFAX HIGH,canonical_name,true,,seed_workbook_raw,
+westfield_high_school,Westfield High School,Westfield High School,WESTFIELD HIGH,canonical_name,true,,seed_workbook_raw,
+woodson_high_school,Woodson High School,Woodson High School,WOODSON HIGH,canonical_name,true,,seed_workbook_raw,
+thomas_jefferson_high_school_for_science_and_technology,Thomas Jefferson High School for Science and Technology,Thomas Jefferson High School for Science and Technology,THOMAS JEFFERSON HIGH FOR SCIENCE AND TECHNOLOGY,canonical_name,true,,seed_workbook_raw,
+thomas_jefferson_high_school_for_science_and_technology,Thomas Jefferson High School for Science and Technology,TJHSST,TJHSST,abbreviation,true,,task2_manual_alias_rule,Common abbreviation.
+thomas_jefferson_high_school_for_science_and_technology,Thomas Jefferson High School for Science and Technology,Thomas Jefferson HSST,THOMAS JEFFERSON HSST,abbreviation,true,,task2_manual_alias_rule,Common list abbreviation.
+thomas_jefferson_high_school_for_science_and_technology,Thomas Jefferson High School for Science and Technology,Thomas Jefferson High School,THOMAS JEFFERSON HIGH,short_name,true,,task2_manual_alias_rule,Common shortened form; keep TJHSST row intact.
+bishop_o_connell_high_school,Bishop O'Connell High School,Bishop O'Connell High School,BISHOP O CONNELL HIGH,canonical_name,true,,seed_workbook_raw,
+basis_independent_mclean,BASIS Independent McLean,BASIS Independent McLean,BASIS INDEPENDENT MCLEAN,canonical_name,true,,seed_workbook_raw,
+flint_hill_school,Flint Hill School,Flint Hill School,FLINT HILL SCHOOL,canonical_name,true,,seed_workbook_raw,
+the_madeira_school,The Madeira School,The Madeira School,THE MADEIRA SCHOOL,canonical_name,true,,seed_workbook_raw,
+oakcrest_school,Oakcrest School,Oakcrest School,OAKCREST SCHOOL,canonical_name,true,,seed_workbook_raw,
+potomac_school,Potomac School,Potomac School,POTOMAC SCHOOL,canonical_name,true,,seed_workbook_raw,
+trinity_christian_school,Trinity Christian School,Trinity Christian School,TRINITY CHRISTIAN SCHOOL,canonical_name,true,,seed_workbook_raw,
+trinity_school_at_meadow_view,Trinity School at Meadow View,Trinity School at Meadow View,TRINITY SCHOOL AT MEADOW VIEW,canonical_name,true,,seed_workbook_raw,
+immanuel_christian_high_school,Immanuel Christian High School,Immanuel Christian High School,IMMANUEL CHRISTIAN HIGH,canonical_name,true,,seed_workbook_raw,
+ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,Ideaventions Academy for Mathematics & Science,IDEAVENTIONS ACADEMY FOR MATHEMATICS AND SCIENCE,canonical_name,true,,seed_workbook_raw,
+new_school_of_northern_virginia,New School of Northern Virginia,New School of Northern Virginia,NEW SCHOOL OF NORTHERN VIRGINIA,canonical_name,true,,seed_workbook_raw,
+pinnacle_academy,Pinnacle Academy,Pinnacle Academy,PINNACLE ACADEMY,canonical_name,true,,seed_workbook_raw,
+loudoun_school_for_advanced_studies,Loudoun School for Advanced Studies,Loudoun School for Advanced Studies,LOUDOUN SCHOOL FOR ADVANCED STUDIES,canonical_name,true,,seed_workbook_raw,
+st_paul_vi_catholic_high_school,St. Paul VI Catholic High School,St. Paul VI Catholic High School,ST PAUL VI CATHOLIC HIGH,canonical_name,true,,seed_workbook_raw,Campus moved from Fairfax City→Loudoun in 2020
+seton_school_manassas,Seton School (Manassas),Seton School (Manassas),SETON SCHOOL MANASSAS,canonical_name,true,,seed_workbook_raw,
+seton_school_manassas,Seton School (Manassas),Seton School,SETON SCHOOL,short_name,true,,seed_workbook_raw,
+st_john_paul_the_great_catholic_high_school,St. John Paul the Great Catholic High School,St. John Paul the Great Catholic High School,ST JOHN PAUL THE GREAT CATHOLIC HIGH,canonical_name,true,,seed_workbook_raw,

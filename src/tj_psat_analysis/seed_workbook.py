@@ -15,6 +15,7 @@ from openpyxl import load_workbook
 
 from .constants import (
     CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR,
+    FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID,
     PUBLIC_ENROLLMENT_SHEET,
     PUBLIC_ENROLLMENT_SOURCE_TITLE,
     PUBLIC_ENROLLMENT_SOURCE_URL,
@@ -297,6 +298,7 @@ def public_enrollment_long_rows(
             continue
         match_status, candidates = matches[record.school_id]
         for class_year, school_year in CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR.items():
+            first_operating_class_year = FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID.get(record.school_id)
             output = {
                 "school_id": record.school_id,
                 "school": record.school,
@@ -311,7 +313,10 @@ def public_enrollment_long_rows(
                 "enrollment_source_sheet": PUBLIC_ENROLLMENT_SHEET,
                 "enrollment_source_rows": ";".join(candidate.source_row_id for candidate in candidates),
             }
-            if school_year == "2024-25":
+            if first_operating_class_year and class_year < first_operating_class_year:
+                output["enrollment_status"] = "not_operating"
+                output["enrollment_source_rows"] = ""
+            elif school_year == "2024-25":
                 output["enrollment_status"] = "source_year_not_in_seed"
                 output["enrollment_source_rows"] = ""
             elif match_status == "matched":
@@ -346,6 +351,10 @@ def seed_panel_rows(
     for record in roster:
         for class_year, school_year in CLASS_YEAR_TO_GRADE11_SCHOOL_YEAR.items():
             public_row = public_lookup.get((record.school_id, class_year))
+            first_operating_class_year = FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID.get(record.school_id)
+            nmsf_status = "source_pending"
+            if first_operating_class_year and class_year < first_operating_class_year:
+                nmsf_status = "not_operating"
             if public_row:
                 grade11_enrollment = public_row["grade11_enrollment"]
                 enrollment_status = public_row["enrollment_status"]
@@ -380,7 +389,7 @@ def seed_panel_rows(
                     "class_year": class_year,
                     "grade11_school_year": school_year,
                     "nmsf_count": "",
-                    "nmsf_status": "source_pending",
+                    "nmsf_status": nmsf_status,
                     "nmsf_source_title": "",
                     "nmsf_source_url": "",
                     "nmsf_source_date": "",

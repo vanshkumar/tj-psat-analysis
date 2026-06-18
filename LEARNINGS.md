@@ -20,8 +20,8 @@
 ## Patterns and Preferences
 
 **2026-06-18 — Local test invocation**
-- Observation: The reliable local test command for this scaffold is `python -m unittest discover -s tests`.
-- Action: Use the explicit `-s tests` discovery command in README and verification runs.
+- Observation: The reliable project test target is unittest discovery, but this workspace has no bare `python` and system `python3` lacks the project dependencies.
+- Action: Use `UV_CACHE_DIR=.uv-cache uv run python -m unittest discover -s tests` when syncing is acceptable, or add `--no-sync` after the uv environment is already synced.
 - Confidence: high
 
 **2026-06-18 - Hypothesis framing**
@@ -67,6 +67,16 @@
 **2026-06-18 - Generated CSV line endings**
 - Observation: Python's default `csv.DictWriter` line endings caused generated CSVs to trip `git diff --check` as trailing whitespace.
 - Action: Set `lineterminator="\n"` in project CSV writers and regenerate CSV outputs before publishing.
+- Confidence: high
+
+**2026-06-18 - Milestone 2 roster matching**
+- Observation: The NCES CCD data-file API exposes the 2023-24 school directory ZIP, and matching public roster rows by LEA name plus normalized aliases resolves both Freedom High Schools. H-B Woodlawn needs the CCD spelling `HB Woodlawn Secondary Program`.
+- Action: Refresh `data/manual/public_school_nces_ids.csv` with `scripts/build_school_roster.py --ccd-directory-zip ...`; avoid name-only NCES matching for duplicated school names.
+- Confidence: high
+
+**2026-06-18 - Operating-year roster status**
+- Observation: Independence, Lightridge, and Gainesville have in-panel opening years, so pre-opening class-years should be blank `not_operating` rows rather than `source_pending` NMSF rows or NCES dagger-style `not_applicable` enrollment rows.
+- Action: Keep first operating class years in `FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID` and regenerate seed outputs after changing school-history rules.
 - Confidence: high
 
 ## What Has Failed

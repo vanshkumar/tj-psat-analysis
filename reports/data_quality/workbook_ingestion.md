@@ -53,7 +53,7 @@ The parser reads only `raw` and `Sheet6`. It does not read values from
 | Enrollment status | Rows |
 | --- | --- |
 | ambiguous_source_name | 14 |
-| not_applicable | 9 |
+| not_operating | 9 |
 | reported | 390 |
 | source_row_not_found | 7 |
 | source_year_not_in_seed | 60 |
