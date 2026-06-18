@@ -24,4 +24,9 @@
 - Action: Use the explicit `-s tests` discovery command in README and verification runs.
 - Confidence: high
 
+**2026-06-18 — Source-note preservation**
+- Observation: Raw ChatGPT/source-note text files live under `docs/source_notes/` alongside the seed workbook, separate from generated CSV outputs.
+- Action: When asked to push everything, preserve these files as source notes rather than folding their contents into canonical data.
+- Confidence: high
+
 ## What Has Failed

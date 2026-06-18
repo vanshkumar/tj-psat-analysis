@@ -1,0 +1,163 @@
+Estimating culture change
+
+User: Anonymous
+Created: 11/11/2025 6:57:54
+Updated: 6/17/2026 13:04:34
+Exported: 6/18/2026 6:36:41
+Link: https://chatgpt.com/g/g-p-6a32fdaac3d48191b3fbb257d771ca93-tj-psat/c/69134ef1-7d10-8326-8e10-93653b8abcb2
+
+## Prompt:
+11/11/2025, 6:57:52 AM
+
+im thinking about the tjhsst change to a lottery system from an admissions test. specifically im curious how it may have changed the makeup of the academic culture. these are expected numbers from the board proposal for this change. if we assume that year to year tj culture was roughly static before (or at least the # of kids that were admitted that had different norms from the previous culture that put STEM/academics/learning as key norms, was small enough that they absorbed that culture), how might i use this to estimate how the culture changed? i guess another way of saying this is how do i estimate how a % shift in the demographics admitted may have shifted the academic culture by admitting many more kids that didn't already align w the STEM/academics/learning culture?
+
+## Response:
+11/11/2025, 6:57:54 AM
+
+Evaluating analysis methods
+
+I’m considering comparing trends at TJ versus controls (like Blair Magnet or Stuyvesant), but that could be risky due to location differences. A better approach might be comparing advanced course participation within FCPS.
+
+I’m also thinking about early indicators like bridge program attendance, math placement distributions, and club sign-ups.
+
+For sensitivity analysis, we could look at how different "STEM commitment" rates affect club membership, using a toy calculation based on changes in cohort composition.
+
+Thought for 54s
+
+Great question. You can turn this into a tractable estimation problem if you (a) define “culture” with observable proxies, and (b) use a simple peer-effects model to translate the admissions-mix shift into predicted changes in those proxies.
+
+Here’s a pragmatic way to do it.
+
+1) Define a measurable “academic culture index” (ACI)
+
+Pick leading indicators that reflect TJ’s STEM/academics/learning norms—things students do, not who they are.
+
+Examples (freshman fall → junior spring windows):
+
+Course-taking: % placed in math ≥ Algebra II as 9th graders; % in MV Calc/Linear Algebra by 11th.
+
+Time/effort: median weekly study hours for STEM; homework completion rates in math/CS/science cores.
+
+Enrichment & pursuit: % doing AMC/AIME/USACO/Science Olympiad/Regeneron/Robotics; # of problem-solving sessions attended per student.
+
+Production: % completing independent research, # papers/posters/code repos submitted per 100 students.
+
+Persistence/fit: transfer-out rate; % requesting schedule downgrades from advanced tracks.
+
+Teacher-rated dispositions: e.g., “self-initiates challenge problems,” “seeks feedback,” “teaches peers.” (Likert items you can combine.)
+
+Standardize each item (z-scores) and average to form ACI (or use a first principal component). Pre-policy cohorts give you an ACI baseline and variance.
+
+2) Classify entrants by pre-entry alignment (not demographics)
+
+Before the policy change, label students using middle-school evidence available for all applicants/admittees:
+
+Completed Algebra I/Geometry early, math contest participation, CS coursework, science fair participation, teacher recommendation rubrics, etc.
+
+Create a binary or graded “STEM-alignment” score $A_i \in [0,1]$ for each student (e.g., logistic model trained on pre-policy data to predict high ACI individuals from these pre-entry features). Calibrate so that the pre-policy admits have mean $\bar A_{\text{old}}$ ~ high (whatever you measure).
+
+Key point: this avoids stereotyping—alignment is about prior behavior/experience, not race/SES.
+
+3) Estimate peer-effects and mapping from alignment → ACI
+
+On historical cohorts, fit:
+
+$$
+\text{ACI}{i} = \alpha + \beta A_i + \gamma \overline{A}{\text{peers}(i)} + \delta X_i + \epsilon_i
+$$
+
+$A_i$: the student’s own alignment.
+
+$\overline{A}_{\text{peers}(i)}$: mean alignment of classmates/clubmates/course section (you can define peers as 9th-grade math section, advisory, or club network).
+
+$X_i$: controls (middle-school GPA, school fixed effects, cohort year).
+
+$\beta$ captures “direct alignment,” $\gamma$ captures social/peer amplification (“linear-in-means”). In many education settings, $\gamma$ is modest but positive (think 0.05–0.25), but you’ll estimate it from TJ data.
+
+From this you can generate a cohort-level ACI:
+$$
+\text{ACI}_{\text{cohort}} = \alpha + \beta \bar A + \gamma \bar A + \text{controls}
+$$
+≈ $\alpha + (\beta+\gamma)\bar A$ after averaging.
+
+4) Translate the admissions-mix change into $\Delta \bar A$
+
+Using the board’s expected composition after the merit lottery (your slides), compute how the distribution of pre-entry alignment would change.
+
+Practical way when you don’t have microdata:
+
+For each segment that grows under the lottery (by feeder school, region, prior course level, ED/ELL status, etc.), use earlier applicant-pool records to estimate its historical mean $A$.
+
+Weight those means by the new shares to get $\bar A_{\text{new}}$.
+
+The predicted culture shift is:
+$$
+\Delta \text{ACI} \approx (\beta+\gamma),(\bar A_{\text{new}} - \bar A_{\text{old}})
+$$
+
+If you do have applicant microdata for the years in the slide (2015/2019/2024), reweight the actual historical applicant pool to the proposed lottery shares, then recompute $\bar A$ exactly (“reweighting counterfactual”).
+
+5) A quick toy illustration (just to see how it works)
+
+Suppose pre-policy admits had $\bar A_{\text{old}} = 0.85$ (very high alignment).
+Under the lottery, because more seats go to students without early Algebra/competitions, your reweighting yields $\bar A_{\text{new}} = 0.75$.
+From historical fits, say $\beta = 0.60$ and $\gamma = 0.15$ → $\beta+\gamma = 0.75$.
+
+Then:
+$$
+\Delta \text{ACI} \approx 0.75 \times (0.75-0.85) = -0.075
+$$
+i.e., ~0.08σ drop in the cohort’s culture index—small to moderate. If $\gamma$ were larger (stronger peer effects), the same $\Delta \bar A$ would produce a bigger shift.
+
+6) Validate with early post-policy leading indicators
+
+Before long-run outcomes mature, track:
+
+9th-grade math placements, switch-down rates in the first semester.
+
+Club sign-ups, team tryouts, contest participation rates per 100 students.
+
+Tutoring/office-hours load and distribution across sections.
+
+Freshman research seminar completion rates.
+
+Transfer-out or leave-of-absence rates.
+Use a difference-in-differences design with previous cohorts as controls, and (ideally) section-level fixed effects to wipe out instructor variation.
+
+7) Put confidence bands on your estimates
+
+Do three scenarios for $\bar A_{\text{new}}$:
+
+Conservative (assume lottery entrants look much like historical non-admit applicants from the same feeders) → larger drop.
+
+Middle (use weighted applicant means).
+
+Optimistic (assume strong catch-up via summer bridge & supports) → smaller drop.
+
+Propagate uncertainty from $\beta,\gamma$ (via bootstrap) to get error bars on $\Delta \text{ACI}$.
+
+8) Separate mix effects from support effects
+
+Run the model again after incorporating programmatic supports (summer bridge, math bootcamps, mentoring). Treat support exposure $S_i$ as a treatment with its own coefficient and interaction $A_i \times S_i$. You may find supports partially offset the drop in $\bar A$.
+
+What not to do (and why)
+
+Don’t infer culture from race/ethnicity/ED/ELL shares. Those are composition descriptors; culture is behavior and norms. Use pre-entry preparation/interest and observed actions instead.
+
+Don’t rely only on mean GPA/SAT after admission—those are confounded by grading policies and course selection. The ACI basket above is harder to “game” and closer to the lived culture.
+
+Deliverables you can build right away
+
+Pre-policy model: Train $A_i$ and estimate $\beta,\gamma$ on 3–5 cohorts before the change.
+
+Counterfactual reweighting: Apply the slide’s shares to the historical applicant pool to get $\bar A_{\text{new}}$.
+
+Prediction + bands: Report $\widehat{\Delta \text{ACI}}$ with 95% CIs, plus sensitivity to $\gamma$.
+
+Dashboard of leading indicators for the first post-change cohort to validate/refine the estimate in real time.
+
+If you want, I can mock up a small spreadsheet/template where you plug in (i) your reweighted $\bar A$, (ii) estimated $\beta,\gamma$, and it outputs predicted shifts in specific metrics (e.g., AMC participation per 100 students, % in MV Calc by 11th), plus uncertainty bands.
+
+
+
+Powered by ChatGPT Exporter (https://www.chatgptexporter.com)
