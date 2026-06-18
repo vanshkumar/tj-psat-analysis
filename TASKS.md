@@ -78,7 +78,7 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
   - FCPS Region 4
   - FCPS Region 5
   - TJHSST
-  - Residency-based private applicant rows
+  - Private/homeschool unallocated applicant rows
 - [x] Record sector: public, private, homeschool, program, or other.
 - [x] Record district/division and NCES identifiers where available.
 - [x] Add aliases used in NMSC lists, district releases, and historical enrollment files.
@@ -94,13 +94,16 @@ The first analytical output should be a pathway-by-year view of NMSF counts norm
   - St. Paul VI relocation
 - [x] Decide whether Arlington Tech is treated as a separate analytical unit and document the choice.
 
-Status note: `data/processed/school_roster.csv` assigns source-backed pathways
-for public schools and TJHSST. Private-school rows are marked
-`Residency-based private` with `pathway_status=residency_based_private_applicant`
-because `docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf` says
-private-school applicants are assigned by residency, not by the school's
-location. `reports/data_quality/roster_review.md` now has no pathway review
-rows.
+Status note: `data/processed/school_roster.csv` assigns source-backed analytical
+pathway buckets for public schools and TJHSST. Private-school rows are marked
+`Private/homeschool unallocated` with
+`pathway_status=unallocated_private_applicant` because Regulation 3355.16 places
+non-public applicants in the unallocated-seat pool, and school location alone
+does not identify the student's residence or admissions pathway.
+Regulation 3355.16 does not make the roster's FCPS-region or jurisdiction
+buckets observed admissions pathways; annual Notice 3355 materials and actual
+admissions data are required for class-specific mechanism claims.
+`reports/data_quality/roster_review.md` now has no pathway review rows.
 
 ### Deliverables
 
@@ -119,15 +122,26 @@ rows.
 
 ## Milestone 3 — Complete enrollment denominators
 
-- [ ] Validate public-school grade-11 enrollment for 2017-18 through 2023-24 from the workbook export.
-- [ ] Obtain 2024-25 grade-11 enrollment for Class of 2026.
-- [ ] Add a reproducible public-school enrollment ingestion path from NCES CCD and/or VDOE.
-- [ ] Add private-school enrollment ingestion from NCES Private School Survey.
-- [ ] Use `P290` for grade-11 enrollment in PSS.
-- [ ] Preserve PSS imputation flags when available.
-- [ ] Handle secondary schools and combined-grade schools consistently.
-- [ ] Produce an enrollment coverage report by school and class year.
-- [ ] Leave unavailable values blank with a machine-readable status.
+- [x] Validate public-school grade-11 enrollment for 2017-18 through 2023-24 from the workbook export.
+- [x] Obtain 2024-25 grade-11 enrollment for Class of 2026.
+- [x] Add a reproducible public-school enrollment ingestion path from NCES CCD and/or VDOE.
+- [x] Add private-school enrollment ingestion from NCES Private School Survey.
+- [x] Use `P290` for grade-11 enrollment in PSS.
+- [x] Preserve PSS imputation flags when available.
+- [x] Handle secondary schools and combined-grade schools consistently.
+- [x] Produce an enrollment coverage report by school and class year.
+- [x] Leave unavailable values blank with a machine-readable status.
+
+Status note: `scripts/ingest_public_enrollment_2024_25.py` extracts Class
+2026 public-school grade-11 denominators from the NCES CCD 2024-25 school
+membership ZIP by NCES school ID and uses the grade-11 total row. H-B Woodlawn
+still has `ccd_row_not_found` because the CCD membership file has no matched
+grade-11 total row for its directory ID. `scripts/ingest_private_pss.py` reads
+available PSS public-use CSV ZIPs, joins private schools by curated `PPIN`
+values in `data/manual/private_school_pss_ids.csv`, uses `P290`, and preserves
+`F_P290` as `pss_imputation_flag`. Non-survey PSS years, unresolved private
+IDs, ambiguous PSS IDs, and blank source values remain blank with explicit
+statuses; no adjacent-year values are estimated.
 
 ### Deliverables
 
@@ -255,6 +269,11 @@ Tasks:
 - [ ] Add the Virginia NMSF Selection Index cutoff by class year.
 - [ ] Add statewide semifinalist totals when reliably sourced.
 - [ ] Flag rows affected by school openings, renames, or denominator gaps.
+- [ ] Flag pathway buckets as analytical geographies rather than observed
+  TJHSST admissions pathways unless actual pathway/offers data are sourced.
+- [ ] Keep grade-11 enrollment denominators separate from admissions-seat
+  allocation inputs; use sourced 8th-grade populations only if an admissions
+  allocation analysis is added.
 - [ ] Write a data dictionary.
 
 ### Deliverables
@@ -306,6 +325,11 @@ Tasks:
 - [ ] Examine whether Class of 2025 is an isolated discontinuity or part of a broader trend.
 - [ ] Compare Classes 2025 and 2026 carefully because the Virginia cutoff changed.
 - [ ] Document COVID-era cohort timing and other plausible confounds.
+- [ ] Use Regulation 3355.16, annual Notice 3355 materials, and historical
+  regulation versions, not proposal-stage materials, when interpreting the
+  TJHSST admissions mechanism.
+- [ ] Avoid applying Regulation 3355.16 retroactively to earlier cohorts unless
+  the relevant historical regulation or notice supports the same rule.
 - [ ] Avoid causal claims unsupported by the design.
 - [ ] Separate findings about the extreme right tail from claims about median academic outcomes or school culture.
 
@@ -328,7 +352,15 @@ Tasks:
 Do not block the NMSF analysis on these tasks.
 
 - [ ] Draft public-records requests for school-level PSAT participation and score distributions.
-- [ ] Request actual TJ enrollment or offers by later pathway for relevant cohorts.
+- [x] Archive Regulation 3355.16 as the TJHSST admissions-policy source.
+- [ ] Archive annual Notice 3355 admissions procedures and relevant historical
+  Regulation 3355 versions for application years feeding Classes 2019-2026.
+- [ ] Request actual TJ applicant, eligible-applicant, offer, waitpool,
+  acceptance, enrolled-student, and later-grade placement counts by public
+  school/division, allocated/unallocated seat pool, and class year where
+  available.
+- [ ] Request the 8th-grade population inputs used to allocate seats by public
+  school or cooperating division for relevant admission cycles.
 - [ ] Investigate SAT upper-tail measures by school.
 - [ ] Investigate AP/IB participation and score distributions.
 - [ ] Investigate advanced-course enrollment and completion.

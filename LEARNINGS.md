@@ -65,8 +65,18 @@
 - Confidence: high
 
 **2026-06-18 - TJ pathway assignment**
-- Observation: `docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf` says FCPS regional placement is based on the student's base school and private-school applicants are assigned by residency.
-- Action: Keep private-school rows as `Residency-based private`/`applicant_residency`; do not allocate private-school NMSF observations to FCPS regions or participating jurisdictions from school location alone.
+- Observation: `docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf` places non-public applicants in the unallocated-seat pool after residency eligibility, while public-school seat allocation is based on each public school's 8th-grade population.
+- Action: Keep private-school rows as `Private/homeschool unallocated`/`nonpublic_unallocated_seats`; do not allocate private-school NMSF observations to FCPS regions or participating jurisdictions from school location alone.
+- Confidence: high
+
+**2026-06-18 - Admissions policy source review**
+- Observation: The September 15, 2020 merit-lottery deck was a proposal source and has been replaced in `docs/source_notes/` by Regulation 3355.16, effective 2022-05-17.
+- Action: Use Regulation 3355.16 for admissions-mechanism claims; label high-school pathway NMSF buckets as analytical geographies unless actual pathway/offers data are sourced.
+- Confidence: high
+
+**2026-06-18 - Regulation 3355.16 scope**
+- Observation: Regulation 3355.16 points to annual Notice 3355 for implementation details and uses 8th-grade populations for admissions-seat allocation, while this project's NMSF rates use grade-11 enrollment as an outcome denominator.
+- Action: Archive annual notices and historical regulation versions before making class-specific admissions-mechanism claims; do not use grade-11 enrollment as a proxy for allocated-seat inputs.
 - Confidence: high
 
 **2026-06-18 - Generated CSV line endings**
@@ -82,6 +92,21 @@
 **2026-06-18 - Operating-year roster status**
 - Observation: Independence, Lightridge, and Gainesville have in-panel opening years, so pre-opening class-years should be blank `not_operating` rows rather than `source_pending` NMSF rows or NCES dagger-style `not_applicable` enrollment rows.
 - Action: Keep first operating class years in `FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID` and regenerate seed outputs after changing school-history rules.
+- Confidence: high
+
+**2026-06-18 - CCD membership ingestion**
+- Observation: The NCES CCD 2024-25 school membership ZIP can be listed by Python `zipfile`, but its CSV member uses a compression method that `zipfile.open()` cannot stream; the system `unzip -p` handles it. Grade-11 totals are the `Grade 11` rows where race and sex are `No Category Codes`.
+- Action: Use the `enrollment.py` streaming ZIP fallback for CCD membership files, and extract the grade-11 total row rather than summing race/sex detail rows.
+- Confidence: high
+
+**2026-06-18 - Private PSS matching**
+- Observation: PSS has locality-sensitive duplicate/private-name pitfalls, including `TRINITY CHRISTIAN SCHOOL` rows outside the TJ area and a separate Fairfax row keyed by `PPIN=K9306124`.
+- Action: Match private-school PSS denominators through curated `PPIN` values in `data/manual/private_school_pss_ids.csv`; do not join private PSS rows by normalized school name alone.
+- Confidence: high
+
+**2026-06-18 - Enrollment coverage gaps**
+- Observation: H-B Woodlawn has a matched 2023-24 CCD directory ID, but the 2024-25 CCD membership file did not contain a grade-11 total row for that ID; several private schools also have blank, missing, ambiguous, or non-survey-year PSS denominator rows.
+- Action: Keep these rows blank with machine-readable enrollment statuses in `enrollment_panel.csv`; do not backfill from adjacent years or similar schools.
 - Confidence: high
 
 ## What Has Failed

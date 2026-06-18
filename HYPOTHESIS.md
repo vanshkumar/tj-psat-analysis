@@ -39,9 +39,20 @@ PSAT/NMSF cutoffs.
 
 The pathway groupings are geographic analysis buckets, not proof of actual
 TJHSST enrolled-by-pathway counts unless a source later provides those counts.
-Private-school rows need special handling: the admissions proposal says private
-school applicants are assigned by residency, so the project should not allocate
-private-school NMSF observations to public pathways from school location alone.
+Regulation 3355.16 describes ninth-grade eligibility and evaluation, allocates
+seats by public schools' 8th-grade populations, and leaves remaining seats
+unallocated. Non-public applicants are considered for those unallocated seats,
+so high-school NMSF buckets by pathway remain analytical geographies rather
+than observed admissions-pathway counts. Private-school rows need special
+handling because school location alone does not identify the student's residence
+or admissions pathway.
+
+Regulation 3355.16 is not a complete class-year implementation history. Exact
+application deadlines and procedures are published through annual Notice 3355
+materials, and earlier cohorts may require older regulation versions. Grade-11
+enrollment is the outcome denominator for NMSF rates, not the admissions-seat
+allocation denominator; any seat-allocation analysis needs sourced 8th-grade
+population, applicant, offer, waitpool, acceptance, and enrolled-student data.
 
 ## What Would Support The Hypothesis
 

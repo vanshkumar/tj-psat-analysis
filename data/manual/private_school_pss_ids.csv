@@ -1,0 +1,17 @@
+school_id,school,pss_ppin,pss_name,pss_city,pss_state,pss_zip,pss_match_status,notes
+bishop_o_connell_high_school,Bishop O'Connell High School,A1904530,BISHOP DENIS J. OCONNELL HIGH SCHOOL,ARLINGTON,VA,22213,matched,PSS public-use name includes Denis J. and omits the apostrophe.
+basis_independent_mclean,BASIS Independent McLean,A1703643,BASIS INDEPENDENT MCLEAN,MCLEAN,VA,22102,matched,
+flint_hill_school,Flint Hill School,,,,,,private_pss_id_pending,No unique public-use PSS row found in the 2017-18 through 2021-22 PSS CSV scans.
+the_madeira_school,The Madeira School,02063874,THE MADEIRA SCHOOL,MCLEAN,VA,22102,matched,
+oakcrest_school,Oakcrest School,,,,,,private_pss_id_pending,No unique public-use PSS row found in the 2017-18 through 2021-22 PSS CSV scans.
+potomac_school,Potomac School,01433452,THE POTOMAC SCHOOL,MCLEAN,VA,22101,matched,PSS row is present in 2017-18; later survey years may remain row-not-found.
+trinity_christian_school,Trinity Christian School,K9306124,TRINITY CHRISTIAN SCHOOL OF FAIRFAX,FAIRFAX,VA,22030,matched,Do not match the separate Claudville PSS row with the same shorter name.
+trinity_school_at_meadow_view,Trinity School at Meadow View,A0110062,TRINITY SCHOOL AT MEADOW VIEW,FALLS CHURCH,VA,22042,matched,
+immanuel_christian_high_school,Immanuel Christian High School,02064266,IMMANUEL CHRISTIAN SCHOOL,SPRINGFIELD,VA,22151,matched,PSS public-use name omits High School.
+ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,A1703665,IDEAVENTIONS ACADEMY FOR MATHEMATICS AND SCIENCE,RESTON,VA,20191,matched,
+new_school_of_northern_virginia,New School of Northern Virginia,A9304211,THE NEW SCHOOL OF NORTHERN VIRGINIA,FAIRFAX,VA,22031,matched,
+pinnacle_academy,Pinnacle Academy,A0990135,PINNACLE ACADEMY,OAKTON,VA,22124,matched,PSS row is present in 2017-18; later survey years may remain row-not-found.
+loudoun_school_for_advanced_studies,Loudoun School for Advanced Studies,,,,,,ambiguous_pss_id,"PSS contains overlapping Ashburn rows A1703674 and A1992096 across 2017-18 through 2021-22; leave blank until independently resolved."
+st_paul_vi_catholic_high_school,St. Paul VI Catholic High School,02122129,ST PAUL VI CATHOLIC HIGH SCHOOL,CHANTILLY,VA,20152,matched,Same PPIN captures the Fairfax to Chantilly campus move.
+seton_school_manassas,Seton School (Manassas),A9304184,SETON SCHOOL,MANASSAS,VA,20110,matched,PSS row is present in 2017-18; later survey years may remain row-not-found.
+st_john_paul_the_great_catholic_high_school,St. John Paul the Great Catholic High School,A0990136,ST JOHN PAUL THE GREAT CATHOLIC HIGH SCHOOL,DUMFRIES,VA,22026,matched,

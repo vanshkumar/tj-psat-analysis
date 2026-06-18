@@ -8,11 +8,14 @@ Semifinalist counts are intentionally blank in the seed panel until each count
 has source metadata.
 
 The second milestone adds canonical aliases, school-history events, public
-NCES identifiers, and admissions-pathway metadata sourced from
-`docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf`. That PDF
-establishes that FCPS regional placement is based on the student's base school,
-while private-school applicants are assigned a pathway by residency rather than
-by the private school's location.
+NCES identifiers, and admissions-policy caveats from
+`docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf`. That
+regulation supports treating private-school rows as non-public applicants for
+unallocated seats rather than assigning them from school location alone. High
+school NMSF pathway buckets remain analytical geographies unless actual TJHSST
+pathway/offers data are sourced later. Annual Notice 3355 materials and older
+regulation versions are still needed before making class-specific admissions
+mechanism claims.
 
 ## First-Milestone Build
 
@@ -48,15 +51,36 @@ creates a byte-identical copy under `data/manual/` for the manual source
 inventory required by the task plan.
 
 `scripts/build_school_roster.py` builds the Milestone 2 roster deliverables
-from the seed roster, curated source files, and the admissions proposal PDF. To
+from the seed roster, curated source files, and the admissions-policy PDF. To
 refresh public-school NCES IDs from the official CCD directory ZIP, run:
 
 ```bash
 python scripts/build_school_roster.py --ccd-directory-zip /path/to/ccd_sch_029_2324_w_1a_073124.zip
 ```
 
-The roster build accepts `--admissions-policy-pdf` if the admissions proposal
-PDF is moved from its default path.
+The roster build accepts `--admissions-policy-pdf` if the admissions-policy PDF
+is moved from its default path.
+
+## Enrollment Denominators
+
+Milestone 3 builds a school-by-class-year grade-11 enrollment panel with
+machine-readable missingness statuses:
+
+```bash
+python scripts/ingest_public_enrollment_2024_25.py \
+  --membership-zip /path/to/ccd_sch_052_2425_l_1a_073025.zip
+
+python scripts/ingest_private_pss.py \
+  --pss-zip 2017-18=/path/to/pss1718_pu_csv.zip \
+  --pss-zip 2019-20=/path/to/pss1920_pu_csv.zip \
+  --pss-zip 2021-22=/path/to/pss2122_pu_csv.zip
+
+python scripts/build_enrollment_panel.py
+```
+
+The public Class 2026 source is the NCES CCD 2024-25 school membership file.
+Private-school rows use curated PSS `PPIN` matches, `P290` for grade 11, and
+preserve `F_P290`; PSS non-survey years are left blank rather than estimated.
 
 ## Development Checks
 
@@ -87,5 +111,7 @@ a separate audited step.
 - `verified_zero` is only valid for complete named lists for the geography and year.
 - TJHSST stays as a single school row.
 - Private-school observations are not allocated to public TJ pathways by school
-  location alone; the admissions proposal says private-school applicants are
-  pathwayed by residency.
+  location alone; Regulation 3355.16 puts non-public applicants in the
+  unallocated-seat pool.
+- Grade-11 enrollment denominators normalize NMSF outcomes; they are not
+  substitutes for the 8th-grade populations used in admissions-seat allocation.

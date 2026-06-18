@@ -15,7 +15,7 @@ from .constants import (
 from .normalize import normalize_school_name
 from .seed_workbook import SchoolRecord, read_roster, sha256_file, write_csv, write_text
 
-PRIVATE_RESIDENCY_BASED_PATHWAY = "Residency-based private"
+PRIVATE_UNALLOCATED_PATHWAY = "Private/homeschool unallocated"
 
 ALLOWED_TJ_PATHWAYS = {
     "Arlington",
@@ -28,7 +28,7 @@ ALLOWED_TJ_PATHWAYS = {
     "FCPS Region 4",
     "FCPS Region 5",
     "TJHSST",
-    PRIVATE_RESIDENCY_BASED_PATHWAY,
+    PRIVATE_UNALLOCATED_PATHWAY,
 }
 
 PATHWAY_RENAMES = {
@@ -49,9 +49,9 @@ CCD_DIRECTORY_SOURCE_TITLE = (
 CCD_DIRECTORY_SOURCE_URL = "https://nces.ed.gov/ccd/Data/zip/ccd_sch_029_2324_w_1a_073124.zip"
 CCD_DIRECTORY_RETRIEVAL_DATE = "2026-06-18"
 
-ADMISSIONS_POLICY_RELATIVE_PATH = "docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf"
-ADMISSIONS_POLICY_SOURCE_TITLE = "TJHSST Admissions Merit Lottery Proposal"
-ADMISSIONS_POLICY_SOURCE_DATE = "2020-09-15"
+ADMISSIONS_POLICY_RELATIVE_PATH = "docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf"
+ADMISSIONS_POLICY_SOURCE_TITLE = "FCPS Regulation 3355.16 TJHSST Admissions"
+ADMISSIONS_POLICY_SOURCE_DATE = "2022-05-17"
 
 ARLINGTON_TECH_DECISION = (
     "Arlington Tech is not treated as a separate analytical unit for this roster. "
@@ -210,13 +210,13 @@ def _class_year_for_school_year(school_year: str) -> int:
 
 def _standard_tj_pathway(record: SchoolRecord) -> str:
     if record.sector == "Private":
-        return PRIVATE_RESIDENCY_BASED_PATHWAY
+        return PRIVATE_UNALLOCATED_PATHWAY
     return PATHWAY_RENAMES.get(record.pathway, record.pathway)
 
 
 def _pathway_status(record: SchoolRecord) -> str:
     if record.sector == "Private":
-        return "residency_based_private_applicant"
+        return "unallocated_private_applicant"
     pathway = _standard_tj_pathway(record)
     if pathway in ALLOWED_TJ_PATHWAYS:
         return "assigned"
@@ -225,7 +225,7 @@ def _pathway_status(record: SchoolRecord) -> str:
 
 def _pathway_assignment_method(record: SchoolRecord) -> str:
     if record.sector == "Private":
-        return "applicant_residency"
+        return "nonpublic_unallocated_seats"
     if record.pathway.startswith("FCPS Region"):
         return "base_school_region"
     if record.school_id == "thomas_jefferson_high_school_for_science_and_technology":
@@ -236,19 +236,20 @@ def _pathway_assignment_method(record: SchoolRecord) -> str:
 def _pathway_source_note(record: SchoolRecord) -> str:
     if record.sector == "Private":
         return (
-            "PDF slide 15 states that private school applicants are assigned a pathway "
-            "based on residency; do not assign private schools by school location."
+            "Regulation 3355.16 requires private-school applicants to prove residency "
+            "in a cooperating division and places non-public applicants in the "
+            "unallocated-seat pool; do not assign private schools by school location."
         )
     if record.pathway.startswith("FCPS Region"):
         return (
-            "PDF slide 16 states that FCPS regional placement is based on the student's "
-            "base school; the seed workbook supplies school-to-region rows."
+            "Regulation 3355.16 allocates seats by each public school's 8th-grade "
+            "population; the seed workbook supplies FCPS high-school-region analytical rows."
         )
     if record.school_id == "thomas_jefferson_high_school_for_science_and_technology":
         return "TJHSST remains one canonical school row per project data rules."
     return (
-        "PDF slides 14-15 define participating jurisdiction pathways; the seed workbook "
-        "supplies school-to-jurisdiction rows."
+        "Regulation 3355.16 defines annual cooperating-division participation; the seed "
+        "workbook supplies high-school-to-jurisdiction analytical rows."
     )
 
 
@@ -574,11 +575,13 @@ def build_roster_review_report(
             ],
         ),
         "",
-        "The PDF establishes two pathway rules used here: private-school applicants",
-        "are assigned by residency, and FCPS regional placement is based on the",
-        "student's base school. Therefore private-school NMSF observations should",
-        "not be allocated to FCPS regions or participating jurisdictions by school",
-        "location alone.",
+        "Regulation 3355.16 is the admissions-policy source used here. It describes",
+        "ninth-grade eligibility and evaluation, allocates seats by public schools'",
+        "8th-grade populations, leaves remaining seats unallocated, and places",
+        "non-public applicants in the unallocated-seat pool. It also points to annual",
+        "Notice 3355 materials for implementation details, so high-school NMSF",
+        "observations by pathway remain analytical geography buckets, not observed",
+        "TJHSST admissions-pathway counts.",
         "",
         "## Identifier Coverage",
         "",

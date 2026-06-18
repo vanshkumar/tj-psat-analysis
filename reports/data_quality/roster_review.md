@@ -31,13 +31,13 @@ or ambiguous school metadata.
 | Falls Church City | 1 |
 | Loudoun | 17 |
 | Prince William | 13 |
-| Residency-based private | 16 |
+| Private/homeschool unallocated | 16 |
 | TJHSST | 1 |
 
 | Pathway assignment method | Schools |
 | --- | --- |
-| applicant_residency | 16 |
 | base_school_region | 24 |
+| nonpublic_unallocated_seats | 16 |
 | participating_jurisdiction | 35 |
 | single_tjhsst_row | 1 |
 
@@ -45,16 +45,18 @@ or ambiguous school metadata.
 
 | Field | Value |
 | --- | --- |
-| Source title | TJHSST Admissions Merit Lottery Proposal |
-| Source path | docs/source_notes/TJHSST Admissions Merit Lottery Proposal.pdf |
-| Source date | 2020-09-15 |
-| Source SHA-256 | 286be572c544960d7bcdb3d439605de946ef7cca41ff4da6ba0313bbfc93c99b |
+| Source title | FCPS Regulation 3355.16 TJHSST Admissions |
+| Source path | docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf |
+| Source date | 2022-05-17 |
+| Source SHA-256 | ef491c14f4758e69569f180fc31e0c67e9f4fd43d46a92e4d48368877510ebf8 |
 
-The PDF establishes two pathway rules used here: private-school applicants
-are assigned by residency, and FCPS regional placement is based on the
-student's base school. Therefore private-school NMSF observations should
-not be allocated to FCPS regions or participating jurisdictions by school
-location alone.
+Regulation 3355.16 is the admissions-policy source used here. It describes
+ninth-grade eligibility and evaluation, allocates seats by public schools'
+8th-grade populations, leaves remaining seats unallocated, and places
+non-public applicants in the unallocated-seat pool. It also points to annual
+Notice 3355 materials for implementation details, so high-school NMSF
+observations by pathway remain analytical geography buckets, not observed
+TJHSST admissions-pathway counts.
 
 ## Identifier Coverage
 
