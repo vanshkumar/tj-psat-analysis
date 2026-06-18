@@ -28,4 +28,31 @@ providers:
   - local_media
   - nmsc_virginia_list
 
-sources: []
+sources:
+  - source_id: fcps_2024_semifinalists
+    provider: fcps
+    source_title: 264 FCPS Students Named 2024 National Merit Semifinalists
+    source_url: https://www.fcps.edu/news/264-fcps-students-named-2024-national-merit-semifinalists
+    source_date: 2023-09-13
+    source_hash: 7c515347de203c9607145a66c4af18a42921d73236a8be58f79863b31335468d
+    source_scope: FCPS high schools
+    source_completeness: Complete named FCPS list only; not complete for non-FCPS schools.
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+  - source_id: fcps_2025_semifinalists
+    provider: fcps
+    source_title: 191 FCPS Students Named 2025 National Merit Semifinalists
+    source_url: https://www.fcps.edu/news/191-fcps-students-named-2025-national-merit-semifinalists
+    source_date: 2024-09-12
+    source_hash: d06b5e4a64bdde5b976bfc421eafd5383035bf8a267403cf10e7e239703b7104
+    source_scope: FCPS high schools
+    source_completeness: Complete named FCPS list only; not complete for non-FCPS schools.
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+  - source_id: fcps_2026_semifinalists
+    provider: fcps
+    source_title: 262 FCPS Students Named 2026 National Merit Semifinalists
+    source_url: https://www.fcps.edu/news/262-fcps-students-named-2026-national-merit-semifinalists-0
+    source_date: 2025-09-11
+    source_hash: 676b4cdb98270c89c398cadb4a3abd07608d5d9b35297bf3c7753891fc8b54e8
+    source_scope: FCPS high schools
+    source_completeness: Complete named FCPS list only; not complete for non-FCPS schools.
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
