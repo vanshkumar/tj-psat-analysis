@@ -43,6 +43,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "fcps_2024_semifinalists",
                 "fcps_2025_semifinalists",
                 "fcps_2026_semifinalists",
+                "lcps_2024_semifinalists",
                 "lcps_2025_semifinalists",
                 "lcps_2026_semifinalists",
                 "patch_arlington_2024_semifinalists",
@@ -193,8 +194,8 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 160)
-        self.assertEqual(statuses["verified_zero"], 73)
+        self.assertEqual(statuses["verified_count"], 174)
+        self.assertEqual(statuses["verified_zero"], 76)
         self.assertEqual(statuses["not_operating"], 9)
 
         tj_2023 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2023)
@@ -243,6 +244,21 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(wakefield_2026["nmsf_count"], "0")
         self.assertEqual(wakefield_2026["nmsf_status"], "verified_zero")
         self.assertEqual(wakefield_2026["source_id"], "aps_2026_semifinalists")
+
+        freedom_lcps_2024 = self._lookup("freedom_high_school_south_riding", 2024)
+        self.assertEqual(freedom_lcps_2024["nmsf_count"], "7")
+        self.assertEqual(freedom_lcps_2024["nmsf_status"], "verified_count")
+        self.assertEqual(freedom_lcps_2024["source_id"], "lcps_2024_semifinalists")
+
+        dominion_lcps_2024 = self._lookup("dominion_high_school", 2024)
+        self.assertEqual(dominion_lcps_2024["nmsf_count"], "0")
+        self.assertEqual(dominion_lcps_2024["nmsf_status"], "verified_zero")
+        self.assertEqual(dominion_lcps_2024["source_id"], "lcps_2024_semifinalists")
+
+        st_paul_vi_2024 = self._lookup("st_paul_vi_catholic_high_school", 2024)
+        self.assertEqual(st_paul_vi_2024["nmsf_count"], "")
+        self.assertEqual(st_paul_vi_2024["nmsf_status"], "missing_source")
+        self.assertEqual(st_paul_vi_2024["source_id"], "")
 
         freedom_lcps_2025 = self._lookup("freedom_high_school_south_riding", 2025)
         self.assertEqual(freedom_lcps_2025["nmsf_count"], "2")

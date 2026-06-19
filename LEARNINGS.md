@@ -209,6 +209,11 @@
 - Action: Use the Ashburn Patch source for positive LCPS Class 2025 roster observations, retain Evergreen only as an excluded snapshot row, and continue leaving absent LCPS schools missing rather than zero.
 - Confidence: high
 
+**2026-06-19 - LCPS pre-Apptegy archive discovery**
+- Observation: LCPS official Class 2024 school-attributed NMSF coverage was not in the current Apptegy/Thrillshare API, but the Internet Archive `www.lcps.org/site/default.aspx` Blackboard index exposed it under `ModuleInstanceID=274904` and `FlexDataID=467748`.
+- Action: For older LCPS official releases, filter archived Blackboard `site/default.aspx` rows by `PageType=3`, `DomainID=1`, `ModuleInstanceID=274904`, and first-capture windows around September before treating LCPS official coverage as absent.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

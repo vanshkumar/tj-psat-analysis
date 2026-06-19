@@ -273,6 +273,28 @@ sources:
     reported_total: 6
     reported_total_scope: PWCS high-school students
     notes: Names are listed by school on the official PWCS page; zeros are inferred only for rostered PWCS public high schools absent from this complete PWCS high-school list. Archived snapshot stores count-only rows and omits student names.
+  - source_id: lcps_2024_semifinalists
+    provider: lcps
+    graduating_class: 2024
+    geography_or_district: LCPS high schools
+    source_title: LCPS National Merit Semifinalists Announced
+    publisher: Loudoun County Public Schools
+    publication_date: 2023-09-19
+    source_url: https://www.lcps.org/site/default.aspx?PageType=3&DomainID=1&ModuleInstanceID=274904&ViewID=6446EE88-D30C-497E-9316-3F8874B3E108&RenderLoc=0&FlexDataID=467748&PageID=1
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named LCPS list with TJHSST resident subset excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: lcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/lcps/lcps_2024_semifinalists_snapshot.csv
+    archived_file_sha256: 2084ef4d9dec83f0b8f3e2a2723241ab0692ac6288a9d3f0293866ed07fdc201
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 5ccd5743977eb9a17cf8b6ed7286444e63329702887aecbaa76858e15bd3321f
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 82
+    reported_total_scope: LCPS students from LCPS high schools plus LCPS-resident TJHSST students
+    notes: Names are listed by school or TJHSST resident subset on the archived official LCPS page; zeros are inferred only for rostered LCPS public high schools absent from this complete LCPS list. Archived snapshot stores count-only rows and omits student names. The source was discovered through an Internet Archive index of the pre-Apptegy LCPS Blackboard news module.
   - source_id: lcps_2025_semifinalists
     provider: lcps
     graduating_class: 2025
