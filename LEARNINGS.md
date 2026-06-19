@@ -214,6 +214,11 @@
 - Action: For older LCPS official releases, filter archived Blackboard `site/default.aspx` rows by `PageType=3`, `DomainID=1`, `ModuleInstanceID=274904`, and first-capture windows around September before treating LCPS official coverage as absent.
 - Confidence: high
 
+**2026-06-19 - LCPS Blackboard list-page discovery**
+- Observation: The archived LCPS `PageType=14` more-expanded Blackboard module list for `ModuleInstanceID=274904` exposed article titles/descriptions and revealed the Class 2023 NMSF `FlexDataID=441768` page when a narrower CDX wildcard query returned empty.
+- Action: For older LCPS Blackboard NMSF searches, fetch a September `PageType=14` module list page and search its titles before downloading individual `PageType=3` article pages.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

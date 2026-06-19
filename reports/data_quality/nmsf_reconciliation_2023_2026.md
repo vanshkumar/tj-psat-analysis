@@ -8,15 +8,15 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 156 |
+| reports/data_quality/manual_review_queue.csv | 140 |
 
 ## Observation Status Counts
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 54 |
-| verified_count | 174 |
-| verified_zero | 76 |
+| missing_source | 37 |
+| verified_count | 189 |
+| verified_zero | 78 |
 
 ## Coverage By Division And Class
 
@@ -25,7 +25,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2023 | APS | 5 | 5 | 0 | 0 | 0 |
 | 2023 | FCPS | 36 | 21 | 7 | 8 | 0 |
 | 2023 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
-| 2023 | LCPS | 19 | 0 | 0 | 19 | 0 |
+| 2023 | LCPS | 19 | 15 | 2 | 2 | 0 |
 | 2023 | PWCS | 15 | 1 | 12 | 2 | 0 |
 | 2024 | APS | 5 | 4 | 0 | 1 | 0 |
 | 2024 | FCPS | 36 | 19 | 10 | 7 | 0 |
@@ -54,6 +54,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | fcps_2024_semifinalists | 2024 | 264 | 264 | 0 | 264 | reconciled | FCPS high schools including TJHSST |
 | fcps_2025_semifinalists | 2025 | 191 | 191 | 0 | 191 | reconciled | FCPS high schools including TJHSST |
 | fcps_2026_semifinalists | 2026 | 262 | 262 | 0 | 262 | reconciled | FCPS high schools including TJHSST |
+| lcps_2023_semifinalists | 2023 | 62 | 44 | 18 | 62 | reconciled | Thomas Jefferson High School for Science and Technology: 18 excluded_tjhsst_resident_subset |
 | lcps_2024_semifinalists | 2024 | 82 | 57 | 25 | 82 | reconciled | Thomas Jefferson High School for Science and Technology: 25 excluded_tjhsst_resident_subset |
 | lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled | LCPS unattributed semifinalist total: 57 source_incomplete_unattributed_total |
 | lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled | Thomas Jefferson High School for Science and Technology: 12 excluded_tjhsst_resident_subset |
@@ -87,7 +88,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | --- | --- | --- |
 | 2023 | FCPS | 8 |
 | 2023 | Falls Church City | 1 |
-| 2023 | LCPS | 19 |
+| 2023 | LCPS | 2 |
 | 2023 | PWCS | 2 |
 | 2024 | APS | 1 |
 | 2024 | FCPS | 7 |

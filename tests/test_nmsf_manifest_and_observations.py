@@ -43,6 +43,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "fcps_2024_semifinalists",
                 "fcps_2025_semifinalists",
                 "fcps_2026_semifinalists",
+                "lcps_2023_semifinalists",
                 "lcps_2024_semifinalists",
                 "lcps_2025_semifinalists",
                 "lcps_2026_semifinalists",
@@ -194,8 +195,8 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 174)
-        self.assertEqual(statuses["verified_zero"], 76)
+        self.assertEqual(statuses["verified_count"], 189)
+        self.assertEqual(statuses["verified_zero"], 78)
         self.assertEqual(statuses["not_operating"], 9)
 
         tj_2023 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2023)

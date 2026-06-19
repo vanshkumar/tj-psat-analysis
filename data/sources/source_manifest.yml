@@ -295,6 +295,28 @@ sources:
     reported_total: 82
     reported_total_scope: LCPS students from LCPS high schools plus LCPS-resident TJHSST students
     notes: Names are listed by school or TJHSST resident subset on the archived official LCPS page; zeros are inferred only for rostered LCPS public high schools absent from this complete LCPS list. Archived snapshot stores count-only rows and omits student names. The source was discovered through an Internet Archive index of the pre-Apptegy LCPS Blackboard news module.
+  - source_id: lcps_2023_semifinalists
+    provider: lcps
+    graduating_class: 2023
+    geography_or_district: LCPS high schools
+    source_title: 62 LCPS Students Named National Merit Scholarship Semifinalists
+    publisher: Loudoun County Public Schools
+    publication_date: 2022-09-16
+    source_url: https://www.lcps.org/site/default.aspx?PageType=3&DomainID=1&ModuleInstanceID=274904&ViewID=6446EE88-D30C-497E-9316-3F8874B3E108&RenderLoc=0&FlexDataID=441768&PageID=1
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named LCPS list with TJHSST resident subset excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: lcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/lcps/lcps_2023_semifinalists_snapshot.csv
+    archived_file_sha256: 77a271d48e0665e5d90a5397fe111a81a2af31863ea75ec0bb5fa70e4259debf
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: a43ed988b6e7b2e1953067712c4558c795ee3e33f5d4ded0398ef280394db078
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 62
+    reported_total_scope: LCPS students from LCPS high schools plus LCPS-resident TJHSST students
+    notes: Names are listed by school or TJHSST resident subset on the archived official LCPS page; zeros are inferred only for rostered LCPS public high schools absent from this complete LCPS list. Archived snapshot stores count-only rows and omits student names. The source was discovered through an Internet Archive index of the pre-Apptegy LCPS Blackboard news module.
   - source_id: lcps_2025_semifinalists
     provider: lcps
     graduating_class: 2025
