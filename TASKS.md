@@ -464,7 +464,7 @@ The project is complete when:
 - [ ] Every school-year has an explicit NMSF status.
 - [ ] Every numeric NMSF count has source provenance.
 - [ ] Junior enrollment is available or explicitly missing for every school-year.
-- [ ] The analysis panel is reproducible from committed inputs and source manifests.
+- [x] The analysis panel is reproducible from committed inputs and source manifests.
 - [ ] CI checks formatting, tests, schemas, and provenance rules.
 - [ ] The pathway heatmap and core trend charts are generated automatically.
 - [ ] The final report clearly states what the data do and do not support.

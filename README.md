@@ -2,13 +2,15 @@
 
 Reproducible data pipeline for a TJHSST admissions-change analysis.
 
-The first milestone builds a canonical school roster and grade 11 enrollment
-panel from `docs/source_notes/tj psat investigation.xlsx`. National Merit
-Semifinalist counts are intentionally blank in the seed panel until each count
-has source metadata.
+The current checked-in pipeline builds a canonical school roster, source-backed
+NMSF observation layer, grade-11 enrollment denominator panel, and analytical
+panel for Classes 2019-2026. The source workbook
+`docs/source_notes/tj psat investigation.xlsx` remains the seed for roster and
+legacy enrollment inputs, while every numeric NMSF count is sourced through the
+manifest and observation layer.
 
-The second milestone adds canonical aliases, school-history events, public
-NCES identifiers, and admissions-policy caveats from
+Canonical aliases, school-history events, public NCES identifiers, and
+admissions-policy caveats come from curated repo inputs and
 `docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf`. That
 regulation supports treating private-school rows as non-public applicants for
 unallocated seats rather than assigning them from school location alone. High
@@ -17,19 +19,24 @@ pathway/offers data are sourced later. Annual Notice 3355 materials and older
 regulation versions are still needed before making class-specific admissions
 mechanism claims.
 
-## First-Milestone Build
+## Pipeline Build
+
+After the uv environment is already synced, the current committed artifacts can
+be regenerated with:
 
 ```bash
-python scripts/build_seed_data.py
-python scripts/build_school_roster.py
-python scripts/apply_nmsf_counts.py
-python scripts/build_nmsf_observations.py
-python scripts/build_analysis_panel.py
-python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
-python -m unittest discover -s tests
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_seed_data.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_school_roster.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_enrollment_panel.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/apply_nmsf_counts.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_observations.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_pilot_2023_2026.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_panel.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
+UV_CACHE_DIR=.uv-cache uv run --no-sync python -m unittest discover -s tests
 ```
 
-Generated first- and second-milestone outputs:
+Generated pipeline outputs include:
 
 - `data/manual/tj psat investigation.xlsx`
 - `data/interim/canonical_schools.csv`
@@ -38,7 +45,9 @@ Generated first- and second-milestone outputs:
 - `data/interim/panel_seed.csv`
 - `data/interim/panel_nmsf.csv`
 - `data/processed/analysis_panel.csv`
+- `data/processed/enrollment_panel.csv`
 - `data/processed/nmsf_observations.csv`
+- `data/processed/nmsf_observations_2023_2026.csv`
 - `data/processed/schools.csv`
 - `data/processed/school_roster.csv`
 - `data/processed/public_enrollment.csv`
@@ -48,6 +57,9 @@ Generated first- and second-milestone outputs:
 - `data/manual/school_history.csv`
 - `reports/data_quality/workbook_ingestion.md`
 - `reports/data_quality/roster_review.md`
+- `reports/data_quality/enrollment_coverage.md`
+- `reports/data_quality/nmsf_source_registry.md`
+- `reports/data_quality/nmsf_reconciliation_2023_2026.md`
 - `reports/data_quality/final_panel_checks.md`
 
 The build command reads the seed workbook from
@@ -90,10 +102,10 @@ preserve `F_P290`; PSS non-survey years are left blank rather than estimated.
 ## Development Checks
 
 ```bash
-python -m ruff format --check .
-python -m ruff check .
-python -m mypy
-python -m unittest discover -s tests
+UV_CACHE_DIR=.uv-cache uv run --no-sync python -m ruff format --check .
+UV_CACHE_DIR=.uv-cache uv run --no-sync python -m ruff check .
+UV_CACHE_DIR=.uv-cache uv run --no-sync python -m mypy
+UV_CACHE_DIR=.uv-cache uv run --no-sync python -m unittest discover -s tests
 ```
 
 ## NMSF Count Ingestion
