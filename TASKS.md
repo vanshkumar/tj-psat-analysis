@@ -321,19 +321,35 @@ using explicit observation statuses and compatible coverage.
 
 ## Milestone 7 — Build the analytical panel
 
-- [ ] Join the canonical roster, NMSF observations, enrollment, source metadata, and class-year mapping.
-- [ ] Calculate `nmsf_per_100_juniors` where both inputs are available.
-- [ ] Calculate pathway-level totals using only compatible coverage.
-- [ ] Keep raw counts, rates, and missingness indicators together.
-- [ ] Add the Virginia NMSF Selection Index cutoff by class year.
-- [ ] Add statewide semifinalist totals when reliably sourced.
-- [ ] Flag rows affected by school openings, renames, or denominator gaps.
-- [ ] Flag pathway buckets as analytical geographies rather than observed
+- [x] Join the canonical roster, NMSF observations, enrollment, source metadata, and class-year mapping.
+- [x] Calculate `nmsf_per_100_juniors` where both inputs are available.
+- [x] Calculate pathway-level totals using only compatible coverage.
+- [x] Keep raw counts, rates, and missingness indicators together.
+- [x] Add the Virginia NMSF Selection Index cutoff by class year, or a documented placeholder when not reliably sourced.
+- [x] Add statewide semifinalist totals when reliably sourced, or a documented placeholder when not reliably sourced.
+- [x] Flag rows affected by school openings, renames, or denominator gaps.
+- [x] Flag pathway buckets as analytical geographies rather than observed
   TJHSST admissions pathways unless actual pathway/offers data are sourced.
-- [ ] Keep grade-11 enrollment denominators separate from admissions-seat
+- [x] Keep grade-11 enrollment denominators separate from admissions-seat
   allocation inputs; use sourced 8th-grade populations only if an admissions
   allocation analysis is added.
-- [ ] Write a data dictionary.
+- [x] Write a data dictionary.
+
+Status note: `scripts/build_analysis_panel.py` now generates
+`data/processed/analysis_panel.csv` and
+`reports/data_quality/final_panel_checks.md` from the roster, NMSF observation
+layer, enrollment panel, class-year mapping, and school-history file. Row-level
+rates are calculated only when both `nmsf_count` and `grade11_enrollment` are
+available. Pathway aggregate fields are covered-subset totals that sum only
+compatible school rows and carry coverage-status columns, so partial source or
+denominator coverage is visible next to the aggregate. Virginia NMSF Selection
+Index cutoff and statewide semifinalist total columns are present as
+`not_sourced` placeholders; no values are guessed. Pathway buckets are labeled
+as analytical geographies or non-public unallocated applicant buckets, not
+observed TJHSST admissions pathway outcomes. The panel also keeps
+`denominator_type=grade11_enrollment_outcome_denominator` separate from
+admissions-seat allocation inputs, which remain absent pending sourced
+8th-grade allocation-population data.
 
 ### Deliverables
 

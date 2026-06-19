@@ -24,6 +24,7 @@ python scripts/build_seed_data.py
 python scripts/build_school_roster.py
 python scripts/apply_nmsf_counts.py
 python scripts/build_nmsf_observations.py
+python scripts/build_analysis_panel.py
 python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 python -m unittest discover -s tests
 ```
@@ -36,6 +37,7 @@ Generated first- and second-milestone outputs:
 - `data/interim/public_grade11_enrollment.csv`
 - `data/interim/panel_seed.csv`
 - `data/interim/panel_nmsf.csv`
+- `data/processed/analysis_panel.csv`
 - `data/processed/nmsf_observations.csv`
 - `data/processed/schools.csv`
 - `data/processed/school_roster.csv`
@@ -46,6 +48,7 @@ Generated first- and second-milestone outputs:
 - `data/manual/school_history.csv`
 - `reports/data_quality/workbook_ingestion.md`
 - `reports/data_quality/roster_review.md`
+- `reports/data_quality/final_panel_checks.md`
 
 The build command reads the seed workbook from
 `docs/source_notes/tj psat investigation.xlsx`, preserves it unchanged, and
@@ -141,6 +144,27 @@ than a prerequisite for the analytical panel. The pre-analysis stopping point is
 the official FCPS/TJHSST 2019-2022 slice already in the main observation layer;
 non-FCPS historical rows should remain `missing_source` unless a clear,
 source-backed bulk lead is added later.
+
+## Analysis Panel
+
+`scripts/build_analysis_panel.py` joins the canonical roster, NMSF observation
+layer, enrollment panel, class-year mapping, and school-history flags into
+`data/processed/analysis_panel.csv`.
+
+The panel calculates `nmsf_per_100_juniors` only when both a source-backed NMSF
+count and a grade-11 denominator are present. Missing NMSF observations and
+missing denominators remain blank with status fields rather than being imputed.
+Pathway aggregate fields are covered-subset totals: they sum only school rows
+with compatible NMSF and denominator coverage, and they include coverage flags
+showing whether the pathway-year is complete, partial, or has no compatible
+rows. The pathway buckets are analytical geographies, not observed TJHSST
+admissions pathways.
+
+Virginia NMSF Selection Index cutoff and statewide semifinalist total columns
+are included as `not_sourced` placeholders until reliable class-year sources
+are added. Grade-11 enrollment denominators are kept separate from admissions
+seat-allocation inputs; no 8th-grade allocation population is included in this
+panel.
 
 ## Source Discipline
 

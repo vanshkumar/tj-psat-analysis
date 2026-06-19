@@ -229,6 +229,11 @@
 - Action: For FCPS Class 2022, transcribe school counts from the visible named list, set the manifest reported total to the visible-list total, and keep the stated-total mismatch in source notes rather than forcing reconciliation to the article prose.
 - Confidence: high
 
+**2026-06-19 - Analysis panel pathway aggregates**
+- Observation: `analysis_panel.csv` repeats pathway aggregate fields on each school row, but those aggregates are covered-subset totals based only on rows with both source-backed NMSF counts and grade-11 denominators.
+- Action: In future descriptive tables or figures, check `pathway_coverage_status` and avoid treating `pathway_*_covered` fields as full-pathway totals unless the status is `complete_compatible_coverage`.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
