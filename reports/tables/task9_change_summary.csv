@@ -1,0 +1,22 @@
+group,metric,comparison,start_value,end_value,absolute_change,percent_change
+Balanced public including TJHSST,raw_count,2024_to_2025,324.000000,247.000000,-77.000000,-23.765432
+Balanced public including TJHSST,raw_count,2025_to_2026,247.000000,330.000000,83.000000,33.603239
+Balanced public including TJHSST,raw_count,2024_to_2026,324.000000,330.000000,6.000000,1.851852
+Balanced public including TJHSST,rate_per_100_grade11,2024_to_2025,1.201825,0.882931,-0.318894,-26.534130
+Balanced public including TJHSST,rate_per_100_grade11,2025_to_2026,0.882931,1.174085,0.291154,32.975793
+Balanced public including TJHSST,rate_per_100_grade11,2024_to_2026,1.201825,1.174085,-0.027740,-2.308177
+Balanced conventional base public,raw_count,2024_to_2025,159.000000,166.000000,7.000000,4.402516
+Balanced conventional base public,raw_count,2025_to_2026,166.000000,217.000000,51.000000,30.722892
+Balanced conventional base public,raw_count,2024_to_2026,159.000000,217.000000,58.000000,36.477987
+Balanced conventional base public,rate_per_100_grade11,2024_to_2025,0.599593,0.604274,0.004681,0.780675
+Balanced conventional base public,rate_per_100_grade11,2025_to_2026,0.604274,0.786688,0.182414,30.187375
+Balanced conventional base public,rate_per_100_grade11,2024_to_2026,0.599593,0.786688,0.187095,31.203715
+TJHSST,raw_count,2024_to_2025,165.000000,81.000000,-84.000000,-50.909091
+TJHSST,raw_count,2025_to_2026,81.000000,113.000000,32.000000,39.506173
+TJHSST,raw_count,2024_to_2026,165.000000,113.000000,-52.000000,-31.515152
+TJHSST,rate_per_100_grade11,2024_to_2025,37.414966,16.071429,-21.343537,-57.045455
+TJHSST,rate_per_100_grade11,2025_to_2026,16.071429,21.606119,5.534690,34.438071
+TJHSST,rate_per_100_grade11,2024_to_2026,37.414966,21.606119,-15.808847,-42.252738
+Balanced private schools,raw_count,2024_to_2025,15.000000,15.000000,0.000000,0.000000
+Balanced private schools,raw_count,2025_to_2026,15.000000,18.000000,3.000000,20.000000
+Balanced private schools,raw_count,2024_to_2026,15.000000,18.000000,3.000000,20.000000

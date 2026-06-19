@@ -1,0 +1,5 @@
+class_year,private_operating_rows,private_observed_count_rows,private_missing_count_rows,full_observed_private_nmsf_total,balanced_private_school_rows,balanced_private_nmsf_total,rate_compatible_private_rows,rate_compatible_private_nmsf_count,rate_compatible_private_grade11_enrollment,covered_private_rate_per_100
+2023,16,4,12,13.000000,4,13.000000,2,2.000000,394.000000,0.507614
+2024,16,5,11,18.000000,4,15.000000,0,,,
+2025,16,16,0,34.000000,4,15.000000,0,,,
+2026,16,10,6,34.000000,4,18.000000,0,,,

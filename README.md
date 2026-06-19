@@ -33,6 +33,7 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_observations.p
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_pilot_2023_2026.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_panel.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_descriptive_outputs.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_task9_outputs.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 UV_CACHE_DIR=.uv-cache uv run --no-sync python -m unittest discover -s tests
 ```
@@ -63,6 +64,9 @@ Generated pipeline outputs include:
 - `reports/data_quality/nmsf_reconciliation_2023_2026.md`
 - `reports/data_quality/final_panel_checks.md`
 - `reports/descriptive_results.md`
+- `reports/robustness.md`
+- `reports/limitations.md`
+- `reports/initial_findings.md`
 - `reports/figures/*.svg`
 - `reports/tables/*.csv`
 
@@ -200,6 +204,24 @@ full-pathway totals unless the coverage status is complete.
 Virginia cutoff and statewide-total fields remain `not_sourced` placeholders in
 the analysis panel. The descriptive report documents that gap and the figures
 do not annotate cutoff changes until source-backed cutoff values are added.
+
+## Robustness And Interpretation
+
+`scripts/build_task9_outputs.py` reads `data/processed/analysis_panel.csv` and
+generates Milestone 9 outputs:
+
+- `reports/robustness.md`
+- `reports/limitations.md`
+- `reports/initial_findings.md`
+- `reports/tables/task9_*.csv`
+- `docs/source_notes/task9_web_research_sources.md`
+
+The script keeps the canonical panel unchanged. Supplemental Virginia cutoff
+and statewide semifinalist figures are used only in Task 9 sensitivity tables
+and remain outside the canonical `not_sourced` panel fields. The reports keep
+raw observed counts separate from rate-compatible covered totals, leave
+`missing_source` rows missing, and treat the admissions-policy discussion as
+descriptive rather than causal.
 
 ## Source Discipline
 

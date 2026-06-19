@@ -1,0 +1,77 @@
+school_id,school,sector,analytical_unit_type,division,tj_pathway,balanced_count_2023_2026,balanced_public_rate_2023_2026,balanced_private_count_2023_2026
+basis_independent_mclean,BASIS Independent McLean,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+bishop_o_connell_high_school,Bishop O'Connell High School,private,private_school,APS,Private/homeschool unallocated,True,False,True
+flint_hill_school,Flint Hill School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+immanuel_christian_high_school,Immanuel Christian High School,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+loudoun_school_for_advanced_studies,Loudoun School for Advanced Studies,private,private_school,LCPS,Private/homeschool unallocated,False,False,False
+new_school_of_northern_virginia,New School of Northern Virginia,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+oakcrest_school,Oakcrest School,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+pinnacle_academy,Pinnacle Academy,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+potomac_school,Potomac School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+seton_school_manassas,Seton School (Manassas),private,private_school,PWCS,Private/homeschool unallocated,False,False,False
+st_john_paul_the_great_catholic_high_school,St. John Paul the Great Catholic High School,private,private_school,PWCS,Private/homeschool unallocated,False,False,False
+st_paul_vi_catholic_high_school,St. Paul VI Catholic High School,private,private_school,LCPS,Private/homeschool unallocated,False,False,False
+the_madeira_school,The Madeira School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+trinity_christian_school,Trinity Christian School,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+trinity_school_at_meadow_view,Trinity School at Meadow View,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+thomas_jefferson_high_school_for_science_and_technology,Thomas Jefferson High School for Science and Technology,public,public_governor_school,FCPS,TJHSST,True,True,False
+annandale_high_school,Annandale High School,public,public_high_school,FCPS,FCPS Region 2,True,True,False
+battlefield_high_school,Battlefield High School,public,public_high_school,PWCS,Prince William,True,True,False
+brentsville_district_high_school,Brentsville District High School,public,public_high_school,PWCS,Prince William,True,True,False
+briar_woods_high_school,Briar Woods High School,public,public_high_school,LCPS,Loudoun,True,True,False
+broad_run_high_school,Broad Run High School,public,public_high_school,LCPS,Loudoun,True,True,False
+c_d_hylton_high_school,C.D. Hylton High School,public,public_high_school,PWCS,Prince William,True,True,False
+centreville_high_school,Centreville High School,public,public_high_school,FCPS,FCPS Region 4,True,True,False
+chantilly_high_school,Chantilly High School,public,public_high_school,FCPS,FCPS Region 5,True,True,False
+charles_j_colgan_sr_high_school,Charles J. Colgan Sr. High School,public,public_high_school,PWCS,Prince William,True,True,False
+dominion_high_school,Dominion High School,public,public_high_school,LCPS,Loudoun,True,True,False
+edison_high_school,Edison High School,public,public_high_school,FCPS,FCPS Region 3,True,True,False
+fairfax_high_school,Fairfax High School,public,public_high_school,FCPS,FCPS Region 5,True,True,False
+falls_church_high_school,Falls Church High School,public,public_high_school,FCPS,FCPS Region 2,True,True,False
+forest_park_high_school,Forest Park High School,public,public_high_school,PWCS,Prince William,True,True,False
+freedom_high_school_south_riding,Freedom High School (South Riding),public,public_high_school,LCPS,Loudoun,True,False,False
+freedom_high_school_woodbridge,Freedom High School (Woodbridge),public,public_high_school,PWCS,Prince William,True,False,False
+gainesville_high_school,Gainesville High School,public,public_high_school,PWCS,Prince William,True,True,False
+gar_field_high_school,Gar-Field High School,public,public_high_school,PWCS,Prince William,True,True,False
+hayfield_secondary_school_hs,Hayfield Secondary School (HS),public,public_high_school,FCPS,FCPS Region 3,True,True,False
+heritage_high_school_leesburg,Heritage High School (Leesburg),public,public_high_school,LCPS,Loudoun,True,True,False
+herndon_high_school,Herndon High School,public,public_high_school,FCPS,FCPS Region 1,True,True,False
+independence_high_school,Independence High School,public,public_high_school,LCPS,Loudoun,True,True,False
+john_champe_high_school,John Champe High School,public,public_high_school,LCPS,Loudoun,True,True,False
+justice_high_school,Justice High School,public,public_high_school,FCPS,FCPS Region 2,True,True,False
+lake_braddock_secondary_school_hs,Lake Braddock Secondary School (HS),public,public_high_school,FCPS,FCPS Region 4,True,True,False
+langley_high_school,Langley High School,public,public_high_school,FCPS,FCPS Region 1,True,True,False
+lewis_high_school,Lewis High School,public,public_high_school,FCPS,FCPS Region 3,True,True,False
+lightridge_high_school,Lightridge High School,public,public_high_school,LCPS,Loudoun,True,True,False
+loudoun_county_high_school,Loudoun County High School,public,public_high_school,LCPS,Loudoun,True,True,False
+loudoun_valley_high_school,Loudoun Valley High School,public,public_high_school,LCPS,Loudoun,False,False,False
+madison_high_school,Madison High School,public,public_high_school,FCPS,FCPS Region 1,True,True,False
+marshall_high_school,Marshall High School,public,public_high_school,FCPS,FCPS Region 2,True,True,False
+mclean_high_school,McLean High School,public,public_high_school,FCPS,FCPS Region 2,True,True,False
+meridian_high_school,Meridian High School,public,public_high_school,Falls Church City,Falls Church City,False,False,False
+mount_vernon_high_school,Mount Vernon High School,public,public_high_school,FCPS,FCPS Region 3,True,True,False
+oakton_high_school,Oakton High School,public,public_high_school,FCPS,FCPS Region 1,True,True,False
+osbourn_park_high_school,Osbourn Park High School,public,public_high_school,PWCS,Prince William,True,True,False
+park_view_high_school,Park View High School,public,public_high_school,LCPS,Loudoun,False,False,False
+patriot_high_school,Patriot High School,public,public_high_school,PWCS,Prince William,True,True,False
+potomac_falls_high_school,Potomac Falls High School,public,public_high_school,LCPS,Loudoun,True,True,False
+potomac_high_school,Potomac High School,public,public_high_school,PWCS,Prince William,True,True,False
+riverside_high_school,Riverside High School,public,public_high_school,LCPS,Loudoun,True,True,False
+robinson_secondary_school_hs,Robinson Secondary School (HS),public,public_high_school,FCPS,FCPS Region 4,True,True,False
+rock_ridge_high_school,Rock Ridge High School,public,public_high_school,LCPS,Loudoun,True,True,False
+south_county_high_school,South County High School,public,public_high_school,FCPS,FCPS Region 4,True,True,False
+south_lakes_high_school,South Lakes High School,public,public_high_school,FCPS,FCPS Region 1,True,True,False
+stone_bridge_high_school,Stone Bridge High School,public,public_high_school,LCPS,Loudoun,True,True,False
+tuscarora_high_school,Tuscarora High School,public,public_high_school,LCPS,Loudoun,False,False,False
+unity_reed_high_school,Unity Reed High School,public,public_high_school,PWCS,Prince William,True,True,False
+wakefield_high_school,Wakefield High School,public,public_high_school,APS,Arlington,False,False,False
+washington_liberty_high_school,Washington-Liberty High School,public,public_high_school,APS,Arlington,True,True,False
+west_potomac_high_school,West Potomac High School,public,public_high_school,FCPS,FCPS Region 3,True,True,False
+west_springfield_high_school,West Springfield High School,public,public_high_school,FCPS,FCPS Region 4,True,True,False
+westfield_high_school,Westfield High School,public,public_high_school,FCPS,FCPS Region 5,True,True,False
+woodbridge_senior_high_school,Woodbridge Senior High School,public,public_high_school,PWCS,Prince William,True,True,False
+woodgrove_high_school,Woodgrove High School,public,public_high_school,LCPS,Loudoun,False,False,False
+woodson_high_school,Woodson High School,public,public_high_school,FCPS,FCPS Region 5,True,True,False
+yorktown_high_school,Yorktown High School,public,public_high_school,APS,Arlington,True,True,False
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,public,public_secondary_program,APS,Arlington,True,False,False

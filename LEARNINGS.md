@@ -239,6 +239,26 @@
 - Action: Keep observed count totals separate from rate-compatible count/enrollment totals in future descriptive or robustness outputs; do not reuse observed count totals as normalized-rate numerators when denominators are missing.
 - Confidence: high
 
+**2026-06-19 - Task 9 handoff**
+- Observation: Robustness and interpretation can be handed off from `data/processed/analysis_panel.csv`, `reports/descriptive_results.md`, `reports/tables/`, and coverage/provenance reports; raw source snapshots are only needed for provenance audit or source-row disputes.
+- Action: For Task 9 drafting, provide the final panel, data dictionary, task/hypothesis framing, descriptive tables, final panel checks, NMSF reconciliation, and Regulation 3355.16; avoid substituting raw source archives for the generated coverage/status fields.
+- Confidence: high
+
+**2026-06-19 - Task 9 upload package**
+- Observation: A ChatGPT Web handoff package is most usable when it preserves project-relative paths and includes a top-level README with the exact drafting prompt and interpretation guardrails.
+- Action: Put future upload bundles under `handoff/`, include `README_TASK*_HANDOFF.md`, and zip the whole task folder rather than flattening CSV/report filenames.
+- Confidence: high
+
+**2026-06-19 - Task 9 integration**
+- Observation: The web-completed Task 9 package included reproducible outputs plus package-only metadata; the durable repo artifacts are `scripts/build_task9_outputs.py`, `reports/robustness.md`, `reports/limitations.md`, `reports/initial_findings.md`, `reports/tables/task9_*.csv`, and Task 9 source notes.
+- Action: Integrate completed task packages by copying repo-relative deliverables, regenerating outputs from the checked-in script, and deleting package metadata/folders after validation.
+- Confidence: high
+
+**2026-06-19 - Task 9 dependencies**
+- Observation: `scripts/build_task9_outputs.py` uses `pandas` and `numpy`, which were not in the original project dependency list; syncing those dependencies also creates `uv.lock`.
+- Action: Keep `pandas` and `numpy` declared in `pyproject.toml` and retain `uv.lock` so Task 9 regeneration works from a fresh environment.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
