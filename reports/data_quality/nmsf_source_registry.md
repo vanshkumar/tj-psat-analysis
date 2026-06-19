@@ -13,25 +13,25 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 470 |
+| missing_source | 418 |
 | not_operating | 9 |
-| verified_count | 95 |
-| verified_zero | 34 |
+| verified_count | 108 |
+| verified_zero | 73 |
 
 ## Observation Basis Counts
 
 | Basis | Rows |
 | --- | --- |
-| complete_source_zero_inference | 34 |
-| manual_transcription | 95 |
-| no_source_recorded | 470 |
+| complete_source_zero_inference | 73 |
+| manual_transcription | 108 |
+| no_source_recorded | 418 |
 | school_not_operating | 9 |
 
 ## Source Coverage Counts
 
 | Source ID | Rows |
 | --- | --- |
-| (none) | 479 |
+| (none) | 427 |
 | aps_2023_semifinalists | 4 |
 | aps_2025_semifinalists | 4 |
 | aps_2026_semifinalists | 4 |
@@ -40,6 +40,10 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2025_semifinalists | 25 |
 | fcps_2026_semifinalists | 25 |
 | lcps_2026_semifinalists | 17 |
+| pwcs_2023_semifinalists | 13 |
+| pwcs_2024_semifinalists | 13 |
+| pwcs_2025_semifinalists | 13 |
+| pwcs_2026_semifinalists | 13 |
 
 ## Archived Sources
 
@@ -54,6 +58,10 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2026_semifinalists | data/raw/nmsf/fcps/fcps_2026_semifinalists_snapshot.csv | 25436587ef644424c6476a967be884e61a83ba8385a187d948a49eaed194d295 |
 | lcps_2025_semifinalists | data/raw/nmsf/lcps/lcps_2025_semifinalists_snapshot.csv | bdfe4856bc2c9d6c75def4551571cb910270556d5bff5a0014043306e7247d63 |
 | lcps_2026_semifinalists | data/raw/nmsf/lcps/lcps_2026_semifinalists_snapshot.csv | b7d76805097061b66c8d3812ec38d0029671b1eb68ed0a773ea0807cea290259 |
+| pwcs_2023_semifinalists | data/raw/nmsf/pwcs/pwcs_2023_semifinalists_snapshot.csv | 06d1419fce985bc129d73dc36264173381d97bbe057ef763c84da9fb83180d51 |
+| pwcs_2024_semifinalists | data/raw/nmsf/pwcs/pwcs_2024_semifinalists_snapshot.csv | f9a063667fdece32459ca340376178c2b8c13116748c2139a745d57559ae6ce2 |
+| pwcs_2025_semifinalists | data/raw/nmsf/pwcs/pwcs_2025_semifinalists_snapshot.csv | d449c049f6ebf656fc96a134519f85beabb72a6c66ce5afba580af8e4fcde89d |
+| pwcs_2026_semifinalists | data/raw/nmsf/pwcs/pwcs_2026_semifinalists_snapshot.csv | aa5ff96fa02f2d87be217d69a6850de4dd6a584034cf45ae54e2fb12f74511ec |
 
 ## Source Rules
 
@@ -64,7 +72,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 ## Machine Summary
 
-- missing_source: 470
+- missing_source: 418
 - not_operating: 9
-- verified_count: 95
-- verified_zero: 34
+- verified_count: 108
+- verified_zero: 73

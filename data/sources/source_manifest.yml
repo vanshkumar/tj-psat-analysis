@@ -185,6 +185,94 @@ sources:
     reported_total: 30
     reported_total_scope: Arlington students including Arlington Tech and TJHSST resident subset
     notes: Names are listed by school or TJHSST resident subset on the official APS page; Arlington Tech is kept out of the panel because it is not a separate roster analytical unit. Archived snapshot stores count-only rows and omits student names.
+  - source_id: pwcs_2023_semifinalists
+    provider: pwcs
+    graduating_class: 2023
+    geography_or_district: PWCS high schools
+    source_title: Prince William County students named 2023 National Merit Scholarship semifinalists
+    publisher: Prince William County Public Schools
+    publication_date: 2022-09-22
+    source_url: https://www.pwcs.edu/news/2022/09/pwcs_national_merit_semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named PWCS high-school list with TJHSST former PWCS middle-school student excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: pwcs_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/pwcs/pwcs_2023_semifinalists_snapshot.csv
+    archived_file_sha256: 06d1419fce985bc129d73dc36264173381d97bbe057ef763c84da9fb83180d51
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: db105b5cee45ffbc73ebba68fba356d69647e0be83efcec509bd201988d5315d
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 3
+    reported_total_scope: PWCS high-school students plus former PWCS middle-school student attending TJHSST
+    notes: Names are listed by school or TJHSST former PWCS middle-school status on the official PWCS page; zeros are inferred only for rostered PWCS public high schools absent from this complete PWCS high-school list. Archived snapshot stores count-only rows and omits student names.
+  - source_id: pwcs_2024_semifinalists
+    provider: pwcs
+    graduating_class: 2024
+    geography_or_district: PWCS high schools
+    source_title: Prince William County Students Named 2024 National Merit Scholarship Semifinalists
+    publisher: Prince William County Public Schools
+    publication_date: 2023-09-27
+    source_url: https://www.pwcs.edu/news/2023/09/pwcs_national_merit_scholarship_semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named PWCS high-school list with TJHSST former PWCS middle-school students excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: pwcs_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/pwcs/pwcs_2024_semifinalists_snapshot.csv
+    archived_file_sha256: f9a063667fdece32459ca340376178c2b8c13116748c2139a745d57559ae6ce2
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: a1e68618fdd88b90124d900c987cccdb36d1af2c5550c377bc3fe96829fe81e2
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 6
+    reported_total_scope: PWCS high-school students plus former PWCS middle-school students attending TJHSST
+    notes: Names are listed by school or TJHSST former PWCS middle-school status on the official PWCS page; zeros are inferred only for rostered PWCS public high schools absent from this complete PWCS high-school list. Archived snapshot stores count-only rows and omits student names.
+  - source_id: pwcs_2025_semifinalists
+    provider: pwcs
+    graduating_class: 2025
+    geography_or_district: PWCS high schools
+    source_title: Six Prince William County Public Schools students named 2025 National Merit Scholarship Semifinalists
+    publisher: Prince William County Public Schools
+    publication_date: 2024-09-12
+    source_url: https://www.pwcs.edu/news/2024/09/six_pwcs_students_named_2025_national_merit_semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named PWCS high-school list with TJHSST former PWCS middle-school student excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: pwcs_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/pwcs/pwcs_2025_semifinalists_snapshot.csv
+    archived_file_sha256: d449c049f6ebf656fc96a134519f85beabb72a6c66ce5afba580af8e4fcde89d
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: fab4f591eeb5a05e5a8c7f13e1f6f11490417f4b4a4964d28abafe973fdebe0c
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 7
+    reported_total_scope: PWCS high-school students plus former PWCS middle-school student attending TJHSST
+    notes: Names are listed by school or TJHSST former PWCS middle-school status on the official PWCS page; zeros are inferred only for rostered PWCS public high schools absent from this complete PWCS high-school list. Archived snapshot stores count-only rows and omits student names.
+  - source_id: pwcs_2026_semifinalists
+    provider: pwcs
+    graduating_class: 2026
+    geography_or_district: PWCS high schools
+    source_title: Six students named National Merit Scholarship Semifinalists
+    publisher: Prince William County Public Schools
+    publication_date: 2025-09-11
+    source_url: https://www.pwcs.edu/news/2025/09/national_merit_scholarship_semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named PWCS high-school list
+    complete_for_zero_inference: true
+    zero_inference_scope: pwcs_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/pwcs/pwcs_2026_semifinalists_snapshot.csv
+    archived_file_sha256: aa5ff96fa02f2d87be217d69a6850de4dd6a584034cf45ae54e2fb12f74511ec
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 47bee6803fa605d4a02e3a3f9de67042c65cf48121f5109aefdfe40a2bfa3570
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 6
+    reported_total_scope: PWCS high-school students
+    notes: Names are listed by school on the official PWCS page; zeros are inferred only for rostered PWCS public high schools absent from this complete PWCS high-school list. Archived snapshot stores count-only rows and omits student names.
   - source_id: lcps_2025_semifinalists
     provider: lcps
     graduating_class: 2025

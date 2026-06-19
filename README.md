@@ -98,21 +98,23 @@ python -m unittest discover -s tests
 `data/sources/nmsf_counts.csv` stores source-backed count transcriptions. The
 current source slices cover official FCPS/TJHSST National Merit Semifinalist
 releases for Classes 2023, 2024, 2025, and 2026, APS releases for Classes 2023,
-2025, and 2026, an LCPS school-attributed release for Class 2026, and a
-total-only LCPS release for Class 2025. The importer computes source hashes
-from the source metadata plus transcribed count rows, matches schools against
-the canonical roster, and writes `data/interim/panel_nmsf.csv`.
+2025, and 2026, PWCS public high-school releases for Classes 2023, 2024, 2025,
+and 2026, an LCPS school-attributed release for Class 2026, and a total-only
+LCPS release for Class 2025. The importer computes source hashes from the
+source metadata plus transcribed count rows, matches schools against the
+canonical roster, and writes `data/interim/panel_nmsf.csv`.
 
 `scripts/build_nmsf_observations.py` builds the Milestone 4 count-observation
 layer at `data/processed/nmsf_observations.csv`. It validates
 `data/sources/source_manifest.yml`, keeps NMSF observations separate from
 enrollment denominators, and uses `verified_zero` only for manifest sources
-marked complete for the relevant scope. The current FCPS 2023-2026 sources are
-complete named FCPS lists, so absent rostered FCPS public schools receive
-source-backed zero observations for those classes. Schools outside the source
-scope remain `missing_source`. APS/LCPS resident TJHSST subsets are retained in
-count-only source snapshots for reconciliation but are not imported as separate
-observations because TJHSST remains one school row.
+marked complete for the relevant scope. The current FCPS and PWCS 2023-2026
+sources are complete named public high-school lists, so absent rostered public
+schools inside those scopes receive source-backed zero observations for those
+classes. Schools outside the source scope remain `missing_source`. APS/LCPS
+resident TJHSST subsets and PWCS former-middle-school TJHSST references are
+retained in count-only source snapshots for reconciliation but are not imported
+as separate observations because TJHSST remains one school row.
 The LCPS Class 2025 release is retained as a source-incomplete total for
 reconciliation only because it does not list school affiliations.
 

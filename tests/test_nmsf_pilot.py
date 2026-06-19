@@ -32,6 +32,7 @@ class NmsfPilotTest(unittest.TestCase):
         issue_types = {row["issue_type"] for row in self.review_rows}
         self.assertIn("missing_school_year_source", issue_types)
         self.assertIn("excluded_tjhsst_resident_subset", issue_types)
+        self.assertIn("excluded_tjhsst_former_pwcs_student", issue_types)
         self.assertIn("excluded_nonroster_school", issue_types)
         self.assertIn("source_incomplete_unattributed_total", issue_types)
 
@@ -56,6 +57,10 @@ class NmsfPilotTest(unittest.TestCase):
         self.assertIn("| fcps_2023_semifinalists | 2023 | 238 | 238 | 0 | 238 | reconciled |", self.report)
         self.assertIn("| lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled |", self.report)
         self.assertIn("| lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled |", self.report)
+        self.assertIn("| pwcs_2023_semifinalists | 2023 | 3 | 2 | 1 | 3 | reconciled |", self.report)
+        self.assertIn("| pwcs_2024_semifinalists | 2024 | 6 | 2 | 4 | 6 | reconciled |", self.report)
+        self.assertIn("| pwcs_2025_semifinalists | 2025 | 7 | 6 | 1 | 7 | reconciled |", self.report)
+        self.assertIn("| pwcs_2026_semifinalists | 2026 | 6 | 6 | 0 | 6 | reconciled |", self.report)
 
 
 if __name__ == "__main__":

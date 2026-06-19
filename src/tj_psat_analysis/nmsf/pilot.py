@@ -135,9 +135,9 @@ def build_reconciliation_report(
         "",
         "This report is generated for Milestone 5 from the source-backed NMSF observation layer.",
         (
-            "TJHSST is kept as one school row; jurisdictional TJHSST subsets in "
-            "APS/LCPS releases are excluded from the panel and retained only for "
-            "reconciliation notes."
+            "TJHSST is kept as one school row; jurisdictional or former-school "
+            "TJHSST references in APS/LCPS/PWCS releases are excluded from the "
+            "panel and retained only for reconciliation notes."
         ),
         "",
         "## Output Summary",
@@ -198,8 +198,8 @@ def build_reconciliation_report(
         "- Verified zeros are inferred only from manifest entries marked complete for the division scope.",
         "- Source-incomplete district totals may reconcile a source without creating school observations.",
         (
-            "- APS/LCPS resident TJHSST subsets are not imported as separate TJHSST "
-            "observations because the panel keeps TJHSST as one row."
+            "- APS/LCPS/PWCS TJHSST subset rows are not imported as separate "
+            "TJHSST observations because the panel keeps TJHSST as one row."
         ),
         "- Missing rows remain missing; incomplete or inaccessible source searches do not become zeros.",
     ]

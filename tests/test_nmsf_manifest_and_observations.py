@@ -45,6 +45,10 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "fcps_2026_semifinalists",
                 "lcps_2025_semifinalists",
                 "lcps_2026_semifinalists",
+                "pwcs_2023_semifinalists",
+                "pwcs_2024_semifinalists",
+                "pwcs_2025_semifinalists",
+                "pwcs_2026_semifinalists",
             },
         )
         for source in self.sources.values():
@@ -127,8 +131,8 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 95)
-        self.assertEqual(statuses["verified_zero"], 34)
+        self.assertEqual(statuses["verified_count"], 108)
+        self.assertEqual(statuses["verified_zero"], 73)
         self.assertEqual(statuses["not_operating"], 9)
 
         tj_2023 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2023)
@@ -178,11 +182,32 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(loudoun_county_2026["nmsf_status"], "verified_zero")
         self.assertEqual(loudoun_county_2026["source_id"], "lcps_2026_semifinalists")
 
+    def test_pwcs_counts_and_verified_zero_inference(self) -> None:
+        osbourn_park_2023 = self._lookup("osbourn_park_high_school", 2023)
+        self.assertEqual(osbourn_park_2023["nmsf_count"], "2")
+        self.assertEqual(osbourn_park_2023["nmsf_status"], "verified_count")
+        self.assertEqual(osbourn_park_2023["source_id"], "pwcs_2023_semifinalists")
+
+        battlefield_2025 = self._lookup("battlefield_high_school", 2025)
+        self.assertEqual(battlefield_2025["nmsf_count"], "2")
+        self.assertEqual(battlefield_2025["nmsf_status"], "verified_count")
+        self.assertEqual(battlefield_2025["source_id"], "pwcs_2025_semifinalists")
+
+        hylton_2026 = self._lookup("c_d_hylton_high_school", 2026)
+        self.assertEqual(hylton_2026["nmsf_count"], "1")
+        self.assertEqual(hylton_2026["nmsf_status"], "verified_count")
+        self.assertEqual(hylton_2026["source_id"], "pwcs_2026_semifinalists")
+
+        brentsville_2026 = self._lookup("brentsville_district_high_school", 2026)
+        self.assertEqual(brentsville_2026["nmsf_count"], "0")
+        self.assertEqual(brentsville_2026["nmsf_status"], "verified_zero")
+        self.assertEqual(brentsville_2026["source_id"], "pwcs_2026_semifinalists")
+
     def test_unsourced_rows_remain_missing_until_sourced(self) -> None:
-        battlefield_2026 = self._lookup("battlefield_high_school", 2026)
-        self.assertEqual(battlefield_2026["nmsf_count"], "")
-        self.assertEqual(battlefield_2026["nmsf_status"], "missing_source")
-        self.assertEqual(battlefield_2026["source_id"], "")
+        seton_2026 = self._lookup("seton_school_manassas", 2026)
+        self.assertEqual(seton_2026["nmsf_count"], "")
+        self.assertEqual(seton_2026["nmsf_status"], "missing_source")
+        self.assertEqual(seton_2026["source_id"], "")
 
 
 if __name__ == "__main__":

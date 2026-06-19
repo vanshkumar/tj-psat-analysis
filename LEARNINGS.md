@@ -159,6 +159,11 @@
 - Action: Use the reconciliation report's Source Gaps table, not the raw manual-review queue row count, when summarizing unresolved Milestone 5 source coverage.
 - Confidence: high
 
+**2026-06-19 - PWCS NMSF source handling**
+- Observation: PWCS's live site can be blocked by Cloudflare, but the Internet Archive `www.pwcs.edu/news/` index exposes the official Classes 2023-2026 semifinalist releases; those releases list PWCS-enrolled high-school students separately from former PWCS middle-school students attending TJHSST.
+- Action: For PWCS NMSF backfill, filter the archived `/news/` CDX index locally, import only PWCS high-school rows into observations, keep TJHSST former-PWCS rows as excluded snapshot counts, and do not infer zeros for PWCS-located private schools from PWCS public releases.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

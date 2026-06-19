@@ -226,7 +226,7 @@ Tasks:
 - [ ] Collect official FCPS/TJHSST releases.
 - [ ] Collect official LCPS releases.
 - [ ] Collect official APS releases.
-- [ ] Collect official PWCS releases.
+- [x] Collect official PWCS releases.
 - [ ] Collect official Falls Church City or Meridian releases.
 - [ ] Collect NMSC Virginia lists where district releases are absent or incomplete.
 - [ ] Add public-school observations for every rostered school-year.
@@ -238,14 +238,16 @@ Tasks:
 Status note: `data/processed/nmsf_observations_2023_2026.csv` and
 `reports/data_quality/nmsf_reconciliation_2023_2026.md` now cover the
 source-backed pilot rows available from official FCPS/TJHSST Classes 2023-2026,
-APS Classes 2023 and 2025-2026, LCPS Class 2026, and a total-only official
-LCPS Class 2025 release. APS/LCPS resident TJHSST subsets, Arlington Tech, and
-the LCPS Class 2025 unattributed total are retained in count-only snapshots for
-reconciliation but excluded from the observation panel to preserve the single
-TJHSST row, the roster's Arlington Tech decision, and the no-school-attribution
-rule. The remaining non-FCPS Class 2023, non-FCPS Class 2024, LCPS Class 2025
-school attribution, PWCS, Falls Church City/Meridian, and private-school source
-gaps remain explicitly listed in `reports/data_quality/manual_review_queue.csv`.
+APS Classes 2023 and 2025-2026, PWCS public high-school Classes 2023-2026,
+LCPS Class 2026, and a total-only official LCPS Class 2025 release. APS/LCPS
+resident TJHSST subsets, PWCS former-middle-school TJHSST references, Arlington
+Tech, and the LCPS Class 2025 unattributed total are retained in count-only
+snapshots for reconciliation but excluded from the observation panel to preserve
+the single TJHSST row, the roster's Arlington Tech decision, and the
+no-school-attribution rule. The remaining non-FCPS Class 2023, non-FCPS Class
+2024, LCPS Class 2025 school attribution, Falls Church City/Meridian, and
+private-school source gaps remain explicitly listed in
+`reports/data_quality/manual_review_queue.csv`.
 
 ### Deliverables
 
