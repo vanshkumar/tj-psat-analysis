@@ -13,9 +13,9 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 474 |
+| missing_source | 470 |
 | not_operating | 9 |
-| verified_count | 91 |
+| verified_count | 95 |
 | verified_zero | 34 |
 
 ## Observation Basis Counts
@@ -23,15 +23,16 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | Basis | Rows |
 | --- | --- |
 | complete_source_zero_inference | 34 |
-| manual_transcription | 91 |
-| no_source_recorded | 474 |
+| manual_transcription | 95 |
+| no_source_recorded | 470 |
 | school_not_operating | 9 |
 
 ## Source Coverage Counts
 
 | Source ID | Rows |
 | --- | --- |
-| (none) | 483 |
+| (none) | 479 |
+| aps_2023_semifinalists | 4 |
 | aps_2025_semifinalists | 4 |
 | aps_2026_semifinalists | 4 |
 | fcps_2023_semifinalists | 25 |
@@ -44,6 +45,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Source ID | Archived File | SHA-256 |
 | --- | --- | --- |
+| aps_2023_semifinalists | data/raw/nmsf/aps/aps_2023_semifinalists_snapshot.csv | 55de635d170f76a5989a7519b3426fea75476f14045d6fd2c51e82c2532bd1c0 |
 | aps_2025_semifinalists | data/raw/nmsf/aps/aps_2025_semifinalists_snapshot.csv | 3a0e137a66860cbc8a8266d9a6780ea91c0a9356b597af52af2e080bea6f0a59 |
 | aps_2026_semifinalists | data/raw/nmsf/aps/aps_2026_semifinalists_snapshot.csv | 4def00f7243f66ead12ee99ab53ed621bfe13cb61c976ebe4e069e78ff631006 |
 | fcps_2023_semifinalists | data/raw/nmsf/fcps/fcps_2023_semifinalists_snapshot.csv | 650629fa8bfa58ed7c46301186fa7228c2ed0e5cd1736eb3674e71b352612e83 |
@@ -62,7 +64,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 ## Machine Summary
 
-- missing_source: 474
+- missing_source: 470
 - not_operating: 9
-- verified_count: 91
+- verified_count: 95
 - verified_zero: 34

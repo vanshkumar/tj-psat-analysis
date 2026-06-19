@@ -144,13 +144,18 @@
 - Action: Archive it as a `source_incomplete_unattributed_total` for reconciliation only; do not add school rows to `nmsf_counts.csv` or infer LCPS Class 2025 zeros from it.
 - Confidence: high
 
+**2026-06-19 - APS archive discovery**
+- Observation: APS's current WordPress API returned only recent NMSF semifinalist posts, while the Internet Archive `www.apsva.us/post/` prefix index exposed the archived Class 2023 `17 Seniors Named...` release.
+- Action: For missing older APS NMSF releases, filter the archived `/post/` CDX prefix index locally before concluding APS has no official source.
+- Confidence: high
+
 **2026-06-19 - Shared NMSF count CSV compatibility**
 - Observation: `data/sources/nmsf_counts.csv` is read by both the Milestone 4 observation builder with `school_aliases.csv` and the legacy interim panel applier with seed-workbook aliases only.
 - Action: Use canonical-compatible source school names for rows like H-B Woodlawn, and keep provider-aware ambiguity resolution for duplicated public names such as Freedom High School.
 - Confidence: high
 
 **2026-06-19 - Milestone 5 queue interpretation**
-- Observation: `reports/data_quality/manual_review_queue.csv` includes 179 true `missing_school_year_source` rows plus five intentional non-observation snapshot rows used for APS/LCPS TJHSST, Arlington Tech, and LCPS 2025 unattributed-total reconciliation.
+- Observation: `reports/data_quality/manual_review_queue.csv` includes 175 true `missing_school_year_source` rows plus six intentional non-observation snapshot rows used for APS/LCPS TJHSST, Arlington Tech, and LCPS 2025 unattributed-total reconciliation.
 - Action: Use the reconciliation report's Source Gaps table, not the raw manual-review queue row count, when summarizing unresolved Milestone 5 source coverage.
 - Confidence: high
 

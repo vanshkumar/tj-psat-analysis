@@ -36,6 +36,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(
             set(self.sources),
             {
+                "aps_2023_semifinalists",
                 "aps_2025_semifinalists",
                 "aps_2026_semifinalists",
                 "fcps_2023_semifinalists",
@@ -126,7 +127,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 91)
+        self.assertEqual(statuses["verified_count"], 95)
         self.assertEqual(statuses["verified_zero"], 34)
         self.assertEqual(statuses["not_operating"], 9)
 
@@ -152,6 +153,11 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(robinson_2026["source_id"], "fcps_2026_semifinalists")
 
     def test_aps_and_lcps_counts_and_verified_zero_inference(self) -> None:
+        washington_liberty_2023 = self._lookup("washington_liberty_high_school", 2023)
+        self.assertEqual(washington_liberty_2023["nmsf_count"], "7")
+        self.assertEqual(washington_liberty_2023["nmsf_status"], "verified_count")
+        self.assertEqual(washington_liberty_2023["source_id"], "aps_2023_semifinalists")
+
         washington_liberty_2026 = self._lookup("washington_liberty_high_school", 2026)
         self.assertEqual(washington_liberty_2026["nmsf_count"], "9")
         self.assertEqual(washington_liberty_2026["nmsf_status"], "verified_count")

@@ -119,6 +119,28 @@ sources:
     reported_total: 262
     reported_total_scope: FCPS high schools including TJHSST
     notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names.
+  - source_id: aps_2023_semifinalists
+    provider: aps
+    graduating_class: 2023
+    geography_or_district: APS high schools
+    source_title: 17 Seniors Named National Merit Scholarship Semifinalists
+    publisher: Arlington Public Schools
+    publication_date: 2022-09-16
+    source_url: https://www.apsva.us/post/17-seniors-named-national-merit-scholarship-semifinalists/
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named Arlington list with TJHSST resident subset excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: aps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/aps/aps_2023_semifinalists_snapshot.csv
+    archived_file_sha256: 55de635d170f76a5989a7519b3426fea75476f14045d6fd2c51e82c2532bd1c0
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: eb698326e9c1c9b0b76d961730e6c429d0f99c624fe5ded47558a5d7a7765481
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 17
+    reported_total_scope: Arlington students including TJHSST resident subset
+    notes: Names are listed by school or TJHSST resident subset on the official APS page; zeros are inferred only for rostered APS public high schools absent from this complete APS list. Archived snapshot stores count-only rows and omits student names.
   - source_id: aps_2025_semifinalists
     provider: aps
     graduating_class: 2025
