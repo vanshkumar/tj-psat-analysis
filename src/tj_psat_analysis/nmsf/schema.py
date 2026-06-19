@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -91,12 +92,42 @@ def read_source_manifest(path: Path) -> dict[str, NmsfSource]:
             raise ValueError(f"{path} has duplicate source_id {source.source_id}")
         if source.complete_for_zero_inference and not source.zero_inference_scope:
             raise ValueError(f"{path} source {source.source_id} has blank zero inference scope")
-        if source.archived_file_path and not source.archived_file_sha256:
-            raise ValueError(f"{path} source {source.source_id} has archived file without hash")
+        _validate_archived_file(source, path)
         if source.parser_name not in PARSER_REGISTRY_BY_NAME:
             raise ValueError(f"{path} source {source.source_id} has unknown parser {source.parser_name}")
         sources[source.source_id] = source
     return sources
+
+
+def _validate_archived_file(source: NmsfSource, manifest_path: Path) -> None:
+    if source.archived_file_path and not source.archived_file_sha256:
+        raise ValueError(f"{manifest_path} source {source.source_id} has archived file without hash")
+    if source.archived_file_sha256 and not source.archived_file_path:
+        raise ValueError(f"{manifest_path} source {source.source_id} has archived hash without file")
+    if not source.archived_file_path:
+        return
+
+    archive_path = Path(source.archived_file_path)
+    if archive_path.is_absolute():
+        raise ValueError(f"{manifest_path} source {source.source_id} archive path must be relative")
+
+    candidates = [manifest_path.parent / archive_path]
+    if len(manifest_path.parents) >= 3:
+        candidates.append(manifest_path.parents[2] / archive_path)
+
+    archive_file = next((candidate for candidate in candidates if candidate.exists()), None)
+    if archive_file is None:
+        raise ValueError(
+            f"{manifest_path} source {source.source_id} archive file not found: "
+            f"{source.archived_file_path}"
+        )
+
+    digest = hashlib.sha256(archive_file.read_bytes()).hexdigest()
+    if digest != source.archived_file_sha256:
+        raise ValueError(
+            f"{manifest_path} source {source.source_id} archive hash {source.archived_file_sha256} "
+            f"does not match computed hash {digest}"
+        )
 
 
 def _source_from_mapping(raw: dict[str, Any], path: Path) -> NmsfSource:

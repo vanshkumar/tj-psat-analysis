@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import sys
 import unittest
 from collections import Counter
@@ -48,6 +49,37 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
             self.assertEqual(len(source.source_hash), 64)
         self.assertIn("verified_count", NMSF_OBSERVATION_STATUSES)
         self.assertIn("missing_source", NMSF_OBSERVATION_STATUSES)
+
+    def test_manifest_sources_have_archived_snapshots(self) -> None:
+        count_records = read_manual_nmsf_counts(ROOT / "data" / "sources" / "nmsf_counts.csv")
+        records_by_source = {
+            source_id: sorted(
+                (record.school_name_source, record.nmsf_count)
+                for record in count_records
+                if record.source_id == source_id
+            )
+            for source_id in self.sources
+        }
+
+        for source in self.sources.values():
+            self.assertTrue(source.archived_file_path.startswith("data/raw/nmsf/fcps/"))
+            self.assertEqual(len(source.archived_file_sha256), 64)
+
+            snapshot_path = ROOT / source.archived_file_path
+            self.assertTrue(snapshot_path.is_file())
+            with snapshot_path.open(newline="", encoding="utf-8") as handle:
+                snapshot_rows = list(csv.DictReader(handle))
+
+            self.assertEqual({row["source_id"] for row in snapshot_rows}, {source.source_id})
+            self.assertEqual({row["class_year"] for row in snapshot_rows}, {str(source.graduating_class)})
+            self.assertEqual(
+                sorted((row["school_name_source"], int(row["nmsf_count"])) for row in snapshot_rows),
+                records_by_source[source.source_id],
+            )
+            self.assertEqual(
+                {row["snapshot_notes"] for row in snapshot_rows},
+                {"student names intentionally omitted"},
+            )
 
     def test_fixture_manual_counts_use_verified_count_status(self) -> None:
         records = read_manual_nmsf_counts(ROOT / "tests" / "fixtures" / "nmsf" / "manual_counts_fixture.csv")

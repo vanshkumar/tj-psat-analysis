@@ -99,6 +99,11 @@
 - Action: Add future NMSF sources to both the manifest and `data/sources/nmsf_counts.csv`, then regenerate observations; use `verified_zero` only through manifest-declared complete source scopes.
 - Confidence: high
 
+**2026-06-18 - NMSF source archiving**
+- Observation: FCPS NMSF release pages list individual student names, while Task 4 only needs source-backed school-level counts and archive hashes.
+- Action: Archive FCPS releases as count-only snapshots under `data/raw/nmsf/fcps/`, record their SHA-256 hashes in `data/sources/source_manifest.yml`, and let manifest validation reject missing or changed archive files.
+- Confidence: high
+
 **2026-06-18 - Operating-year roster status**
 - Observation: Independence, Lightridge, and Gainesville have in-panel opening years, so pre-opening class-years should be blank `not_operating` rows rather than `source_pending` NMSF rows or NCES dagger-style `not_applicable` enrollment rows.
 - Action: Keep first operating class years in `FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID` and regenerate seed outputs after changing school-history rules.

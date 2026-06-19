@@ -183,7 +183,7 @@ statuses; no adjacent-year values are estimated.
   - [x] `not_operating`
   - [x] `not_applicable`
 - [x] Build parser registry/framework entries for structured HTML, PDFs, and manually reviewed source tables.
-- [ ] Archive permissible source files or snapshots under `data/raw/`.
+- [x] Archive permissible source files or snapshots under `data/raw/`.
 - [x] Add parser tests using fixed fixtures.
 - [x] Add a validation that rejects numeric NMSF counts without source metadata.
 
@@ -193,7 +193,9 @@ stores source-backed positive counts as `verified_count`, infers
 `verified_zero` only for complete FCPS source scopes, and leaves all
 out-of-scope schools as `missing_source`. Enrollment denominators and rates are
 intentionally excluded until Milestone 7 joins observations to
-`data/processed/enrollment_panel.csv`.
+`data/processed/enrollment_panel.csv`. The current FCPS source entries point to
+school-count snapshots under `data/raw/nmsf/fcps/`; those snapshots omit student
+names and are hash-validated through the manifest.
 
 ### Deliverables
 

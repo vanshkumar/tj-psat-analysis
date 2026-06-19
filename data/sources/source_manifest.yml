@@ -44,13 +44,13 @@ sources:
     completeness_scope: complete named FCPS list only
     complete_for_zero_inference: true
     zero_inference_scope: fcps_public_high_schools_in_roster
-    archived_file_path:
-    archived_file_sha256:
+    archived_file_path: data/raw/nmsf/fcps/fcps_2024_semifinalists_snapshot.csv
+    archived_file_sha256: 8df2123dcb4d6f606fb0170a3f1f0fdb5c2684a6380d5a428f87df83aa812250
     parser_name: manual_reviewed_table
     parser_version: 1
     source_hash: 3eb4c9eb50b4369dc0125e0b6a7ed7b889954460e07a9b32c86c6b4f24af287a
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
-    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list.
+    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names.
   - source_id: fcps_2025_semifinalists
     provider: fcps
     graduating_class: 2025
@@ -64,13 +64,13 @@ sources:
     completeness_scope: complete named FCPS list only
     complete_for_zero_inference: true
     zero_inference_scope: fcps_public_high_schools_in_roster
-    archived_file_path:
-    archived_file_sha256:
+    archived_file_path: data/raw/nmsf/fcps/fcps_2025_semifinalists_snapshot.csv
+    archived_file_sha256: d8da3a5ff4630944278159da0b77d3c4a95fae6f40010c135c4e38ef00abfa54
     parser_name: manual_reviewed_table
     parser_version: 1
     source_hash: 3bd8166a9806cc11cef97772210b09161eb5f74a99eac7c22a718dc4b32d3902
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
-    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list.
+    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names.
   - source_id: fcps_2026_semifinalists
     provider: fcps
     graduating_class: 2026
@@ -84,10 +84,10 @@ sources:
     completeness_scope: complete named FCPS list only
     complete_for_zero_inference: true
     zero_inference_scope: fcps_public_high_schools_in_roster
-    archived_file_path:
-    archived_file_sha256:
+    archived_file_path: data/raw/nmsf/fcps/fcps_2026_semifinalists_snapshot.csv
+    archived_file_sha256: 25436587ef644424c6476a967be884e61a83ba8385a187d948a49eaed194d295
     parser_name: manual_reviewed_table
     parser_version: 1
     source_hash: d74b3aef8369eb2eec2204c452ace892ca8de8bbc0ff8f7e9a3254ed723daaa3
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
-    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list.
+    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names.

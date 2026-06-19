@@ -36,6 +36,14 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2025_semifinalists | 25 |
 | fcps_2026_semifinalists | 25 |
 
+## Archived Sources
+
+| Source ID | Archived File | SHA-256 |
+| --- | --- | --- |
+| fcps_2024_semifinalists | data/raw/nmsf/fcps/fcps_2024_semifinalists_snapshot.csv | 8df2123dcb4d6f606fb0170a3f1f0fdb5c2684a6380d5a428f87df83aa812250 |
+| fcps_2025_semifinalists | data/raw/nmsf/fcps/fcps_2025_semifinalists_snapshot.csv | d8da3a5ff4630944278159da0b77d3c4a95fae6f40010c135c4e38ef00abfa54 |
+| fcps_2026_semifinalists | data/raw/nmsf/fcps/fcps_2026_semifinalists_snapshot.csv | 25436587ef644424c6476a967be884e61a83ba8385a187d948a49eaed194d295 |
+
 ## Source Rules
 
 - Positive NMSF counts use `verified_count` and require source metadata.

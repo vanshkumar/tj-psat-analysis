@@ -303,7 +303,12 @@ def _coverage_warnings(rows: list[dict[str, str]]) -> list[str]:
     return warnings
 
 
-def build_nmsf_source_report(rows: list[dict[str, str]], warnings: list[str]) -> str:
+def build_nmsf_source_report(
+    rows: list[dict[str, str]],
+    warnings: list[str],
+    *,
+    sources: Mapping[str, NmsfSource] | None = None,
+) -> str:
     status_counts = Counter(row["nmsf_status"] for row in rows)
     basis_counts = Counter(row["observation_basis"] for row in rows)
     source_counts = Counter(row["source_id"] or "(none)" for row in rows)
@@ -333,6 +338,10 @@ def build_nmsf_source_report(rows: list[dict[str, str]], warnings: list[str]) ->
         "",
         _markdown_table(["Source ID", "Rows"], _counter_rows(source_counts)),
         "",
+        "## Archived Sources",
+        "",
+        _source_archive_table(sources),
+        "",
         "## Source Rules",
         "",
         "- Positive NMSF counts use `verified_count` and require source metadata.",
@@ -345,6 +354,18 @@ def build_nmsf_source_report(rows: list[dict[str, str]], warnings: list[str]) ->
     ]
     lines.extend(f"- {warning}" for warning in warnings)
     return "\n".join(lines)
+
+
+def _source_archive_table(sources: Mapping[str, NmsfSource] | None) -> str:
+    if not sources:
+        return "_No source manifest archive data was provided to this report._"
+    return _markdown_table(
+        ["Source ID", "Archived File", "SHA-256"],
+        [
+            [source.source_id, source.archived_file_path or "(none)", source.archived_file_sha256 or "(none)"]
+            for source in sorted(sources.values(), key=lambda item: item.source_id)
+        ],
+    )
 
 
 def _counter_rows(counter: Counter[str]) -> list[list[object]]:

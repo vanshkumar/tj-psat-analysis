@@ -15,6 +15,7 @@ from tj_psat_analysis.nmsf.observations import (  # noqa: E402
     build_nmsf_source_report,
     write_csv,
 )
+from tj_psat_analysis.nmsf.schema import read_source_manifest  # noqa: E402
 from tj_psat_analysis.validation import nmsf_source_violations  # noqa: E402
 
 
@@ -65,8 +66,9 @@ def main() -> int:
         return 1
 
     write_csv(args.output_csv, rows)
+    sources = read_source_manifest(args.source_manifest_yml)
     args.report_md.parent.mkdir(parents=True, exist_ok=True)
-    args.report_md.write_text(build_nmsf_source_report(rows, warnings), encoding="utf-8")
+    args.report_md.write_text(build_nmsf_source_report(rows, warnings, sources=sources), encoding="utf-8")
     print(f"wrote {args.output_csv}")
     print(f"wrote {args.report_md}")
     return 0
