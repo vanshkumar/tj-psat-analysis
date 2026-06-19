@@ -581,3 +581,25 @@ sources:
     reported_total: 65
     reported_total_scope: Visible named school-list total in the Patch article
     notes: Patch headline and article text say 66 McLean students, but the visible school-grouped list sums to 65. Only still-missing private-school rows are imported; overlapping public FCPS rows are retained in the archived snapshot for visible-list reconciliation.
+  - source_id: patch_woodbridge_2025_semifinalists
+    provider: local_media
+    graduating_class: 2025
+    geography_or_district: Prince William County schools
+    source_title: Seniors At Woodbridge, PWC Schools Named National Merit Scholarship Semifinalists
+    publisher: Patch
+    publication_date: 2024-09-11
+    source_url: https://patch.com/virginia/woodbridge-va/seniors-woodbridge-pwc-schools-named-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_woodbridge_2025_semifinalists_snapshot.csv
+    archived_file_sha256: 29eef26275b3a135ff4ef4c3086cc2897b45d6ae4e7e87d06cae5be22f9ce4f5
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 3f0577f3cff932ae4b195e3f66c743eb0042075de279d700d83a1d92e6802f01
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 8
+    reported_total_scope: Prince William County schools listed in the Patch article
+    notes: Patch groups 8 semifinalists by Prince William County school. Only still-missing private-school rows are imported; overlapping PWCS public rows are retained in the archived snapshot for source-total reconciliation.

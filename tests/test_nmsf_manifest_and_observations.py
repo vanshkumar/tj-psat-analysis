@@ -57,6 +57,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "patch_vienna_2024_semifinalists",
                 "patch_vienna_2025_semifinalists",
                 "patch_vienna_2026_semifinalists",
+                "patch_woodbridge_2025_semifinalists",
                 "pwcs_2023_semifinalists",
                 "pwcs_2024_semifinalists",
                 "pwcs_2025_semifinalists",
@@ -85,6 +86,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                         "patch_vienna_2024_semifinalists",
                         "patch_vienna_2025_semifinalists",
                         "patch_vienna_2026_semifinalists",
+                        "patch_woodbridge_2025_semifinalists",
                     },
                 )
                 self.assertEqual(source.zero_inference_scope, "none")
@@ -160,7 +162,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 135)
+        self.assertEqual(statuses["verified_count"], 137)
         self.assertEqual(statuses["verified_zero"], 73)
         self.assertEqual(statuses["not_operating"], 9)
 
@@ -246,6 +248,16 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(brentsville_2026["nmsf_count"], "0")
         self.assertEqual(brentsville_2026["nmsf_status"], "verified_zero")
         self.assertEqual(brentsville_2026["source_id"], "pwcs_2026_semifinalists")
+
+        seton_2025 = self._lookup("seton_school_manassas", 2025)
+        self.assertEqual(seton_2025["nmsf_count"], "1")
+        self.assertEqual(seton_2025["nmsf_status"], "verified_count")
+        self.assertEqual(seton_2025["source_id"], "patch_woodbridge_2025_semifinalists")
+
+        john_paul_2025 = self._lookup("st_john_paul_the_great_catholic_high_school", 2025)
+        self.assertEqual(john_paul_2025["nmsf_count"], "1")
+        self.assertEqual(john_paul_2025["nmsf_status"], "verified_count")
+        self.assertEqual(john_paul_2025["source_id"], "patch_woodbridge_2025_semifinalists")
 
     def test_local_media_private_school_counts_do_not_create_zeros(self) -> None:
         new_school_2025 = self._lookup("new_school_of_northern_virginia", 2025)

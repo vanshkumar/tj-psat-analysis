@@ -101,8 +101,8 @@ releases for Classes 2023, 2024, 2025, and 2026, APS releases for Classes 2023,
 2025, and 2026, PWCS public high-school releases for Classes 2023, 2024, 2025,
 and 2026, an LCPS school-attributed release for Class 2026, and a total-only
 LCPS release for Class 2025. It also includes local Patch articles for
-Fairfax City, McLean, Vienna/Oakton, Arlington, and Falls Church school rows
-not covered by the district releases.
+Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church, and Woodbridge
+school rows not covered by the district releases.
 The importer computes source hashes from the
 source metadata plus transcribed count rows, matches schools against the
 canonical roster, and writes `data/interim/panel_nmsf.csv`.
