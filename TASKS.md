@@ -241,7 +241,7 @@ source-backed pilot rows available from official FCPS/TJHSST Classes 2023-2026,
 APS Classes 2023 and 2025-2026, PWCS public high-school Classes 2023-2026,
 LCPS Class 2026, a total-only official LCPS Class 2025 release, and local
 Patch rows for Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church,
-and Woodbridge schools. APS/LCPS
+Ashburn/Loudoun, and Woodbridge schools. APS/LCPS
 resident TJHSST subsets, PWCS former-middle-school TJHSST references, Arlington
 Tech, and the LCPS Class 2025 unattributed total are retained in count-only
 snapshots for reconciliation but excluded from the observation panel to preserve
@@ -249,7 +249,7 @@ the single TJHSST row, the roster's Arlington Tech decision, and the
 no-school-attribution rule. Overlapping public-school rows in the Patch articles
 are retained only in source snapshots when official district rows already
 cover those counts. The remaining Class 2023-2026 source gaps are down to
-93 `missing_source` rows and remain explicitly listed in
+78 `missing_source` rows and remain explicitly listed in
 `reports/data_quality/manual_review_queue.csv`.
 
 ### Deliverables

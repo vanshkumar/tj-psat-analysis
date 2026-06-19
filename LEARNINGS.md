@@ -189,6 +189,11 @@
 - Action: Parse that embedded payload for local count transcription when available, but archive only count-level snapshots and omit student names from repo data.
 - Confidence: high
 
+**2026-06-19 - LCPS 2025 local attribution**
+- Observation: The official LCPS Class 2025 release is total-only, but the Ashburn Patch Class 2025 article provides school-grouped positive Loudoun counts plus a nonroster Evergreen Christian row.
+- Action: Use the Ashburn Patch source for positive LCPS Class 2025 roster observations, retain Evergreen only as an excluded snapshot row, and continue leaving absent LCPS schools missing rather than zero.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

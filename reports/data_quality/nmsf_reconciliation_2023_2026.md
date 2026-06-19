@@ -8,14 +8,14 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 168 |
+| reports/data_quality/manual_review_queue.csv | 154 |
 
 ## Observation Status Counts
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 93 |
-| verified_count | 138 |
+| missing_source | 78 |
+| verified_count | 153 |
 | verified_zero | 73 |
 
 ## Coverage By Division And Class
@@ -35,7 +35,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2025 | APS | 5 | 5 | 0 | 0 | 0 |
 | 2025 | FCPS | 36 | 30 | 6 | 0 | 0 |
 | 2025 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
-| 2025 | LCPS | 19 | 0 | 0 | 19 | 0 |
+| 2025 | LCPS | 19 | 15 | 0 | 4 | 0 |
 | 2025 | PWCS | 15 | 7 | 8 | 0 | 0 |
 | 2026 | APS | 5 | 4 | 1 | 0 | 0 |
 | 2026 | FCPS | 36 | 26 | 6 | 4 | 0 |
@@ -60,6 +60,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | patch_arlington_2024_semifinalists | 2024 | 23 | 16 | 7 | 23 | reconciled | Thomas Jefferson High School for Science and Technology: 7 excluded_tjhsst_resident_subset |
 | patch_arlington_2025_semifinalists | 2025 | 16 | 1 | 15 | 16 | reconciled | Wakefield High School: 2 excluded_duplicate_public_school_count; Washington-Liberty High School: 7 excluded_duplicate_public_school_count; The H.B. Woodlawn Program: 3 excluded_duplicate_public_school_count; Yorktown High School: 3 excluded_duplicate_public_school_count |
 | patch_arlington_2026_semifinalists | 2026 | 22 | 1 | 21 | 22 | reconciled | Arlington Career Center: 1 excluded_nonroster_school; Washington-Liberty High School: 9 excluded_duplicate_public_school_count; The H. B. Woodlawn Program: 6 excluded_duplicate_public_school_count; Yorktown High School: 5 excluded_duplicate_public_school_count |
+| patch_ashburn_2025_semifinalists | 2025 | 46 | 45 | 1 | 46 | reconciled | Evergreen Christian School: 1 excluded_nonroster_school |
 | patch_fairfax_city_2025_semifinalists | 2025 | 17 | 3 | 14 | 17 | reconciled | Fairfax High School: 4 excluded_duplicate_public_school_count; James W. Robinson Secondary School: 4 excluded_duplicate_public_school_count; W. T. Woodson High School: 6 excluded_duplicate_public_school_count |
 | patch_fairfax_city_2026_semifinalists | 2026 | 15 | 2 | 13 | 15 | reconciled | Fairfax High School: 5 excluded_duplicate_public_school_count; Carter G. Woodson High School: 8 excluded_duplicate_public_school_count |
 | patch_falls_church_2024_semifinalists | 2024 | 11 | 5 | 6 | 11 | reconciled | Marshall High School: 6 excluded_duplicate_public_school_count |
@@ -88,7 +89,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2024 | LCPS | 19 |
 | 2024 | PWCS | 2 |
 | 2025 | Falls Church City | 1 |
-| 2025 | LCPS | 19 |
+| 2025 | LCPS | 4 |
 | 2026 | FCPS | 4 |
 | 2026 | Falls Church City | 1 |
 | 2026 | LCPS | 2 |

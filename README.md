@@ -101,8 +101,8 @@ releases for Classes 2023, 2024, 2025, and 2026, APS releases for Classes 2023,
 2025, and 2026, PWCS public high-school releases for Classes 2023, 2024, 2025,
 and 2026, an LCPS school-attributed release for Class 2026, and a total-only
 LCPS release for Class 2025. It also includes local Patch articles for
-Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church, and Woodbridge
-school rows not covered by the district releases.
+Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church, Ashburn/Loudoun,
+and Woodbridge school rows not covered by the district releases.
 The importer computes source hashes from the
 source metadata plus transcribed count rows, matches schools against the
 canonical roster, and writes `data/interim/panel_nmsf.csv`.
@@ -118,8 +118,9 @@ classes. Schools outside the source scope remain `missing_source`. APS/LCPS
 resident TJHSST subsets and PWCS former-middle-school TJHSST references are
 retained in count-only source snapshots for reconciliation but are not imported
 as separate observations because TJHSST remains one school row.
-The LCPS Class 2025 release is retained as a source-incomplete total for
-reconciliation only because it does not list school affiliations.
+The official LCPS Class 2025 release is retained as a source-incomplete total
+for reconciliation only because it does not list school affiliations; a local
+Ashburn Patch article supplies the imported positive LCPS Class 2025 school rows.
 Overlapping public-school rows from the Patch articles are retained only in
 source snapshots when official district rows already cover those counts; the
 local articles are not used for zero inference.
