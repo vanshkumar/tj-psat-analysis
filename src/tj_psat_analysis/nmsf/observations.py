@@ -183,9 +183,7 @@ def _match_records(
                 alias_index[normalized] = row["school_id"]
         else:
             blocked_aliases[normalized] = {
-                school_id
-                for school_id in row.get("conflict_school_ids", "").split("|")
-                if school_id
+                school_id for school_id in row.get("conflict_school_ids", "").split("|") if school_id
             }
 
     matched: dict[tuple[str, int], ManualNmsfCount] = {}

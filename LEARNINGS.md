@@ -139,4 +139,14 @@
 - Action: Use canonical-compatible source school names for rows like H-B Woodlawn, and keep provider-aware ambiguity resolution for duplicated public names such as Freedom High School.
 - Confidence: high
 
+**2026-06-19 - Milestone 5 queue interpretation**
+- Observation: `reports/data_quality/manual_review_queue.csv` includes 204 true `missing_school_year_source` rows plus four intentional excluded snapshot rows used for APS/LCPS TJHSST and Arlington Tech reconciliation.
+- Action: Use the reconciliation report's Source Gaps table, not the raw manual-review queue row count, when summarizing unresolved Milestone 5 source coverage.
+- Confidence: high
+
 ## What Has Failed
+
+**2026-06-19 - CI formatting check**
+- Observation: CI runs `python -m ruff format --check .`, and unittest plus `git diff --check` can pass while Ruff still wants formatting changes.
+- Action: Run `UV_CACHE_DIR=.uv-cache uv run --no-sync python -m ruff format --check .` before publishing, or run Ruff format on touched Python files after edits.
+- Confidence: high

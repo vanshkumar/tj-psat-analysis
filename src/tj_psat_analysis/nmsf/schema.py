@@ -120,8 +120,7 @@ def _validate_archived_file(source: NmsfSource, manifest_path: Path) -> None:
     archive_file = next((candidate for candidate in candidates if candidate.exists()), None)
     if archive_file is None:
         raise ValueError(
-            f"{manifest_path} source {source.source_id} archive file not found: "
-            f"{source.archived_file_path}"
+            f"{manifest_path} source {source.source_id} archive file not found: {source.archived_file_path}"
         )
 
     digest = hashlib.sha256(archive_file.read_bytes()).hexdigest()

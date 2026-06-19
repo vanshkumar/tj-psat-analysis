@@ -80,7 +80,10 @@ def build_manual_review_queue(
                 "source_url": "",
                 "source_date": "",
                 "source_hash": "",
-                "notes": "Collect an official district release, NMSC Virginia list, or school release; do not infer zero.",
+                "notes": (
+                    "Collect an official district release, NMSC Virginia list, or "
+                    "school release; do not infer zero."
+                ),
             }
         )
 
@@ -131,7 +134,11 @@ def build_reconciliation_report(
         "# NMSF Reconciliation 2023-2026",
         "",
         "This report is generated for Milestone 5 from the source-backed NMSF observation layer.",
-        "TJHSST is kept as one school row; jurisdictional TJHSST subsets in APS/LCPS releases are excluded from the panel and retained only for reconciliation notes.",
+        (
+            "TJHSST is kept as one school row; jurisdictional TJHSST subsets in "
+            "APS/LCPS releases are excluded from the panel and retained only for "
+            "reconciliation notes."
+        ),
         "",
         "## Output Summary",
         "",
@@ -139,7 +146,10 @@ def build_reconciliation_report(
             ["Output", "Rows"],
             [
                 ["data/processed/nmsf_observations_2023_2026.csv", len(rows)],
-                ["reports/data_quality/manual_review_queue.csv", len(build_manual_review_queue(rows, sources=sources, root=root))],
+                [
+                    "reports/data_quality/manual_review_queue.csv",
+                    len(build_manual_review_queue(rows, sources=sources, root=root)),
+                ],
             ],
         ),
         "",
@@ -150,7 +160,15 @@ def build_reconciliation_report(
         "## Coverage By Division And Class",
         "",
         _markdown_table(
-            ["Class", "Division", "Rows", "Verified Count", "Verified Zero", "Missing Source", "Not Operating"],
+            [
+                "Class",
+                "Division",
+                "Rows",
+                "Verified Count",
+                "Verified Zero",
+                "Missing Source",
+                "Not Operating",
+            ],
             coverage_rows,
         ),
         "",
@@ -178,7 +196,10 @@ def build_reconciliation_report(
         "",
         "- Positive counts are imported only from manifest-backed school-level source transcriptions.",
         "- Verified zeros are inferred only from manifest entries marked complete for the division scope.",
-        "- APS/LCPS resident TJHSST subsets are not imported as separate TJHSST observations because the panel keeps TJHSST as one row.",
+        (
+            "- APS/LCPS resident TJHSST subsets are not imported as separate TJHSST "
+            "observations because the panel keeps TJHSST as one row."
+        ),
         "- Missing rows remain missing; incomplete or inaccessible source searches do not become zeros.",
     ]
     return "\n".join(lines)
@@ -241,18 +262,11 @@ def _source_reconciliation_rows(
     for source, row in _excluded_snapshot_rows(sources=sources, root=root):
         count = int(row.get("nmsf_count") or 0)
         excluded_totals[source.source_id] += count
-        excluded_notes[source.source_id].append(
-            f"{row.get('school_name_source', 'excluded source row')}: {count} {row.get('snapshot_record_type', '')}"
-        )
+        school_name = row.get("school_name_source", "excluded source row")
+        record_type = row.get("snapshot_record_type", "")
+        excluded_notes[source.source_id].append(f"{school_name}: {count} {record_type}")
 
-    source_ids = sorted(
-        {
-            row["source_id"]
-            for row in rows
-            if row.get("source_id")
-        }
-        | set(excluded_totals)
-    )
+    source_ids = sorted({row["source_id"] for row in rows if row.get("source_id")} | set(excluded_totals))
     output: list[list[object]] = []
     for source_id in source_ids:
         source = sources[source_id]

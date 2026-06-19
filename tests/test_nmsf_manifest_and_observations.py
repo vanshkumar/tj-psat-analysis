@@ -82,7 +82,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
             self.assertEqual({row["source_id"] for row in snapshot_rows}, {source.source_id})
             self.assertEqual({row["class_year"] for row in snapshot_rows}, {str(source.graduating_class)})
             self.assertEqual(
-                sorted((row["school_name_source"], int(row["nmsf_count"])) for row in observation_snapshot_rows),
+                sorted(
+                    (row["school_name_source"], int(row["nmsf_count"])) for row in observation_snapshot_rows
+                ),
                 records_by_source[source.source_id],
             )
             self.assertEqual(
