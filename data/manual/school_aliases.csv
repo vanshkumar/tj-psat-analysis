@@ -9,6 +9,8 @@ h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,HB Woodlawn Second
 h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,HB Woodlawn Secondary,HB WOODLAWN SECONDARY,short_name,true,,task2_manual_alias_rule,Variant without hyphen.
 h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,H-B Woodlawn,H B WOODLAWN,short_name,true,,task2_manual_alias_rule,Common program shorthand.
 h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,HB Woodlawn,HB WOODLAWN,short_name,true,,task2_manual_alias_rule,Common program shorthand without hyphen.
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,H.B. Woodlawn Program,H B WOODLAWN PROGRAM,source_name_variant,true,,task5_patch_local_media,Patch Arlington articles use this program name.
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,The H. B. Woodlawn Program,THE H B WOODLAWN PROGRAM,source_name_variant,true,,task5_patch_local_media,Patch Arlington 2026 uses this program name.
 meridian_high_school,Meridian High School,Meridian High School,MERIDIAN HIGH,canonical_name,true,,seed_workbook_raw,Renamed from George Mason HS in 2021
 meridian_high_school,Meridian High School,George Mason High School,GEORGE MASON HIGH,seed_alias,true,,seed_workbook_raw,Renamed from George Mason HS in 2021
 briar_woods_high_school,Briar Woods High School,Briar Woods High School,BRIAR WOODS HIGH,canonical_name,true,,seed_workbook_raw,
@@ -92,7 +94,9 @@ potomac_school,Potomac School,Potomac School,POTOMAC SCHOOL,canonical_name,true,
 trinity_christian_school,Trinity Christian School,Trinity Christian School,TRINITY CHRISTIAN SCHOOL,canonical_name,true,,seed_workbook_raw,
 trinity_school_at_meadow_view,Trinity School at Meadow View,Trinity School at Meadow View,TRINITY SCHOOL AT MEADOW VIEW,canonical_name,true,,seed_workbook_raw,
 immanuel_christian_high_school,Immanuel Christian High School,Immanuel Christian High School,IMMANUEL CHRISTIAN HIGH,canonical_name,true,,seed_workbook_raw,
+immanuel_christian_high_school,Immanuel Christian High School,Immanuel Christian School,IMMANUEL CHRISTIAN SCHOOL,source_name_variant,true,,task5_patch_local_media,Patch Vienna 2025 omits High from the school name.
 ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,Ideaventions Academy for Mathematics & Science,IDEAVENTIONS ACADEMY FOR MATHEMATICS AND SCIENCE,canonical_name,true,,seed_workbook_raw,
+ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,Ideaventions Academy of Math and Science,IDEAVENTIONS ACADEMY OF MATH AND SCIENCE,source_name_variant,true,,task5_patch_local_media,Patch Vienna 2025 uses this wording.
 new_school_of_northern_virginia,New School of Northern Virginia,New School of Northern Virginia,NEW SCHOOL OF NORTHERN VIRGINIA,canonical_name,true,,seed_workbook_raw,
 pinnacle_academy,Pinnacle Academy,Pinnacle Academy,PINNACLE ACADEMY,canonical_name,true,,seed_workbook_raw,
 loudoun_school_for_advanced_studies,Loudoun School for Advanced Studies,Loudoun School for Advanced Studies,LOUDOUN SCHOOL FOR ADVANCED STUDIES,canonical_name,true,,seed_workbook_raw,

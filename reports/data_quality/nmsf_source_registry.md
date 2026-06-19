@@ -13,9 +13,9 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 411 |
+| missing_source | 394 |
 | not_operating | 9 |
-| verified_count | 115 |
+| verified_count | 132 |
 | verified_zero | 73 |
 
 ## Observation Basis Counts
@@ -23,15 +23,15 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | Basis | Rows |
 | --- | --- |
 | complete_source_zero_inference | 73 |
-| manual_transcription | 115 |
-| no_source_recorded | 411 |
+| manual_transcription | 132 |
+| no_source_recorded | 394 |
 | school_not_operating | 9 |
 
 ## Source Coverage Counts
 
 | Source ID | Rows |
 | --- | --- |
-| (none) | 420 |
+| (none) | 403 |
 | aps_2023_semifinalists | 4 |
 | aps_2025_semifinalists | 4 |
 | aps_2026_semifinalists | 4 |
@@ -40,9 +40,17 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2025_semifinalists | 25 |
 | fcps_2026_semifinalists | 25 |
 | lcps_2026_semifinalists | 17 |
+| patch_arlington_2024_semifinalists | 4 |
+| patch_arlington_2025_semifinalists | 1 |
+| patch_arlington_2026_semifinalists | 1 |
 | patch_fairfax_city_2025_semifinalists | 2 |
 | patch_fairfax_city_2026_semifinalists | 2 |
+| patch_falls_church_2024_semifinalists | 1 |
 | patch_mclean_2025_semifinalists | 3 |
+| patch_vienna_2023_semifinalists | 1 |
+| patch_vienna_2024_semifinalists | 1 |
+| patch_vienna_2025_semifinalists | 6 |
+| patch_vienna_2026_semifinalists | 2 |
 | pwcs_2023_semifinalists | 13 |
 | pwcs_2024_semifinalists | 13 |
 | pwcs_2025_semifinalists | 13 |
@@ -61,9 +69,17 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2026_semifinalists | data/raw/nmsf/fcps/fcps_2026_semifinalists_snapshot.csv | 25436587ef644424c6476a967be884e61a83ba8385a187d948a49eaed194d295 |
 | lcps_2025_semifinalists | data/raw/nmsf/lcps/lcps_2025_semifinalists_snapshot.csv | bdfe4856bc2c9d6c75def4551571cb910270556d5bff5a0014043306e7247d63 |
 | lcps_2026_semifinalists | data/raw/nmsf/lcps/lcps_2026_semifinalists_snapshot.csv | b7d76805097061b66c8d3812ec38d0029671b1eb68ed0a773ea0807cea290259 |
+| patch_arlington_2024_semifinalists | data/raw/nmsf/local_media/patch_arlington_2024_semifinalists_snapshot.csv | 06460c0a5300a9a4f3c21799d3b1a8ca4c2e67d555244e4087ee63ac3ba48d2c |
+| patch_arlington_2025_semifinalists | data/raw/nmsf/local_media/patch_arlington_2025_semifinalists_snapshot.csv | a59955913a8ebfa15cc98bf007056e81aac4e1958a7fce71f999d451d5e086d6 |
+| patch_arlington_2026_semifinalists | data/raw/nmsf/local_media/patch_arlington_2026_semifinalists_snapshot.csv | 4c8c6d0a43cebd802dc160e5705096c1889cb8c16886a30d497a9157fde34056 |
 | patch_fairfax_city_2025_semifinalists | data/raw/nmsf/local_media/patch_fairfax_city_2025_semifinalists_snapshot.csv | 15b856672b3f7bb5ace0b70851f3287d0bdde088269c03bb0fa980bd152f1c91 |
 | patch_fairfax_city_2026_semifinalists | data/raw/nmsf/local_media/patch_fairfax_city_2026_semifinalists_snapshot.csv | 604d4361b86f0008f46c360082837f265d84a565884a787a423eb0bf18a1807f |
+| patch_falls_church_2024_semifinalists | data/raw/nmsf/local_media/patch_falls_church_2024_semifinalists_snapshot.csv | 98a7ecedf58e64874470770e1985c03a16a767bc6c2f1cb7a2dc64dab2435bde |
 | patch_mclean_2025_semifinalists | data/raw/nmsf/local_media/patch_mclean_2025_semifinalists_snapshot.csv | 11918419bf2dbc43089bb28eddffc6c7c03f45696f0693e9588896915eb91ea2 |
+| patch_vienna_2023_semifinalists | data/raw/nmsf/local_media/patch_vienna_2023_semifinalists_snapshot.csv | a5e0100f5692230f4e08fa029e20bf9f052b7bcab9402ec23ac21253f00d4805 |
+| patch_vienna_2024_semifinalists | data/raw/nmsf/local_media/patch_vienna_2024_semifinalists_snapshot.csv | abaa46cf2901a5ec8d31116272c6cc7ac1b0b1c17025f1a1554db71e9e646c89 |
+| patch_vienna_2025_semifinalists | data/raw/nmsf/local_media/patch_vienna_2025_semifinalists_snapshot.csv | a79eba45825e5fafd6b3b51d0924b034c9988912990c73bcfc18f4ba44b80181 |
+| patch_vienna_2026_semifinalists | data/raw/nmsf/local_media/patch_vienna_2026_semifinalists_snapshot.csv | 66bd7c986bcfe8f34fe13d5208941fd71d5f308eada80b39917bd78d90299276 |
 | pwcs_2023_semifinalists | data/raw/nmsf/pwcs/pwcs_2023_semifinalists_snapshot.csv | 06d1419fce985bc129d73dc36264173381d97bbe057ef763c84da9fb83180d51 |
 | pwcs_2024_semifinalists | data/raw/nmsf/pwcs/pwcs_2024_semifinalists_snapshot.csv | f9a063667fdece32459ca340376178c2b8c13116748c2139a745d57559ae6ce2 |
 | pwcs_2025_semifinalists | data/raw/nmsf/pwcs/pwcs_2025_semifinalists_snapshot.csv | d449c049f6ebf656fc96a134519f85beabb72a6c66ce5afba580af8e4fcde89d |
@@ -78,7 +94,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 ## Machine Summary
 
-- missing_source: 411
+- missing_source: 394
 - not_operating: 9
-- verified_count: 115
+- verified_count: 132
 - verified_zero: 73

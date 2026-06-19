@@ -8,14 +8,14 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 133 |
+| reports/data_quality/manual_review_queue.csv | 162 |
 
 ## Observation Status Counts
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 116 |
-| verified_count | 115 |
+| missing_source | 99 |
+| verified_count | 132 |
 | verified_zero | 73 |
 
 ## Coverage By Division And Class
@@ -23,22 +23,22 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Class | Division | Rows | Verified Count | Verified Zero | Missing Source | Not Operating |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2023 | APS | 5 | 4 | 0 | 1 | 0 |
-| 2023 | FCPS | 36 | 18 | 7 | 11 | 0 |
+| 2023 | FCPS | 36 | 19 | 7 | 10 | 0 |
 | 2023 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
 | 2023 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2023 | PWCS | 15 | 1 | 12 | 2 | 0 |
-| 2024 | APS | 5 | 0 | 0 | 5 | 0 |
-| 2024 | FCPS | 36 | 15 | 10 | 11 | 0 |
-| 2024 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
+| 2024 | APS | 5 | 4 | 0 | 1 | 0 |
+| 2024 | FCPS | 36 | 16 | 10 | 10 | 0 |
+| 2024 | Falls Church City | 1 | 1 | 0 | 0 | 0 |
 | 2024 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2024 | PWCS | 15 | 2 | 11 | 2 | 0 |
-| 2025 | APS | 5 | 4 | 0 | 1 | 0 |
-| 2025 | FCPS | 36 | 24 | 6 | 6 | 0 |
+| 2025 | APS | 5 | 5 | 0 | 0 | 0 |
+| 2025 | FCPS | 36 | 30 | 6 | 0 | 0 |
 | 2025 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
 | 2025 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2025 | PWCS | 15 | 5 | 8 | 2 | 0 |
-| 2026 | APS | 5 | 3 | 1 | 1 | 0 |
-| 2026 | FCPS | 36 | 21 | 6 | 9 | 0 |
+| 2026 | APS | 5 | 4 | 1 | 0 | 0 |
+| 2026 | FCPS | 36 | 23 | 6 | 7 | 0 |
 | 2026 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
 | 2026 | LCPS | 19 | 13 | 4 | 2 | 0 |
 | 2026 | PWCS | 15 | 5 | 8 | 2 | 0 |
@@ -56,9 +56,17 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | fcps_2026_semifinalists | 2026 | 262 | 262 | 0 | 262 | reconciled | FCPS high schools including TJHSST |
 | lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled | LCPS unattributed semifinalist total: 57 source_incomplete_unattributed_total |
 | lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled | Thomas Jefferson High School for Science and Technology: 12 excluded_tjhsst_resident_subset |
+| patch_arlington_2024_semifinalists | 2024 | 23 | 16 | 7 | 23 | reconciled | Thomas Jefferson High School for Science and Technology: 7 excluded_tjhsst_resident_subset |
+| patch_arlington_2025_semifinalists | 2025 | 16 | 1 | 15 | 16 | reconciled | Wakefield High School: 2 excluded_duplicate_public_school_count; Washington-Liberty High School: 7 excluded_duplicate_public_school_count; The H.B. Woodlawn Program: 3 excluded_duplicate_public_school_count; Yorktown High School: 3 excluded_duplicate_public_school_count |
+| patch_arlington_2026_semifinalists | 2026 | 22 | 1 | 21 | 22 | reconciled | Arlington Career Center: 1 excluded_nonroster_school; Washington-Liberty High School: 9 excluded_duplicate_public_school_count; The H. B. Woodlawn Program: 6 excluded_duplicate_public_school_count; Yorktown High School: 5 excluded_duplicate_public_school_count |
 | patch_fairfax_city_2025_semifinalists | 2025 | 17 | 3 | 14 | 17 | reconciled | Fairfax High School: 4 excluded_duplicate_public_school_count; James W. Robinson Secondary School: 4 excluded_duplicate_public_school_count; W. T. Woodson High School: 6 excluded_duplicate_public_school_count |
 | patch_fairfax_city_2026_semifinalists | 2026 | 15 | 2 | 13 | 15 | reconciled | Fairfax High School: 5 excluded_duplicate_public_school_count; Carter G. Woodson High School: 8 excluded_duplicate_public_school_count |
+| patch_falls_church_2024_semifinalists | 2024 | 11 | 5 | 6 | 11 | reconciled | Marshall High School: 6 excluded_duplicate_public_school_count |
 | patch_mclean_2025_semifinalists | 2025 | 52 | 16 | 36 | 52 | reconciled | Homeschool/Online School: 1 excluded_nonroster_school; Langley High School: 19 excluded_duplicate_public_school_count; McLean High School: 16 excluded_duplicate_public_school_count |
+| patch_vienna_2023_semifinalists | 2023 | 31 | 2 | 29 | 31 | reconciled | James Madison High School: 11 excluded_duplicate_public_school_count; Oakton High School: 11 excluded_duplicate_public_school_count; Marshall High School: 7 excluded_duplicate_public_school_count |
+| patch_vienna_2024_semifinalists | 2024 | 31 | 4 | 27 | 31 | reconciled | James Madison High School: 7 excluded_duplicate_public_school_count; Oakton High School: 14 excluded_duplicate_public_school_count; Marshall High School: 6 excluded_duplicate_public_school_count |
+| patch_vienna_2025_semifinalists | 2025 | 221 | 9 | 212 | 221 | reconciled | Homeschool/Online School: 1 excluded_nonroster_school; James Madison High School: 9 excluded_duplicate_public_school_count; Oakton High School: 11 excluded_duplicate_public_school_count; Thomas Edison High School: 2 excluded_duplicate_public_school_count; Hayfield Secondary School: 1 excluded_duplicate_public_school_count; West Potomac High School: 1 excluded_duplicate_public_school_count; Thomas Jefferson High School for Science and Technology: 81 excluded_duplicate_public_school_count; Lake Braddock Secondary School: 9 excluded_duplicate_public_school_count; Chantilly High School: 10 excluded_duplicate_public_school_count; Westfield High School: 3 excluded_duplicate_public_school_count; Centreville High School: 3 excluded_duplicate_public_school_count; Fairfax High School: 4 excluded_duplicate_public_school_count; New School of Northern Virginia: 1 excluded_duplicate_private_school_count; Robinson Secondary School: 4 excluded_duplicate_public_school_count; Trinity Christian School: 1 excluded_duplicate_private_school_count; Woodson High School: 6 excluded_duplicate_public_school_count; Marshall High School: 5 excluded_duplicate_public_school_count; Dominion School: 1 excluded_nonroster_school; Herndon High School: 1 excluded_duplicate_public_school_count; BASIS Independent McLean: 4 excluded_duplicate_private_school_count; Homeschool/Online School: 1 excluded_nonroster_school; Langley High School: 19 excluded_duplicate_public_school_count; The Madeira School: 3 excluded_duplicate_private_school_count; McLean High School: 16 excluded_duplicate_public_school_count; The Potomac School: 9 excluded_duplicate_private_school_count; South Lakes High School: 3 excluded_duplicate_public_school_count; West Springfield High School: 3 excluded_duplicate_public_school_count |
+| patch_vienna_2026_semifinalists | 2026 | 53 | 5 | 48 | 53 | reconciled | James Madison High School: 8 excluded_duplicate_public_school_count; Oakton High School: 25 excluded_duplicate_public_school_count; Marshall High School: 15 excluded_duplicate_public_school_count |
 | pwcs_2023_semifinalists | 2023 | 3 | 2 | 1 | 3 | reconciled | Thomas Jefferson High School for Science and Technology: 1 excluded_tjhsst_former_pwcs_student |
 | pwcs_2024_semifinalists | 2024 | 6 | 2 | 4 | 6 | reconciled | Thomas Jefferson High School for Science and Technology: 4 excluded_tjhsst_former_pwcs_student |
 | pwcs_2025_semifinalists | 2025 | 7 | 6 | 1 | 7 | reconciled | Thomas Jefferson High School for Science and Technology: 1 excluded_tjhsst_former_pwcs_student |
@@ -69,22 +77,18 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Class | Division | Missing Rows |
 | --- | --- | --- |
 | 2023 | APS | 1 |
-| 2023 | FCPS | 11 |
+| 2023 | FCPS | 10 |
 | 2023 | Falls Church City | 1 |
 | 2023 | LCPS | 19 |
 | 2023 | PWCS | 2 |
-| 2024 | APS | 5 |
-| 2024 | FCPS | 11 |
-| 2024 | Falls Church City | 1 |
+| 2024 | APS | 1 |
+| 2024 | FCPS | 10 |
 | 2024 | LCPS | 19 |
 | 2024 | PWCS | 2 |
-| 2025 | APS | 1 |
-| 2025 | FCPS | 6 |
 | 2025 | Falls Church City | 1 |
 | 2025 | LCPS | 19 |
 | 2025 | PWCS | 2 |
-| 2026 | APS | 1 |
-| 2026 | FCPS | 9 |
+| 2026 | FCPS | 7 |
 | 2026 | Falls Church City | 1 |
 | 2026 | LCPS | 2 |
 | 2026 | PWCS | 2 |

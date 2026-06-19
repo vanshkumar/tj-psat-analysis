@@ -101,8 +101,8 @@ releases for Classes 2023, 2024, 2025, and 2026, APS releases for Classes 2023,
 2025, and 2026, PWCS public high-school releases for Classes 2023, 2024, 2025,
 and 2026, an LCPS school-attributed release for Class 2026, and a total-only
 LCPS release for Class 2025. It also includes local Patch articles for
-Class 2025 and 2026 Fairfax- and McLean-area private-school rows not covered
-by the FCPS release.
+Fairfax City, McLean, Vienna/Oakton, Arlington, and Falls Church school rows
+not covered by the district releases.
 The importer computes source hashes from the
 source metadata plus transcribed count rows, matches schools against the
 canonical roster, and writes `data/interim/panel_nmsf.csv`.
@@ -121,7 +121,7 @@ as separate observations because TJHSST remains one school row.
 The LCPS Class 2025 release is retained as a source-incomplete total for
 reconciliation only because it does not list school affiliations.
 Overlapping public-school rows from the Patch articles are retained only in
-source snapshots because official FCPS rows already cover those counts; the
+source snapshots when official district rows already cover those counts; the
 local articles are not used for zero inference.
 
 `scripts/build_nmsf_pilot_2023_2026.py` builds the Milestone 5 pilot outputs:

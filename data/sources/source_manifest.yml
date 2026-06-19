@@ -383,3 +383,179 @@ sources:
     reported_total: 15
     reported_total_scope: Fairfax schools listed in the Patch article
     notes: Patch groups 15 semifinalists by school for the Fairfax area. Only the two still-missing private-school rows are imported; overlapping public FCPS rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_vienna_2023_semifinalists
+    provider: local_media
+    graduating_class: 2023
+    geography_or_district: Vienna and Oakton schools
+    source_title: Vienna, Oakton Seniors Named 2023 National Merit Scholar Semifinalists
+    publisher: Patch
+    publication_date: 2022-09-14
+    source_url: https://patch.com/virginia/vienna/vienna-oakton-seniors-named-2023-national-merit-scholar-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_vienna_2023_semifinalists_snapshot.csv
+    archived_file_sha256: a5e0100f5692230f4e08fa029e20bf9f052b7bcab9402ec23ac21253f00d4805
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 959c9c4c4d01e3e1af864bf8e2eab6e66b383dd2811371d804c626d5a6f64642
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 31
+    reported_total_scope: Visible named school-list total in the Patch article
+    notes: Patch lists Vienna and Oakton semifinalists plus Marshall context rows. Only the still-missing Flint Hill private-school row is imported; overlapping public FCPS rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_vienna_2024_semifinalists
+    provider: local_media
+    graduating_class: 2024
+    geography_or_district: Vienna and Oakton schools
+    source_title: Dozens Of Vienna Seniors Named 2024 National Merit Semifinalists
+    publisher: Patch
+    publication_date: 2023-09-14
+    source_url: https://patch.com/virginia/vienna/dozens-vienna-seniors-named-2024-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_vienna_2024_semifinalists_snapshot.csv
+    archived_file_sha256: abaa46cf2901a5ec8d31116272c6cc7ac1b0b1c17025f1a1554db71e9e646c89
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: eef5a78bdf907c49efd17f65a59858ad994f9ad3b49594c32d09344579da35ad
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 31
+    reported_total_scope: Visible named school-list total in the Patch article
+    notes: Patch lists Vienna and Oakton semifinalists plus Marshall and Flint Hill context rows. Only the still-missing Flint Hill private-school row is imported; overlapping public FCPS rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_vienna_2025_semifinalists
+    provider: local_media
+    graduating_class: 2025
+    geography_or_district: Vienna and Fairfax County schools
+    source_title: Seniors At Vienna Schools Named National Merit Scholarship Semifinalists
+    publisher: Patch
+    publication_date: 2024-09-11
+    source_url: https://patch.com/virginia/vienna/seniors-vienna-schools-named-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_vienna_2025_semifinalists_snapshot.csv
+    archived_file_sha256: a79eba45825e5fafd6b3b51d0924b034c9988912990c73bcfc18f4ba44b80181
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 7a0f524d249b04b6e56b242f61d826ce3941e9c4940ac8eb42be18f6885163ea
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 221
+    reported_total_scope: Visible named school-list total in the Patch article
+    notes: Patch lists Vienna schools and other Fairfax County school rows. Only still-missing private-school rows are imported; overlapping public FCPS rows and previously sourced private-school rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_vienna_2026_semifinalists
+    provider: local_media
+    graduating_class: 2026
+    geography_or_district: Vienna and Oakton schools
+    source_title: 38 Vienna, Oakton Seniors Named National Merit Scholarship Semifinalists For 2026
+    publisher: Patch
+    publication_date: 2025-09-10
+    source_url: https://patch.com/virginia/vienna/national-merit-scholarship-semifinalists-vienna-oakton-named-2026
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_vienna_2026_semifinalists_snapshot.csv
+    archived_file_sha256: 66bd7c986bcfe8f34fe13d5208941fd71d5f308eada80b39917bd78d90299276
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 88cca9f213fe00a4bfd900fa067dc2e4562234321a94bf6e3b6c620bdd421c97
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 53
+    reported_total_scope: Visible named school-list total in the Patch article including Marshall context rows
+    notes: Patch headline counts 38 Vienna and Oakton students and also lists 15 Marshall students in article text. Only still-missing private-school rows are imported; overlapping public FCPS rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_arlington_2024_semifinalists
+    provider: local_media
+    graduating_class: 2024
+    geography_or_district: Arlington schools
+    source_title: 16 Arlington Seniors Named 2024 National Merit Semifinalists
+    publisher: Patch
+    publication_date: 2023-09-14
+    source_url: https://patch.com/virginia/arlington-va/16-arlington-seniors-named-2024-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_arlington_2024_semifinalists_snapshot.csv
+    archived_file_sha256: 06460c0a5300a9a4f3c21799d3b1a8ca4c2e67d555244e4087ee63ac3ba48d2c
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 5126006edc21a73a7803e132bf2eca73d34f4233a5d1112b4442bf81f4d88236
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 23
+    reported_total_scope: Visible named school-list total in the Patch article including TJHSST resident subset rows
+    notes: Patch headline counts 16 Arlington high-school rows and also lists 7 TJHSST students. Positive Arlington roster rows are imported; the TJHSST resident subset is retained in the archived snapshot but not imported because TJHSST is one panel row.
+  - source_id: patch_arlington_2025_semifinalists
+    provider: local_media
+    graduating_class: 2025
+    geography_or_district: Arlington schools
+    source_title: Arlington County Seniors Named National Merit Semifinalists
+    publisher: Patch
+    publication_date: 2024-09-11
+    source_url: https://patch.com/virginia/arlington-va/arlington-county-seniors-named-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_arlington_2025_semifinalists_snapshot.csv
+    archived_file_sha256: a59955913a8ebfa15cc98bf007056e81aac4e1958a7fce71f999d451d5e086d6
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: df2b8c4a5176b0183c9f4a1aef2e7b7acb5a8d569a3b7f5f1efdf844a0f224e1
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 16
+    reported_total_scope: Visible named school-list total in the Patch article
+    notes: Patch lists Arlington school semifinalists. Only the still-missing Bishop O'Connell private-school row is imported; overlapping APS public rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_arlington_2026_semifinalists
+    provider: local_media
+    graduating_class: 2026
+    geography_or_district: Arlington schools
+    source_title: 22 Arlington Seniors Named 2026 National Merit Scholarship Semifinalists
+    publisher: Patch
+    publication_date: 2025-09-10
+    source_url: https://patch.com/virginia/arlington-va/22-arlington-seniors-named-2026-national-merit-scholarship-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_arlington_2026_semifinalists_snapshot.csv
+    archived_file_sha256: 4c8c6d0a43cebd802dc160e5705096c1889cb8c16886a30d497a9157fde34056
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 2f7c531846eea493498843300851d44e572e02121774a25e5526aaeb9c4c380f
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 22
+    reported_total_scope: Arlington schools listed in the Patch article
+    notes: Patch groups 22 semifinalists by Arlington school. Only the still-missing Bishop O'Connell private-school row is imported; overlapping APS public and nonroster Arlington Career Center rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_falls_church_2024_semifinalists
+    provider: local_media
+    graduating_class: 2024
+    geography_or_district: Falls Church schools
+    source_title: 11 Falls Church Students In Running For 2024 National Merit Scholarships
+    publisher: Patch
+    publication_date: 2023-09-14
+    source_url: https://patch.com/virginia/fallschurch/11-falls-church-students-named-2024-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_falls_church_2024_semifinalists_snapshot.csv
+    archived_file_sha256: 98a7ecedf58e64874470770e1985c03a16a767bc6c2f1cb7a2dc64dab2435bde
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 798cfea09c4c6536a732157d2e03ee47607444b55e36efcc62c2efc2192f01ce
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 11
+    reported_total_scope: Falls Church schools listed in the Patch article
+    notes: Patch groups 11 Falls Church semifinalists by school. The Meridian row is imported; overlapping Marshall public-school row is retained in the archived snapshot for source-total reconciliation.

@@ -174,6 +174,11 @@
 - Action: For missing Patch/local-media NMSF rows, fetch community-prefix CDX indexes and filter locally for `national-merit`, `semifinalist`, and target school names before treating Patch coverage as absent.
 - Confidence: medium
 
+**2026-06-19 - Shared NMSF source-name compatibility**
+- Observation: `scripts/apply_nmsf_counts.py` matches `nmsf_counts.csv` against `data/interim/canonical_schools.csv` aliases, while `scripts/build_nmsf_observations.py` can also use `data/manual/school_aliases.csv`; exact Patch names such as `Immanuel Christian School` can pass the observation layer but fail the legacy interim panel.
+- Action: Use canonical-compatible school names in `data/sources/nmsf_counts.csv` when a source wording variant is absent from the interim roster aliases, and record the source wording variant in `data/manual/school_aliases.csv` or source snapshots instead.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
