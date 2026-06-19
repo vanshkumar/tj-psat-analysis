@@ -70,6 +70,10 @@ class NmsfPilotTest(unittest.TestCase):
             self.report,
         )
         self.assertIn(
+            "| patch_mclean_2026_semifinalists | 2026 | 65 | 22 | 43 | 65 | reconciled |",
+            self.report,
+        )
+        self.assertIn(
             "| patch_fairfax_city_2026_semifinalists | 2026 | 15 | 2 | 13 | 15 | reconciled |",
             self.report,
         )

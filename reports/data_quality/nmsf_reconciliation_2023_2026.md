@@ -8,14 +8,14 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 162 |
+| reports/data_quality/manual_review_queue.csv | 161 |
 
 ## Observation Status Counts
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 99 |
-| verified_count | 132 |
+| missing_source | 96 |
+| verified_count | 135 |
 | verified_zero | 73 |
 
 ## Coverage By Division And Class
@@ -38,7 +38,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2025 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2025 | PWCS | 15 | 5 | 8 | 2 | 0 |
 | 2026 | APS | 5 | 4 | 1 | 0 | 0 |
-| 2026 | FCPS | 36 | 23 | 6 | 7 | 0 |
+| 2026 | FCPS | 36 | 26 | 6 | 4 | 0 |
 | 2026 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
 | 2026 | LCPS | 19 | 13 | 4 | 2 | 0 |
 | 2026 | PWCS | 15 | 5 | 8 | 2 | 0 |
@@ -63,6 +63,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | patch_fairfax_city_2026_semifinalists | 2026 | 15 | 2 | 13 | 15 | reconciled | Fairfax High School: 5 excluded_duplicate_public_school_count; Carter G. Woodson High School: 8 excluded_duplicate_public_school_count |
 | patch_falls_church_2024_semifinalists | 2024 | 11 | 5 | 6 | 11 | reconciled | Marshall High School: 6 excluded_duplicate_public_school_count |
 | patch_mclean_2025_semifinalists | 2025 | 52 | 16 | 36 | 52 | reconciled | Homeschool/Online School: 1 excluded_nonroster_school; Langley High School: 19 excluded_duplicate_public_school_count; McLean High School: 16 excluded_duplicate_public_school_count |
+| patch_mclean_2026_semifinalists | 2026 | 65 | 22 | 43 | 65 | reconciled | Langley High School: 23 excluded_duplicate_public_school_count; McLean High School: 20 excluded_duplicate_public_school_count |
 | patch_vienna_2023_semifinalists | 2023 | 31 | 2 | 29 | 31 | reconciled | James Madison High School: 11 excluded_duplicate_public_school_count; Oakton High School: 11 excluded_duplicate_public_school_count; Marshall High School: 7 excluded_duplicate_public_school_count |
 | patch_vienna_2024_semifinalists | 2024 | 31 | 4 | 27 | 31 | reconciled | James Madison High School: 7 excluded_duplicate_public_school_count; Oakton High School: 14 excluded_duplicate_public_school_count; Marshall High School: 6 excluded_duplicate_public_school_count |
 | patch_vienna_2025_semifinalists | 2025 | 221 | 9 | 212 | 221 | reconciled | Homeschool/Online School: 1 excluded_nonroster_school; James Madison High School: 9 excluded_duplicate_public_school_count; Oakton High School: 11 excluded_duplicate_public_school_count; Thomas Edison High School: 2 excluded_duplicate_public_school_count; Hayfield Secondary School: 1 excluded_duplicate_public_school_count; West Potomac High School: 1 excluded_duplicate_public_school_count; Thomas Jefferson High School for Science and Technology: 81 excluded_duplicate_public_school_count; Lake Braddock Secondary School: 9 excluded_duplicate_public_school_count; Chantilly High School: 10 excluded_duplicate_public_school_count; Westfield High School: 3 excluded_duplicate_public_school_count; Centreville High School: 3 excluded_duplicate_public_school_count; Fairfax High School: 4 excluded_duplicate_public_school_count; New School of Northern Virginia: 1 excluded_duplicate_private_school_count; Robinson Secondary School: 4 excluded_duplicate_public_school_count; Trinity Christian School: 1 excluded_duplicate_private_school_count; Woodson High School: 6 excluded_duplicate_public_school_count; Marshall High School: 5 excluded_duplicate_public_school_count; Dominion School: 1 excluded_nonroster_school; Herndon High School: 1 excluded_duplicate_public_school_count; BASIS Independent McLean: 4 excluded_duplicate_private_school_count; Homeschool/Online School: 1 excluded_nonroster_school; Langley High School: 19 excluded_duplicate_public_school_count; The Madeira School: 3 excluded_duplicate_private_school_count; McLean High School: 16 excluded_duplicate_public_school_count; The Potomac School: 9 excluded_duplicate_private_school_count; South Lakes High School: 3 excluded_duplicate_public_school_count; West Springfield High School: 3 excluded_duplicate_public_school_count |
@@ -88,7 +89,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2025 | Falls Church City | 1 |
 | 2025 | LCPS | 19 |
 | 2025 | PWCS | 2 |
-| 2026 | FCPS | 7 |
+| 2026 | FCPS | 4 |
 | 2026 | Falls Church City | 1 |
 | 2026 | LCPS | 2 |
 | 2026 | PWCS | 2 |

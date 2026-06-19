@@ -179,6 +179,11 @@
 - Action: Use canonical-compatible school names in `data/sources/nmsf_counts.csv` when a source wording variant is absent from the interim roster aliases, and record the source wording variant in `data/manual/school_aliases.csv` or source snapshots instead.
 - Confidence: high
 
+**2026-06-19 - Patch headline/list mismatch**
+- Observation: The Patch McLean Class 2026 article headline and body say 66 semifinalists, but the visible school-grouped list sums to 65 and does not expose a source-backed location for the missing student.
+- Action: Reconcile Patch snapshots to the visible transcribed school-list total when the headline disagrees, document the discrepancy in manifest notes, and do not allocate the unlisted student to any school.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
