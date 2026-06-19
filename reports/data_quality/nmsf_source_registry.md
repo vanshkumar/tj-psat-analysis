@@ -13,9 +13,9 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 373 |
+| missing_source | 371 |
 | not_operating | 9 |
-| verified_count | 153 |
+| verified_count | 155 |
 | verified_zero | 73 |
 
 ## Observation Basis Counts
@@ -23,15 +23,15 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | Basis | Rows |
 | --- | --- |
 | complete_source_zero_inference | 73 |
-| manual_transcription | 153 |
-| no_source_recorded | 373 |
+| manual_transcription | 155 |
+| no_source_recorded | 371 |
 | school_not_operating | 9 |
 
 ## Source Coverage Counts
 
 | Source ID | Rows |
 | --- | --- |
-| (none) | 382 |
+| (none) | 380 |
 | aps_2023_semifinalists | 4 |
 | aps_2025_semifinalists | 4 |
 | aps_2026_semifinalists | 4 |
@@ -45,9 +45,11 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | patch_arlington_2025_semifinalists | 1 |
 | patch_arlington_2026_semifinalists | 1 |
 | patch_ashburn_2025_semifinalists | 15 |
+| patch_ashburn_2026_semifinalists | 1 |
 | patch_fairfax_city_2025_semifinalists | 2 |
 | patch_fairfax_city_2026_semifinalists | 2 |
 | patch_falls_church_2024_semifinalists | 1 |
+| patch_manassas_2026_semifinalists | 1 |
 | patch_mclean_2025_semifinalists | 3 |
 | patch_mclean_2026_semifinalists | 3 |
 | patch_vienna_2023_semifinalists | 1 |
@@ -78,9 +80,11 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | patch_arlington_2025_semifinalists | data/raw/nmsf/local_media/patch_arlington_2025_semifinalists_snapshot.csv | a59955913a8ebfa15cc98bf007056e81aac4e1958a7fce71f999d451d5e086d6 |
 | patch_arlington_2026_semifinalists | data/raw/nmsf/local_media/patch_arlington_2026_semifinalists_snapshot.csv | 4c8c6d0a43cebd802dc160e5705096c1889cb8c16886a30d497a9157fde34056 |
 | patch_ashburn_2025_semifinalists | data/raw/nmsf/local_media/patch_ashburn_2025_semifinalists_snapshot.csv | 93633620682c7c76be8f5334ee5b99c3ce175cd1bc8386b668be403b3050904e |
+| patch_ashburn_2026_semifinalists | data/raw/nmsf/local_media/patch_ashburn_2026_semifinalists_snapshot.csv | 2b5e71dd3f3b98b405071b0d512e1e5aee1b62fc3c4ec26a046cbfbb959338d6 |
 | patch_fairfax_city_2025_semifinalists | data/raw/nmsf/local_media/patch_fairfax_city_2025_semifinalists_snapshot.csv | 15b856672b3f7bb5ace0b70851f3287d0bdde088269c03bb0fa980bd152f1c91 |
 | patch_fairfax_city_2026_semifinalists | data/raw/nmsf/local_media/patch_fairfax_city_2026_semifinalists_snapshot.csv | 604d4361b86f0008f46c360082837f265d84a565884a787a423eb0bf18a1807f |
 | patch_falls_church_2024_semifinalists | data/raw/nmsf/local_media/patch_falls_church_2024_semifinalists_snapshot.csv | 98a7ecedf58e64874470770e1985c03a16a767bc6c2f1cb7a2dc64dab2435bde |
+| patch_manassas_2026_semifinalists | data/raw/nmsf/local_media/patch_manassas_2026_semifinalists_snapshot.csv | bbc9611a3fd920cea9f3c1fe19785fc13b3ce6db5f2064a17f2a6e5a38cc4069 |
 | patch_mclean_2025_semifinalists | data/raw/nmsf/local_media/patch_mclean_2025_semifinalists_snapshot.csv | 11918419bf2dbc43089bb28eddffc6c7c03f45696f0693e9588896915eb91ea2 |
 | patch_mclean_2026_semifinalists | data/raw/nmsf/local_media/patch_mclean_2026_semifinalists_snapshot.csv | 85170d8dcbb4fbcaf7b82d2ba4c52d826aa3505a80dc795522057aab77b6921d |
 | patch_vienna_2023_semifinalists | data/raw/nmsf/local_media/patch_vienna_2023_semifinalists_snapshot.csv | a5e0100f5692230f4e08fa029e20bf9f052b7bcab9402ec23ac21253f00d4805 |
@@ -102,7 +106,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 ## Machine Summary
 
-- missing_source: 373
+- missing_source: 371
 - not_operating: 9
-- verified_count: 153
+- verified_count: 155
 - verified_zero: 73

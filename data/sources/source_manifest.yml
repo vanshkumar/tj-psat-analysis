@@ -647,3 +647,47 @@ sources:
     reported_total: 8
     reported_total_scope: Prince William County schools listed in the Patch article
     notes: Patch groups 8 semifinalists by Prince William County school. Only still-missing private-school rows are imported; overlapping PWCS public rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_ashburn_2026_semifinalists
+    provider: local_media
+    graduating_class: 2026
+    geography_or_district: Loudoun County schools
+    source_title: National Merit Scholarship Semifinalists From Loudoun County Named For 2026
+    publisher: Patch
+    publication_date: 2025-09-10
+    source_url: https://patch.com/virginia/ashburn/national-merit-scholarship-semifinalists-loudoun-county-named-2026
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_ashburn_2026_semifinalists_snapshot.csv
+    archived_file_sha256: 2b5e71dd3f3b98b405071b0d512e1e5aee1b62fc3c4ec26a046cbfbb959338d6
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: ce2a6a002817f123f767c22c8dae177e1e679cece86865068099d529f4859501
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 59
+    reported_total_scope: Loudoun County schools listed in the Patch article
+    notes: Patch groups 59 Loudoun County semifinalists by school and locality. Only the still-missing St. Paul VI private-school row is imported; overlapping LCPS public rows and the homeschool/online row are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_manassas_2026_semifinalists
+    provider: local_media
+    graduating_class: 2026
+    geography_or_district: Prince William County and Manassas schools
+    source_title: National Merit Scholarship Semifinalists From PW County, Manassas Named For 2026
+    publisher: Patch
+    publication_date: 2025-09-11
+    source_url: https://patch.com/virginia/manassas/national-merit-scholarship-semifinalists-pw-county-manassas-named-2026
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_manassas_2026_semifinalists_snapshot.csv
+    archived_file_sha256: bbc9611a3fd920cea9f3c1fe19785fc13b3ce6db5f2064a17f2a6e5a38cc4069
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 683c993c5ef3a9101dd4b074d9a5cd4a93f0d17a0d10ca650b25cc1eb4b50484
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 10
+    reported_total_scope: Prince William County and Manassas schools listed in the Patch article
+    notes: Patch groups 10 Prince William County and Manassas semifinalists by school. Only the still-missing St. John Paul the Great private-school row is imported; overlapping PWCS public rows and the nonroster Manassas City Osbourn row are retained in the archived snapshot for source-total reconciliation.

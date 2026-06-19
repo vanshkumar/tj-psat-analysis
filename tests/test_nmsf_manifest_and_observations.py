@@ -49,10 +49,12 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "patch_arlington_2023_semifinalists",
                 "patch_arlington_2025_semifinalists",
                 "patch_arlington_2026_semifinalists",
+                "patch_ashburn_2026_semifinalists",
                 "patch_ashburn_2025_semifinalists",
                 "patch_fairfax_city_2025_semifinalists",
                 "patch_fairfax_city_2026_semifinalists",
                 "patch_falls_church_2024_semifinalists",
+                "patch_manassas_2026_semifinalists",
                 "patch_mclean_2025_semifinalists",
                 "patch_mclean_2026_semifinalists",
                 "patch_vienna_2023_semifinalists",
@@ -80,10 +82,12 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                         "patch_arlington_2023_semifinalists",
                         "patch_arlington_2025_semifinalists",
                         "patch_arlington_2026_semifinalists",
+                        "patch_ashburn_2026_semifinalists",
                         "patch_ashburn_2025_semifinalists",
                         "patch_fairfax_city_2025_semifinalists",
                         "patch_fairfax_city_2026_semifinalists",
                         "patch_falls_church_2024_semifinalists",
+                        "patch_manassas_2026_semifinalists",
                         "patch_mclean_2025_semifinalists",
                         "patch_mclean_2026_semifinalists",
                         "patch_vienna_2023_semifinalists",
@@ -173,7 +177,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 153)
+        self.assertEqual(statuses["verified_count"], 155)
         self.assertEqual(statuses["verified_zero"], 73)
         self.assertEqual(statuses["not_operating"], 9)
 
@@ -242,6 +246,16 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(st_paul_vi_2025["nmsf_status"], "verified_count")
         self.assertEqual(st_paul_vi_2025["source_id"], "patch_ashburn_2025_semifinalists")
 
+        st_paul_vi_2026 = self._lookup("st_paul_vi_catholic_high_school", 2026)
+        self.assertEqual(st_paul_vi_2026["nmsf_count"], "1")
+        self.assertEqual(st_paul_vi_2026["nmsf_status"], "verified_count")
+        self.assertEqual(st_paul_vi_2026["source_id"], "patch_ashburn_2026_semifinalists")
+
+        loudoun_school_advanced_2026 = self._lookup("loudoun_school_for_advanced_studies", 2026)
+        self.assertEqual(loudoun_school_advanced_2026["nmsf_count"], "")
+        self.assertEqual(loudoun_school_advanced_2026["nmsf_status"], "missing_source")
+        self.assertEqual(loudoun_school_advanced_2026["source_id"], "")
+
         woodgrove_2025 = self._lookup("woodgrove_high_school", 2025)
         self.assertEqual(woodgrove_2025["nmsf_count"], "")
         self.assertEqual(woodgrove_2025["nmsf_status"], "missing_source")
@@ -292,6 +306,11 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(john_paul_2025["nmsf_count"], "1")
         self.assertEqual(john_paul_2025["nmsf_status"], "verified_count")
         self.assertEqual(john_paul_2025["source_id"], "patch_woodbridge_2025_semifinalists")
+
+        john_paul_2026 = self._lookup("st_john_paul_the_great_catholic_high_school", 2026)
+        self.assertEqual(john_paul_2026["nmsf_count"], "3")
+        self.assertEqual(john_paul_2026["nmsf_status"], "verified_count")
+        self.assertEqual(john_paul_2026["source_id"], "patch_manassas_2026_semifinalists")
 
     def test_local_media_private_school_counts_do_not_create_zeros(self) -> None:
         new_school_2025 = self._lookup("new_school_of_northern_virginia", 2025)

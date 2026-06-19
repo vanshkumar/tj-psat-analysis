@@ -8,14 +8,14 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 154 |
+| reports/data_quality/manual_review_queue.csv | 172 |
 
 ## Observation Status Counts
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 78 |
-| verified_count | 153 |
+| missing_source | 76 |
+| verified_count | 155 |
 | verified_zero | 73 |
 
 ## Coverage By Division And Class
@@ -40,8 +40,8 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2026 | APS | 5 | 4 | 1 | 0 | 0 |
 | 2026 | FCPS | 36 | 26 | 6 | 4 | 0 |
 | 2026 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
-| 2026 | LCPS | 19 | 13 | 4 | 2 | 0 |
-| 2026 | PWCS | 15 | 5 | 8 | 2 | 0 |
+| 2026 | LCPS | 19 | 14 | 4 | 1 | 0 |
+| 2026 | PWCS | 15 | 6 | 8 | 1 | 0 |
 
 ## Source Reconciliation
 
@@ -61,9 +61,11 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | patch_arlington_2025_semifinalists | 2025 | 16 | 1 | 15 | 16 | reconciled | Wakefield High School: 2 excluded_duplicate_public_school_count; Washington-Liberty High School: 7 excluded_duplicate_public_school_count; The H.B. Woodlawn Program: 3 excluded_duplicate_public_school_count; Yorktown High School: 3 excluded_duplicate_public_school_count |
 | patch_arlington_2026_semifinalists | 2026 | 22 | 1 | 21 | 22 | reconciled | Arlington Career Center: 1 excluded_nonroster_school; Washington-Liberty High School: 9 excluded_duplicate_public_school_count; The H. B. Woodlawn Program: 6 excluded_duplicate_public_school_count; Yorktown High School: 5 excluded_duplicate_public_school_count |
 | patch_ashburn_2025_semifinalists | 2025 | 46 | 45 | 1 | 46 | reconciled | Evergreen Christian School: 1 excluded_nonroster_school |
+| patch_ashburn_2026_semifinalists | 2026 | 59 | 1 | 58 | 59 | reconciled | John Champe High School: 3 excluded_duplicate_public_school_count; Lightridge High School: 5 excluded_duplicate_public_school_count; Briar Woods High School: 8 excluded_duplicate_public_school_count; Broad Run High School: 3 excluded_duplicate_public_school_count; Independence High School: 8 excluded_duplicate_public_school_count; Rock Ridge High School: 7 excluded_duplicate_public_school_count; Stone Bridge High School: 4 excluded_duplicate_public_school_count; Heritage High School: 1 excluded_duplicate_public_school_count; Homeschool/Online School: 1 excluded_nonroster_school; Riverside High School: 5 excluded_duplicate_public_school_count; Potomac Falls High School: 1 excluded_duplicate_public_school_count; Woodgrove High School: 2 excluded_duplicate_public_school_count; Freedom High School: 7 excluded_duplicate_public_school_count; Dominion High School: 3 excluded_duplicate_public_school_count |
 | patch_fairfax_city_2025_semifinalists | 2025 | 17 | 3 | 14 | 17 | reconciled | Fairfax High School: 4 excluded_duplicate_public_school_count; James W. Robinson Secondary School: 4 excluded_duplicate_public_school_count; W. T. Woodson High School: 6 excluded_duplicate_public_school_count |
 | patch_fairfax_city_2026_semifinalists | 2026 | 15 | 2 | 13 | 15 | reconciled | Fairfax High School: 5 excluded_duplicate_public_school_count; Carter G. Woodson High School: 8 excluded_duplicate_public_school_count |
 | patch_falls_church_2024_semifinalists | 2024 | 11 | 5 | 6 | 11 | reconciled | Marshall High School: 6 excluded_duplicate_public_school_count |
+| patch_manassas_2026_semifinalists | 2026 | 10 | 3 | 7 | 10 | reconciled | Gainesville High School: 1 excluded_duplicate_public_school_count; Battlefield High School: 2 excluded_duplicate_public_school_count; Charles Colgan High School: 1 excluded_duplicate_public_school_count; Osbourn High School: 1 excluded_nonroster_school; Patriot High School: 1 excluded_duplicate_public_school_count; C.D. Hylton High School: 1 excluded_duplicate_public_school_count |
 | patch_mclean_2025_semifinalists | 2025 | 52 | 16 | 36 | 52 | reconciled | Homeschool/Online School: 1 excluded_nonroster_school; Langley High School: 19 excluded_duplicate_public_school_count; McLean High School: 16 excluded_duplicate_public_school_count |
 | patch_mclean_2026_semifinalists | 2026 | 65 | 22 | 43 | 65 | reconciled | Langley High School: 23 excluded_duplicate_public_school_count; McLean High School: 20 excluded_duplicate_public_school_count |
 | patch_vienna_2023_semifinalists | 2023 | 31 | 2 | 29 | 31 | reconciled | James Madison High School: 11 excluded_duplicate_public_school_count; Oakton High School: 11 excluded_duplicate_public_school_count; Marshall High School: 7 excluded_duplicate_public_school_count |
@@ -92,8 +94,8 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2025 | LCPS | 4 |
 | 2026 | FCPS | 4 |
 | 2026 | Falls Church City | 1 |
-| 2026 | LCPS | 2 |
-| 2026 | PWCS | 2 |
+| 2026 | LCPS | 1 |
+| 2026 | PWCS | 1 |
 
 ## Source Rules
 

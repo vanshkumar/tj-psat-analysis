@@ -189,6 +189,16 @@
 - Action: Parse that embedded payload for local count transcription when available, but archive only count-level snapshots and omit student names from repo data.
 - Confidence: high
 
+**2026-06-19 - Patch topic feed discovery**
+- Observation: Recent Patch school-topic pages expose article titles, dates, and canonical URLs in `__NEXT_DATA__.props.pageProps.mainContent.topicFeed`, and this surfaced 2026 Loudoun and Prince William/Manassas NMSF articles that community CDX indexes did not expose.
+- Action: When Patch CDX or search is dry for recent NMSF gaps, fetch `/virginia/{community}/schools` and parse `topicFeed` before treating the source as absent.
+- Confidence: high
+
+**2026-06-19 - Patch locality-grouped articles**
+- Observation: The Patch Loudoun and Prince William/Manassas Class 2026 articles grouped semifinalists by town/locality while individual list items carried the school attribution.
+- Action: Count school-level observations from list-item school text when Patch headings are localities; do not treat locality headings as school rows.
+- Confidence: high
+
 **2026-06-19 - LCPS 2025 local attribution**
 - Observation: The official LCPS Class 2025 release is total-only, but the Ashburn Patch Class 2025 article provides school-grouped positive Loudoun counts plus a nonroster Evergreen Christian row.
 - Action: Use the Ashburn Patch source for positive LCPS Class 2025 roster observations, retain Evergreen only as an excluded snapshot row, and continue leaving absent LCPS schools missing rather than zero.
