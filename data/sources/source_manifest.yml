@@ -141,6 +141,28 @@ sources:
     reported_total: 30
     reported_total_scope: Arlington students including Arlington Tech and TJHSST resident subset
     notes: Names are listed by school or TJHSST resident subset on the official APS page; Arlington Tech is kept out of the panel because it is not a separate roster analytical unit. Archived snapshot stores count-only rows and omits student names.
+  - source_id: lcps_2025_semifinalists
+    provider: lcps
+    graduating_class: 2025
+    geography_or_district: LCPS students
+    source_title: 57 LCPS Students Named National Merit Scholarship Semifinalists
+    publisher: Loudoun County Public Schools
+    publication_date: 2024-09-26
+    source_url: https://www.lcps.org/o/lcps/article/1786023
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete LCPS student total, school affiliations not listed
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/lcps/lcps_2025_semifinalists_snapshot.csv
+    archived_file_sha256: bdfe4856bc2c9d6c75def4551571cb910270556d5bff5a0014043306e7247d63
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: bdfe4856bc2c9d6c75def4551571cb910270556d5bff5a0014043306e7247d63
+    hash_basis: Set to the archived snapshot SHA-256 because this total-only source produces no school-level count records.
+    reported_total: 57
+    reported_total_scope: LCPS students with no school-level attribution in the release
+    notes: Official LCPS release lists student names but not schools, so it is not used for school observations or zero inference.
   - source_id: lcps_2026_semifinalists
     provider: lcps
     graduating_class: 2026

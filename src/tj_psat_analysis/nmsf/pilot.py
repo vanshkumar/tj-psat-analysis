@@ -196,6 +196,7 @@ def build_reconciliation_report(
         "",
         "- Positive counts are imported only from manifest-backed school-level source transcriptions.",
         "- Verified zeros are inferred only from manifest entries marked complete for the division scope.",
+        "- Source-incomplete district totals may reconcile a source without creating school observations.",
         (
             "- APS/LCPS resident TJHSST subsets are not imported as separate TJHSST "
             "observations because the panel keeps TJHSST as one row."

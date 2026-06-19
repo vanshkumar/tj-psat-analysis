@@ -41,14 +41,18 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "fcps_2024_semifinalists",
                 "fcps_2025_semifinalists",
                 "fcps_2026_semifinalists",
+                "lcps_2025_semifinalists",
                 "lcps_2026_semifinalists",
             },
         )
         for source in self.sources.values():
             self.assertIn(source.parser_name, PARSER_REGISTRY_BY_NAME)
             self.assertEqual(source.parser_name, "manual_reviewed_table")
-            self.assertTrue(source.complete_for_zero_inference)
-            self.assertTrue(source.zero_inference_scope.endswith("_public_high_schools_in_roster"))
+            if source.complete_for_zero_inference:
+                self.assertTrue(source.zero_inference_scope.endswith("_public_high_schools_in_roster"))
+            else:
+                self.assertEqual(source.source_id, "lcps_2025_semifinalists")
+                self.assertEqual(source.zero_inference_scope, "none")
             self.assertEqual(len(source.source_hash), 64)
             self.assertTrue(source.reported_total)
         self.assertIn("verified_count", NMSF_OBSERVATION_STATUSES)
@@ -87,10 +91,25 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 ),
                 records_by_source[source.source_id],
             )
-            self.assertEqual(
-                {row["snapshot_notes"] for row in observation_snapshot_rows},
-                {"student names intentionally omitted"},
-            )
+            if observation_snapshot_rows:
+                self.assertEqual(
+                    {row["snapshot_notes"] for row in observation_snapshot_rows},
+                    {"student names intentionally omitted"},
+                )
+            else:
+                self.assertEqual(source.source_id, "lcps_2025_semifinalists")
+
+            if source.source_id == "lcps_2025_semifinalists":
+                source_only_rows = [
+                    row
+                    for row in snapshot_rows
+                    if row.get("snapshot_record_type") == "source_incomplete_unattributed_total"
+                ]
+                self.assertEqual(len(source_only_rows), 1)
+                self.assertEqual(
+                    source_only_rows[0]["school_name_source"], "LCPS unattributed semifinalist total"
+                )
+                self.assertEqual(source_only_rows[0]["nmsf_count"], "57")
 
     def test_fixture_manual_counts_use_verified_count_status(self) -> None:
         records = read_manual_nmsf_counts(ROOT / "tests" / "fixtures" / "nmsf" / "manual_counts_fixture.csv")

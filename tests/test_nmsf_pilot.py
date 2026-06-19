@@ -33,6 +33,7 @@ class NmsfPilotTest(unittest.TestCase):
         self.assertIn("missing_school_year_source", issue_types)
         self.assertIn("excluded_tjhsst_resident_subset", issue_types)
         self.assertIn("excluded_nonroster_school", issue_types)
+        self.assertIn("source_incomplete_unattributed_total", issue_types)
 
         arlington_tech = [
             row
@@ -42,8 +43,16 @@ class NmsfPilotTest(unittest.TestCase):
         self.assertEqual(arlington_tech["nmsf_count"], "1")
         self.assertEqual(arlington_tech["nmsf_status"], "not_applicable")
 
+        lcps_2025_total = [row for row in self.review_rows if row["source_id"] == "lcps_2025_semifinalists"][
+            0
+        ]
+        self.assertEqual(lcps_2025_total["school"], "LCPS unattributed semifinalist total")
+        self.assertEqual(lcps_2025_total["nmsf_count"], "57")
+        self.assertEqual(lcps_2025_total["issue_type"], "source_incomplete_unattributed_total")
+
     def test_reconciliation_accounts_for_excluded_tj_subsets(self) -> None:
         self.assertIn("| aps_2026_semifinalists | 2026 | 30 | 20 | 10 | 30 | reconciled |", self.report)
+        self.assertIn("| lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled |", self.report)
         self.assertIn("| lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled |", self.report)
 
 

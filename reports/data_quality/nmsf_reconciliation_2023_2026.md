@@ -8,7 +8,7 @@ TJHSST is kept as one school row; jurisdictional TJHSST subsets in APS/LCPS rele
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 208 |
+| reports/data_quality/manual_review_queue.csv | 209 |
 
 ## Observation Status Counts
 
@@ -52,6 +52,7 @@ TJHSST is kept as one school row; jurisdictional TJHSST subsets in APS/LCPS rele
 | fcps_2024_semifinalists | 2024 | 264 | 264 | 0 | 264 | reconciled | FCPS high schools including TJHSST |
 | fcps_2025_semifinalists | 2025 | 191 | 191 | 0 | 191 | reconciled | FCPS high schools including TJHSST |
 | fcps_2026_semifinalists | 2026 | 262 | 262 | 0 | 262 | reconciled | FCPS high schools including TJHSST |
+| lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled | LCPS unattributed semifinalist total: 57 source_incomplete_unattributed_total |
 | lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled | Thomas Jefferson High School for Science and Technology: 12 excluded_tjhsst_resident_subset |
 
 ## Source Gaps
@@ -83,5 +84,6 @@ TJHSST is kept as one school row; jurisdictional TJHSST subsets in APS/LCPS rele
 
 - Positive counts are imported only from manifest-backed school-level source transcriptions.
 - Verified zeros are inferred only from manifest entries marked complete for the division scope.
+- Source-incomplete district totals may reconcile a source without creating school observations.
 - APS/LCPS resident TJHSST subsets are not imported as separate TJHSST observations because the panel keeps TJHSST as one row.
 - Missing rows remain missing; incomplete or inaccessible source searches do not become zeros.
