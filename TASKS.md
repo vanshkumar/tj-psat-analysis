@@ -190,12 +190,12 @@ statuses; no adjacent-year values are estimated.
 Status note: `data/sources/source_manifest.yml` is now schema-validated by
 `scripts/build_nmsf_observations.py`. The processed NMSF observation layer
 stores source-backed positive counts as `verified_count`, infers
-`verified_zero` only for complete FCPS source scopes, and leaves all
-out-of-scope schools as `missing_source`. Enrollment denominators and rates are
-intentionally excluded until Milestone 7 joins observations to
-`data/processed/enrollment_panel.csv`. The current FCPS source entries point to
-school-count snapshots under `data/raw/nmsf/fcps/`; those snapshots omit student
-names and are hash-validated through the manifest.
+`verified_zero` only for complete manifest-declared source scopes, and leaves
+all out-of-scope schools as `missing_source`. Enrollment denominators and rates
+are intentionally excluded until Milestone 7 joins observations to
+`data/processed/enrollment_panel.csv`. The current official FCPS, APS, LCPS,
+and PWCS source entries point to count-only snapshots under `data/raw/nmsf/`;
+those snapshots omit student names and are hash-validated through the manifest.
 
 ### Deliverables
 
@@ -224,13 +224,15 @@ Prioritize Classes 2023-2026 to get an early pre/post view:
 Tasks:
 
 - [x] Collect official FCPS/TJHSST releases.
-- [ ] Collect official LCPS releases.
-- [ ] Collect official APS releases.
+- [x] Collect official LCPS releases where available: school-attributed Classes
+  2023, 2024, and 2026, plus the total-only Class 2025 release.
+- [x] Collect official APS releases where available: Classes 2023, 2025, and
+  2026.
 - [x] Collect official PWCS releases.
 - [ ] Collect official Falls Church City or Meridian releases.
 - [ ] Collect NMSC Virginia lists where district releases are absent or incomplete.
 - [ ] Add public-school observations for every rostered school-year.
-- [ ] Add private-school observations only when verifiable.
+- [x] Add private-school observations only when verifiable.
 - [x] Reconcile school counts against complete district totals where possible.
 - [x] Investigate every total mismatch.
 - [x] Produce a human-review queue for ambiguous names and source gaps.
@@ -239,18 +241,23 @@ Status note: `data/processed/nmsf_observations_2023_2026.csv` and
 `reports/data_quality/nmsf_reconciliation_2023_2026.md` now cover the
 source-backed pilot rows available from official FCPS/TJHSST Classes 2023-2026,
 APS Classes 2023 and 2025-2026, PWCS public high-school Classes 2023-2026,
-LCPS Class 2026, a total-only official LCPS Class 2025 release, and local
-Patch rows for Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church,
-Ashburn/Loudoun, and Woodbridge schools. APS/LCPS
+LCPS public high-school Classes 2023, 2024, and 2026, a total-only official
+LCPS Class 2025 release, and local Patch rows for Fairfax City, McLean,
+Vienna/Oakton, Arlington, Falls Church, Ashburn/Loudoun, and Woodbridge
+schools. APS/LCPS
 resident TJHSST subsets, PWCS former-middle-school TJHSST references, Arlington
 Tech, and the LCPS Class 2025 unattributed total are retained in count-only
 snapshots for reconciliation but excluded from the observation panel to preserve
 the single TJHSST row, the roster's Arlington Tech decision, and the
 no-school-attribution rule. Overlapping public-school rows in the Patch articles
 are retained only in source snapshots when official district rows already
-cover those counts. The remaining Class 2023-2026 source gaps are down to
-78 `missing_source` rows and remain explicitly listed in
-`reports/data_quality/manual_review_queue.csv`.
+cover those counts. The current pilot slice has 304 observation rows: 189
+`verified_count`, 78 `verified_zero`, and 37 `missing_source`. The
+reconciliation report's Source Gaps table is the authoritative remaining-gap
+summary; `reports/data_quality/manual_review_queue.csv` has 140 rows because it
+also includes excluded snapshot rows retained for source-total reconciliation.
+After the LCPS Class 2023 bulk backfill, the remaining unresolved rows are
+small jurisdiction/private-school clusters rather than a clear bulk source gap.
 
 ### Deliverables
 

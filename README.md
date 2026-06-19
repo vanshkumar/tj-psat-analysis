@@ -99,10 +99,11 @@ python -m unittest discover -s tests
 current source slices cover official FCPS/TJHSST National Merit Semifinalist
 releases for Classes 2023, 2024, 2025, and 2026, APS releases for Classes 2023,
 2025, and 2026, PWCS public high-school releases for Classes 2023, 2024, 2025,
-and 2026, an LCPS school-attributed release for Class 2026, and a total-only
-LCPS release for Class 2025. It also includes local Patch articles for
-Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church, Ashburn/Loudoun,
-and Woodbridge school rows not covered by the district releases.
+and 2026, LCPS school-attributed releases for Classes 2023, 2024, and 2026,
+and a total-only LCPS release for Class 2025. It also includes local Patch
+articles for Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church,
+Ashburn/Loudoun, and Woodbridge school rows not covered by the district
+releases.
 The importer computes source hashes from the
 source metadata plus transcribed count rows, matches schools against the
 canonical roster, and writes `data/interim/panel_nmsf.csv`.
@@ -111,13 +112,14 @@ canonical roster, and writes `data/interim/panel_nmsf.csv`.
 layer at `data/processed/nmsf_observations.csv`. It validates
 `data/sources/source_manifest.yml`, keeps NMSF observations separate from
 enrollment denominators, and uses `verified_zero` only for manifest sources
-marked complete for the relevant scope. The current FCPS and PWCS 2023-2026
-sources are complete named public high-school lists, so absent rostered public
-schools inside those scopes receive source-backed zero observations for those
-classes. Schools outside the source scope remain `missing_source`. APS/LCPS
-resident TJHSST subsets and PWCS former-middle-school TJHSST references are
-retained in count-only source snapshots for reconciliation but are not imported
-as separate observations because TJHSST remains one school row.
+marked complete for the relevant scope. The current FCPS and PWCS 2023-2026,
+APS 2023/2025/2026, and LCPS 2023/2024/2026 official sources are complete
+named public high-school lists, so absent rostered public schools inside those
+scopes receive source-backed zero observations for those classes. Schools
+outside the source scope remain `missing_source`. APS/LCPS resident TJHSST
+subsets and PWCS former-middle-school TJHSST references are retained in
+count-only source snapshots for reconciliation but are not imported as separate
+observations because TJHSST remains one school row.
 The official LCPS Class 2025 release is retained as a source-incomplete total
 for reconciliation only because it does not list school affiliations; a local
 Ashburn Patch article supplies the imported positive LCPS Class 2025 school rows.
@@ -128,7 +130,11 @@ local articles are not used for zero inference.
 `scripts/build_nmsf_pilot_2023_2026.py` builds the Milestone 5 pilot outputs:
 `data/processed/nmsf_observations_2023_2026.csv`,
 `reports/data_quality/nmsf_reconciliation_2023_2026.md`, and
-`reports/data_quality/manual_review_queue.csv`.
+`reports/data_quality/manual_review_queue.csv`. The current four-year pilot has
+304 observation rows: 189 `verified_count`, 78 `verified_zero`, and 37
+`missing_source`. The reconciliation report's Source Gaps table is the
+authoritative summary of unresolved observations; the manual review queue also
+contains excluded count-only snapshot rows used to reconcile source totals.
 
 ## Source Discipline
 

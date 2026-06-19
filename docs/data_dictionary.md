@@ -22,7 +22,7 @@
 - `reports/data_quality/enrollment_coverage.md`: Milestone 3 denominator coverage summary, source list, and no-estimation rules.
 - `reports/data_quality/nmsf_source_registry.md`: Milestone 4 source-registry summary for NMSF observations, including status counts, source counts, and zero-inference rules.
 - `reports/data_quality/nmsf_reconciliation_2023_2026.md`: Milestone 5 reconciliation summary for the four-year pilot, including source reported totals, in-panel totals, excluded count-only snapshot totals, and remaining source gaps.
-- `reports/data_quality/manual_review_queue.csv`: Milestone 5 review queue for missing school-year sources plus source rows excluded from the panel, such as jurisdictional TJHSST subsets and non-roster schools.
+- `reports/data_quality/manual_review_queue.csv`: Milestone 5 review queue for missing school-year sources plus source rows excluded from the panel, such as jurisdictional TJHSST subsets and non-roster schools. Use the reconciliation report's Source Gaps table, not the raw queue length, for the true unresolved-observation count.
 
 ## Source Notes
 
@@ -48,7 +48,8 @@
 - `not_operating` means the school was not operating for that class-year; it is not a zero NMSF count.
 - `not_applicable` is reserved for rows outside the relevant observation scope.
 - `source_hash` values for manual transcriptions are computed from the source metadata plus sorted transcribed count rows.
-- APS and LCPS releases may list resident students attending TJHSST. Those resident subsets are retained in count-only snapshots for source-total reconciliation, but they are not imported as separate observations because TJHSST remains one school row.
+- APS and LCPS releases may list resident students attending TJHSST, and PWCS releases may list former PWCS middle-school students attending TJHSST. Those TJHSST subset references are retained in count-only snapshots for source-total reconciliation, but they are not imported as separate observations because TJHSST remains one school row.
+- A total-only or unattributed district release, such as the official LCPS Class 2025 release, can be archived for reconciliation as `source_incomplete` but cannot create school-level observations or verified zeros.
 
 ## Enrollment Statuses
 
