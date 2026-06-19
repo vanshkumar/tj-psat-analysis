@@ -26,6 +26,14 @@ REQUIRED_MANUAL_COUNT_FIELDS = (
 
 VALID_NUMERIC_STATUSES = {"verified_count", "verified_zero"}
 
+PROVIDER_TO_DIVISION = {
+    "aps": "APS",
+    "fcps": "FCPS",
+    "fccps": "Falls Church City",
+    "lcps": "LCPS",
+    "pwcs": "PWCS",
+}
+
 
 @dataclass(frozen=True)
 class ManualNmsfCount:
@@ -194,12 +202,12 @@ def match_manual_counts(
     for record in records:
         key = normalize_school_name(record.school_name_source)
         if key in ambiguous_index:
-            schools = ", ".join(row["school"] for row in ambiguous_index[key])
-            raise ValueError(
-                f"Manual NMSF row {record.source_id}/{record.school_name_source} "
-                f"matches multiple roster schools: {schools}"
+            roster_row = _resolve_ambiguous_row_for_provider(
+                record=record,
+                rows=ambiguous_index[key],
             )
-        roster_row = unique_index.get(key)
+        else:
+            roster_row = unique_index.get(key)
         if roster_row is None:
             raise ValueError(
                 f"Manual NMSF row {record.source_id}/{record.school_name_source} "
@@ -212,6 +220,23 @@ def match_manual_counts(
             )
         matched[panel_key] = record
     return matched
+
+
+def _resolve_ambiguous_row_for_provider(
+    *,
+    record: ManualNmsfCount,
+    rows: list[dict[str, str]],
+) -> dict[str, str] | None:
+    division = PROVIDER_TO_DIVISION.get(record.provider)
+    if division:
+        matches = [row for row in rows if row.get("division") == division]
+        if len(matches) == 1:
+            return matches[0]
+    schools = ", ".join(row["school"] for row in rows)
+    raise ValueError(
+        f"Manual NMSF row {record.source_id}/{record.school_name_source} "
+        f"matches multiple roster schools: {schools}"
+    )
 
 
 def format_rate(numerator: int, denominator: str) -> str:

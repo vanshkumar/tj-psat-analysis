@@ -10,6 +10,7 @@
 - `data/interim/panel_seed.csv`: school-by-class-year panel with blank NMSF counts and source-pending statuses.
 - `data/interim/panel_nmsf.csv`: legacy interim seed panel plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`; it should not be treated as the final analytical panel because it is seed-based and does not include all Milestone 3 denominator updates.
 - `data/processed/nmsf_observations.csv`: Milestone 4 NMSF observation layer with one row per school/class year, source-backed positive counts, source-backed complete-list zeros, explicit missingness, and no enrollment denominators or rates.
+- `data/processed/nmsf_observations_2023_2026.csv`: Milestone 5 four-year pilot slice filtered from `data/processed/nmsf_observations.csv` for Classes 2023-2026.
 - `data/processed/school_roster.csv`: Milestone 2 roster with canonical school IDs, pathway status, pathway assignment method, pathway source metadata, sector, district, NCES IDs where source-backed, and operating-year boundaries.
 - `data/processed/enrollment_panel.csv`: Milestone 3 school-by-class-year grade 11 enrollment denominator panel for public and private schools, with source metadata and explicit missingness statuses.
 - `data/manual/school_aliases.csv`: deterministic alias table. Rows with `join_allowed=false` are known ambiguous aliases and must not be used for automatic observation joins.
@@ -20,6 +21,8 @@
 - `reports/data_quality/enrollment_coverage.csv`: one coverage row for each school and class year in `data/processed/enrollment_panel.csv`.
 - `reports/data_quality/enrollment_coverage.md`: Milestone 3 denominator coverage summary, source list, and no-estimation rules.
 - `reports/data_quality/nmsf_source_registry.md`: Milestone 4 source-registry summary for NMSF observations, including status counts, source counts, and zero-inference rules.
+- `reports/data_quality/nmsf_reconciliation_2023_2026.md`: Milestone 5 reconciliation summary for the four-year pilot, including source reported totals, in-panel totals, excluded count-only snapshot totals, and remaining source gaps.
+- `reports/data_quality/manual_review_queue.csv`: Milestone 5 review queue for missing school-year sources plus source rows excluded from the panel, such as jurisdictional TJHSST subsets and non-roster schools.
 
 ## Source Notes
 
@@ -30,6 +33,7 @@
 
 - `data/sources/nmsf_counts.csv`: manual NMSF count transcriptions from named public sources. Each row must include source ID, provider, class year, school name, count, status, title, URL, date, scope, and completeness notes.
 - `data/sources/source_manifest.yml`: source-level registry with publisher, publication date, URL, retrieval date, source type, completeness scope, zero-inference scope, parser name/version, notes, and computed source hashes for NMSF count sources.
+- `data/raw/nmsf/*/*_snapshot.csv`: count-only archived snapshots for source-backed NMSF releases. Student names are intentionally omitted. Rows with `snapshot_record_type=observation_count` feed `data/sources/nmsf_counts.csv`; rows with other record types are retained only for reconciliation or review.
 
 ## NMSF Source Rules
 
@@ -44,6 +48,7 @@
 - `not_operating` means the school was not operating for that class-year; it is not a zero NMSF count.
 - `not_applicable` is reserved for rows outside the relevant observation scope.
 - `source_hash` values for manual transcriptions are computed from the source metadata plus sorted transcribed count rows.
+- APS and LCPS releases may list resident students attending TJHSST. Those resident subsets are retained in count-only snapshots for source-total reconciliation, but they are not imported as separate observations because TJHSST remains one school row.
 
 ## Enrollment Statuses
 

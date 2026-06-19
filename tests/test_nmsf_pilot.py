@@ -1,0 +1,51 @@
+from __future__ import annotations
+
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from tj_psat_analysis.nmsf.pilot import (  # noqa: E402
+    build_manual_review_queue,
+    build_reconciliation_report,
+    load_csv_rows,
+    pilot_rows,
+)
+from tj_psat_analysis.nmsf.schema import read_source_manifest  # noqa: E402
+
+
+class NmsfPilotTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.sources = read_source_manifest(ROOT / "data" / "sources" / "source_manifest.yml")
+        cls.rows = pilot_rows(load_csv_rows(ROOT / "data" / "processed" / "nmsf_observations.csv"))
+        cls.review_rows = build_manual_review_queue(cls.rows, sources=cls.sources, root=ROOT)
+        cls.report = build_reconciliation_report(cls.rows, sources=cls.sources, root=ROOT)
+
+    def test_pilot_filters_four_class_years(self) -> None:
+        self.assertEqual(len(self.rows), 76 * 4)
+        self.assertEqual({row["class_year"] for row in self.rows}, {"2023", "2024", "2025", "2026"})
+
+    def test_review_queue_contains_missing_and_excluded_rows(self) -> None:
+        issue_types = {row["issue_type"] for row in self.review_rows}
+        self.assertIn("missing_school_year_source", issue_types)
+        self.assertIn("excluded_tjhsst_resident_subset", issue_types)
+        self.assertIn("excluded_nonroster_school", issue_types)
+
+        arlington_tech = [
+            row
+            for row in self.review_rows
+            if row["school"] == "Arlington Tech" and row["source_id"] == "aps_2026_semifinalists"
+        ][0]
+        self.assertEqual(arlington_tech["nmsf_count"], "1")
+        self.assertEqual(arlington_tech["nmsf_status"], "not_applicable")
+
+    def test_reconciliation_accounts_for_excluded_tj_subsets(self) -> None:
+        self.assertIn("| aps_2026_semifinalists | 2026 | 30 | 20 | 10 | 30 | reconciled |", self.report)
+        self.assertIn("| lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled |", self.report)
+
+
+if __name__ == "__main__":
+    unittest.main()

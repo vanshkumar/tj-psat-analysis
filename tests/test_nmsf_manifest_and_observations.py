@@ -36,17 +36,21 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(
             set(self.sources),
             {
+                "aps_2025_semifinalists",
+                "aps_2026_semifinalists",
                 "fcps_2024_semifinalists",
                 "fcps_2025_semifinalists",
                 "fcps_2026_semifinalists",
+                "lcps_2026_semifinalists",
             },
         )
         for source in self.sources.values():
             self.assertIn(source.parser_name, PARSER_REGISTRY_BY_NAME)
             self.assertEqual(source.parser_name, "manual_reviewed_table")
             self.assertTrue(source.complete_for_zero_inference)
-            self.assertEqual(source.zero_inference_scope, "fcps_public_high_schools_in_roster")
+            self.assertTrue(source.zero_inference_scope.endswith("_public_high_schools_in_roster"))
             self.assertEqual(len(source.source_hash), 64)
+            self.assertTrue(source.reported_total)
         self.assertIn("verified_count", NMSF_OBSERVATION_STATUSES)
         self.assertIn("missing_source", NMSF_OBSERVATION_STATUSES)
 
@@ -62,22 +66,27 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         }
 
         for source in self.sources.values():
-            self.assertTrue(source.archived_file_path.startswith("data/raw/nmsf/fcps/"))
+            self.assertTrue(source.archived_file_path.startswith("data/raw/nmsf/"))
             self.assertEqual(len(source.archived_file_sha256), 64)
 
             snapshot_path = ROOT / source.archived_file_path
             self.assertTrue(snapshot_path.is_file())
             with snapshot_path.open(newline="", encoding="utf-8") as handle:
                 snapshot_rows = list(csv.DictReader(handle))
+            observation_snapshot_rows = [
+                row
+                for row in snapshot_rows
+                if row.get("snapshot_record_type", "observation_count") == "observation_count"
+            ]
 
             self.assertEqual({row["source_id"] for row in snapshot_rows}, {source.source_id})
             self.assertEqual({row["class_year"] for row in snapshot_rows}, {str(source.graduating_class)})
             self.assertEqual(
-                sorted((row["school_name_source"], int(row["nmsf_count"])) for row in snapshot_rows),
+                sorted((row["school_name_source"], int(row["nmsf_count"])) for row in observation_snapshot_rows),
                 records_by_source[source.source_id],
             )
             self.assertEqual(
-                {row["snapshot_notes"] for row in snapshot_rows},
+                {row["snapshot_notes"] for row in observation_snapshot_rows},
                 {"student names intentionally omitted"},
             )
 
@@ -95,8 +104,8 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 53)
-        self.assertEqual(statuses["verified_zero"], 22)
+        self.assertEqual(statuses["verified_count"], 73)
+        self.assertEqual(statuses["verified_zero"], 27)
         self.assertEqual(statuses["not_operating"], 9)
 
         tj_2026 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2026)
@@ -110,11 +119,32 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(robinson_2026["observation_basis"], "complete_source_zero_inference")
         self.assertEqual(robinson_2026["source_id"], "fcps_2026_semifinalists")
 
-    def test_non_fcps_rows_remain_missing_until_sourced(self) -> None:
+    def test_aps_and_lcps_counts_and_verified_zero_inference(self) -> None:
+        washington_liberty_2026 = self._lookup("washington_liberty_high_school", 2026)
+        self.assertEqual(washington_liberty_2026["nmsf_count"], "9")
+        self.assertEqual(washington_liberty_2026["nmsf_status"], "verified_count")
+        self.assertEqual(washington_liberty_2026["source_id"], "aps_2026_semifinalists")
+
         wakefield_2026 = self._lookup("wakefield_high_school", 2026)
-        self.assertEqual(wakefield_2026["nmsf_count"], "")
-        self.assertEqual(wakefield_2026["nmsf_status"], "missing_source")
-        self.assertEqual(wakefield_2026["source_id"], "")
+        self.assertEqual(wakefield_2026["nmsf_count"], "0")
+        self.assertEqual(wakefield_2026["nmsf_status"], "verified_zero")
+        self.assertEqual(wakefield_2026["source_id"], "aps_2026_semifinalists")
+
+        freedom_lcps_2026 = self._lookup("freedom_high_school_south_riding", 2026)
+        self.assertEqual(freedom_lcps_2026["nmsf_count"], "7")
+        self.assertEqual(freedom_lcps_2026["nmsf_status"], "verified_count")
+        self.assertEqual(freedom_lcps_2026["source_id"], "lcps_2026_semifinalists")
+
+        loudoun_county_2026 = self._lookup("loudoun_county_high_school", 2026)
+        self.assertEqual(loudoun_county_2026["nmsf_count"], "0")
+        self.assertEqual(loudoun_county_2026["nmsf_status"], "verified_zero")
+        self.assertEqual(loudoun_county_2026["source_id"], "lcps_2026_semifinalists")
+
+    def test_unsourced_rows_remain_missing_until_sourced(self) -> None:
+        battlefield_2026 = self._lookup("battlefield_high_school", 2026)
+        self.assertEqual(battlefield_2026["nmsf_count"], "")
+        self.assertEqual(battlefield_2026["nmsf_status"], "missing_source")
+        self.assertEqual(battlefield_2026["source_id"], "")
 
 
 if __name__ == "__main__":

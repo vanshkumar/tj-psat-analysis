@@ -96,10 +96,11 @@ python -m unittest discover -s tests
 ## NMSF Count Ingestion
 
 `data/sources/nmsf_counts.csv` stores source-backed count transcriptions. The
-first source slice covers official FCPS National Merit Semifinalist releases
-for Classes 2024, 2025, and 2026. The importer computes source hashes from the
-source metadata plus transcribed count rows, matches schools against the
-canonical roster, and writes `data/interim/panel_nmsf.csv`.
+current source slices cover official FCPS/TJHSST National Merit Semifinalist
+releases for Classes 2024, 2025, and 2026, APS releases for Classes 2025 and
+2026, and an LCPS release for Class 2026. The importer computes source hashes
+from the source metadata plus transcribed count rows, matches schools against
+the canonical roster, and writes `data/interim/panel_nmsf.csv`.
 
 `scripts/build_nmsf_observations.py` builds the Milestone 4 count-observation
 layer at `data/processed/nmsf_observations.csv`. It validates
@@ -108,7 +109,14 @@ enrollment denominators, and uses `verified_zero` only for manifest sources
 marked complete for the relevant scope. The current FCPS 2024-2026 sources are
 complete named FCPS lists, so absent rostered FCPS public schools receive
 source-backed zero observations for those classes. Schools outside the source
-scope remain `missing_source`.
+scope remain `missing_source`. APS/LCPS resident TJHSST subsets are retained in
+count-only source snapshots for reconciliation but are not imported as separate
+observations because TJHSST remains one school row.
+
+`scripts/build_nmsf_pilot_2023_2026.py` builds the Milestone 5 pilot outputs:
+`data/processed/nmsf_observations_2023_2026.csv`,
+`reports/data_quality/nmsf_reconciliation_2023_2026.md`, and
+`reports/data_quality/manual_review_queue.csv`.
 
 ## Source Discipline
 

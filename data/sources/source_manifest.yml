@@ -50,6 +50,8 @@ sources:
     parser_version: 1
     source_hash: 3eb4c9eb50b4369dc0125e0b6a7ed7b889954460e07a9b32c86c6b4f24af287a
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 264
+    reported_total_scope: FCPS high schools including TJHSST
     notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names.
   - source_id: fcps_2025_semifinalists
     provider: fcps
@@ -70,6 +72,8 @@ sources:
     parser_version: 1
     source_hash: 3bd8166a9806cc11cef97772210b09161eb5f74a99eac7c22a718dc4b32d3902
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 191
+    reported_total_scope: FCPS high schools including TJHSST
     notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names.
   - source_id: fcps_2026_semifinalists
     provider: fcps
@@ -90,4 +94,72 @@ sources:
     parser_version: 1
     source_hash: d74b3aef8369eb2eec2204c452ace892ca8de8bbc0ff8f7e9a3254ed723daaa3
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 262
+    reported_total_scope: FCPS high schools including TJHSST
     notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names.
+  - source_id: aps_2025_semifinalists
+    provider: aps
+    graduating_class: 2025
+    geography_or_district: APS high schools
+    source_title: 22 Seniors Named National Merit Scholarship Semifinalists
+    publisher: Arlington Public Schools
+    publication_date: 2024-09-12
+    source_url: https://www.apsva.us/post/22-seniors-named-national-merit-scholarship-semifinalists/
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named Arlington list with TJHSST resident subset excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: aps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/aps/aps_2025_semifinalists_snapshot.csv
+    archived_file_sha256: 3a0e137a66860cbc8a8266d9a6780ea91c0a9356b597af52af2e080bea6f0a59
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: de5fdc39b014327562b25c13af29e100e5a1b43d49db4b9ac416ec2663dd661d
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 22
+    reported_total_scope: Arlington students including TJHSST resident subset
+    notes: Names are listed by school or TJHSST resident subset on the official APS page; zeros are inferred only for rostered APS public high schools absent from this complete APS list. Archived snapshot stores count-only rows and omits student names.
+  - source_id: aps_2026_semifinalists
+    provider: aps
+    graduating_class: 2026
+    geography_or_district: APS high schools
+    source_title: 30 Seniors Named National Merit Scholarship Semifinalists
+    publisher: Arlington Public Schools
+    publication_date: 2025-09-11
+    source_url: https://www.apsva.us/post/29-seniors-named-national-merit-scholarship-semifinalists/
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named Arlington list with Arlington Tech and TJHSST resident subset excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: aps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/aps/aps_2026_semifinalists_snapshot.csv
+    archived_file_sha256: 4def00f7243f66ead12ee99ab53ed621bfe13cb61c976ebe4e069e78ff631006
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 1039702f522156bc8fcca6c9b4ca1122d8af5634f41616666e70e5025f2cd2bd
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 30
+    reported_total_scope: Arlington students including Arlington Tech and TJHSST resident subset
+    notes: Names are listed by school or TJHSST resident subset on the official APS page; Arlington Tech is kept out of the panel because it is not a separate roster analytical unit. Archived snapshot stores count-only rows and omits student names.
+  - source_id: lcps_2026_semifinalists
+    provider: lcps
+    graduating_class: 2026
+    geography_or_district: LCPS high schools
+    source_title: Sixty-nine LCPS Students Named 2026 National Merit Semifinalists
+    publisher: Loudoun County Public Schools
+    publication_date: 2025-09-22
+    source_url: https://www.lcps.org/o/lcps/article/2436621
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named LCPS list with TJHSST resident subset excluded from roster counts
+    complete_for_zero_inference: true
+    zero_inference_scope: lcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/lcps/lcps_2026_semifinalists_snapshot.csv
+    archived_file_sha256: b7d76805097061b66c8d3812ec38d0029671b1eb68ed0a773ea0807cea290259
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: dee8196ee58b69e1fef994a65cb0b34b27f2b8fd0cb0a8fe79245d0438716bc7
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 69
+    reported_total_scope: LCPS students from LCPS high schools plus LCPS-resident TJHSST students
+    notes: Names are listed by school or TJHSST resident subset on the official LCPS page; zeros are inferred only for rostered LCPS public high schools absent from this complete LCPS list. Archived snapshot stores count-only rows and omits student names.

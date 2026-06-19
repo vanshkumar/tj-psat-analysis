@@ -124,4 +124,19 @@
 - Action: Keep these rows blank with machine-readable enrollment statuses in `enrollment_panel.csv`; do not backfill from adjacent years or similar schools.
 - Confidence: high
 
+**2026-06-19 - Milestone 5 readiness review**
+- Observation: The NMSF manifest and observation framework pass tests, but the four-year pilot currently has source-backed rows only for FCPS Classes 2024-2026; Class 2023 and non-FCPS/public-private coverage remain `missing_source`.
+- Action: Start Milestone 5 with source collection and archival for Class 2023 FCPS plus LCPS, APS, PWCS, Falls Church City/Meridian, and verifiable private-school sources before building reconciliation outputs.
+- Confidence: high
+
+**2026-06-19 - Milestone 5 jurisdictional source handling**
+- Observation: APS and LCPS NMSF releases list resident students attending TJHSST separately from base-school lists, while the project panel treats TJHSST as one school row sourced from the FCPS/TJHSST release.
+- Action: Keep jurisdictional TJHSST subsets in count-only snapshots for source-total reconciliation, but exclude them from `nmsf_observations.csv` to avoid double counting or splitting TJHSST by residence.
+- Confidence: high
+
+**2026-06-19 - Shared NMSF count CSV compatibility**
+- Observation: `data/sources/nmsf_counts.csv` is read by both the Milestone 4 observation builder with `school_aliases.csv` and the legacy interim panel applier with seed-workbook aliases only.
+- Action: Use canonical-compatible source school names for rows like H-B Woodlawn, and keep provider-aware ambiguity resolution for duplicated public names such as Freedom High School.
+- Confidence: high
+
 ## What Has Failed

@@ -37,6 +37,22 @@ OBSERVATION_FIELDNAMES = (
     "notes",
 )
 
+ZERO_INFERENCE_DIVISION_BY_SCOPE = {
+    "aps_public_high_schools_in_roster": "APS",
+    "fcps_public_high_schools_in_roster": "FCPS",
+    "falls_church_city_public_high_schools_in_roster": "Falls Church City",
+    "lcps_public_high_schools_in_roster": "LCPS",
+    "pwcs_public_high_schools_in_roster": "PWCS",
+}
+
+PROVIDER_TO_DIVISION = {
+    "aps": "APS",
+    "fcps": "FCPS",
+    "fccps": "Falls Church City",
+    "lcps": "LCPS",
+    "pwcs": "PWCS",
+}
+
 
 def load_csv_rows(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as handle:
@@ -153,7 +169,7 @@ def _match_records(
 ) -> dict[tuple[str, int], ManualNmsfCount]:
     roster_by_id = {row["school_id"]: row for row in roster_rows}
     alias_index: dict[str, str] = {}
-    blocked_aliases: dict[str, str] = {}
+    blocked_aliases: dict[str, set[str]] = {}
     for row in alias_rows:
         normalized = row["normalized_alias"] or normalize_school_name(row["alias"])
         if not normalized:
@@ -161,22 +177,29 @@ def _match_records(
         if row.get("join_allowed", "").lower() == "true":
             existing = alias_index.get(normalized)
             if existing and existing != row["school_id"]:
-                blocked_aliases[normalized] = f"{existing}|{row['school_id']}"
+                blocked_aliases[normalized] = {existing, row["school_id"]}
                 alias_index.pop(normalized, None)
             else:
                 alias_index[normalized] = row["school_id"]
         else:
-            blocked_aliases[normalized] = row.get("conflict_school_ids", "")
+            blocked_aliases[normalized] = {
+                school_id
+                for school_id in row.get("conflict_school_ids", "").split("|")
+                if school_id
+            }
 
     matched: dict[tuple[str, int], ManualNmsfCount] = {}
     for record in records:
         normalized = normalize_school_name(record.school_name_source)
         if normalized in blocked_aliases:
-            raise ValueError(
-                f"NMSF source row {record.source_id}/{record.school_name_source} "
-                f"matches blocked or ambiguous alias {normalized}"
+            school_id = _resolve_blocked_alias_for_provider(
+                normalized=normalized,
+                provider=record.provider,
+                candidate_school_ids=blocked_aliases[normalized],
+                roster_by_id=roster_by_id,
             )
-        school_id = alias_index.get(normalized)
+        else:
+            school_id = alias_index.get(normalized)
         if not school_id or school_id not in roster_by_id:
             raise ValueError(
                 f"NMSF source row {record.source_id}/{record.school_name_source} "
@@ -187,6 +210,26 @@ def _match_records(
             raise ValueError(f"Duplicate NMSF observation for {school_id} class {record.class_year}")
         matched[key] = record
     return matched
+
+
+def _resolve_blocked_alias_for_provider(
+    *,
+    normalized: str,
+    provider: str,
+    candidate_school_ids: set[str],
+    roster_by_id: dict[str, dict[str, str]],
+) -> str:
+    division = PROVIDER_TO_DIVISION.get(provider)
+    if division:
+        provider_matches = [
+            school_id
+            for school_id in candidate_school_ids
+            if roster_by_id.get(school_id, {}).get("division") == division
+        ]
+        if len(provider_matches) == 1:
+            return provider_matches[0]
+    candidates = "|".join(sorted(candidate_school_ids))
+    raise ValueError(f"NMSF source row matches blocked or ambiguous alias {normalized}: {candidates}")
 
 
 def _sourced_observation(
@@ -224,12 +267,13 @@ def _apply_verified_zeros(
     source: NmsfSource,
     source_hash: str,
 ) -> None:
-    if source.zero_inference_scope != "fcps_public_high_schools_in_roster":
+    division = ZERO_INFERENCE_DIVISION_BY_SCOPE.get(source.zero_inference_scope)
+    if not division:
         raise ValueError(
             f"Unsupported zero inference scope for {source.source_id}: {source.zero_inference_scope}"
         )
     for roster_row in roster_rows:
-        if roster_row["division"] != "FCPS" or roster_row["sector"] != "public":
+        if roster_row["division"] != division or roster_row["sector"] != "public":
             continue
         if not _is_operating(roster_row, source.graduating_class):
             continue

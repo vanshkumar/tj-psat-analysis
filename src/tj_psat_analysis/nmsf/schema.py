@@ -65,6 +65,8 @@ class NmsfSource:
     hash_basis: str
     archived_file_path: str
     archived_file_sha256: str
+    reported_total: str
+    reported_total_scope: str
     notes: str
 
     @property
@@ -157,6 +159,8 @@ def _source_from_mapping(raw: dict[str, Any], path: Path) -> NmsfSource:
         hash_basis=str(raw["hash_basis"]),
         archived_file_path=str(raw.get("archived_file_path") or ""),
         archived_file_sha256=str(raw.get("archived_file_sha256") or ""),
+        reported_total=str(raw.get("reported_total") or ""),
+        reported_total_scope=str(raw.get("reported_total_scope") or ""),
         notes=str(raw.get("notes") or ""),
     )
 

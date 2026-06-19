@@ -231,9 +231,20 @@ Tasks:
 - [ ] Collect NMSC Virginia lists where district releases are absent or incomplete.
 - [ ] Add public-school observations for every rostered school-year.
 - [ ] Add private-school observations only when verifiable.
-- [ ] Reconcile school counts against complete district totals where possible.
-- [ ] Investigate every total mismatch.
-- [ ] Produce a human-review queue for ambiguous names and source gaps.
+- [x] Reconcile school counts against complete district totals where possible.
+- [x] Investigate every total mismatch.
+- [x] Produce a human-review queue for ambiguous names and source gaps.
+
+Status note: `data/processed/nmsf_observations_2023_2026.csv` and
+`reports/data_quality/nmsf_reconciliation_2023_2026.md` now cover the
+source-backed pilot rows available from official FCPS/TJHSST Classes 2024-2026,
+APS Classes 2025-2026, and LCPS Class 2026 releases. APS/LCPS resident TJHSST
+subsets and Arlington Tech are retained in count-only snapshots for
+reconciliation but excluded from the observation panel to preserve the single
+TJHSST row and the roster's Arlington Tech decision. The remaining Class 2023,
+non-FCPS Class 2024, LCPS Class 2025 school attribution, PWCS, Falls Church
+City/Meridian, and private-school source gaps remain explicitly listed in
+`reports/data_quality/manual_review_queue.csv`.
 
 ### Deliverables
 
