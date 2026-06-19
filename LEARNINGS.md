@@ -169,6 +169,11 @@
 - Action: Import only still-missing roster rows from local-media articles, keep overlapping public rows as excluded snapshot counts for source-total reconciliation, and do not use local-area articles for zero inference.
 - Confidence: high
 
+**2026-06-19 - Patch archive discovery**
+- Observation: Patch site-wide or slug wildcard CDX searches may miss National Merit articles, while community-prefix CDX queries such as `patch.com/virginia/fairfaxcity/*` and `patch.com/virginia/mclean/*` expose archived local school articles for filtering.
+- Action: For missing Patch/local-media NMSF rows, fetch community-prefix CDX indexes and filter locally for `national-merit`, `semifinalist`, and target school names before treating Patch coverage as absent.
+- Confidence: medium
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

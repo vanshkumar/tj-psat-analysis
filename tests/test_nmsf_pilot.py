@@ -65,6 +65,14 @@ class NmsfPilotTest(unittest.TestCase):
             "| patch_fairfax_city_2025_semifinalists | 2025 | 17 | 3 | 14 | 17 | reconciled |",
             self.report,
         )
+        self.assertIn(
+            "| patch_mclean_2025_semifinalists | 2025 | 52 | 16 | 36 | 52 | reconciled |",
+            self.report,
+        )
+        self.assertIn(
+            "| patch_fairfax_city_2026_semifinalists | 2026 | 15 | 2 | 13 | 15 | reconciled |",
+            self.report,
+        )
 
 
 if __name__ == "__main__":
