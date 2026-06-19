@@ -6,6 +6,11 @@ Build a reproducible dataset and analysis of National Merit Semifinalist (NMSF) 
 
 The first analytical output should be a pathway-by-year view of NMSF counts normalized by junior-class enrollment, with every numeric value traceable to a public source.
 
+Current sequencing note: the Classes 2023-2026 pilot plus the completed
+FCPS/TJHSST Classes 2019-2022 historical slice are enough to proceed to the
+analytical panel. The remaining historical backfill is optional robustness
+work, not a blocker for Milestone 7.
+
 ## Non-negotiable data rules
 
 - Do not guess, interpolate, or fabricate NMSF counts.
@@ -273,17 +278,22 @@ small jurisdiction/private-school clusters rather than a clear bulk source gap.
 
 ---
 
-## Milestone 6 — Historical NMSF backfill
+## Milestone 6 — Optional historical NMSF backfill robustness
 
-- [ ] Backfill Classes 2019-2022.
-- [ ] Search district archives and the Internet Archive for removed releases.
-- [ ] Use NMSC Virginia lists where accessible.
+Do not block the first analytical panel on this milestone. Continue only when a
+source has broad payoff or naturally overlaps with later validation work.
+
+- [x] Backfill official FCPS/TJHSST Classes 2019-2022.
+- [x] Search the Internet Archive for removed FCPS release pages.
+- [ ] Optionally search other district archives and the Internet Archive for removed releases.
+- [ ] Optionally use NMSC Virginia lists where accessible.
 - [ ] Add school press releases and reputable local reporting only when the source identifies the relevant class and school clearly.
 - [ ] Avoid forums, unattributed spreadsheets, and inferred counts as final sources.
 - [ ] Record source coverage separately from data values.
 - [ ] Reconcile totals by district and year where possible.
 
-Status note: The first historical slice backfills official FCPS/TJHSST
+Status note: Stop here for the pre-analysis Task 6 slice. The first historical
+slice backfills official FCPS/TJHSST
 Classes 2019-2022 using archived FCPS release pages discovered through the
 Internet Archive `/news/` CDX index. Count-only snapshots live under
 `data/raw/nmsf/fcps/`, the school-level transcriptions are in
@@ -292,8 +302,9 @@ zeros for absent rostered FCPS public schools in those class years. Class 2022
 is documented with a source discrepancy: the FCPS article text says 214
 semifinalists, but the visible school-grouped list sums to 215, so the manifest
 uses the visible named-list total and notes the mismatch. Non-FCPS historical
-districts and private-school rows remain to be collected; missing rows should
-not be converted to zero.
+districts and private-school rows remain optional future robustness work;
+missing rows should not be converted to zero, and Milestone 7 should proceed
+using explicit observation statuses and compatible coverage.
 
 ### Deliverables
 
@@ -303,7 +314,7 @@ not be converted to zero.
 
 ### Definition of done
 
-- The panel covers Classes 2019-2026 with explicit status for every school-year.
+- If pursued to completion, the panel covers Classes 2019-2026 with explicit status for every school-year.
 - No guessed number appears in the final dataset.
 
 ---
@@ -424,7 +435,8 @@ Do not block the NMSF analysis on these tasks.
 3. **PR 3:** Complete public and private enrollment denominators.
 4. **PR 4:** Source manifest and NMSF parser framework.
 5. **PR 5:** Classes 2023-2026 NMSF pilot.
-6. **PR 6:** Classes 2019-2022 historical backfill.
+6. **PR 6:** Optional Classes 2019-2022 historical backfill robustness; the
+   current pre-analysis stopping point is official FCPS/TJHSST 2019-2022.
 7. **PR 7:** Analytical panel and validation suite.
 8. **PR 8:** Charts, descriptive report, and robustness checks.
 

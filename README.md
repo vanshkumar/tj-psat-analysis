@@ -136,6 +136,12 @@ local articles are not used for zero inference.
 authoritative summary of unresolved observations; the manual review queue also
 contains excluded count-only snapshot rows used to reconcile source totals.
 
+The historical Classes 2019-2022 backfill is optional robustness work rather
+than a prerequisite for the analytical panel. The pre-analysis stopping point is
+the official FCPS/TJHSST 2019-2022 slice already in the main observation layer;
+non-FCPS historical rows should remain `missing_source` unless a clear,
+source-backed bulk lead is added later.
+
 ## Source Discipline
 
 - Do not use the workbook `nsmf 2019` sheet as evidence for NMSF counts.
