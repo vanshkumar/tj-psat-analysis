@@ -38,6 +38,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
             {
                 "aps_2025_semifinalists",
                 "aps_2026_semifinalists",
+                "fcps_2023_semifinalists",
                 "fcps_2024_semifinalists",
                 "fcps_2025_semifinalists",
                 "fcps_2026_semifinalists",
@@ -125,9 +126,19 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 73)
-        self.assertEqual(statuses["verified_zero"], 27)
+        self.assertEqual(statuses["verified_count"], 91)
+        self.assertEqual(statuses["verified_zero"], 34)
         self.assertEqual(statuses["not_operating"], 9)
+
+        tj_2023 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2023)
+        self.assertEqual(tj_2023["nmsf_count"], "132")
+        self.assertEqual(tj_2023["nmsf_status"], "verified_count")
+        self.assertEqual(tj_2023["source_id"], "fcps_2023_semifinalists")
+
+        annandale_2023 = self._lookup("annandale_high_school", 2023)
+        self.assertEqual(annandale_2023["nmsf_count"], "0")
+        self.assertEqual(annandale_2023["nmsf_status"], "verified_zero")
+        self.assertEqual(annandale_2023["source_id"], "fcps_2023_semifinalists")
 
         tj_2026 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2026)
         self.assertEqual(tj_2026["nmsf_count"], "113")

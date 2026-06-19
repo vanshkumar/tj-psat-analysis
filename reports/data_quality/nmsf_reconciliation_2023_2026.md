@@ -8,22 +8,22 @@ TJHSST is kept as one school row; jurisdictional TJHSST subsets in APS/LCPS rele
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 209 |
+| reports/data_quality/manual_review_queue.csv | 184 |
 
 ## Observation Status Counts
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 204 |
-| verified_count | 73 |
-| verified_zero | 27 |
+| missing_source | 179 |
+| verified_count | 91 |
+| verified_zero | 34 |
 
 ## Coverage By Division And Class
 
 | Class | Division | Rows | Verified Count | Verified Zero | Missing Source | Not Operating |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2023 | APS | 5 | 0 | 0 | 5 | 0 |
-| 2023 | FCPS | 36 | 0 | 0 | 36 | 0 |
+| 2023 | FCPS | 36 | 18 | 7 | 11 | 0 |
 | 2023 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
 | 2023 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2023 | PWCS | 15 | 0 | 0 | 15 | 0 |
@@ -49,6 +49,7 @@ TJHSST is kept as one school row; jurisdictional TJHSST subsets in APS/LCPS rele
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | aps_2025_semifinalists | 2025 | 22 | 15 | 7 | 22 | reconciled | Thomas Jefferson High School for Science and Technology: 7 excluded_tjhsst_resident_subset |
 | aps_2026_semifinalists | 2026 | 30 | 20 | 10 | 30 | reconciled | Arlington Tech: 1 excluded_nonroster_school; Thomas Jefferson High School for Science and Technology: 9 excluded_tjhsst_resident_subset |
+| fcps_2023_semifinalists | 2023 | 238 | 238 | 0 | 238 | reconciled | FCPS high schools including TJHSST |
 | fcps_2024_semifinalists | 2024 | 264 | 264 | 0 | 264 | reconciled | FCPS high schools including TJHSST |
 | fcps_2025_semifinalists | 2025 | 191 | 191 | 0 | 191 | reconciled | FCPS high schools including TJHSST |
 | fcps_2026_semifinalists | 2026 | 262 | 262 | 0 | 262 | reconciled | FCPS high schools including TJHSST |
@@ -60,7 +61,7 @@ TJHSST is kept as one school row; jurisdictional TJHSST subsets in APS/LCPS rele
 | Class | Division | Missing Rows |
 | --- | --- | --- |
 | 2023 | APS | 5 |
-| 2023 | FCPS | 36 |
+| 2023 | FCPS | 11 |
 | 2023 | Falls Church City | 1 |
 | 2023 | LCPS | 19 |
 | 2023 | PWCS | 15 |

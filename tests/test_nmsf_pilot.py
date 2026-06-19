@@ -52,6 +52,7 @@ class NmsfPilotTest(unittest.TestCase):
 
     def test_reconciliation_accounts_for_excluded_tj_subsets(self) -> None:
         self.assertIn("| aps_2026_semifinalists | 2026 | 30 | 20 | 10 | 30 | reconciled |", self.report)
+        self.assertIn("| fcps_2023_semifinalists | 2023 | 238 | 238 | 0 | 238 | reconciled |", self.report)
         self.assertIn("| lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled |", self.report)
         self.assertIn("| lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled |", self.report)
 

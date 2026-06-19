@@ -104,6 +104,11 @@
 - Action: Archive FCPS releases as count-only snapshots under `data/raw/nmsf/fcps/`, record their SHA-256 hashes in `data/sources/source_manifest.yml`, and let manifest validation reject missing or changed archive files.
 - Confidence: high
 
+**2026-06-19 - FCPS archive discovery**
+- Observation: Direct FCPS search did not expose the Class 2023 NMSF release, but the Internet Archive `/news/` prefix index found both the 237-student and later 238-student official FCPS URLs.
+- Action: When an older FCPS release is missing from current search, download the archived `www.fcps.edu/news/` CDX prefix index and filter locally for `national-merit` before treating the source as absent.
+- Confidence: high
+
 **2026-06-18 - Operating-year roster status**
 - Observation: Independence, Lightridge, and Gainesville have in-panel opening years, so pre-opening class-years should be blank `not_operating` rows rather than `source_pending` NMSF rows or NCES dagger-style `not_applicable` enrollment rows.
 - Action: Keep first operating class years in `FIRST_OPERATING_CLASS_YEAR_BY_SCHOOL_ID` and regenerate seed outputs after changing school-history rules.
@@ -125,7 +130,7 @@
 - Confidence: high
 
 **2026-06-19 - Milestone 5 readiness review**
-- Observation: The NMSF manifest and observation framework pass tests, but the four-year pilot currently has source-backed rows only for FCPS Classes 2024-2026; Class 2023 and non-FCPS/public-private coverage remain `missing_source`.
+- Observation: At the start of Milestone 5, the NMSF manifest and observation framework passed tests, but the four-year pilot had source-backed rows only for FCPS Classes 2024-2026; Class 2023 and non-FCPS/public-private coverage remained `missing_source`.
 - Action: Start Milestone 5 with source collection and archival for Class 2023 FCPS plus LCPS, APS, PWCS, Falls Church City/Meridian, and verifiable private-school sources before building reconciliation outputs.
 - Confidence: high
 
@@ -145,7 +150,7 @@
 - Confidence: high
 
 **2026-06-19 - Milestone 5 queue interpretation**
-- Observation: `reports/data_quality/manual_review_queue.csv` includes 204 true `missing_school_year_source` rows plus five intentional non-observation snapshot rows used for APS/LCPS TJHSST, Arlington Tech, and LCPS 2025 unattributed-total reconciliation.
+- Observation: `reports/data_quality/manual_review_queue.csv` includes 179 true `missing_school_year_source` rows plus five intentional non-observation snapshot rows used for APS/LCPS TJHSST, Arlington Tech, and LCPS 2025 unattributed-total reconciliation.
 - Action: Use the reconciliation report's Source Gaps table, not the raw manual-review queue row count, when summarizing unresolved Milestone 5 source coverage.
 - Confidence: high
 

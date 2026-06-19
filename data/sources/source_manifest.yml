@@ -31,6 +31,28 @@ providers:
   - nmsc_virginia_list
 
 sources:
+  - source_id: fcps_2023_semifinalists
+    provider: fcps
+    graduating_class: 2023
+    geography_or_district: FCPS high schools
+    source_title: Two Hundred Thirty-Eight FCPS Students Are 2023 National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2022-09-14
+    source_url: https://www.fcps.edu/news/two-hundred-thirty-eight-fcps-students-are-2023-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/fcps/fcps_2023_semifinalists_snapshot.csv
+    archived_file_sha256: 650629fa8bfa58ed7c46301186fa7228c2ed0e5cd1736eb3674e71b352612e83
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 6dc3b580f3c2ff4eebb2e6f779597cae627025d129d0c59527c239cf4b42b48c
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 238
+    reported_total_scope: FCPS high schools including TJHSST
+    notes: Names are listed by school on the official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names. The source was discovered through an Internet Archive index because direct FCPS search did not expose the older release.
   - source_id: fcps_2024_semifinalists
     provider: fcps
     graduating_class: 2024
