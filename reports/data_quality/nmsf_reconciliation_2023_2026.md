@@ -14,8 +14,8 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 76 |
-| verified_count | 155 |
+| missing_source | 71 |
+| verified_count | 160 |
 | verified_zero | 73 |
 
 ## Coverage By Division And Class
@@ -23,12 +23,12 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Class | Division | Rows | Verified Count | Verified Zero | Missing Source | Not Operating |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2023 | APS | 5 | 5 | 0 | 0 | 0 |
-| 2023 | FCPS | 36 | 19 | 7 | 10 | 0 |
+| 2023 | FCPS | 36 | 21 | 7 | 8 | 0 |
 | 2023 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
 | 2023 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2023 | PWCS | 15 | 1 | 12 | 2 | 0 |
 | 2024 | APS | 5 | 4 | 0 | 1 | 0 |
-| 2024 | FCPS | 36 | 16 | 10 | 10 | 0 |
+| 2024 | FCPS | 36 | 19 | 10 | 7 | 0 |
 | 2024 | Falls Church City | 1 | 1 | 0 | 0 | 0 |
 | 2024 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2024 | PWCS | 15 | 2 | 11 | 2 | 0 |
@@ -66,6 +66,8 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | patch_fairfax_city_2026_semifinalists | 2026 | 15 | 2 | 13 | 15 | reconciled | Fairfax High School: 5 excluded_duplicate_public_school_count; Carter G. Woodson High School: 8 excluded_duplicate_public_school_count |
 | patch_falls_church_2024_semifinalists | 2024 | 11 | 5 | 6 | 11 | reconciled | Marshall High School: 6 excluded_duplicate_public_school_count |
 | patch_manassas_2026_semifinalists | 2026 | 10 | 3 | 7 | 10 | reconciled | Gainesville High School: 1 excluded_duplicate_public_school_count; Battlefield High School: 2 excluded_duplicate_public_school_count; Charles Colgan High School: 1 excluded_duplicate_public_school_count; Osbourn High School: 1 excluded_nonroster_school; Patriot High School: 1 excluded_duplicate_public_school_count; C.D. Hylton High School: 1 excluded_duplicate_public_school_count |
+| patch_mclean_2023_semifinalists | 2023 | 46 | 10 | 36 | 46 | reconciled | McLean High School: 22 excluded_duplicate_public_school_count; Langley High School: 14 excluded_duplicate_public_school_count |
+| patch_mclean_2024_semifinalists | 2024 | 40 | 11 | 29 | 40 | reconciled | Homeschool: 1 excluded_nonroster_school; Langley High School: 13 excluded_duplicate_public_school_count; McLean High School: 15 excluded_duplicate_public_school_count |
 | patch_mclean_2025_semifinalists | 2025 | 52 | 16 | 36 | 52 | reconciled | Homeschool/Online School: 1 excluded_nonroster_school; Langley High School: 19 excluded_duplicate_public_school_count; McLean High School: 16 excluded_duplicate_public_school_count |
 | patch_mclean_2026_semifinalists | 2026 | 65 | 22 | 43 | 65 | reconciled | Langley High School: 23 excluded_duplicate_public_school_count; McLean High School: 20 excluded_duplicate_public_school_count |
 | patch_vienna_2023_semifinalists | 2023 | 31 | 2 | 29 | 31 | reconciled | James Madison High School: 11 excluded_duplicate_public_school_count; Oakton High School: 11 excluded_duplicate_public_school_count; Marshall High School: 7 excluded_duplicate_public_school_count |
@@ -82,12 +84,12 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 
 | Class | Division | Missing Rows |
 | --- | --- | --- |
-| 2023 | FCPS | 10 |
+| 2023 | FCPS | 8 |
 | 2023 | Falls Church City | 1 |
 | 2023 | LCPS | 19 |
 | 2023 | PWCS | 2 |
 | 2024 | APS | 1 |
-| 2024 | FCPS | 10 |
+| 2024 | FCPS | 7 |
 | 2024 | LCPS | 19 |
 | 2024 | PWCS | 2 |
 | 2025 | Falls Church City | 1 |

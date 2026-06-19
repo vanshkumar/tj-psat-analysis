@@ -55,6 +55,8 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "patch_fairfax_city_2026_semifinalists",
                 "patch_falls_church_2024_semifinalists",
                 "patch_manassas_2026_semifinalists",
+                "patch_mclean_2023_semifinalists",
+                "patch_mclean_2024_semifinalists",
                 "patch_mclean_2025_semifinalists",
                 "patch_mclean_2026_semifinalists",
                 "patch_vienna_2023_semifinalists",
@@ -88,6 +90,8 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                         "patch_fairfax_city_2026_semifinalists",
                         "patch_falls_church_2024_semifinalists",
                         "patch_manassas_2026_semifinalists",
+                        "patch_mclean_2023_semifinalists",
+                        "patch_mclean_2024_semifinalists",
                         "patch_mclean_2025_semifinalists",
                         "patch_mclean_2026_semifinalists",
                         "patch_vienna_2023_semifinalists",
@@ -142,6 +146,18 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                     (disambiguated_names.get(school_name, school_name), nmsf_count)
                     for school_name, nmsf_count in snapshot_count_rows
                 )
+            if source.source_id in {
+                "patch_mclean_2023_semifinalists",
+                "patch_mclean_2024_semifinalists",
+            }:
+                disambiguated_names = {
+                    "McLean Basis Independent": "BASIS Independent McLean",
+                    "The Potomac School": "Potomac School",
+                }
+                snapshot_count_rows = sorted(
+                    (disambiguated_names.get(school_name, school_name), nmsf_count)
+                    for school_name, nmsf_count in snapshot_count_rows
+                )
             self.assertEqual(snapshot_count_rows, records_by_source[source.source_id])
             if observation_snapshot_rows:
                 self.assertEqual(
@@ -177,7 +193,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 155)
+        self.assertEqual(statuses["verified_count"], 160)
         self.assertEqual(statuses["verified_zero"], 73)
         self.assertEqual(statuses["not_operating"], 9)
 
@@ -328,10 +344,40 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(basis_mclean_2025["nmsf_status"], "verified_count")
         self.assertEqual(basis_mclean_2025["source_id"], "patch_mclean_2025_semifinalists")
 
+        basis_mclean_2024 = self._lookup("basis_independent_mclean", 2024)
+        self.assertEqual(basis_mclean_2024["nmsf_count"], "3")
+        self.assertEqual(basis_mclean_2024["nmsf_status"], "verified_count")
+        self.assertEqual(basis_mclean_2024["source_id"], "patch_mclean_2024_semifinalists")
+
+        basis_mclean_2023 = self._lookup("basis_independent_mclean", 2023)
+        self.assertEqual(basis_mclean_2023["nmsf_count"], "")
+        self.assertEqual(basis_mclean_2023["nmsf_status"], "missing_source")
+        self.assertEqual(basis_mclean_2023["source_id"], "")
+
+        madeira_2023 = self._lookup("the_madeira_school", 2023)
+        self.assertEqual(madeira_2023["nmsf_count"], "1")
+        self.assertEqual(madeira_2023["nmsf_status"], "verified_count")
+        self.assertEqual(madeira_2023["source_id"], "patch_mclean_2023_semifinalists")
+
+        madeira_2024 = self._lookup("the_madeira_school", 2024)
+        self.assertEqual(madeira_2024["nmsf_count"], "1")
+        self.assertEqual(madeira_2024["nmsf_status"], "verified_count")
+        self.assertEqual(madeira_2024["source_id"], "patch_mclean_2024_semifinalists")
+
         madeira_2025 = self._lookup("the_madeira_school", 2025)
         self.assertEqual(madeira_2025["nmsf_count"], "3")
         self.assertEqual(madeira_2025["nmsf_status"], "verified_count")
         self.assertEqual(madeira_2025["source_id"], "patch_mclean_2025_semifinalists")
+
+        potomac_2023 = self._lookup("potomac_school", 2023)
+        self.assertEqual(potomac_2023["nmsf_count"], "9")
+        self.assertEqual(potomac_2023["nmsf_status"], "verified_count")
+        self.assertEqual(potomac_2023["source_id"], "patch_mclean_2023_semifinalists")
+
+        potomac_2024 = self._lookup("potomac_school", 2024)
+        self.assertEqual(potomac_2024["nmsf_count"], "7")
+        self.assertEqual(potomac_2024["nmsf_status"], "verified_count")
+        self.assertEqual(potomac_2024["source_id"], "patch_mclean_2024_semifinalists")
 
         potomac_2025 = self._lookup("potomac_school", 2025)
         self.assertEqual(potomac_2025["nmsf_count"], "9")

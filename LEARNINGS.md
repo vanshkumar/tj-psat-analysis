@@ -194,6 +194,11 @@
 - Action: When Patch CDX or search is dry for recent NMSF gaps, fetch `/virginia/{community}/schools` and parse `topicFeed` before treating the source as absent.
 - Confidence: high
 
+**2026-06-19 - Patch topic pagination**
+- Observation: Older Patch NMSF articles can be buried on paginated school-topic feeds such as `/virginia/mclean/schools?page=2` and `/virginia/mclean/schools?page=3`, while the first topic page only shows recent articles.
+- Action: When using Patch topic feeds for older class years, walk the `?page=N` results far enough to cover the target publication month before concluding the article is absent.
+- Confidence: high
+
 **2026-06-19 - Patch locality-grouped articles**
 - Observation: The Patch Loudoun and Prince William/Manassas Class 2026 articles grouped semifinalists by town/locality while individual list items carried the school attribution.
 - Action: Count school-level observations from list-item school text when Patch headings are localities; do not treat locality headings as school rows.

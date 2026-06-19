@@ -70,6 +70,14 @@ class NmsfPilotTest(unittest.TestCase):
             self.report,
         )
         self.assertIn(
+            "| patch_mclean_2023_semifinalists | 2023 | 46 | 10 | 36 | 46 | reconciled |",
+            self.report,
+        )
+        self.assertIn(
+            "| patch_mclean_2024_semifinalists | 2024 | 40 | 11 | 29 | 40 | reconciled |",
+            self.report,
+        )
+        self.assertIn(
             "| patch_mclean_2026_semifinalists | 2026 | 65 | 22 | 43 | 65 | reconciled |",
             self.report,
         )

@@ -603,6 +603,50 @@ sources:
     reported_total: 46
     reported_total_scope: Visible named school-list total in the Patch article
     notes: Patch groups Loudoun County school semifinalists for Class 2025. Positive roster rows are imported because the official LCPS Class 2025 release is total-only; Evergreen Christian School is retained in the snapshot but not imported because it is outside the analytical roster.
+  - source_id: patch_mclean_2023_semifinalists
+    provider: local_media
+    graduating_class: 2023
+    geography_or_district: McLean schools
+    source_title: Students In McLean Named 2023 National Merit Scholar Semifinalists
+    publisher: Patch
+    publication_date: 2022-09-14
+    source_url: https://patch.com/virginia/mclean/seniors-mclean-named-2023-national-merit-scholar-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_mclean_2023_semifinalists_snapshot.csv
+    archived_file_sha256: 609838dd2ea5d546663483c4ea4e47c4d4ca6919b933913d7c43162422b65492
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: e65f3bfe3cae8f5e5567d5b40867f3b665fce5a26dbe543fcbef948ad5f7975a
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 46
+    reported_total_scope: Visible named school-list total in the Patch article
+    notes: Patch groups 46 semifinalists by McLean-area school. Only the still-missing Potomac and Madeira private-school rows are imported; overlapping FCPS public rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_mclean_2024_semifinalists
+    provider: local_media
+    graduating_class: 2024
+    geography_or_district: McLean schools
+    source_title: 40 McLean Area Seniors Named 2024 National Merit Semifinalists
+    publisher: Patch
+    publication_date: 2023-09-14
+    source_url: https://patch.com/virginia/mclean/40-mclean-area-seniors-named-2024-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_mclean_2024_semifinalists_snapshot.csv
+    archived_file_sha256: f93b79e633fa2258ca6da858c5d92b4353a1561005ee1b9555c573763d106e6c
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 94bb34ec0b622411c56c376741a29f162f5811220c76fe30a36f92b00ca199e6
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 40
+    reported_total_scope: Visible named school-list total in the Patch article
+    notes: Patch groups 40 semifinalists by McLean-area school. Only still-missing private-school rows are imported; overlapping FCPS public rows and the homeschool row are retained in the archived snapshot for source-total reconciliation.
   - source_id: patch_mclean_2026_semifinalists
     provider: local_media
     graduating_class: 2026
