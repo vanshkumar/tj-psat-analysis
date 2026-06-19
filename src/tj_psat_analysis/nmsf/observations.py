@@ -189,6 +189,7 @@ def _match_records(
     matched: dict[tuple[str, int], ManualNmsfCount] = {}
     for record in records:
         normalized = normalize_school_name(record.school_name_source)
+        school_id: str | None
         if normalized in blocked_aliases:
             school_id = _resolve_blocked_alias_for_provider(
                 normalized=normalized,
