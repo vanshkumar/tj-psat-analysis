@@ -1,0 +1,13 @@
+period,class_years,comparison_group,operating_school_year_rows,nmsf_count_available_rows,missing_nmsf_rows,compatible_rate_rows,nmsf_count_observed_total,annual_average_observed_nmsf_count,compatible_nmsf_count_total,compatible_grade11_enrollment_total,nmsf_per_100_juniors_covered,nmsf_count_coverage_status,rate_coverage_status,small_number_warning
+pre_2023_2024,2023|2024,All schools including TJHSST,152,127,25,114,671,335.500000,628,57761,1.087239,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+pre_2023_2024,2023|2024,All schools excluding TJHSST,150,125,25,112,374,187.000000,331,56859,0.582142,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+pre_2023_2024,2023|2024,Public schools including TJHSST,120,118,2,112,640,320.000000,626,57367,1.091220,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+pre_2023_2024,2023|2024,Base public schools,118,116,2,110,343,171.500000,329,56465,0.582662,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+pre_2023_2024,2023|2024,Private schools,32,9,23,2,31,15.500000,2,394,0.507614,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+pre_2023_2024,2023|2024,TJHSST,2,2,0,2,297,148.500000,297,902,32.926829,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+post_2025_2026,2025|2026,All schools including TJHSST,152,140,12,110,667,333.500000,588,59829,0.982801,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+post_2025_2026,2025|2026,All schools excluding TJHSST,150,138,12,108,473,236.500000,394,58802,0.670045,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+post_2025_2026,2025|2026,Public schools including TJHSST,120,114,6,110,599,299.500000,588,59829,0.982801,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+post_2025_2026,2025|2026,Base public schools,118,112,6,108,405,202.500000,394,58802,0.670045,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+post_2025_2026,2025|2026,Private schools,32,26,6,0,68,34.000000,,,,partial_nmsf_count_coverage,no_compatible_rate_coverage,false
+post_2025_2026,2025|2026,TJHSST,2,2,0,2,194,97.000000,194,1027,18.889971,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false

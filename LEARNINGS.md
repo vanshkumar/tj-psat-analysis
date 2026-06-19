@@ -234,6 +234,11 @@
 - Action: In future descriptive tables or figures, check `pathway_coverage_status` and avoid treating `pathway_*_covered` fields as full-pathway totals unless the status is `complete_compatible_coverage`.
 - Confidence: high
 
+**2026-06-19 - Descriptive output aggregation**
+- Observation: Task 8 summaries can have source-backed observed NMSF counts without compatible rate denominators, especially for private-school rows and historical coverage gaps.
+- Action: Keep observed count totals separate from rate-compatible count/enrollment totals in future descriptive or robustness outputs; do not reuse observed count totals as normalized-rate numerators when denominators are missing.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

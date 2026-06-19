@@ -1,0 +1,9 @@
+class_year,with_tjhsst_nmsf_count_observed_total,with_tjhsst_nmsf_available_rows,with_tjhsst_missing_nmsf_rows,without_tjhsst_nmsf_count_observed_total,without_tjhsst_nmsf_available_rows,without_tjhsst_missing_nmsf_rows,tjhsst_nmsf_count,coverage_note
+2019,254,25,48,95,24,48,159,observed totals include only source-backed numeric NMSF rows; missing rows are not zero
+2020,237,25,48,80,24,48,157,observed totals include only source-backed numeric NMSF rows; missing rows are not zero
+2021,212,25,49,80,24,49,132,observed totals include only source-backed numeric NMSF rows; missing rows are not zero
+2022,215,25,50,71,24,50,144,observed totals include only source-backed numeric NMSF rows; missing rows are not zero
+2023,312,63,13,180,62,13,132,observed totals include only source-backed numeric NMSF rows; missing rows are not zero
+2024,359,64,12,194,63,12,165,observed totals include only source-backed numeric NMSF rows; missing rows are not zero
+2025,288,71,5,207,70,5,81,observed totals include only source-backed numeric NMSF rows; missing rows are not zero
+2026,379,69,7,266,68,7,113,observed totals include only source-backed numeric NMSF rows; missing rows are not zero

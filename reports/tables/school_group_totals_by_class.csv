@@ -1,0 +1,25 @@
+class_year,school_group,operating_school_rows,nmsf_count_available_rows,missing_nmsf_rows,grade11_enrollment_available_rows,compatible_rate_rows,nmsf_count_observed_total,compatible_nmsf_count_total,compatible_grade11_enrollment_total,nmsf_per_100_juniors_covered,nmsf_count_coverage_status,rate_coverage_status,small_number_warning
+2019,TJHSST,1,1,0,1,1,159,159,429,37.062937,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2019,Base public schools,56,24,32,53,24,95,95,14630,0.649351,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2019,Private schools,16,0,16,7,0,,,,,no_nmsf_count_coverage,no_compatible_rate_coverage,false
+2020,TJHSST,1,1,0,1,1,157,157,446,35.201794,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2020,Base public schools,56,24,32,53,24,80,80,14247,0.561522,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2020,Private schools,16,0,16,0,0,,,,,no_nmsf_count_coverage,no_compatible_rate_coverage,false
+2021,TJHSST,1,1,0,1,1,132,132,439,30.068337,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2021,Base public schools,57,24,33,54,24,80,80,14187,0.563897,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2021,Private schools,16,0,16,8,0,,,,,no_nmsf_count_coverage,no_compatible_rate_coverage,false
+2022,TJHSST,1,1,0,1,1,144,144,454,31.718062,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2022,Base public schools,58,24,34,55,24,71,71,14145,0.501944,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2022,Private schools,16,0,16,0,0,,,,,no_nmsf_count_coverage,no_compatible_rate_coverage,false
+2023,TJHSST,1,1,0,1,1,132,132,461,28.633406,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2023,Base public schools,59,58,1,56,55,167,161,28372,0.567461,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2023,Private schools,16,4,12,10,2,13,2,394,0.507614,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2024,TJHSST,1,1,0,1,1,165,165,441,37.414966,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2024,Base public schools,59,58,1,56,55,176,168,28093,0.598014,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2024,Private schools,16,5,11,0,0,18,,,,partial_nmsf_count_coverage,no_compatible_rate_coverage,false
+2025,TJHSST,1,1,0,1,1,81,81,504,16.071429,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2025,Base public schools,59,54,5,56,51,173,168,28193,0.595893,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2025,Private schools,16,16,0,0,0,34,,,,complete_nmsf_count_coverage,no_compatible_rate_coverage,false
+2026,TJHSST,1,1,0,1,1,113,113,523,21.606119,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
+2026,Base public schools,59,58,1,58,57,232,226,30609,0.738345,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2026,Private schools,16,10,6,0,0,34,,,,partial_nmsf_count_coverage,no_compatible_rate_coverage,false

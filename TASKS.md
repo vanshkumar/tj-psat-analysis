@@ -366,16 +366,25 @@ admissions-seat allocation inputs, which remain absent pending sourced
 
 ## Milestone 8 — Descriptive analysis and visualizations
 
-- [ ] Plot raw NMSF counts by school and year.
-- [ ] Plot NMSF per 100 juniors by school and year.
-- [ ] Create the pathway-by-class heatmap.
-- [ ] Plot TJHSST separately from base public schools and private schools.
-- [ ] Show total TJ-zone counts with and without TJHSST.
-- [ ] Show public-versus-private totals.
-- [ ] Show pre/post summaries for Classes 2023-24 versus 2025-26.
-- [ ] Add uncertainty or small-number warnings where appropriate.
-- [ ] Display data-coverage and missingness alongside substantive charts.
-- [ ] Annotate Virginia cutoff changes, especially Class of 2026.
+- [x] Plot raw NMSF counts by school and year.
+- [x] Plot NMSF per 100 juniors by school and year.
+- [x] Create the pathway-by-class heatmap.
+- [x] Plot TJHSST separately from base public schools and private schools.
+- [x] Show total TJ-zone counts with and without TJHSST.
+- [x] Show public-versus-private totals.
+- [x] Show pre/post summaries for Classes 2023-24 versus 2025-26.
+- [x] Add uncertainty or small-number warnings where appropriate.
+- [x] Display data-coverage and missingness alongside substantive charts.
+- [x] Document Virginia cutoff placeholders and do not annotate unsourced cutoff changes.
+
+Status note: `scripts/build_descriptive_outputs.py` now generates dependency-light
+SVG figures, CSV summary tables, and `reports/descriptive_results.md` from
+`data/processed/analysis_panel.csv`. Count totals include only source-backed
+numeric NMSF rows; missing rows remain visible and are not converted to zero.
+Rate summaries use only rows with both NMSF counts and grade-11 denominators.
+Pathway heatmap values are covered-subset aggregates and carry coverage-status
+labels. The Virginia cutoff and statewide total fields remain `not_sourced`, so
+the descriptive figures do not annotate cutoff changes.
 
 ### Deliverables
 

@@ -32,6 +32,7 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/apply_nmsf_counts.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_observations.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_pilot_2023_2026.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_panel.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_descriptive_outputs.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 UV_CACHE_DIR=.uv-cache uv run --no-sync python -m unittest discover -s tests
 ```
@@ -61,6 +62,9 @@ Generated pipeline outputs include:
 - `reports/data_quality/nmsf_source_registry.md`
 - `reports/data_quality/nmsf_reconciliation_2023_2026.md`
 - `reports/data_quality/final_panel_checks.md`
+- `reports/descriptive_results.md`
+- `reports/figures/*.svg`
+- `reports/tables/*.csv`
 
 The build command reads the seed workbook from
 `docs/source_notes/tj psat investigation.xlsx`, preserves it unchanged, and
@@ -177,6 +181,25 @@ are included as `not_sourced` placeholders until reliable class-year sources
 are added. Grade-11 enrollment denominators are kept separate from admissions
 seat-allocation inputs; no 8th-grade allocation population is included in this
 panel.
+
+## Descriptive Outputs
+
+`scripts/build_descriptive_outputs.py` reads `data/processed/analysis_panel.csv`
+and generates Task 8 outputs under `reports/figures/`, `reports/tables/`, and
+`reports/descriptive_results.md`.
+
+The figures include school-by-class raw-count and per-100-juniors heatmaps, a
+pathway-by-class covered-rate heatmap, TJHSST/base-public/private comparisons,
+TJ-zone totals with and without TJHSST, base-public versus private totals,
+pre/post summaries for Classes 2023-2024 versus 2025-2026, and a data-coverage
+chart. The companion tables keep observed NMSF count totals separate from
+rate-compatible count/enrollment totals, so denominator gaps and NMSF source
+gaps remain visible. Pathway values are covered-subset aggregates, not
+full-pathway totals unless the coverage status is complete.
+
+Virginia cutoff and statewide-total fields remain `not_sourced` placeholders in
+the analysis panel. The descriptive report documents that gap and the figures
+do not annotate cutoff changes until source-backed cutoff values are added.
 
 ## Source Discipline
 
