@@ -471,6 +471,28 @@ sources:
     reported_total: 53
     reported_total_scope: Visible named school-list total in the Patch article including Marshall context rows
     notes: Patch headline counts 38 Vienna and Oakton students and also lists 15 Marshall students in article text. Only still-missing private-school rows are imported; overlapping public FCPS rows are retained in the archived snapshot for source-total reconciliation.
+  - source_id: patch_arlington_2023_semifinalists
+    provider: local_media
+    graduating_class: 2023
+    geography_or_district: Arlington schools
+    source_title: Students In Arlington Named 2023 National Merit Semifinalists
+    publisher: Patch
+    publication_date: 2022-09-14
+    source_url: https://patch.com/virginia/arlington-va/students-arlington-named-2023-national-merit-scholar-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: local_media_article
+    completeness_scope: incomplete local school-area list; no zero inference
+    complete_for_zero_inference: false
+    zero_inference_scope: none
+    archived_file_path: data/raw/nmsf/local_media/patch_arlington_2023_semifinalists_snapshot.csv
+    archived_file_sha256: 704513f3beef06c69039eb7cc24d0286b8b9cf3588d5d70ad869e6d68704cd00
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: d3d0d58bd276cfd7969829b947a759d6bfdd8c5f33621ab44b18c1f86c2ac43f
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 17
+    reported_total_scope: Visible named school-list total in the Patch article
+    notes: Patch lists Arlington school semifinalists plus a homeschool row. Only the still-missing Bishop O'Connell private-school row is imported; overlapping APS public rows and the homeschool row are retained in the archived snapshot for source-total reconciliation.
   - source_id: patch_arlington_2024_semifinalists
     provider: local_media
     graduating_class: 2024

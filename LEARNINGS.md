@@ -184,6 +184,11 @@
 - Action: Reconcile Patch snapshots to the visible transcribed school-list total when the headline disagrees, document the discrepancy in manifest notes, and do not allocate the unlisted student to any school.
 - Confidence: high
 
+**2026-06-19 - Patch article parsing**
+- Observation: Patch live article pages can expose the full article body in the embedded Next.js `__NEXT_DATA__.props.pageProps.mainContent.item.body` payload, including school-grouped NMSF lists.
+- Action: Parse that embedded payload for local count transcription when available, but archive only count-level snapshots and omit student names from repo data.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

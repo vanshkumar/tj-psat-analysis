@@ -249,7 +249,7 @@ the single TJHSST row, the roster's Arlington Tech decision, and the
 no-school-attribution rule. Overlapping public-school rows in the Patch articles
 are retained only in source snapshots when official district rows already
 cover those counts. The remaining Class 2023-2026 source gaps are down to
-94 `missing_source` rows and remain explicitly listed in
+93 `missing_source` rows and remain explicitly listed in
 `reports/data_quality/manual_review_queue.csv`.
 
 ### Deliverables

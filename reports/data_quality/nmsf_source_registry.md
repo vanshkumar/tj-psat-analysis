@@ -13,9 +13,9 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 389 |
+| missing_source | 388 |
 | not_operating | 9 |
-| verified_count | 137 |
+| verified_count | 138 |
 | verified_zero | 73 |
 
 ## Observation Basis Counts
@@ -23,15 +23,15 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | Basis | Rows |
 | --- | --- |
 | complete_source_zero_inference | 73 |
-| manual_transcription | 137 |
-| no_source_recorded | 389 |
+| manual_transcription | 138 |
+| no_source_recorded | 388 |
 | school_not_operating | 9 |
 
 ## Source Coverage Counts
 
 | Source ID | Rows |
 | --- | --- |
-| (none) | 398 |
+| (none) | 397 |
 | aps_2023_semifinalists | 4 |
 | aps_2025_semifinalists | 4 |
 | aps_2026_semifinalists | 4 |
@@ -40,6 +40,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2025_semifinalists | 25 |
 | fcps_2026_semifinalists | 25 |
 | lcps_2026_semifinalists | 17 |
+| patch_arlington_2023_semifinalists | 1 |
 | patch_arlington_2024_semifinalists | 4 |
 | patch_arlington_2025_semifinalists | 1 |
 | patch_arlington_2026_semifinalists | 1 |
@@ -71,6 +72,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2026_semifinalists | data/raw/nmsf/fcps/fcps_2026_semifinalists_snapshot.csv | 25436587ef644424c6476a967be884e61a83ba8385a187d948a49eaed194d295 |
 | lcps_2025_semifinalists | data/raw/nmsf/lcps/lcps_2025_semifinalists_snapshot.csv | bdfe4856bc2c9d6c75def4551571cb910270556d5bff5a0014043306e7247d63 |
 | lcps_2026_semifinalists | data/raw/nmsf/lcps/lcps_2026_semifinalists_snapshot.csv | b7d76805097061b66c8d3812ec38d0029671b1eb68ed0a773ea0807cea290259 |
+| patch_arlington_2023_semifinalists | data/raw/nmsf/local_media/patch_arlington_2023_semifinalists_snapshot.csv | 704513f3beef06c69039eb7cc24d0286b8b9cf3588d5d70ad869e6d68704cd00 |
 | patch_arlington_2024_semifinalists | data/raw/nmsf/local_media/patch_arlington_2024_semifinalists_snapshot.csv | 06460c0a5300a9a4f3c21799d3b1a8ca4c2e67d555244e4087ee63ac3ba48d2c |
 | patch_arlington_2025_semifinalists | data/raw/nmsf/local_media/patch_arlington_2025_semifinalists_snapshot.csv | a59955913a8ebfa15cc98bf007056e81aac4e1958a7fce71f999d451d5e086d6 |
 | patch_arlington_2026_semifinalists | data/raw/nmsf/local_media/patch_arlington_2026_semifinalists_snapshot.csv | 4c8c6d0a43cebd802dc160e5705096c1889cb8c16886a30d497a9157fde34056 |
@@ -98,7 +100,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 ## Machine Summary
 
-- missing_source: 389
+- missing_source: 388
 - not_operating: 9
-- verified_count: 137
+- verified_count: 138
 - verified_zero: 73

@@ -94,6 +94,10 @@ class NmsfPilotTest(unittest.TestCase):
             self.report,
         )
         self.assertIn(
+            "| patch_arlington_2023_semifinalists | 2023 | 17 | 1 | 16 | 17 | reconciled |",
+            self.report,
+        )
+        self.assertIn(
             "| patch_arlington_2024_semifinalists | 2024 | 23 | 16 | 7 | 23 | reconciled |",
             self.report,
         )

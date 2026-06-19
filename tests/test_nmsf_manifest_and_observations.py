@@ -46,6 +46,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "lcps_2025_semifinalists",
                 "lcps_2026_semifinalists",
                 "patch_arlington_2024_semifinalists",
+                "patch_arlington_2023_semifinalists",
                 "patch_arlington_2025_semifinalists",
                 "patch_arlington_2026_semifinalists",
                 "patch_fairfax_city_2025_semifinalists",
@@ -75,6 +76,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                     {
                         "lcps_2025_semifinalists",
                         "patch_arlington_2024_semifinalists",
+                        "patch_arlington_2023_semifinalists",
                         "patch_arlington_2025_semifinalists",
                         "patch_arlington_2026_semifinalists",
                         "patch_fairfax_city_2025_semifinalists",
@@ -162,7 +164,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 137)
+        self.assertEqual(statuses["verified_count"], 138)
         self.assertEqual(statuses["verified_zero"], 73)
         self.assertEqual(statuses["not_operating"], 9)
 
@@ -334,6 +336,11 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(bishop_2025["nmsf_count"], "1")
         self.assertEqual(bishop_2025["nmsf_status"], "verified_count")
         self.assertEqual(bishop_2025["source_id"], "patch_arlington_2025_semifinalists")
+
+        bishop_2023 = self._lookup("bishop_o_connell_high_school", 2023)
+        self.assertEqual(bishop_2023["nmsf_count"], "1")
+        self.assertEqual(bishop_2023["nmsf_status"], "verified_count")
+        self.assertEqual(bishop_2023["source_id"], "patch_arlington_2023_semifinalists")
 
     def test_unsourced_rows_remain_missing_until_sourced(self) -> None:
         seton_2026 = self._lookup("seton_school_manassas", 2026)
