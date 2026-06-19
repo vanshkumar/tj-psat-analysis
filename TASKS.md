@@ -283,6 +283,18 @@ small jurisdiction/private-school clusters rather than a clear bulk source gap.
 - [ ] Record source coverage separately from data values.
 - [ ] Reconcile totals by district and year where possible.
 
+Status note: The first historical slice backfills official FCPS/TJHSST
+Classes 2019-2022 using archived FCPS release pages discovered through the
+Internet Archive `/news/` CDX index. Count-only snapshots live under
+`data/raw/nmsf/fcps/`, the school-level transcriptions are in
+`data/sources/nmsf_counts.csv`, and complete FCPS scope produces source-backed
+zeros for absent rostered FCPS public schools in those class years. Class 2022
+is documented with a source discrepancy: the FCPS article text says 214
+semifinalists, but the visible school-grouped list sums to 215, so the manifest
+uses the visible named-list total and notes the mismatch. Non-FCPS historical
+districts and private-school rows remain to be collected; missing rows should
+not be converted to zero.
+
 ### Deliverables
 
 - `data/processed/nmsf_observations.csv`

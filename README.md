@@ -97,10 +97,10 @@ python -m unittest discover -s tests
 
 `data/sources/nmsf_counts.csv` stores source-backed count transcriptions. The
 current source slices cover official FCPS/TJHSST National Merit Semifinalist
-releases for Classes 2023, 2024, 2025, and 2026, APS releases for Classes 2023,
-2025, and 2026, PWCS public high-school releases for Classes 2023, 2024, 2025,
-and 2026, LCPS school-attributed releases for Classes 2023, 2024, and 2026,
-and a total-only LCPS release for Class 2025. It also includes local Patch
+releases for Classes 2019 through 2026, APS releases for Classes 2023, 2025,
+and 2026, PWCS public high-school releases for Classes 2023, 2024, 2025, and
+2026, LCPS school-attributed releases for Classes 2023, 2024, and 2026, and a
+total-only LCPS release for Class 2025. It also includes local Patch
 articles for Fairfax City, McLean, Vienna/Oakton, Arlington, Falls Church,
 Ashburn/Loudoun, and Woodbridge school rows not covered by the district
 releases.
@@ -112,8 +112,8 @@ canonical roster, and writes `data/interim/panel_nmsf.csv`.
 layer at `data/processed/nmsf_observations.csv`. It validates
 `data/sources/source_manifest.yml`, keeps NMSF observations separate from
 enrollment denominators, and uses `verified_zero` only for manifest sources
-marked complete for the relevant scope. The current FCPS and PWCS 2023-2026,
-APS 2023/2025/2026, and LCPS 2023/2024/2026 official sources are complete
+marked complete for the relevant scope. The current FCPS 2019-2026, PWCS
+2023-2026, APS 2023/2025/2026, and LCPS 2023/2024/2026 official sources are complete
 named public high-school lists, so absent rostered public schools inside those
 scopes receive source-backed zero observations for those classes. Schools
 outside the source scope remain `missing_source`. APS/LCPS resident TJHSST

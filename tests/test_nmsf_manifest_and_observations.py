@@ -39,6 +39,10 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "aps_2023_semifinalists",
                 "aps_2025_semifinalists",
                 "aps_2026_semifinalists",
+                "fcps_2019_semifinalists",
+                "fcps_2020_semifinalists",
+                "fcps_2021_semifinalists",
+                "fcps_2022_semifinalists",
                 "fcps_2023_semifinalists",
                 "fcps_2024_semifinalists",
                 "fcps_2025_semifinalists",
@@ -195,9 +199,24 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 189)
-        self.assertEqual(statuses["verified_zero"], 78)
+        self.assertEqual(statuses["verified_count"], 259)
+        self.assertEqual(statuses["verified_zero"], 108)
         self.assertEqual(statuses["not_operating"], 9)
+
+        tj_2019 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2019)
+        self.assertEqual(tj_2019["nmsf_count"], "159")
+        self.assertEqual(tj_2019["nmsf_status"], "verified_count")
+        self.assertEqual(tj_2019["source_id"], "fcps_2019_semifinalists")
+
+        annandale_2019 = self._lookup("annandale_high_school", 2019)
+        self.assertEqual(annandale_2019["nmsf_count"], "0")
+        self.assertEqual(annandale_2019["nmsf_status"], "verified_zero")
+        self.assertEqual(annandale_2019["source_id"], "fcps_2019_semifinalists")
+
+        woodson_2022 = self._lookup("woodson_high_school", 2022)
+        self.assertEqual(woodson_2022["nmsf_count"], "5")
+        self.assertEqual(woodson_2022["nmsf_status"], "verified_count")
+        self.assertEqual(woodson_2022["source_id"], "fcps_2022_semifinalists")
 
         tj_2023 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2023)
         self.assertEqual(tj_2023["nmsf_count"], "132")

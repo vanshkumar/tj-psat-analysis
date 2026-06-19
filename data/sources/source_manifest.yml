@@ -31,6 +31,94 @@ providers:
   - nmsc_virginia_list
 
 sources:
+  - source_id: fcps_2019_semifinalists
+    provider: fcps
+    graduating_class: 2019
+    geography_or_district: FCPS high schools
+    source_title: Two Hundred Fifty-Four Students Named 2019 National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2018-09-12
+    source_url: https://www.fcps.edu/news/two-hundred-fifty-four-students-named-2019-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/fcps/fcps_2019_semifinalists_snapshot.csv
+    archived_file_sha256: a0dc519d3e287c42c3beff7e0dcd62ed6e727711f240ac1d6e7e787365583d5b
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 7ca025b24cb855ecdd509b838d06501cd83c5ecc0d742a08e94f72e8c63c89f7
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 254
+    reported_total_scope: FCPS high schools including TJHSST
+    notes: Names are listed by school on an archived official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names. The source was discovered through an Internet Archive index because direct FCPS access returned a Cloudflare access-denied page.
+  - source_id: fcps_2020_semifinalists
+    provider: fcps
+    graduating_class: 2020
+    geography_or_district: FCPS high schools
+    source_title: Two Hundred Thirty-Seven Students Named 2020 National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2019-09-17
+    source_url: https://www.fcps.edu/news/two-hundred-thirty-seven-students-named-2020-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/fcps/fcps_2020_semifinalists_snapshot.csv
+    archived_file_sha256: f10d4b7b944bcf1aeb22e757650534610a7b1b4b9ea7e5521854c69c47ec7633
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 8f2a3b99db001969cd396fa754a53ec050f1013dde5b75373f4eb48351bf9bd7
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 237
+    reported_total_scope: FCPS high schools including TJHSST
+    notes: Names are listed by school on an archived official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names. The source was discovered through an Internet Archive index because direct FCPS access returned a Cloudflare access-denied page.
+  - source_id: fcps_2021_semifinalists
+    provider: fcps
+    graduating_class: 2021
+    geography_or_district: FCPS high schools
+    source_title: Two Hundred Twelve Students Named 2021 National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2020-09-09
+    source_url: https://www.fcps.edu/news/two-hundred-twelve-students-named-2021-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/fcps/fcps_2021_semifinalists_snapshot.csv
+    archived_file_sha256: 400470b932920b556e644643d349ad15874248a2528a875561d1720e1ed626fc
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: beeecaa63722d010117caae680e53bcdafbbcca0ad0b54a5c19363843d5fc10c
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 212
+    reported_total_scope: FCPS high schools including TJHSST
+    notes: Names are listed by school on an archived official FCPS page; zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names. The source was discovered through an Internet Archive index because direct FCPS access returned a Cloudflare access-denied page.
+  - source_id: fcps_2022_semifinalists
+    provider: fcps
+    graduating_class: 2022
+    geography_or_district: FCPS high schools
+    source_title: Students from 16 FCPS High Schools Named National Merit Semifinalists
+    publisher: Fairfax County Public Schools
+    publication_date: 2021-09-23
+    source_url: https://www.fcps.edu/news/students-16-fcps-high-schools-named-national-merit-semifinalists
+    retrieval_date: 2026-06-19
+    source_type: official_district_release
+    completeness_scope: complete named FCPS list only
+    complete_for_zero_inference: true
+    zero_inference_scope: fcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/fcps/fcps_2022_semifinalists_snapshot.csv
+    archived_file_sha256: 0f4fe6ed407b842450b48cf80f8d93b67a64684dcaefeebbe3677bc42907e4a2
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: 6feb7c55aa966f68923068bd3f6c827a27c6d2bc2add7d28401ca67b3563343e
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 215
+    reported_total_scope: Visible named school-list total in the FCPS article
+    notes: The article text says 214 FCPS semifinalists and separately says TJHSST has 144 but the visible school-grouped list sums to 215. Zeros are inferred only for rostered FCPS public high schools absent from this complete FCPS list. Archived snapshot stores school-level counts and omits student names. The source was discovered through an Internet Archive index because direct FCPS access returned a Cloudflare access-denied page.
   - source_id: fcps_2023_semifinalists
     provider: fcps
     graduating_class: 2023

@@ -13,28 +13,32 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 332 |
+| missing_source | 232 |
 | not_operating | 9 |
-| verified_count | 189 |
-| verified_zero | 78 |
+| verified_count | 259 |
+| verified_zero | 108 |
 
 ## Observation Basis Counts
 
 | Basis | Rows |
 | --- | --- |
-| complete_source_zero_inference | 78 |
-| manual_transcription | 189 |
-| no_source_recorded | 332 |
+| complete_source_zero_inference | 108 |
+| manual_transcription | 259 |
+| no_source_recorded | 232 |
 | school_not_operating | 9 |
 
 ## Source Coverage Counts
 
 | Source ID | Rows |
 | --- | --- |
-| (none) | 341 |
+| (none) | 241 |
 | aps_2023_semifinalists | 4 |
 | aps_2025_semifinalists | 4 |
 | aps_2026_semifinalists | 4 |
+| fcps_2019_semifinalists | 25 |
+| fcps_2020_semifinalists | 25 |
+| fcps_2021_semifinalists | 25 |
+| fcps_2022_semifinalists | 25 |
 | fcps_2023_semifinalists | 25 |
 | fcps_2024_semifinalists | 25 |
 | fcps_2025_semifinalists | 25 |
@@ -73,6 +77,10 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | aps_2023_semifinalists | data/raw/nmsf/aps/aps_2023_semifinalists_snapshot.csv | 55de635d170f76a5989a7519b3426fea75476f14045d6fd2c51e82c2532bd1c0 |
 | aps_2025_semifinalists | data/raw/nmsf/aps/aps_2025_semifinalists_snapshot.csv | 3a0e137a66860cbc8a8266d9a6780ea91c0a9356b597af52af2e080bea6f0a59 |
 | aps_2026_semifinalists | data/raw/nmsf/aps/aps_2026_semifinalists_snapshot.csv | 4def00f7243f66ead12ee99ab53ed621bfe13cb61c976ebe4e069e78ff631006 |
+| fcps_2019_semifinalists | data/raw/nmsf/fcps/fcps_2019_semifinalists_snapshot.csv | a0dc519d3e287c42c3beff7e0dcd62ed6e727711f240ac1d6e7e787365583d5b |
+| fcps_2020_semifinalists | data/raw/nmsf/fcps/fcps_2020_semifinalists_snapshot.csv | f10d4b7b944bcf1aeb22e757650534610a7b1b4b9ea7e5521854c69c47ec7633 |
+| fcps_2021_semifinalists | data/raw/nmsf/fcps/fcps_2021_semifinalists_snapshot.csv | 400470b932920b556e644643d349ad15874248a2528a875561d1720e1ed626fc |
+| fcps_2022_semifinalists | data/raw/nmsf/fcps/fcps_2022_semifinalists_snapshot.csv | 0f4fe6ed407b842450b48cf80f8d93b67a64684dcaefeebbe3677bc42907e4a2 |
 | fcps_2023_semifinalists | data/raw/nmsf/fcps/fcps_2023_semifinalists_snapshot.csv | 650629fa8bfa58ed7c46301186fa7228c2ed0e5cd1736eb3674e71b352612e83 |
 | fcps_2024_semifinalists | data/raw/nmsf/fcps/fcps_2024_semifinalists_snapshot.csv | 8df2123dcb4d6f606fb0170a3f1f0fdb5c2684a6380d5a428f87df83aa812250 |
 | fcps_2025_semifinalists | data/raw/nmsf/fcps/fcps_2025_semifinalists_snapshot.csv | d8da3a5ff4630944278159da0b77d3c4a95fae6f40010c135c4e38ef00abfa54 |
@@ -114,7 +122,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 ## Machine Summary
 
-- missing_source: 332
+- missing_source: 232
 - not_operating: 9
-- verified_count: 189
-- verified_zero: 78
+- verified_count: 259
+- verified_zero: 108

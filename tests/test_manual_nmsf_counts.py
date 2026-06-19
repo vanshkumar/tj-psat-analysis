@@ -44,11 +44,15 @@ class ManualNmsfCountsTest(unittest.TestCase):
             if row["school_id"] == school_id and row["class_year"] == str(class_year)
         ][0]
 
-    def test_fcps_source_totals_match_release_titles(self) -> None:
+    def test_fcps_source_totals_match_release_transcriptions(self) -> None:
         totals: dict[str, int] = {}
         for record in self.records:
             totals[record.source_id] = totals.get(record.source_id, 0) + record.nmsf_count
 
+        self.assertEqual(totals["fcps_2019_semifinalists"], 254)
+        self.assertEqual(totals["fcps_2020_semifinalists"], 237)
+        self.assertEqual(totals["fcps_2021_semifinalists"], 212)
+        self.assertEqual(totals["fcps_2022_semifinalists"], 215)
         self.assertEqual(totals["fcps_2024_semifinalists"], 264)
         self.assertEqual(totals["fcps_2025_semifinalists"], 191)
         self.assertEqual(totals["fcps_2026_semifinalists"], 262)

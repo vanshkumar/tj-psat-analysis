@@ -219,6 +219,11 @@
 - Action: For older LCPS Blackboard NMSF searches, fetch a September `PageType=14` module list page and search its titles before downloading individual `PageType=3` article pages.
 - Confidence: high
 
+**2026-06-19 - Historical FCPS NMSF backfill**
+- Observation: The official FCPS Class 2022 NMSF article text says 214 semifinalists, but the visible school-grouped list sums to 215 while its TJHSST line still matches the stated TJHSST subtotal of 144.
+- Action: For FCPS Class 2022, transcribe school counts from the visible named list, set the manifest reported total to the visible-list total, and keep the stated-total mismatch in source notes rather than forcing reconciliation to the article prose.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
