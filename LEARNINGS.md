@@ -150,3 +150,8 @@
 - Observation: CI runs `python -m ruff format --check .`, and unittest plus `git diff --check` can pass while Ruff still wants formatting changes.
 - Action: Run `UV_CACHE_DIR=.uv-cache uv run --no-sync python -m ruff format --check .` before publishing, or run Ruff format on touched Python files after edits.
 - Confidence: high
+
+**2026-06-19 - CI type check**
+- Observation: CI runs `python -m mypy`, and formatting, lint, and unittest checks can pass while mypy still catches type-inference issues.
+- Action: Include `UV_CACHE_DIR=.uv-cache uv run --no-sync python -m mypy` in pre-push verification for source changes.
+- Confidence: high
