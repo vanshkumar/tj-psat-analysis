@@ -164,6 +164,11 @@
 - Action: For PWCS NMSF backfill, filter the archived `/news/` CDX index locally, import only PWCS high-school rows into observations, keep TJHSST former-PWCS rows as excluded snapshot counts, and do not infer zeros for PWCS-located private schools from PWCS public releases.
 - Confidence: high
 
+**2026-06-19 - Local-media NMSF overlap handling**
+- Observation: Patch local NMSF articles can provide private-school rows absent from district releases, but their school lists may overlap public rows already covered by official FCPS sources.
+- Action: Import only still-missing roster rows from local-media articles, keep overlapping public rows as excluded snapshot counts for source-total reconciliation, and do not use local-area articles for zero inference.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

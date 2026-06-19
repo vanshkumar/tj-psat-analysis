@@ -239,12 +239,15 @@ Status note: `data/processed/nmsf_observations_2023_2026.csv` and
 `reports/data_quality/nmsf_reconciliation_2023_2026.md` now cover the
 source-backed pilot rows available from official FCPS/TJHSST Classes 2023-2026,
 APS Classes 2023 and 2025-2026, PWCS public high-school Classes 2023-2026,
-LCPS Class 2026, and a total-only official LCPS Class 2025 release. APS/LCPS
+LCPS Class 2026, a total-only official LCPS Class 2025 release, and two
+Class 2025 Fairfax-area private-school rows from a local Patch article. APS/LCPS
 resident TJHSST subsets, PWCS former-middle-school TJHSST references, Arlington
 Tech, and the LCPS Class 2025 unattributed total are retained in count-only
 snapshots for reconciliation but excluded from the observation panel to preserve
 the single TJHSST row, the roster's Arlington Tech decision, and the
-no-school-attribution rule. The remaining non-FCPS Class 2023, non-FCPS Class
+no-school-attribution rule. Overlapping public-school rows in the Patch article
+are retained only in the source snapshot because official FCPS rows already
+cover those counts. The remaining non-FCPS Class 2023, non-FCPS Class
 2024, LCPS Class 2025 school attribution, Falls Church City/Meridian, and
 private-school source gaps remain explicitly listed in
 `reports/data_quality/manual_review_queue.csv`.

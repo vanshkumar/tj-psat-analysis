@@ -8,14 +8,14 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | Output | Rows |
 | --- | --- |
 | data/processed/nmsf_observations_2023_2026.csv | 304 |
-| reports/data_quality/manual_review_queue.csv | 132 |
+| reports/data_quality/manual_review_queue.csv | 133 |
 
 ## Observation Status Counts
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 123 |
-| verified_count | 108 |
+| missing_source | 121 |
+| verified_count | 110 |
 | verified_zero | 73 |
 
 ## Coverage By Division And Class
@@ -33,7 +33,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2024 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2024 | PWCS | 15 | 2 | 11 | 2 | 0 |
 | 2025 | APS | 5 | 4 | 0 | 1 | 0 |
-| 2025 | FCPS | 36 | 19 | 6 | 11 | 0 |
+| 2025 | FCPS | 36 | 21 | 6 | 9 | 0 |
 | 2025 | Falls Church City | 1 | 0 | 0 | 1 | 0 |
 | 2025 | LCPS | 19 | 0 | 0 | 19 | 0 |
 | 2025 | PWCS | 15 | 5 | 8 | 2 | 0 |
@@ -56,6 +56,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | fcps_2026_semifinalists | 2026 | 262 | 262 | 0 | 262 | reconciled | FCPS high schools including TJHSST |
 | lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled | LCPS unattributed semifinalist total: 57 source_incomplete_unattributed_total |
 | lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled | Thomas Jefferson High School for Science and Technology: 12 excluded_tjhsst_resident_subset |
+| patch_fairfax_city_2025_semifinalists | 2025 | 17 | 3 | 14 | 17 | reconciled | Fairfax High School: 4 excluded_duplicate_public_school_count; James W. Robinson Secondary School: 4 excluded_duplicate_public_school_count; W. T. Woodson High School: 6 excluded_duplicate_public_school_count |
 | pwcs_2023_semifinalists | 2023 | 3 | 2 | 1 | 3 | reconciled | Thomas Jefferson High School for Science and Technology: 1 excluded_tjhsst_former_pwcs_student |
 | pwcs_2024_semifinalists | 2024 | 6 | 2 | 4 | 6 | reconciled | Thomas Jefferson High School for Science and Technology: 4 excluded_tjhsst_former_pwcs_student |
 | pwcs_2025_semifinalists | 2025 | 7 | 6 | 1 | 7 | reconciled | Thomas Jefferson High School for Science and Technology: 1 excluded_tjhsst_former_pwcs_student |
@@ -76,7 +77,7 @@ TJHSST is kept as one school row; jurisdictional or former-school TJHSST referen
 | 2024 | LCPS | 19 |
 | 2024 | PWCS | 2 |
 | 2025 | APS | 1 |
-| 2025 | FCPS | 11 |
+| 2025 | FCPS | 9 |
 | 2025 | Falls Church City | 1 |
 | 2025 | LCPS | 19 |
 | 2025 | PWCS | 2 |

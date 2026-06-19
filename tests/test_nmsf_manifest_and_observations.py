@@ -45,6 +45,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "fcps_2026_semifinalists",
                 "lcps_2025_semifinalists",
                 "lcps_2026_semifinalists",
+                "patch_fairfax_city_2025_semifinalists",
                 "pwcs_2023_semifinalists",
                 "pwcs_2024_semifinalists",
                 "pwcs_2025_semifinalists",
@@ -57,7 +58,13 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
             if source.complete_for_zero_inference:
                 self.assertTrue(source.zero_inference_scope.endswith("_public_high_schools_in_roster"))
             else:
-                self.assertEqual(source.source_id, "lcps_2025_semifinalists")
+                self.assertIn(
+                    source.source_id,
+                    {
+                        "lcps_2025_semifinalists",
+                        "patch_fairfax_city_2025_semifinalists",
+                    },
+                )
                 self.assertEqual(source.zero_inference_scope, "none")
             self.assertEqual(len(source.source_hash), 64)
             self.assertTrue(source.reported_total)
@@ -131,7 +138,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 108)
+        self.assertEqual(statuses["verified_count"], 110)
         self.assertEqual(statuses["verified_zero"], 73)
         self.assertEqual(statuses["not_operating"], 9)
 
@@ -202,6 +209,22 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(brentsville_2026["nmsf_count"], "0")
         self.assertEqual(brentsville_2026["nmsf_status"], "verified_zero")
         self.assertEqual(brentsville_2026["source_id"], "pwcs_2026_semifinalists")
+
+    def test_local_media_private_school_counts_do_not_create_zeros(self) -> None:
+        new_school_2025 = self._lookup("new_school_of_northern_virginia", 2025)
+        self.assertEqual(new_school_2025["nmsf_count"], "2")
+        self.assertEqual(new_school_2025["nmsf_status"], "verified_count")
+        self.assertEqual(new_school_2025["source_id"], "patch_fairfax_city_2025_semifinalists")
+
+        trinity_2025 = self._lookup("trinity_christian_school", 2025)
+        self.assertEqual(trinity_2025["nmsf_count"], "1")
+        self.assertEqual(trinity_2025["nmsf_status"], "verified_count")
+        self.assertEqual(trinity_2025["source_id"], "patch_fairfax_city_2025_semifinalists")
+
+        basis_mclean_2025 = self._lookup("basis_independent_mclean", 2025)
+        self.assertEqual(basis_mclean_2025["nmsf_count"], "")
+        self.assertEqual(basis_mclean_2025["nmsf_status"], "missing_source")
+        self.assertEqual(basis_mclean_2025["source_id"], "")
 
     def test_unsourced_rows_remain_missing_until_sourced(self) -> None:
         seton_2026 = self._lookup("seton_school_manassas", 2026)
