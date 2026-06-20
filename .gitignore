@@ -9,3 +9,5 @@ venv/
 build/
 dist/
 *.egg-info/
+tmp/
+data/raw/nmsf/virginia/supplied_lists/

@@ -19,16 +19,16 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 | rate_null_behavior | pass | affected rows: 0 |
 | pathway_bucket_flags | pass | affected rows: 0 |
 | selection_index_placeholder | pass | Virginia cutoff columns are documented placeholders. |
-| statewide_total_placeholder | pass | Statewide total columns are documented placeholders. |
+| statewide_total_source_metadata | pass | Sourced statewide total rows include source metadata; unsourced years remain placeholders. |
 
 ## NMSF Status Counts
 
 | NMSF status | Rows |
 | --- | --- |
-| missing_source | 232 |
+| missing_source | 200 |
 | not_operating | 9 |
-| verified_count | 259 |
-| verified_zero | 108 |
+| verified_count | 269 |
+| verified_zero | 130 |
 
 ## Enrollment Status Counts
 
@@ -50,18 +50,18 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 
 | Rate status | Rows |
 | --- | --- |
-| calculated | 340 |
-| missing_grade11_enrollment | 27 |
-| missing_nmsf_and_grade11_enrollment | 82 |
-| missing_nmsf_count | 150 |
+| calculated | 351 |
+| missing_grade11_enrollment | 48 |
+| missing_nmsf_and_grade11_enrollment | 61 |
+| missing_nmsf_count | 139 |
 | not_operating | 9 |
 
 ## Pathway Coverage Status Counts
 
 | Pathway coverage status | Rows |
 | --- | --- |
-| complete_compatible_coverage | 304 |
-| no_compatible_rows | 239 |
+| complete_compatible_coverage | 306 |
+| no_compatible_rows | 237 |
 | partial_compatible_coverage | 65 |
 
 ## Placeholder Source Gaps
@@ -69,7 +69,8 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 | Placeholder | Status | Rows |
 | --- | --- | --- |
 | Virginia NMSF Selection Index cutoff | not_sourced | 608 |
-| Statewide semifinalist total | not_sourced | 608 |
+| Statewide semifinalist total | not_sourced | 380 |
+| Statewide semifinalist total | source_backed_total | 228 |
 
 ## Source Rules
 
@@ -77,4 +78,5 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 - Pathway totals sum only rows with compatible NMSF and denominator coverage.
 - `missing_source` remains missing and is not converted to zero.
 - Grade-11 enrollment is an outcome denominator, not an admissions-seat allocation input.
-- Virginia cutoff and statewide total fields remain `not_sourced` until reliable sources are added.
+- Virginia cutoff fields remain `not_sourced` until reliable sources are added.
+- Statewide total fields are populated only when a complete source-backed Virginia list is available.

@@ -16,19 +16,19 @@ Therefore, `NMSF per 100 juniors` is an outcome-rate proxy, not a direct qualifi
 
 ## 3. Virginia cutoff and test-form changes
 
-Virginia's canonical cutoff and statewide-total columns remain blank with `not_sourced` status. Task 9 uses Compass values only as a clearly labeled supplemental check, not as canonical data. NMSC does not publish a convenient official historical cutoff table, and secondary reports may be revised.
+Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. Task 9 uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
 
 The focal policy boundary also coincides with the 2023 move to the digital PSAT/NMSQT.[^digital] Class 2025 is the first policy-affected TJHSST class and the first digital-PSAT NMSF class. That coincidence makes it impossible, with these data alone, to attribute the break uniquely to admissions policy.
 
-A state cutoff does not fully standardize cohorts. The supplemental data show Virginia's cutoff rising from 222 to 224 between Classes 2025 and 2026 while the reported statewide total also rises markedly. Score-distribution and tie effects can change the number of semifinalists at a given cutoff.
+A state cutoff does not fully standardize cohorts. The supplemental data show Virginia's cutoff rising from 222 to 224 between Classes 2025 and 2026 while the statewide total used here also rises markedly. Score-distribution and tie effects can change the number of semifinalists at a given cutoff.
 
 ## 4. Incomplete and changing source coverage
 
 The panel is explicit about missingness, but the remaining gaps matter:
 
 - In Classes 2019-2022, 48-50 of 76 rows lack source-backed NMSF counts. Full-zone historical totals are therefore not comparable with 2023-2026.
-- Private count coverage is 4/16 schools in 2023, 5/16 in 2024, 16/16 in 2025, and 10/16 in 2026.
-- Rate-compatible private coverage is 2/16 schools in 2023, 0/16 schools in 2024, 10/16 schools in 2025, and 0/16 schools in 2026.
+- Private count coverage is complete for Classes 2023-2026 after integrating the complete Virginia lists.
+- Rate-compatible private coverage is 10/16 schools in 2023, 0/16 schools in 2024, 10/16 schools in 2025, and 0/16 schools in 2026.
 - The official LCPS Class 2025 release is total-only and cannot establish school-level counts or zeros; some LCPS school rows remain missing.
 
 The balanced panels improve comparability by holding schools fixed, but they answer a narrower question about continuously observed schools and may not represent omitted schools.
@@ -37,7 +37,7 @@ The balanced panels improve comparability by holding schools fixed, but they ans
 
 Private-school location does not prove that a student resided in the TJHSST service area, was eligible for TJHSST, applied to TJHSST, or would otherwise have attended a particular base school. The admissions rule places non-public applicants in the unallocated pool rather than assigning them by the private school's location. The private-school analysis is therefore a geographic outcome bucket, not a measured displacement channel.
 
-Four private schools have complete 2023-2026 counts. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for 10 private rows, but no balanced private rate panel spans Classes 2023-2026. The project cannot estimate a complete private-school offset.
+All 16 rostered private schools now have complete 2023-2026 counts. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for 10 private rows, but no balanced private rate panel spans Classes 2023-2026 because Classes 2024 and 2026 still lack private denominator coverage. The project still cannot estimate a complete private-school offset.
 
 ## 6. Grade-11 enrollment is not an admissions allocation denominator
 

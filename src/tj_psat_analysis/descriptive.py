@@ -126,12 +126,25 @@ PRE_POST_FIELDNAMES = (
     "small_number_warning",
 )
 
+VIRGINIA_SHARE_FIELDNAMES = (
+    "class_year",
+    "group",
+    "nmsf_count_total",
+    "missing_nmsf_rows",
+    "statewide_nmsf_semifinalist_total",
+    "share_of_statewide_total_pct",
+    "statewide_total_status",
+    "statewide_total_source_url",
+    "coverage_note",
+)
+
 TABLE_SPECS = {
     "school_counts_by_year": ("school_counts_by_year.csv", SCHOOL_COUNT_FIELDNAMES),
     "school_rates_by_year": ("school_rates_by_year.csv", SCHOOL_RATE_FIELDNAMES),
     "pathway_by_class_heatmap": ("pathway_by_class_heatmap.csv", PATHWAY_HEATMAP_FIELDNAMES),
     "school_group_totals_by_class": ("school_group_totals_by_class.csv", GROUP_TOTAL_FIELDNAMES),
     "tj_zone_counts_by_class": ("tj_zone_counts_by_class.csv", TJ_ZONE_FIELDNAMES),
+    "virginia_share_by_class": ("virginia_share_by_class.csv", VIRGINIA_SHARE_FIELDNAMES),
     "data_coverage_by_class": ("data_coverage_by_class.csv", COVERAGE_FIELDNAMES),
     "pre_post_summary": ("pre_post_summary_2023_2024_vs_2025_2026.csv", PRE_POST_FIELDNAMES),
 }
@@ -231,6 +244,7 @@ def descriptive_table_rows(
         "pathway_by_class_heatmap": pathway_heatmap_rows(rows),
         "school_group_totals_by_class": school_group_total_rows(rows),
         "tj_zone_counts_by_class": tj_zone_count_rows(rows),
+        "virginia_share_by_class": virginia_share_rows(rows),
         "data_coverage_by_class": data_coverage_rows(rows),
         "pre_post_summary": pre_post_summary_rows(rows),
     }
@@ -368,6 +382,108 @@ def tj_zone_count_rows(rows: Sequence[Mapping[str, str]]) -> list[dict[str, str]
             }
         )
     return output
+
+
+def virginia_share_rows(rows: Sequence[Mapping[str, str]]) -> list[dict[str, str]]:
+    output: list[dict[str, str]] = []
+    for class_year in CLASS_YEAR_LABELS:
+        year_rows = [row for row in rows if row["class_year"] == class_year and is_operating(row)]
+        representative = year_rows[0] if year_rows else {}
+        statewide_total = _int_or_none(representative.get("statewide_nmsf_semifinalist_total", ""))
+        status = representative.get("statewide_nmsf_semifinalist_total_status", "not_sourced")
+        source_url = representative.get("statewide_nmsf_semifinalist_total_source_url", "")
+        all_summary = summarize_rows(year_rows)
+        group_specs = [
+            ("TJ-zone including TJHSST", year_rows),
+            ("TJHSST", [row for row in year_rows if is_tjhsst(row)]),
+            (
+                "Conventional base public",
+                [
+                    row
+                    for row in year_rows
+                    if row["sector"] == "public" and row["analytical_unit_type"] == "public_high_school"
+                ],
+            ),
+            ("Private/homeschool unallocated", [row for row in year_rows if row["sector"] == "private"]),
+            ("TJ-zone excluding TJHSST", [row for row in year_rows if not is_tjhsst(row)]),
+        ]
+        for group, group_rows in group_specs:
+            output.append(
+                _virginia_share_row(
+                    class_year=class_year,
+                    group=group,
+                    group_rows=group_rows,
+                    statewide_total=statewide_total,
+                    statewide_status=status,
+                    statewide_source_url=source_url,
+                )
+            )
+        output.append(
+            _virginia_remainder_row(
+                class_year=class_year,
+                all_summary=all_summary,
+                statewide_total=statewide_total,
+                statewide_status=status,
+                statewide_source_url=source_url,
+            )
+        )
+    return output
+
+
+def _virginia_share_row(
+    *,
+    class_year: str,
+    group: str,
+    group_rows: Sequence[Mapping[str, str]],
+    statewide_total: int | None,
+    statewide_status: str,
+    statewide_source_url: str,
+) -> dict[str, str]:
+    summary = summarize_rows(group_rows)
+    count = _int_or_none(summary["nmsf_count_observed_total"])
+    missing = int(summary["missing_nmsf_rows"])
+    share = _share_text(count, statewide_total) if missing == 0 else ""
+    return {
+        "class_year": class_year,
+        "group": group,
+        "nmsf_count_total": str(count) if count is not None and missing == 0 else "",
+        "missing_nmsf_rows": str(missing),
+        "statewide_nmsf_semifinalist_total": str(statewide_total) if statewide_total is not None else "",
+        "share_of_statewide_total_pct": share,
+        "statewide_total_status": statewide_status,
+        "statewide_total_source_url": statewide_source_url,
+        "coverage_note": _virginia_share_note(missing, statewide_total),
+    }
+
+
+def _virginia_remainder_row(
+    *,
+    class_year: str,
+    all_summary: Mapping[str, str],
+    statewide_total: int | None,
+    statewide_status: str,
+    statewide_source_url: str,
+) -> dict[str, str]:
+    count = _int_or_none(all_summary["nmsf_count_observed_total"])
+    missing = int(all_summary["missing_nmsf_rows"])
+    remainder = (
+        statewide_total - count
+        if statewide_total is not None and count is not None and missing == 0
+        else None
+    )
+    return {
+        "class_year": class_year,
+        "group": "Virginia outside TJ-zone",
+        "nmsf_count_total": str(remainder) if remainder is not None else "",
+        "missing_nmsf_rows": str(missing),
+        "statewide_nmsf_semifinalist_total": str(statewide_total) if statewide_total is not None else "",
+        "share_of_statewide_total_pct": _share_text(remainder, statewide_total)
+        if remainder is not None
+        else "",
+        "statewide_total_status": statewide_status,
+        "statewide_total_source_url": statewide_source_url,
+        "coverage_note": _virginia_share_note(missing, statewide_total),
+    }
 
 
 def data_coverage_rows(rows: Sequence[Mapping[str, str]]) -> list[dict[str, str]]:
@@ -627,6 +743,29 @@ def build_descriptive_report(
                     row["tjhsst_nmsf_count"] or "(missing)",
                 ]
                 for row in table_rows["tj_zone_counts_by_class"]
+            ],
+        ),
+        "",
+        "## Virginia Statewide Shares",
+        "",
+        (
+            "Shares are calculated only when the class year has a source-backed statewide total "
+            "and the group has no missing NMSF rows."
+        ),
+        "",
+        _markdown_table(
+            ["Class", "Group", "Count", "VA total", "Share %", "Coverage note"],
+            [
+                [
+                    row["class_year"],
+                    row["group"],
+                    row["nmsf_count_total"] or "(missing)",
+                    row["statewide_nmsf_semifinalist_total"] or "(missing)",
+                    row["share_of_statewide_total_pct"] or "(missing)",
+                    row["coverage_note"],
+                ]
+                for row in table_rows["virginia_share_by_class"]
+                if row["class_year"] in {"2023", "2024", "2025", "2026"}
             ],
         ),
         "",
@@ -1376,6 +1515,20 @@ def _bool_text(value: bool) -> str:
     return "true" if value else "false"
 
 
+def _share_text(count: int | None, statewide_total: int | None) -> str:
+    if count is None or statewide_total is None or statewide_total <= 0:
+        return ""
+    return f"{100 * count / statewide_total:.6f}"
+
+
+def _virginia_share_note(missing_rows: int, statewide_total: int | None) -> str:
+    if statewide_total is None:
+        return "statewide total not source-backed for this class year"
+    if missing_rows:
+        return "group count has missing NMSF rows; share not calculated"
+    return "source-backed count and complete Virginia list statewide denominator"
+
+
 def _counter_rows(counter: Counter[str]) -> list[list[object]]:
     return [[key or "(blank)", value] for key, value in sorted(counter.items())]
 
@@ -1419,6 +1572,7 @@ def _table_purpose(key: str) -> str:
         "pathway_by_class_heatmap": "Source table for pathway heatmap values and coverage.",
         "school_group_totals_by_class": "TJHSST, base-public, and private observed totals by class.",
         "tj_zone_counts_by_class": "Observed counts with and without TJHSST by class.",
+        "virginia_share_by_class": "TJ-zone group counts as shares of source-backed Virginia totals.",
         "data_coverage_by_class": "Coverage and missingness counts by class.",
         "pre_post_summary": "Pre/post summaries for Classes 2023-2024 versus 2025-2026.",
     }.get(key, "Generated descriptive table.")

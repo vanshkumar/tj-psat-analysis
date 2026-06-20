@@ -1,6 +1,6 @@
 # Task 9 Completion Record
 
-Completed: 2026-06-19
+Completed: 2026-06-20
 
 ## Deliverables
 
@@ -13,12 +13,14 @@ Completed: 2026-06-19
 
 - TJHSST pooled NMSF rate: 32.927 per 100 juniors in Classes 2023-2024
   versus 18.890 in Classes 2025-2026 (-42.6%).
-- Balanced 52-school conventional public base panel: 0.593 versus 0.687
-  (+16.0%).
-- Balanced 53-school public panel including TJHSST: 1.116 versus 1.009
+- Balanced 53-school conventional public base panel: 0.582 versus 0.674
+  (+15.8%).
+- Balanced 54-school public panel including TJHSST: 1.094 versus 0.989
   (-9.6%).
 - Class 2025 is the sharp break; Class 2026 shows a partial TJHSST rebound and
-  a heterogeneous base-school increase. Private-school offset remains unresolved.
+  a heterogeneous base-school increase. Private-school counts are complete for
+  the focal period, but private-school denominator and eligibility context remain
+  too limited to establish an offset.
 
 These are descriptive results, not causal estimates or measures of median
 achievement or school culture.
@@ -40,8 +42,10 @@ The script rebuilds all Task 9 reports and supporting tables from
 - Canonical schools: 76
 - Class years: 2019-2026
 - Canonical panel SHA-256:
-  `279606efc11e373bb69f8c1457364157b61d27190c7abfa3982bef66f2ff0333`
-- Input panel reflects the Milestone 10 Freedom High denominator supplement.
+  `85ff777243e6ddfe4d176e47d816f6f9002e4b64c158a200bb1bd67a7ddc6184`
+- Input panel reflects the Milestone 10 Freedom High denominator supplement,
+  Class 2025 private locator denominators, and complete NMSC Virginia lists for
+  Classes 2023, 2024, and 2026.
 - Independent Task 9 validation assertions passed.
 
 ## Source boundary

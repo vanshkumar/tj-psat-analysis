@@ -1,0 +1,99 @@
+source_id,class_year,city,school_name_source,matched_school_id,matched_school,nmsf_count,snapshot_record_type,snapshot_notes
+nmsc_virginia_2024_semifinalists,2024,,ALDIE JOHN CHAMPE H. S.,john_champe_high_school,John Champe High School,6,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,,LIGHTRIDGE H. S.,lightridge_high_school,Lightridge High School,6,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,ALEXANDRIA CITY H. S.,,,4,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,ANNANDALE ANNANDALE H. S.,annandale_high_school,Annandale High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,ARLINGTON BISHOP O'CONNELL H. S.,bishop_o_connell_high_school,Bishop O'Connell High School,3,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,ASHBURN BRIAR WOODS H. S.,briar_woods_high_school,Briar Woods High School,5,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,BISHOP IRETON H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,BROAD RUN H. S.,broad_run_high_school,Broad Run High School,2,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,HOMESCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,INDEPENDENCE H. S.,independence_high_school,Independence High School,5,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,ROCK RIDGE H. S.,rock_ridge_high_school,Rock Ridge High School,12,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,ST. STEPHEN'S AND ST. AGNES SCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,STONE BRIDGE H. S.,stone_bridge_high_school,Stone Bridge High School,3,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,THE H. B. WOODLAWN PROGRAM,h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,THOMAS JEFFERSON H. S. FOR SCIENCE AND TECHNOLOGY,thomas_jefferson_high_school_for_science_and_technology,Thomas Jefferson High School for Science and Technology,165,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,WASHINGTON - LIBERTY H. S.,washington_liberty_high_school,Washington-Liberty High School,6,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,WEST POTOMAC H. S.,west_potomac_high_school,West Potomac High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ALEXANDRIA,YORKTOWN H. S.,yorktown_high_school,Yorktown High School,6,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,BLACKSBURG,BLACKSBURG H. S.,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,BLACKSBURG,BURKE LAKE BRADDOCK SECONDARY SCHOOL,lake_braddock_secondary_school_hs,Lake Braddock Secondary School (HS),5,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,BLACKSBURG,CHANTILLY CHANTILLY H. S.,chantilly_high_school,Chantilly High School,13,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,BLACKSBURG,HOMESCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,BLACKSBURG,ST. PAUL VI CATHOLIC H. S.,st_paul_vi_catholic_high_school,St. Paul VI Catholic High School,2,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,BLACKSBURG,WESTFIELD H. S.,westfield_high_school,Westfield High School,5,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CHARLOTTESVILLE,ALBEMARLE H. S.,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CHARLOTTESVILLE,CHARLOTTESVILLE H. S.,,,3,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CHESAPEAKE,OSCAR FROMMEL SMITH H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,CULPEPER COUNTY H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,DUMFRIES ST. JOHN PAUL THE GREAT CATHOLIC H. S.,st_john_paul_the_great_catholic_high_school,St. John Paul the Great Catholic High School,2,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,FAIRFAX FAIRFAX H. S.,fairfax_high_school,Fairfax High School,3,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,FALLS CHURCH GEORGE C. MARSHALL H. S.,marshall_high_school,Marshall High School,6,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,HOMESCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,JAMES W. ROBINSON SECONDARY SCHOOL,robinson_secondary_school_hs,Robinson Secondary School (HS),3,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,MERIDIAN H. S.,meridian_high_school,Meridian High School,5,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,TRINITY CHRISTIAN SCHOOL,trinity_christian_school,Trinity Christian School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,CULPEPER,W. T. WOODSON H. S.,woodson_high_school,Woodson High School,12,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,FALMOUTH,STAFFORD H. S.,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,FISHERSVILLE,WILSON MEMORIAL H. S.,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,FORT GREGG-ADAMS,HOMESCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,GLEN ALLEN,DEEP RUN H. S.,,,3,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,HARRISONBURG,HARRISONBURG H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,HENRICO,MILLS E. GODWIN H. S.,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,HERNDON,HOMESCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,HERNDON,LEESBURG HERITAGE H. S.,heritage_high_school_leesburg,Heritage High School (Leesburg),2,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,HERNDON,LOUDOUN COUNTY H. S.,loudoun_county_high_school,Loudoun County High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,HERNDON,RIVERSIDE H. S.,riverside_high_school,Riverside High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,HERNDON,TUSCARORA H. S.,tuscarora_high_school,Tuscarora High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,LEXINGTON,ROCKBRIDGE COUNTY H. S.,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,LYNCHBURG,LIBERTY CHRISTIAN ACADEMY,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAGGIE L. WALKER GOVERNOR'S,SCHOOL FOR GOVERNMENT AND INTERNATIONAL STUDIES,,,20,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAIDENS,HOMESCHOOL,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAIDENS,LANGLEY H. S.,langley_high_school,Langley High School,13,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAIDENS,MANASSAS OSBOURN PARK H. S.,osbourn_park_high_school,Osbourn Park High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAIDENS,MC LEAN BASIS INDEPENDENT,basis_independent_mclean,BASIS Independent McLean,3,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAIDENS,MC LEAN H. S.,mclean_high_school,McLean High School,15,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAIDENS,POTOMAC SCHOOL,potomac_school,Potomac School,7,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MAIDENS,THE MADEIRA SCHOOL,the_madeira_school,The Madeira School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MECHANICSVILLE,HOMESCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,MIDLOTHIAN,COSBY H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NEWPORT NEWS,HAMPTON ROADS ACADEMY,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NEWPORT NEWS,MENCHVILLE H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NEWPORT NEWS,NOKESVILLE PATRIOT H. S.,patriot_high_school,Patriot High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NEWPORT NEWS,WOODSIDE H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NORFOLK,GRANBY H. S.,,,3,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NORFOLK,MATTHEW F. MAURY H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NORFOLK,NORFOLK ACADEMY,,,5,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NORFOLK,NORFOLK CHRISTIAN H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NORFOLK,NORVIEW H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,NORFOLK,OAKTON FLINT HILL SCHOOL,flint_hill_school,Flint Hill School,4,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ORANGE,ORANGE COUNTY H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ORANGE,POTOMAC FALLS POTOMAC FALLS H. S.,potomac_falls_high_school,Potomac Falls High School,3,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,PURCELLVILLE,HOMESCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,PURCELLVILLE,LOUDOUN VALLEY H. S.,loudoun_valley_high_school,Loudoun Valley High School,3,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,RADFORD,RADFORD H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,RESTON,IDEAVENTIONS ACADEMY FOR MATH AND SCIENCE,,,3,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,RICHMOND,COLLEGIATE SCHOOL,,,6,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,RICHMOND,DOUGLAS S. FREEMAN H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,RICHMOND,TRINITY EPISCOPAL SCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ROANOKE,CAVE SPRING H. S.,,,2,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ROANOKE,FAITH CHRISTIAN SCHOOL,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,ROANOKE,PATRICK HENRY H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,SALEM,SALEM H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,SMITHFIELD,SMITHFIELD H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,SOUTH RIDING,FREEDOM H. S.,freedom_high_school_south_riding,Freedom High School (South Riding),7,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,SPOTSYLVANIA,COURTLAND H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,SPOTSYLVANIA,OAKTON H. S.,oakton_high_school,Oakton High School,14,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,SPOTSYLVANIA,SPRINGFIELD WEST SPRINGFIELD H. S.,west_springfield_high_school,West Springfield High School,1,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,SPOTSYLVANIA,VIENNA JAMES MADISON H. S.,madison_high_school,Madison High School,7,observation_count,matched to canonical roster; student names omitted
+nmsc_virginia_2024_semifinalists,2024,VIRGINIA BEACH,CATHOLIC H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,VIRGINIA BEACH,FRANK W. COX H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,VIRGINIA BEACH,LANDSTOWN H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,VIRGINIA BEACH,OCEAN LAKES H. S.,,,5,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,VIRGINIA BEACH,PRINCESS ANNE H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,VIRGINIA BEACH,TALLWOOD H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,WILLIAMSBURG,BRUTON H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,WILLIAMSBURG,LAFAYETTE H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,WILLIAMSBURG,WALSINGHAM ACADEMY,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted
+nmsc_virginia_2024_semifinalists,2024,YORKTOWN,TABB H. S.,,,1,out_of_roster_count,outside canonical roster or unmatched; student names omitted

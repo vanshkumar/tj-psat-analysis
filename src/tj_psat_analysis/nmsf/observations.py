@@ -44,6 +44,7 @@ ZERO_INFERENCE_DIVISION_BY_SCOPE = {
     "lcps_public_high_schools_in_roster": "LCPS",
     "pwcs_public_high_schools_in_roster": "PWCS",
 }
+ALL_ROSTER_ZERO_INFERENCE_SCOPES = {"virginia_rostered_schools"}
 
 PROVIDER_TO_DIVISION = {
     "aps": "APS",
@@ -267,12 +268,13 @@ def _apply_verified_zeros(
     source_hash: str,
 ) -> None:
     division = ZERO_INFERENCE_DIVISION_BY_SCOPE.get(source.zero_inference_scope)
-    if not division:
+    all_rostered_scope = source.zero_inference_scope in ALL_ROSTER_ZERO_INFERENCE_SCOPES
+    if not division and not all_rostered_scope:
         raise ValueError(
             f"Unsupported zero inference scope for {source.source_id}: {source.zero_inference_scope}"
         )
     for roster_row in roster_rows:
-        if roster_row["division"] != division or roster_row["sector"] != "public":
+        if division and (roster_row["division"] != division or roster_row["sector"] != "public"):
             continue
         if not _is_operating(roster_row, source.graduating_class):
             continue

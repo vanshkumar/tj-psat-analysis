@@ -15,9 +15,12 @@ Current status and sequencing note:
 - Milestone 6 remains numbered for continuity but is an optional, deferred
   historical-backfill branch. The active core sequence skips from Milestone 5
   to Milestone 7.
-- Milestone 10 is the next recommended work: a narrow, public-source cleanup
-  focused on complete Virginia lists, the remaining focal-period school rows,
-  a small denominator backfill, and a rerun of the completed analysis.
+- Milestone 10 public-source cleanup is complete at the documented stopping
+  rule: complete Virginia lists were incorporated for Classes 2023, 2024, and
+  2026, the denominator backfills were attempted, and the analysis was rerun.
+  Class 2025 remains a documented optional complete-list gap; its five
+  remaining row-level gaps have been targeted individually and retained as
+  `missing_source`.
 - Milestone 11 contains optional external-records and broader-outcome work and
   does not block the NMSF analysis.
 
@@ -245,7 +248,7 @@ Tasks:
   2026.
 - [x] Collect official PWCS releases.
 - [ ] Collect official Falls Church City or Meridian releases.
-- [ ] Collect NMSC Virginia lists where district releases are absent or incomplete.
+- [x] Collect NMSC Virginia lists where district releases are absent or incomplete.
 - [ ] Add public-school observations for every rostered school-year.
 - [x] Add private-school observations only when verifiable.
 - [x] Reconcile school counts against complete district totals where possible.
@@ -266,22 +269,23 @@ snapshots for reconciliation but excluded from the observation panel to preserve
 the single TJHSST row, the roster's Arlington Tech decision, and the
 no-school-attribution rule. Overlapping public-school rows in the Patch articles
 are retained only in source snapshots when official district rows already
-cover those counts. The current pilot slice has 304 observation rows: 189
-`verified_count`, 78 `verified_zero`, and 37 `missing_source`. The
+cover those counts. Milestone 10 then added complete NMSC Virginia media-list
+snapshots for Classes 2023, 2024, and 2026. The current pilot slice has 304
+observation rows: 199 `verified_count`, 100 `verified_zero`, and 5
+`missing_source`. The
 reconciliation report's Source Gaps table is the authoritative remaining-gap
-summary; `reports/data_quality/manual_review_queue.csv` has 140 rows because it
+summary; `reports/data_quality/manual_review_queue.csv` has 108 rows because it
 also includes excluded snapshot rows retained for source-total reconciliation.
-After the LCPS Class 2023 bulk backfill, the remaining unresolved rows are
-small jurisdiction/private-school clusters rather than a clear bulk source gap.
+The remaining unresolved rows are all Class 2025 public rows: Meridian plus
+Loudoun Valley, Park View, Tuscarora, and Woodgrove.
 
 Accepted stopping point: the pilot is sufficient for the analytical panel and
-Task 9, but it is not coverage-complete. The 37 remaining focal-period
-`missing_source` rows consist of 8 public-school rows and 29 private-school
-rows. The public gaps are Meridian (Classes 2023, 2025, and 2026), Wakefield
-(Class 2024), and Loudoun Valley, Park View, Tuscarora, and Woodgrove (Class
-2025). Do not infer zeros. The broad-source work most likely to resolve these
-rows has been consolidated in Milestone 10 rather than continuing open-ended
-school-by-school searching here.
+Task 9, but it is not coverage-complete. The 5 remaining focal-period
+`missing_source` rows are all Class 2025 public rows. Do not infer zeros from
+the total-only LCPS release or from incomplete local coverage; only a complete
+Class 2025 Virginia list or school-attributed source should resolve them.
+Recovering the statewide packet is useful optional future work, not a
+requirement for the current public-source cleanup.
 
 ### Deliverables
 
@@ -491,26 +495,26 @@ do not fill the gap from memory or proposal-stage materials.
 
 ## Milestone 10 — Targeted public-data completion and Task 9 refresh
 
-This is the next recommended work. It is intentionally narrow, uses publicly
-obtainable data only, and does not require records requests. The current TJHSST
-and base-public conclusions are already sufficiently robust for descriptive
-reporting. This milestone is mainly intended to resolve the whole-region and
-private-school interpretation, strengthen statewide normalization, and close a
-few inexpensive denominator gaps.
+This public-source cleanup is complete at the stopping-rule level without
+records requests. It resolves complete-list coverage for Classes 2023, 2024,
+and 2026, strengthens statewide normalization, and closes the inexpensive
+denominator gaps attempted so far. Class 2025 remains the only complete
+Virginia-list gap, but it is an optional future recovery task rather than a
+requirement for this milestone.
 
-### Priority A — Complete focal-period Virginia lists
+### Priority A — Complete focal-period Virginia lists — complete at stopping rule
 
-- [ ] Locate complete Virginia NMSF school-by-school lists for Classes 2023, 2024, 2025, and 2026 from public sources, prioritizing NMSC/media materials or complete authoritative mirrors.
-- [ ] Archive permissible originals or create count-only snapshots that omit student names; record source scope, retrieval date, hash, and parser/transcription method in the source manifest.
-- [ ] Build a deterministic parser or reviewed transcription workflow for the
+- [x] Locate complete Virginia NMSF school-by-school lists for Classes 2023, 2024, and 2026 from public or user-supplied sources; attempt Class 2025 recovery and document the remaining targeted row-level gaps rather than requiring a statewide packet.
+- [x] Archive permissible originals or create count-only snapshots that omit student names; record source scope, retrieval date, hash, and parser/transcription method in the source manifest.
+- [x] Build a deterministic parser or reviewed transcription workflow for the
   Virginia-list format, with fixed fixtures and reconciliation tests.
-- [ ] Parse every in-scope TJ-zone public, private, and program entry from each complete list using the canonical roster and alias table; retain homeschool entries separately when their geography is identifiable.
-- [ ] Create `verified_zero` only when the complete list's scope establishes that the school had no semifinalists; otherwise retain `missing_source`.
-- [ ] Resolve the 37 focal-period missing rows where the list scope permits, including the 8 public-school rows and 29 private-school rows.
-- [ ] Reconcile parsed list counts against existing district, school, and local-news sources; investigate every mismatch and do not silently overwrite a higher-quality source.
-- [ ] Keep private-school and homeschool totals labeled as location-based or otherwise scope-limited; do not treat school location as proof of TJ eligibility, residence, or displacement from TJHSST.
-- [ ] Add source-backed Virginia statewide semifinalist totals when the complete lists support them.
-- [ ] Compute and publish, by class year:
+- [x] Parse every in-scope TJ-zone public, private, and program entry from each complete list using the canonical roster and alias table; retain homeschool entries separately when their geography is identifiable.
+- [x] Create `verified_zero` only when the complete list's scope establishes that the school had no semifinalists; otherwise retain `missing_source`.
+- [x] Resolve focal-period missing rows where the available complete-list scope permits; the prior 37 missing rows are now 5 documented Class 2025 public rows.
+- [x] Reconcile parsed list counts against existing district, school, and local-news sources; investigate every mismatch and do not silently overwrite a higher-quality source.
+- [x] Keep private-school and homeschool totals labeled as location-based or otherwise scope-limited; do not treat school location as proof of TJ eligibility, residence, or displacement from TJHSST.
+- [x] Add source-backed Virginia statewide semifinalist totals when the complete lists support them.
+- [x] Compute and publish for source-backed complete-list class years, leaving unsourced years blank:
   - TJ-zone NMSFs as a share of Virginia NMSFs
   - TJHSST NMSFs as a share of Virginia NMSFs
   - conventional base-public NMSFs as a share of Virginia NMSFs
@@ -518,25 +522,31 @@ few inexpensive denominator gaps.
   - TJ-zone excluding TJHSST as a share of Virginia NMSFs
   - the remainder of Virginia outside the TJ zone
 
-Status note: The official NMSC `23_meritsemi.pdf`, `24_meritsemi.pdf`,
-`25_meritsemi.pdf`, and `26_meritsemi.pdf` files were located through the
-Internet Archive and archived under `data/raw/nmsf/virginia/`. Visual PDF
-inspection confirmed that these are annual press releases, not the
-school-by-school lists distributed to news media. They explicitly do not post
-the named Semifinalist list on the NMSC website, so this pass adds no
-school-level NMSF counts, no `verified_zero` rows, and no Virginia-share series.
-The current source-discovery decision and remaining 37 focal-period missing
-rows are documented in `reports/data_quality/focal_period_completion.md`.
-A follow-up broad-source sweep checked NMSC archive indexes, class-year web
-searches, Common Crawl URL indexes, and major Virginia/DC media CDX patterns;
-it did not locate a complete public Virginia school-by-school mirror. This
-adds search-limitation evidence only: no counts, zeros, or Virginia-share
-metrics are created from the sweep.
+Status note: User-supplied complete NMSC Virginia school-by-school media lists
+for Classes 2023, 2024, and 2026 are now parsed into count-only snapshots under
+`data/raw/nmsf/virginia/`, with student names omitted. The parser and source
+manifest add source-backed positive rows where the prior observation layer was
+missing, infer verified zeros for absent operating roster schools in those
+complete-list years, and add statewide totals of 400, 470, and 494. Focal-period
+missing rows dropped from 37 to 5; every remaining missing row is Class 2025
+because no comparable complete Virginia list has been found. Meridian, Loudoun
+Valley, Park View, Tuscarora, and Woodgrove were targeted individually and
+remain `missing_source`, not `verified_zero`. The current source-discovery
+decision is documented in
+`reports/data_quality/focal_period_completion.md`.
+Priority A is therefore complete at the stopping-rule level; a future complete
+Class 2025 Virginia list may still replace the remaining source gaps, but it is
+not required to publish this analysis state.
 
-### Priority B — Minimal denominator cleanup
+The official NMSC `23_meritsemi.pdf`, `24_meritsemi.pdf`, `25_meritsemi.pdf`,
+and `26_meritsemi.pdf` files remain archived under `data/raw/nmsf/virginia/` as
+press-release-only discovery evidence. They are not numeric sources because
+they do not contain the Virginia school-by-school lists.
 
-- [ ] Ingest the NCES PSS 2023-24 public-use file for rostered private schools when available, using `P290` for grade-11 enrollment and preserving `F_P290` imputation flags.
-- [ ] Use the 2023-24 PSS data only for the corresponding Class 2025 denominator; do not interpolate Classes 2024 or 2026.
+### Priority B — Minimal denominator cleanup — complete at stopping rule
+
+- [ ] Optional future replacement: ingest the NCES PSS 2023-24 public-use file for rostered private schools when available, using `P290` for grade-11 enrollment and preserving `F_P290` imputation flags.
+- [x] Use the 2023-24 PSS locator data only for the corresponding Class 2025 denominator; do not interpolate Classes 2024 or 2026.
 - [x] Fill Classes 2023-2025 grade-11 enrollment for Freedom High School (South Riding) and Freedom High School (Woodbridge) from NCES CCD and/or VDOE using their exact school identifiers.
 - [x] Regenerate enrollment-coverage reports and verify that the two Freedom schools join to the intended canonical IDs.
 
@@ -553,18 +563,19 @@ It archived 16 locator detail/search pages under
 rows have source-backed grade-11 denominators, five current locator searches
 returned no row, and Loudoun School for Advanced Studies remains ambiguous
 because the locator returns two same-address candidates. The official public-use
-PSS 2023-24 ZIP is still preferred when NCES posts it because the locator does
-not expose `F_P290` imputation flags.
+PSS 2023-24 ZIP is a preferred future replacement when NCES posts it because
+the locator does not expose `F_P290` imputation flags; it is not a prerequisite
+for closing Milestone 10B.
 
 ### Rebuild and reassess
 
-- [ ] Rebuild the source manifest, NMSF observation tables, enrollment panel, analytical panel, data-quality reports, descriptive outputs, and Task 9 reports.
-- [ ] Recompute balanced panels and missingness sensitivity checks after the new rows are incorporated.
-- [ ] Add the Virginia-share series to the descriptive tables and Task 9 interpretation.
-- [ ] Add a focal-period completion report comparing old and new counts,
+- [x] Rebuild the source manifest, NMSF observation tables, enrollment panel, analytical panel, data-quality reports, descriptive outputs, and Task 9 reports.
+- [x] Recompute balanced panels and missingness sensitivity checks after the new rows are incorporated.
+- [x] Add the Virginia-share series to the descriptive tables and Task 9 interpretation.
+- [x] Add a focal-period completion report comparing old and new counts,
   coverage, balanced panels, statewide shares, and private-school sensitivity.
-- [ ] State explicitly whether complete private-school counts and the Class 2025 private denominator materially alter the present conclusion.
-- [ ] Update `TASK9_COMPLETION.md` and record a final stopping decision: after
+- [x] State explicitly whether complete private-school counts and the Class 2025 private denominator materially alter the present conclusion.
+- [x] Update `reports/task9_completion.md` and record a final stopping decision: after
   this broad-source pass, do not continue low-yield school-by-school scraping
   unless a new source can resolve multiple rows at once.
 
@@ -592,7 +603,7 @@ Explicitly out of scope for this pass:
 - refreshed `reports/robustness.md`
 - refreshed `reports/limitations.md`
 - refreshed `reports/initial_findings.md`
-- refreshed `TASK9_COMPLETION.md`
+- refreshed `reports/task9_completion.md`
 
 ### Definition of done
 
@@ -639,7 +650,7 @@ admissions mechanism.
 6. **Optional/deferred PR 6:** Historical backfill beyond the completed official FCPS/TJHSST Classes 2019-2022 slice; this is not on the critical path.
 7. **PR 7:** Analytical panel and validation suite.
 8. **PR 8:** Charts, descriptive results, and completed robustness/interpretation reports.
-9. **Next PR — Milestone 10:** Complete focal-period Virginia lists, perform the minimal denominator cleanup, add Virginia-share measures, and rerun Milestones 7-9.
+9. **PR 9 / Milestone 10:** Complete the public-source cleanup pass, add Virginia-share measures, and rerun Milestones 7-9; Class 2025 complete-list coverage remains optional/unresolved with five documented row-level `missing_source` gaps.
 10. **Optional later PR — Milestone 11:** External-records requests and broader outcomes for a later causal or culture-focused design.
 
 ## Core project completion criteria
@@ -660,11 +671,11 @@ coverage level when:
 
 Milestone 10 is complete when:
 
-- [ ] Complete public Virginia-list sources for Classes 2023-2026 have been parsed where obtainable, with unresolved gaps documented rather than guessed.
-- [ ] The Class 2025 private-school denominator update and the two Freedom High School denominator histories have been attempted reproducibly.
-- [ ] Virginia-share measures are added with source provenance.
-- [ ] The analytical panel, descriptive outputs, and Task 9 reports are rebuilt.
-- [ ] The project records whether the private-school and whole-region conclusions changed.
+- [x] Complete public Virginia-list sources for Classes 2023, 2024, and 2026 have been parsed; Class 2025 recovery was attempted, and unresolved row-level gaps are documented rather than guessed.
+- [x] The Class 2025 private-school denominator update and the two Freedom High School denominator histories have been attempted reproducibly.
+- [x] Virginia-share measures are added with source provenance.
+- [x] The analytical panel, descriptive outputs, and Task 9 reports are rebuilt.
+- [x] The project records whether the private-school and whole-region conclusions changed.
 
 Milestones 6 and 11 are optional and are not required for completion of the
 current descriptive regional-NMSF analysis.

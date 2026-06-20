@@ -28,6 +28,26 @@ class SourceDiscoveryAttempt:
     action: str
 
 
+@dataclass(frozen=True)
+class TargetedMissingRowSearch:
+    class_year: int
+    division: str
+    school: str
+    sources_checked: str
+    result: str
+    action: str
+
+
+@dataclass(frozen=True)
+class NmscVirginiaListSnapshot:
+    class_year: int
+    source_id: str
+    source_title: str
+    source_url: str
+    source_date: str
+    archived_file_path: str
+
+
 NMSC_PRESS_RELEASES = (
     NmscPressRelease(
         class_year=2023,
@@ -87,6 +107,33 @@ NMSC_PRESS_RELEASES = (
     ),
 )
 
+NMSC_VIRGINIA_LIST_SNAPSHOTS = (
+    NmscVirginiaListSnapshot(
+        class_year=2023,
+        source_id="nmsc_virginia_2023_semifinalists",
+        source_title="Semifinalists in the 2023 National Merit Scholarship Program - Virginia list",
+        source_url="https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view",
+        source_date="2022-09-14",
+        archived_file_path="data/raw/nmsf/virginia/virginia_2023_semifinalists_snapshot.csv",
+    ),
+    NmscVirginiaListSnapshot(
+        class_year=2024,
+        source_id="nmsc_virginia_2024_semifinalists",
+        source_title="Semifinalists in the 2024 National Merit Scholarship Program - Virginia list",
+        source_url="https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf",
+        source_date="2023-09-13",
+        archived_file_path="data/raw/nmsf/virginia/virginia_2024_semifinalists_snapshot.csv",
+    ),
+    NmscVirginiaListSnapshot(
+        class_year=2026,
+        source_id="nmsc_virginia_2026_semifinalists",
+        source_title="Semifinalists in the 2026 National Merit Scholarship Program - Virginia list",
+        source_url="https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view",
+        source_date="2025-09-10",
+        archived_file_path="data/raw/nmsf/virginia/virginia_2026_semifinalists_snapshot.csv",
+    ),
+)
+
 SOURCE_DISCOVERY_ATTEMPTS = (
     SourceDiscoveryAttempt(
         workflow="Internet Archive CDX",
@@ -99,7 +146,9 @@ SOURCE_DISCOVERY_ATTEMPTS = (
             "the focal semifinalist artifacts were `23_meritsemi.pdf` through `26_meritsemi.pdf`."
         ),
         finding="No state-list or Virginia-list filename was exposed in the NMSC PDF index.",
-        action="Retain the archived press releases as discovery evidence only; do not create counts or zeros.",
+        action=(
+            "Retain the archived press releases as discovery evidence only; do not create counts or zeros."
+        ),
     ),
     SourceDiscoveryAttempt(
         workflow="Internet Archive CDX",
@@ -108,7 +157,10 @@ SOURCE_DISCOVERY_ATTEMPTS = (
         ),
         result="Returned an empty CDX result for the focal window.",
         finding="No alternate NMSC-hosted complete-list URL was found.",
-        action="Keep Priority A dependent on a public media mirror or other complete source.",
+        action=(
+            "Treat complete Class 2025 Virginia list recovery as optional future work; "
+            "do not make it a prerequisite for closing the focal-period cleanup."
+        ),
     ),
     SourceDiscoveryAttempt(
         workflow="Public web search",
@@ -121,7 +173,9 @@ SOURCE_DISCOVERY_ATTEMPTS = (
             "school pages, or local/school-area articles already handled as incomplete sources."
         ),
         finding="No complete public Virginia mirror was located through broad web search.",
-        action="Do not change observation counts; keep remaining rows `missing_source`.",
+        action=(
+            "Do not change Class 2025 observations from search absence; keep remaining rows `missing_source`."
+        ),
     ),
     SourceDiscoveryAttempt(
         workflow="Common Crawl URL index",
@@ -159,6 +213,71 @@ SOURCE_DISCOVERY_ATTEMPTS = (
     ),
 )
 
+LCPS_2025_TARGETED_SOURCES = (
+    "NMSC 2025 press release; official LCPS 57-student total-only release; "
+    "Ashburn Patch positive school-grouped article; LCPS school sites/APIs; "
+    "LCPS, Patch, Loudoun Now, and Loudoun Times targeted web/CDX checks"
+)
+
+TARGETED_CLASS_2025_ROW_SEARCHES = (
+    TargetedMissingRowSearch(
+        class_year=2025,
+        division="Falls Church City",
+        school="Meridian High School",
+        sources_checked=(
+            "NMSC 2025 press release; FCCPS/Meridian Apptegy news, live-feed, "
+            "and search surfaces; Falls Church News-Press issue-week checks; "
+            "Patch Falls Church/Fairfax City checks; FCCPS/Meridian/Patch CDX checks"
+        ),
+        result=("No Meridian school-level count and no complete Class 2025 Virginia list were found."),
+        action="Retain as `missing_source`; no zero inference.",
+    ),
+    TargetedMissingRowSearch(
+        class_year=2025,
+        division="LCPS",
+        school="Loudoun Valley High School",
+        sources_checked=LCPS_2025_TARGETED_SOURCES,
+        result=(
+            "No school-level count found; LCPS total-only coverage and Patch omission "
+            "cannot support zero inference."
+        ),
+        action="Retain as `missing_source`; no zero inference.",
+    ),
+    TargetedMissingRowSearch(
+        class_year=2025,
+        division="LCPS",
+        school="Park View High School",
+        sources_checked=LCPS_2025_TARGETED_SOURCES,
+        result=(
+            "No school-level count found; LCPS total-only coverage and Patch omission "
+            "cannot support zero inference."
+        ),
+        action="Retain as `missing_source`; no zero inference.",
+    ),
+    TargetedMissingRowSearch(
+        class_year=2025,
+        division="LCPS",
+        school="Tuscarora High School",
+        sources_checked=LCPS_2025_TARGETED_SOURCES,
+        result=(
+            "No school-level count found; LCPS total-only coverage and Patch omission "
+            "cannot support zero inference."
+        ),
+        action="Retain as `missing_source`; no zero inference.",
+    ),
+    TargetedMissingRowSearch(
+        class_year=2025,
+        division="LCPS",
+        school="Woodgrove High School",
+        sources_checked=LCPS_2025_TARGETED_SOURCES,
+        result=(
+            "No school-level count found; LCPS total-only coverage and Patch omission "
+            "cannot support zero inference."
+        ),
+        action="Retain as `missing_source`; no zero inference.",
+    ),
+)
+
 
 def load_csv_rows(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as handle:
@@ -178,8 +297,9 @@ def build_focal_period_completion_report(
     lines = [
         "# Focal-Period Completion Report",
         "",
-        "Generated for Milestone 10 from the current focal-period observation layer and archived "
-        "NMSC press-release source artifacts.",
+        "Generated for Milestone 10 from the current focal-period observation layer, archived "
+        "NMSC press-release source artifacts, and count-only complete Virginia list snapshots "
+        "where available.",
         "",
         "## Current Observation Coverage",
         "",
@@ -212,6 +332,44 @@ def build_focal_period_completion_report(
             ],
         ),
         "",
+        "## NMSC Virginia List Integration",
+        "",
+        "User-supplied NMSC media packets expose complete Virginia school-by-school lists for "
+        "Classes 2023, 2024, and 2026. The repo archives count-only snapshots that omit student "
+        "names, imports only still-missing positive roster rows from those lists, and uses the "
+        "complete Virginia scope to infer verified zeros for absent operating roster schools in "
+        "those class years. Class 2025 lacks a comparable complete list, so statewide-share metrics "
+        "remain blank there; the remaining row-level gaps are handled individually below.",
+        "",
+        _markdown_table(
+            ["Class", "Source ID", "Statewide Total", "Snapshot", "SHA-256"],
+            _virginia_list_table_rows(root),
+        ),
+        "",
+        "## Targeted Class 2025 Row Search",
+        "",
+        "The remaining focal-period gaps are five public Class 2025 rows. Each was targeted "
+        "directly after the 2023, 2024, and 2026 complete-list integration. None has a "
+        "source-backed positive count, and none has a complete source scope that can support "
+        "a verified zero. Recovering the full Class 2025 statewide packet would improve "
+        "supplemental statewide-share metrics, but it is not required to close this "
+        "public-source cleanup pass.",
+        "",
+        _markdown_table(
+            ["Class", "Division", "School", "Sources Checked", "Result", "Action"],
+            [
+                [
+                    str(search.class_year),
+                    search.division,
+                    search.school,
+                    search.sources_checked,
+                    search.result,
+                    search.action,
+                ]
+                for search in TARGETED_CLASS_2025_ROW_SEARCHES
+            ],
+        ),
+        "",
         "## NMSC Press-Release Audit",
         "",
         "The archived NMSC PDFs are official press releases, not school-by-school or Virginia-list "
@@ -236,10 +394,11 @@ def build_focal_period_completion_report(
         "",
         "## Broad Source-Discovery Log",
         "",
-        "A follow-up public-source sweep looked for complete Virginia school-by-school lists or "
-        "authoritative mirrors for Classes 2023-2026. It did not locate a complete list. These "
-        "searches are documented as reproducible limitation evidence; they do not establish zeros "
-        "for missing schools.",
+        "An earlier public-source sweep looked for complete Virginia school-by-school lists or "
+        "authoritative mirrors for Classes 2023-2026. It did not locate the now-supplied 2023, "
+        "2024, and 2026 list files, and it remains useful limitation evidence for the unsourced "
+        "Class 2025 statewide list/total. These searches do not establish zeros for missing "
+        "schools.",
         "",
         _markdown_table(
             ["Workflow", "Query Or Source", "Result", "Finding", "Action"],
@@ -257,16 +416,38 @@ def build_focal_period_completion_report(
         "",
         "## Source-Discovery Decision",
         "",
-        "- Do not add these NMSC press releases to `data/sources/source_manifest.yml` as numeric "
-        "count sources because they do not provide school-level Virginia counts.",
+        "- Do not add the NMSC press-release-only PDFs to `data/sources/source_manifest.yml` as "
+        "numeric count sources because they do not provide school-level Virginia counts.",
+        "- Use the supplied complete NMSC Virginia lists for Classes 2023, 2024, and 2026 as "
+        "source-backed count, zero-inference, and statewide-total sources.",
         "- Do not infer zeros for missing public or private rows from these press releases.",
-        "- Continue Priority A only from a public media mirror or other source that exposes a "
-        "complete Virginia school-by-school list for the relevant class year.",
-        "- Leave Virginia statewide-share metrics blocked until a complete list or exact statewide "
-        "semifinalist total is source-backed.",
+        "- Treat a complete Class 2025 Virginia school-by-school list as optional future work, not "
+        "a prerequisite for closing Milestone 10.",
+        "- Retain the five targeted Class 2025 rows as `missing_source` unless a school-attributed "
+        "count source or complete zero-inference scope appears.",
+        "- Publish Virginia statewide-share metrics for source-backed complete-list years only; "
+        "leave Class 2025 shares blank until a source-backed statewide total is added.",
         "",
     ]
     return "\n".join(lines)
+
+
+def _virginia_list_table_rows(root: Path) -> list[list[str]]:
+    totals_path = root / "data" / "sources" / "virginia_statewide_totals.csv"
+    totals = {row["source_id"]: row for row in load_csv_rows(totals_path)} if totals_path.exists() else {}
+    rows: list[list[str]] = []
+    for source in NMSC_VIRGINIA_LIST_SNAPSHOTS:
+        total = totals.get(source.source_id, {}).get("statewide_nmsf_semifinalist_total", "")
+        rows.append(
+            [
+                str(source.class_year),
+                source.source_id,
+                total,
+                source.archived_file_path,
+                _sha256(root / source.archived_file_path),
+            ]
+        )
+    return rows
 
 
 def _sha256(path: Path) -> str:

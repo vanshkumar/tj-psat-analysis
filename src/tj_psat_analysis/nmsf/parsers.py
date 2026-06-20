@@ -90,6 +90,12 @@ class NmscVirginiaListParser(SourceParser):
     parser_name = "nmsc_virginia_list_source_safe_stub"
 
 
+class NmscVirginiaListPdfTextParser(SourceParser):
+    provider = "nmsc_virginia_list_pdf_text"
+    parser_name = "nmsc_virginia_list_pdf_text"
+    parser_version = "1"
+
+
 PARSER_REGISTRY_BY_PROVIDER: dict[str, type[SourceParser]] = {
     parser.provider: parser
     for parser in (
@@ -101,6 +107,7 @@ PARSER_REGISTRY_BY_PROVIDER: dict[str, type[SourceParser]] = {
         SchoolReleaseParser,
         LocalMediaParser,
         NmscVirginiaListParser,
+        NmscVirginiaListPdfTextParser,
     )
 }
 
@@ -118,6 +125,7 @@ PARSER_REGISTRY_BY_NAME: dict[str, type[SourceParser]] = {
         SchoolReleaseParser,
         LocalMediaParser,
         NmscVirginiaListParser,
+        NmscVirginiaListPdfTextParser,
     )
 }
 

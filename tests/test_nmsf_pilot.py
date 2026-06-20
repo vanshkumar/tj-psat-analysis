@@ -35,6 +35,7 @@ class NmsfPilotTest(unittest.TestCase):
         self.assertIn("excluded_tjhsst_former_pwcs_student", issue_types)
         self.assertIn("excluded_nonroster_school", issue_types)
         self.assertIn("source_incomplete_unattributed_total", issue_types)
+        self.assertNotIn("out_of_roster_count", issue_types)
 
         arlington_tech = [
             row
@@ -61,6 +62,18 @@ class NmsfPilotTest(unittest.TestCase):
         self.assertIn("| pwcs_2024_semifinalists | 2024 | 6 | 2 | 4 | 6 | reconciled |", self.report)
         self.assertIn("| pwcs_2025_semifinalists | 2025 | 7 | 6 | 1 | 7 | reconciled |", self.report)
         self.assertIn("| pwcs_2026_semifinalists | 2026 | 6 | 6 | 0 | 6 | reconciled |", self.report)
+        self.assertIn(
+            "| nmsc_virginia_2023_semifinalists | 2023 | 400 | 11 | 389 | 400 | reconciled |",
+            self.report,
+        )
+        self.assertIn(
+            "| nmsc_virginia_2024_semifinalists | 2024 | 470 | 5 | 465 | 470 | reconciled |",
+            self.report,
+        )
+        self.assertIn(
+            "| nmsc_virginia_2026_semifinalists | 2026 | 494 | 6 | 488 | 494 | reconciled |",
+            self.report,
+        )
         self.assertIn(
             "| patch_fairfax_city_2025_semifinalists | 2025 | 17 | 3 | 14 | 17 | reconciled |",
             self.report,

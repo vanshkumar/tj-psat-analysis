@@ -1,20 +1,20 @@
 school_id,school,sector,analytical_unit_type,division,tj_pathway,balanced_count_2023_2026,balanced_public_rate_2023_2026,balanced_private_count_2023_2026
-basis_independent_mclean,BASIS Independent McLean,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+basis_independent_mclean,BASIS Independent McLean,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
 bishop_o_connell_high_school,Bishop O'Connell High School,private,private_school,APS,Private/homeschool unallocated,True,False,True
 flint_hill_school,Flint Hill School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
-ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
-immanuel_christian_high_school,Immanuel Christian High School,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
-loudoun_school_for_advanced_studies,Loudoun School for Advanced Studies,private,private_school,LCPS,Private/homeschool unallocated,False,False,False
-new_school_of_northern_virginia,New School of Northern Virginia,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
-oakcrest_school,Oakcrest School,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
-pinnacle_academy,Pinnacle Academy,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+immanuel_christian_high_school,Immanuel Christian High School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+loudoun_school_for_advanced_studies,Loudoun School for Advanced Studies,private,private_school,LCPS,Private/homeschool unallocated,True,False,True
+new_school_of_northern_virginia,New School of Northern Virginia,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+oakcrest_school,Oakcrest School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+pinnacle_academy,Pinnacle Academy,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
 potomac_school,Potomac School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
-seton_school_manassas,Seton School (Manassas),private,private_school,PWCS,Private/homeschool unallocated,False,False,False
-st_john_paul_the_great_catholic_high_school,St. John Paul the Great Catholic High School,private,private_school,PWCS,Private/homeschool unallocated,False,False,False
-st_paul_vi_catholic_high_school,St. Paul VI Catholic High School,private,private_school,LCPS,Private/homeschool unallocated,False,False,False
+seton_school_manassas,Seton School (Manassas),private,private_school,PWCS,Private/homeschool unallocated,True,False,True
+st_john_paul_the_great_catholic_high_school,St. John Paul the Great Catholic High School,private,private_school,PWCS,Private/homeschool unallocated,True,False,True
+st_paul_vi_catholic_high_school,St. Paul VI Catholic High School,private,private_school,LCPS,Private/homeschool unallocated,True,False,True
 the_madeira_school,The Madeira School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
-trinity_christian_school,Trinity Christian School,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
-trinity_school_at_meadow_view,Trinity School at Meadow View,private,private_school,FCPS,Private/homeschool unallocated,False,False,False
+trinity_christian_school,Trinity Christian School,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
+trinity_school_at_meadow_view,Trinity School at Meadow View,private,private_school,FCPS,Private/homeschool unallocated,True,False,True
 thomas_jefferson_high_school_for_science_and_technology,Thomas Jefferson High School for Science and Technology,public,public_governor_school,FCPS,TJHSST,True,True,False
 annandale_high_school,Annandale High School,public,public_high_school,FCPS,FCPS Region 2,True,True,False
 battlefield_high_school,Battlefield High School,public,public_high_school,PWCS,Prince William,True,True,False
@@ -65,7 +65,7 @@ south_lakes_high_school,South Lakes High School,public,public_high_school,FCPS,F
 stone_bridge_high_school,Stone Bridge High School,public,public_high_school,LCPS,Loudoun,True,True,False
 tuscarora_high_school,Tuscarora High School,public,public_high_school,LCPS,Loudoun,False,False,False
 unity_reed_high_school,Unity Reed High School,public,public_high_school,PWCS,Prince William,True,True,False
-wakefield_high_school,Wakefield High School,public,public_high_school,APS,Arlington,False,False,False
+wakefield_high_school,Wakefield High School,public,public_high_school,APS,Arlington,True,True,False
 washington_liberty_high_school,Washington-Liberty High School,public,public_high_school,APS,Arlington,True,True,False
 west_potomac_high_school,West Potomac High School,public,public_high_school,FCPS,FCPS Region 3,True,True,False
 west_springfield_high_school,West Springfield High School,public,public_high_school,FCPS,FCPS Region 4,True,True,False

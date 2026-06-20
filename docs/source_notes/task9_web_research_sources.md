@@ -2,7 +2,7 @@
 
 Generated: 2026-06-20
 
-This file records external sources used only for Task 9 interpretation and supplemental checks. The canonical panel was not modified.
+This file records external sources used for Task 9 interpretation and supplemental checks. The canonical panel now includes source-backed Virginia statewide totals for complete-list years.
 
 ## Primary sources
 
@@ -25,9 +25,15 @@ This file records external sources used only for Task 9 interpretation and suppl
 ## Supplemental secondary sources
 
 - Compass historical state cutoffs: https://www.compassprep.com/historical-national-merit-cutoffs/
-- Compass semifinalist totals by state: https://www.compassprep.com/national-merit-semifinalists-by-state/
+- Compass semifinalist totals by state: https://www.compassprep.com/national-merit-semifinalists-by-state/ (Class 2025 statewide-total sensitivity only)
 
-These values are written only to `task9_state_normalization_supplemental.csv`; the panel's Virginia fields remain `not_sourced`. NMSC's official guide is the source for the Class 2026 Virginia cutoff and total and for its warning that program data do not measure school, district, or state educational quality; Compass is used only to supply a consistent four-class historical series.
+## Source-backed Virginia list totals
+
+- Class 2023 complete NMSC Virginia list: https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view
+- Class 2024 complete NMSC Virginia list: https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf
+- Class 2026 complete NMSC Virginia list: https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view
+
+The source-backed statewide totals are written to `data/sources/virginia_statewide_totals.csv` and carried into the panel for Classes 2023, 2024, and 2026. Compass remains a secondary source for Virginia cutoff values and for the unresolved Class 2025 statewide-total sensitivity value. NMSC's official guide is the source for its warning that program data do not measure school, district, or state educational quality.
 
 ## Unresolved source gap
 

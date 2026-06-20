@@ -239,6 +239,11 @@
 - Action: Keep observed count totals separate from rate-compatible count/enrollment totals in future descriptive or robustness outputs; do not reuse observed count totals as normalized-rate numerators when denominators are missing.
 - Confidence: high
 
+**2026-06-20 - Targeted Class 2025 NMSF gaps**
+- Observation: After complete-list integration, the remaining focal NMSF gaps are five Class 2025 public rows; the official LCPS release is total-only, known Patch/local articles remain positive-only, and targeted searches did not find school-attributed counts for Meridian, Loudoun Valley, Park View, Tuscarora, or Woodgrove.
+- Action: Treat Class 2025 statewide packet recovery as optional future work; keep those rows `missing_source` unless a school-attributed count source or complete zero-inference scope appears.
+- Confidence: high
+
 **2026-06-19 - Task 9 handoff**
 - Observation: Robustness and interpretation can be handed off from `data/processed/analysis_panel.csv`, `reports/descriptive_results.md`, `reports/tables/`, and coverage/provenance reports; raw source snapshots are only needed for provenance audit or source-row disputes.
 - Action: For Task 9 drafting, provide the final panel, data dictionary, task/hypothesis framing, descriptive tables, final panel checks, NMSF reconciliation, and Regulation 3355.16; avoid substituting raw source archives for the generated coverage/status fields.
@@ -260,8 +265,8 @@
 - Confidence: high
 
 **2026-06-20 - Private NMSF coverage audit**
-- Observation: The canonical roster has 16 private-school rows; across focal Classes 2023-2026, `data/processed/nmsf_observations.csv` currently has 35 private `verified_count` rows and 29 private `missing_source` rows, with no private `verified_zero` rows.
-- Action: Treat current private-school NMSF data as positive-count coverage only unless a complete private/source scope is found; use `reports/tables/task9_private_sensitivity.csv` or `reports/data_quality/focal_period_completion.md` to summarize the remaining private gaps.
+- Observation: After integrating complete NMSC Virginia lists for Classes 2023, 2024, and 2026, all 16 private-school roster rows have source-backed focal-period NMSF counts or zeros, while private denominator coverage remains unavailable for Classes 2024 and 2026.
+- Action: Treat focal private-school count coverage as complete, but keep private offset claims unresolved unless denominator, residence/eligibility, and counterfactual-placement evidence are added.
 - Confidence: high
 
 **2026-06-19 - ProPublica private-school demographics source**
@@ -295,13 +300,23 @@
 - Confidence: high
 
 **2026-06-19 - Milestone 10 complete-list search**
-- Observation: A broad public-source sweep of NMSC archive indexes, class-year web searches, Common Crawl URL patterns, and major Virginia/DC media CDX patterns did not locate a complete Virginia school-by-school NMSF mirror for Classes 2023-2026.
-- Action: Keep the exact search attempts in `reports/data_quality/focal_period_completion.md`, leave unresolved focal rows as `missing_source`, and resume Priority A only if a source can resolve multiple rows from a complete list.
-- Confidence: medium
+- Observation: A broad public-source sweep did not locate complete Virginia school-by-school NMSF mirrors, but user-supplied NMSC Virginia media lists later resolved Classes 2023, 2024, and 2026; Class 2025 remains the only focal complete-list gap.
+- Action: Keep the search attempts in `reports/data_quality/focal_period_completion.md` as Class 2025 limitation evidence, and use `scripts/ingest_nmsc_virginia_lists.py` plus count-only snapshots for the supplied complete-list years.
+- Confidence: high
 
 **2026-06-20 - PSS locator denominator ingestion**
 - Observation: The archived NCES 2023-24 Private School Search locator detail pages resolved 10 of 16 rostered private Class 2025 grade-11 denominators; BASIS Independent McLean, Flint Hill, Oakcrest, Potomac, and Seton returned no current locator row, and Loudoun School for Advanced Studies returned two same-address candidates. Locator detail pages expose `PSS_ENROLL_11` but not `F_P290`.
 - Action: Use `scripts/ingest_private_pss_locator_2023_24.py` against archived locator HTML for interim Class 2025 private denominators, keep unresolved locator rows blank, and replace or reconcile this supplement when the official 2023-24 public-use PSS ZIP is posted.
+- Confidence: high
+
+**2026-06-20 - NMSC Virginia complete-list ingestion**
+- Observation: User-supplied NMSC Virginia media-list PDFs for Classes 2023, 2024, and 2026 parse into complete count-only snapshots with statewide totals of 400, 470, and 494; the PDFs include student names, while the snapshots omit them.
+- Action: Keep source PDFs only in the ignored `data/raw/nmsf/virginia/supplied_lists/` local directory, commit the count-only snapshots and `data/sources/virginia_statewide_totals.csv`, and leave Class 2025 unresolved until an equivalent complete list is found.
+- Confidence: high
+
+**2026-06-20 - Task 10 rerun handoff**
+- Observation: The Milestone 10 Web rerun package needs the `src/tj_psat_analysis/` package as well as the scripts, because the rebuild scripts import local package modules; raw supplied NMSC PDFs are unnecessary when count-only snapshots and source manifests are included.
+- Action: For future rerun handoffs, include `src/`, selected scripts, processed panels, source manifests, count-only snapshots, and key reports under repo-relative paths, but exclude raw supplied-list PDFs and student-name files.
 - Confidence: high
 
 ## What Has Failed

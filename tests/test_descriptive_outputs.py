@@ -77,25 +77,37 @@ class DescriptiveOutputsTest(unittest.TestCase):
             base_public_2026["compatible_nmsf_count_total"],
             str(sum(int(row["nmsf_count"]) for row in compatible_rows)),
         )
-        self.assertEqual(base_public_2026["nmsf_count_coverage_status"], "partial_nmsf_count_coverage")
+        self.assertEqual(base_public_2026["nmsf_count_coverage_status"], "complete_nmsf_count_coverage")
 
     def test_missing_nmsf_rows_remain_blank_in_school_tables(self) -> None:
-        wakefield_2024 = [
+        woodgrove_2025 = [
             row
             for row in self.tables["school_counts_by_year"]
-            if row["school_id"] == "wakefield_high_school" and row["class_year"] == "2024"
+            if row["school_id"] == "woodgrove_high_school" and row["class_year"] == "2025"
         ][0]
-        self.assertEqual(wakefield_2024["nmsf_status"], "missing_source")
-        self.assertEqual(wakefield_2024["nmsf_count"], "")
-        self.assertIn("not treated as zero", wakefield_2024["count_missingness_note"])
+        self.assertEqual(woodgrove_2025["nmsf_status"], "missing_source")
+        self.assertEqual(woodgrove_2025["nmsf_count"], "")
+        self.assertIn("not treated as zero", woodgrove_2025["count_missingness_note"])
 
         rate_row = [
             row
             for row in self.tables["school_rates_by_year"]
-            if row["school_id"] == "wakefield_high_school" and row["class_year"] == "2024"
+            if row["school_id"] == "woodgrove_high_school" and row["class_year"] == "2025"
         ][0]
         self.assertEqual(rate_row["nmsf_per_100_juniors"], "")
         self.assertEqual(rate_row["rate_status"], "missing_nmsf_count")
+
+    def test_virginia_share_table_uses_source_backed_totals_only(self) -> None:
+        share_rows = self.tables["virginia_share_by_class"]
+        tj_2024 = [row for row in share_rows if row["class_year"] == "2024" and row["group"] == "TJHSST"][0]
+        self.assertEqual(tj_2024["statewide_nmsf_semifinalist_total"], "470")
+        self.assertEqual(tj_2024["statewide_total_status"], "source_backed_total")
+        self.assertTrue(tj_2024["share_of_statewide_total_pct"])
+
+        tj_2025 = [row for row in share_rows if row["class_year"] == "2025" and row["group"] == "TJHSST"][0]
+        self.assertEqual(tj_2025["statewide_nmsf_semifinalist_total"], "")
+        self.assertEqual(tj_2025["statewide_total_status"], "not_sourced")
+        self.assertEqual(tj_2025["share_of_statewide_total_pct"], "")
 
     def test_pathway_heatmap_uses_covered_subset_fields(self) -> None:
         arlington_2026 = [
@@ -116,6 +128,7 @@ class DescriptiveOutputsTest(unittest.TestCase):
     def test_unsourced_cutoff_placeholders_are_not_annotated_in_figures(self) -> None:
         report = self.outputs["descriptive_report"].read_text(encoding="utf-8")
         self.assertIn("Virginia cutoff statuses in the analysis panel: `not_sourced`", report)
+        self.assertIn("Statewide total statuses: `not_sourced, source_backed_total`", report)
         self.assertIn("No Virginia Selection Index cutoff change is annotated", report)
         for figure_key in FIGURE_FILENAMES:
             figure_text = self.outputs[f"figure_{figure_key}"].read_text(encoding="utf-8")

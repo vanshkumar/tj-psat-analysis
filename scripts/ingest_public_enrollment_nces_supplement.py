@@ -24,17 +24,26 @@ DEFAULT_TARGET_SCHOOL_IDS = (
 
 CCD_SOURCE_BY_SCHOOL_YEAR = {
     "2021-22": {
-        "title": "NCES CCD 2021-22 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership",
+        "title": (
+            "NCES CCD 2021-22 Public Elementary/Secondary School Universe Survey Data, "
+            "v.1a, School Membership"
+        ),
         "url": "https://nces.ed.gov/ccd/Data/zip/ccd_SCH_052_2122_l_1a_071722.zip",
         "date": "2022-07-17",
     },
     "2022-23": {
-        "title": "NCES CCD 2022-23 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership",
+        "title": (
+            "NCES CCD 2022-23 Public Elementary/Secondary School Universe Survey Data, "
+            "v.1a, School Membership"
+        ),
         "url": "https://nces.ed.gov/ccd/data/zip/ccd_sch_052_2223_l_1a_083023.zip",
         "date": "2023-08-30",
     },
     "2023-24": {
-        "title": "NCES CCD 2023-24 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership",
+        "title": (
+            "NCES CCD 2023-24 Public Elementary/Secondary School Universe Survey Data, "
+            "v.1a, School Membership"
+        ),
         "url": "https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_2324_l_1a_073124.zip",
         "date": "2024-07-31",
     },
@@ -68,7 +77,10 @@ def main() -> int:
         action="append",
         type=_parse_membership_zip_arg,
         required=True,
-        help="Repeatable SCHOOL_YEAR=/path/to/ccd membership ZIP, e.g. 2023-24=/tmp/ccd_sch_052_2324_l_1a_073124.zip.",
+        help=(
+            "Repeatable SCHOOL_YEAR=/path/to/ccd membership ZIP, "
+            "e.g. 2023-24=/tmp/ccd_sch_052_2324_l_1a_073124.zip."
+        ),
     )
     parser.add_argument(
         "--school-roster-csv",

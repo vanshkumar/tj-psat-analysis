@@ -31,6 +31,7 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_enrollment_panel.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/apply_nmsf_counts.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_observations.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_pilot_2023_2026.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_focal_period_completion.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_panel.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_descriptive_outputs.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_task9_outputs.py
@@ -62,6 +63,7 @@ Generated pipeline outputs include:
 - `reports/data_quality/enrollment_coverage.md`
 - `reports/data_quality/nmsf_source_registry.md`
 - `reports/data_quality/nmsf_reconciliation_2023_2026.md`
+- `reports/data_quality/focal_period_completion.md`
 - `reports/data_quality/final_panel_checks.md`
 - `reports/descriptive_results.md`
 - `reports/robustness.md`
@@ -149,15 +151,33 @@ Ashburn Patch article supplies the imported positive LCPS Class 2025 school rows
 Overlapping public-school rows from the Patch articles are retained only in
 source snapshots when official district rows already cover those counts; the
 local articles are not used for zero inference.
+Complete NMSC Virginia media-list snapshots for Classes 2023, 2024, and 2026
+are archived as count-only CSVs under `data/raw/nmsf/virginia/`; they omit
+student names, fill remaining positive roster rows, support complete-list zero
+inference for operating roster schools, and provide source-backed statewide
+semifinalist totals. Class 2025 still lacks a comparable complete Virginia
+school-by-school list, but statewide packet recovery is optional future work
+rather than a prerequisite for the current cleanup pass.
+
+Milestone 10A is complete at the current stopping-rule level: complete Virginia
+lists were integrated for Classes 2023, 2024, and 2026, and the five remaining
+Class 2025 row-level gaps have targeted search notes and remain
+`missing_source`.
 
 `scripts/build_nmsf_pilot_2023_2026.py` builds the Milestone 5 pilot outputs:
 `data/processed/nmsf_observations_2023_2026.csv`,
 `reports/data_quality/nmsf_reconciliation_2023_2026.md`, and
 `reports/data_quality/manual_review_queue.csv`. The current four-year pilot has
-304 observation rows: 189 `verified_count`, 78 `verified_zero`, and 37
-`missing_source`. The reconciliation report's Source Gaps table is the
-authoritative summary of unresolved observations; the manual review queue also
-contains excluded count-only snapshot rows used to reconcile source totals.
+304 observation rows: 199 `verified_count`, 100 `verified_zero`, and 5
+`missing_source`. The remaining missing rows are all Class 2025 public rows
+because the official LCPS Class 2025 source is total-only and no complete
+Class 2025 Virginia list has been found. Meridian, Loudoun Valley, Park View,
+Tuscarora, and Woodgrove were targeted individually and remain
+`missing_source`, not `verified_zero`, until a school-attributed count source or
+complete zero-inference scope appears. The reconciliation report's Source Gaps
+table is the authoritative summary of unresolved observations; the manual review
+queue also contains excluded count-only snapshot rows used to reconcile source
+totals.
 
 The historical Classes 2019-2022 backfill is optional robustness work rather
 than a prerequisite for the analytical panel. The pre-analysis stopping point is
@@ -180,9 +200,17 @@ showing whether the pathway-year is complete, partial, or has no compatible
 rows. The pathway buckets are analytical geographies, not observed TJHSST
 admissions pathways.
 
-Virginia NMSF Selection Index cutoff and statewide semifinalist total columns
-are included as `not_sourced` placeholders until reliable class-year sources
-are added. Grade-11 enrollment denominators are kept separate from admissions
+Milestone 10B is complete at the current stopping-rule level: the two Freedom
+High public denominator histories were resolved from exact NCES identifiers,
+and the NCES Private School Search locator is used as an official interim Class
+2025 private denominator source. The official NCES PSS 2023-24 public-use ZIP
+is a preferred future replacement, not a prerequisite for the current analysis.
+
+Virginia NMSF Selection Index cutoff columns remain `not_sourced` placeholders
+until reliable class-year cutoff sources are added. Virginia statewide
+semifinalist totals are source-backed in the panel for Classes 2023, 2024, and
+2026 from the complete NMSC Virginia lists; Class 2025 remains `not_sourced`.
+Grade-11 enrollment denominators are kept separate from admissions
 seat-allocation inputs; no 8th-grade allocation population is included in this
 panel.
 
@@ -201,9 +229,11 @@ rate-compatible count/enrollment totals, so denominator gaps and NMSF source
 gaps remain visible. Pathway values are covered-subset aggregates, not
 full-pathway totals unless the coverage status is complete.
 
-Virginia cutoff and statewide-total fields remain `not_sourced` placeholders in
-the analysis panel. The descriptive report documents that gap and the figures
-do not annotate cutoff changes until source-backed cutoff values are added.
+Virginia cutoff fields remain `not_sourced` in the analysis panel, so the
+figures do not annotate cutoff changes until source-backed cutoff values are
+added. The descriptive outputs include `reports/tables/virginia_share_by_class.csv`
+for class years with source-backed statewide totals and leave Class 2025 share
+cells blank.
 
 ## Robustness And Interpretation
 
@@ -216,12 +246,12 @@ generates Milestone 9 outputs:
 - `reports/tables/task9_*.csv`
 - `docs/source_notes/task9_web_research_sources.md`
 
-The script keeps the canonical panel unchanged. Supplemental Virginia cutoff
-and statewide semifinalist figures are used only in Task 9 sensitivity tables
-and remain outside the canonical `not_sourced` panel fields. The reports keep
-raw observed counts separate from rate-compatible covered totals, leave
-`missing_source` rows missing, and treat the admissions-policy discussion as
-descriptive rather than causal.
+The script uses the canonical source-backed statewide totals for Classes 2023,
+2024, and 2026, while keeping Virginia cutoff values and the unresolved Class
+2025 statewide-total sensitivity value as labeled secondary-source checks. The
+reports keep raw observed counts separate from rate-compatible covered totals,
+leave `missing_source` rows missing, and treat the admissions-policy discussion
+as descriptive rather than causal.
 
 ## Source Discipline
 

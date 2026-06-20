@@ -51,6 +51,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "lcps_2024_semifinalists",
                 "lcps_2025_semifinalists",
                 "lcps_2026_semifinalists",
+                "nmsc_virginia_2023_semifinalists",
+                "nmsc_virginia_2024_semifinalists",
+                "nmsc_virginia_2026_semifinalists",
                 "patch_arlington_2024_semifinalists",
                 "patch_arlington_2023_semifinalists",
                 "patch_arlington_2025_semifinalists",
@@ -78,9 +81,22 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         )
         for source in self.sources.values():
             self.assertIn(source.parser_name, PARSER_REGISTRY_BY_NAME)
-            self.assertEqual(source.parser_name, "manual_reviewed_table")
+            if source.provider == "nmsc_virginia_list":
+                self.assertEqual(source.parser_name, "nmsc_virginia_list_pdf_text")
+            else:
+                self.assertEqual(source.parser_name, "manual_reviewed_table")
             if source.complete_for_zero_inference:
-                self.assertTrue(source.zero_inference_scope.endswith("_public_high_schools_in_roster"))
+                self.assertIn(
+                    source.zero_inference_scope,
+                    {
+                        "aps_public_high_schools_in_roster",
+                        "fcps_public_high_schools_in_roster",
+                        "falls_church_city_public_high_schools_in_roster",
+                        "lcps_public_high_schools_in_roster",
+                        "pwcs_public_high_schools_in_roster",
+                        "virginia_rostered_schools",
+                    },
+                )
             else:
                 self.assertIn(
                     source.source_id,
@@ -140,6 +156,17 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
             self.assertEqual({row["source_id"] for row in snapshot_rows}, {source.source_id})
             self.assertEqual({row["class_year"] for row in snapshot_rows}, {str(source.graduating_class)})
+            if source.provider == "nmsc_virginia_list":
+                self.assertEqual(
+                    sum(int(row["nmsf_count"]) for row in snapshot_rows),
+                    int(source.reported_total),
+                )
+                self.assertTrue(any(row.get("matched_school_id") for row in snapshot_rows))
+                self.assertTrue(
+                    all("student names omitted" in row.get("snapshot_notes", "") for row in snapshot_rows)
+                )
+                self.assertIn("out_of_roster_count", {row["snapshot_record_type"] for row in snapshot_rows})
+                continue
             snapshot_count_rows = sorted(
                 (row["school_name_source"], int(row["nmsf_count"])) for row in observation_snapshot_rows
             )
@@ -199,8 +226,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 259)
-        self.assertEqual(statuses["verified_zero"], 108)
+        self.assertEqual(statuses["verified_count"], 269)
+        self.assertEqual(statuses["verified_zero"], 130)
+        self.assertEqual(statuses["missing_source"], 200)
         self.assertEqual(statuses["not_operating"], 9)
 
         tj_2019 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2019)
@@ -251,9 +279,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(washington_liberty_2024["source_id"], "patch_arlington_2024_semifinalists")
 
         wakefield_2024 = self._lookup("wakefield_high_school", 2024)
-        self.assertEqual(wakefield_2024["nmsf_count"], "")
-        self.assertEqual(wakefield_2024["nmsf_status"], "missing_source")
-        self.assertEqual(wakefield_2024["source_id"], "")
+        self.assertEqual(wakefield_2024["nmsf_count"], "0")
+        self.assertEqual(wakefield_2024["nmsf_status"], "verified_zero")
+        self.assertEqual(wakefield_2024["source_id"], "nmsc_virginia_2024_semifinalists")
 
         washington_liberty_2026 = self._lookup("washington_liberty_high_school", 2026)
         self.assertEqual(washington_liberty_2026["nmsf_count"], "9")
@@ -276,9 +304,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(dominion_lcps_2024["source_id"], "lcps_2024_semifinalists")
 
         st_paul_vi_2024 = self._lookup("st_paul_vi_catholic_high_school", 2024)
-        self.assertEqual(st_paul_vi_2024["nmsf_count"], "")
-        self.assertEqual(st_paul_vi_2024["nmsf_status"], "missing_source")
-        self.assertEqual(st_paul_vi_2024["source_id"], "")
+        self.assertEqual(st_paul_vi_2024["nmsf_count"], "2")
+        self.assertEqual(st_paul_vi_2024["nmsf_status"], "verified_count")
+        self.assertEqual(st_paul_vi_2024["source_id"], "nmsc_virginia_2024_semifinalists")
 
         freedom_lcps_2025 = self._lookup("freedom_high_school_south_riding", 2025)
         self.assertEqual(freedom_lcps_2025["nmsf_count"], "2")
@@ -304,9 +332,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(st_paul_vi_2026["source_id"], "patch_ashburn_2026_semifinalists")
 
         loudoun_school_advanced_2026 = self._lookup("loudoun_school_for_advanced_studies", 2026)
-        self.assertEqual(loudoun_school_advanced_2026["nmsf_count"], "")
-        self.assertEqual(loudoun_school_advanced_2026["nmsf_status"], "missing_source")
-        self.assertEqual(loudoun_school_advanced_2026["source_id"], "")
+        self.assertEqual(loudoun_school_advanced_2026["nmsf_count"], "0")
+        self.assertEqual(loudoun_school_advanced_2026["nmsf_status"], "verified_zero")
+        self.assertEqual(loudoun_school_advanced_2026["source_id"], "nmsc_virginia_2026_semifinalists")
 
         woodgrove_2025 = self._lookup("woodgrove_high_school", 2025)
         self.assertEqual(woodgrove_2025["nmsf_count"], "")
@@ -386,9 +414,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(basis_mclean_2024["source_id"], "patch_mclean_2024_semifinalists")
 
         basis_mclean_2023 = self._lookup("basis_independent_mclean", 2023)
-        self.assertEqual(basis_mclean_2023["nmsf_count"], "")
-        self.assertEqual(basis_mclean_2023["nmsf_status"], "missing_source")
-        self.assertEqual(basis_mclean_2023["source_id"], "")
+        self.assertEqual(basis_mclean_2023["nmsf_count"], "7")
+        self.assertEqual(basis_mclean_2023["nmsf_status"], "verified_count")
+        self.assertEqual(basis_mclean_2023["source_id"], "nmsc_virginia_2023_semifinalists")
 
         madeira_2023 = self._lookup("the_madeira_school", 2023)
         self.assertEqual(madeira_2023["nmsf_count"], "1")
@@ -476,10 +504,22 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(bishop_2023["source_id"], "patch_arlington_2023_semifinalists")
 
     def test_unsourced_rows_remain_missing_until_sourced(self) -> None:
-        seton_2026 = self._lookup("seton_school_manassas", 2026)
-        self.assertEqual(seton_2026["nmsf_count"], "")
-        self.assertEqual(seton_2026["nmsf_status"], "missing_source")
-        self.assertEqual(seton_2026["source_id"], "")
+        missing_focal_rows = {
+            (row["school_id"], row["class_year"])
+            for row in self.rows
+            if row["class_year"] in {"2023", "2024", "2025", "2026"}
+            and row["nmsf_status"] == "missing_source"
+        }
+        self.assertEqual(
+            missing_focal_rows,
+            {
+                ("loudoun_valley_high_school", "2025"),
+                ("meridian_high_school", "2025"),
+                ("park_view_high_school", "2025"),
+                ("tuscarora_high_school", "2025"),
+                ("woodgrove_high_school", "2025"),
+            },
+        )
 
 
 if __name__ == "__main__":

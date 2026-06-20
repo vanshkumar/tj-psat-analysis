@@ -12,14 +12,14 @@ class_year,school_group,operating_school_rows,nmsf_count_available_rows,missing_
 2022,Base public schools,58,24,34,55,24,71,71,14145,0.501944,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2022,Private schools,16,0,16,0,0,,,,,no_nmsf_count_coverage,no_compatible_rate_coverage,false
 2023,TJHSST,1,1,0,1,1,132,132,461,28.633406,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
-2023,Base public schools,59,58,1,58,57,167,164,29343,0.558907,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
-2023,Private schools,16,4,12,10,2,13,2,394,0.507614,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2023,Base public schools,59,59,0,58,58,167,164,29538,0.555217,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2023,Private schools,16,16,0,10,10,24,12,968,1.239669,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2024,TJHSST,1,1,0,1,1,165,165,441,37.414966,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
-2024,Base public schools,59,58,1,58,57,176,175,29096,0.601457,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
-2024,Private schools,16,5,11,0,0,18,,,,partial_nmsf_count_coverage,no_compatible_rate_coverage,false
+2024,Base public schools,59,59,0,58,58,176,175,29771,0.587820,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2024,Private schools,16,16,0,0,0,23,,,,complete_nmsf_count_coverage,no_compatible_rate_coverage,false
 2025,TJHSST,1,1,0,1,1,81,81,504,16.071429,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
 2025,Base public schools,59,54,5,58,53,173,170,29147,0.583250,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2025,Private schools,16,16,0,10,10,34,16,986,1.622718,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2026,TJHSST,1,1,0,1,1,113,113,523,21.606119,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
-2026,Base public schools,59,58,1,58,57,232,226,30609,0.738345,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
-2026,Private schools,16,10,6,0,0,34,,,,partial_nmsf_count_coverage,no_compatible_rate_coverage,false
+2026,Base public schools,59,59,0,58,58,237,231,30854,0.748687,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2026,Private schools,16,16,0,0,0,35,,,,complete_nmsf_count_coverage,no_compatible_rate_coverage,false

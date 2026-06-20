@@ -1,22 +1,22 @@
 group,metric,comparison,start_value,end_value,absolute_change,percent_change
-Balanced public including TJHSST,raw_count,2024_to_2025,331.000000,249.000000,-82.000000,-24.773414
-Balanced public including TJHSST,raw_count,2025_to_2026,249.000000,337.000000,88.000000,35.341365
+Balanced public including TJHSST,raw_count,2024_to_2025,331.000000,251.000000,-80.000000,-24.169184
+Balanced public including TJHSST,raw_count,2025_to_2026,251.000000,337.000000,86.000000,34.262948
 Balanced public including TJHSST,raw_count,2024_to_2026,331.000000,337.000000,6.000000,1.812689
-Balanced public including TJHSST,rate_per_100_grade11,2024_to_2025,1.183749,0.860728,-0.323021,-27.287988
-Balanced public including TJHSST,rate_per_100_grade11,2025_to_2026,0.860728,1.156605,0.295877,34.375205
-Balanced public including TJHSST,rate_per_100_grade11,2024_to_2026,1.183749,1.156605,-0.027144,-2.293084
-Balanced conventional base public,raw_count,2024_to_2025,166.000000,168.000000,2.000000,1.204819
-Balanced conventional base public,raw_count,2025_to_2026,168.000000,224.000000,56.000000,33.333333
+Balanced public including TJHSST,rate_per_100_grade11,2024_to_2025,1.155847,0.846514,-0.309333,-26.762434
+Balanced public including TJHSST,rate_per_100_grade11,2025_to_2026,0.846514,1.130797,0.284282,33.582668
+Balanced public including TJHSST,rate_per_100_grade11,2024_to_2026,1.155847,1.130797,-0.025051,-2.167305
+Balanced conventional base public,raw_count,2024_to_2025,166.000000,170.000000,4.000000,2.409639
+Balanced conventional base public,raw_count,2025_to_2026,170.000000,224.000000,54.000000,31.764706
 Balanced conventional base public,raw_count,2024_to_2026,166.000000,224.000000,58.000000,34.939759
-Balanced conventional base public,rate_per_100_grade11,2024_to_2025,0.603176,0.591029,-0.012147,-2.013797
-Balanced conventional base public,rate_per_100_grade11,2025_to_2026,0.591029,0.782834,0.191805,32.452646
-Balanced conventional base public,rate_per_100_grade11,2024_to_2026,0.603176,0.782834,0.179658,29.785319
+Balanced conventional base public,rate_per_100_grade11,2024_to_2025,0.588736,0.583250,-0.005486,-0.931754
+Balanced conventional base public,rate_per_100_grade11,2025_to_2026,0.583250,0.765053,0.181803,31.170664
+Balanced conventional base public,rate_per_100_grade11,2024_to_2026,0.588736,0.765053,0.176317,29.948477
 TJHSST,raw_count,2024_to_2025,165.000000,81.000000,-84.000000,-50.909091
 TJHSST,raw_count,2025_to_2026,81.000000,113.000000,32.000000,39.506173
 TJHSST,raw_count,2024_to_2026,165.000000,113.000000,-52.000000,-31.515152
 TJHSST,rate_per_100_grade11,2024_to_2025,37.414966,16.071429,-21.343537,-57.045455
 TJHSST,rate_per_100_grade11,2025_to_2026,16.071429,21.606119,5.534690,34.438071
 TJHSST,rate_per_100_grade11,2024_to_2026,37.414966,21.606119,-15.808847,-42.252738
-Balanced private schools,raw_count,2024_to_2025,15.000000,15.000000,0.000000,0.000000
-Balanced private schools,raw_count,2025_to_2026,15.000000,18.000000,3.000000,20.000000
-Balanced private schools,raw_count,2024_to_2026,15.000000,18.000000,3.000000,20.000000
+Balanced private schools,raw_count,2024_to_2025,23.000000,34.000000,11.000000,47.826087
+Balanced private schools,raw_count,2025_to_2026,34.000000,35.000000,1.000000,2.941176
+Balanced private schools,raw_count,2024_to_2026,23.000000,35.000000,12.000000,52.173913

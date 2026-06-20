@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from tj_psat_analysis.nmsf.completion import (  # noqa: E402
     NMSC_PRESS_RELEASES,
     SOURCE_DISCOVERY_ATTEMPTS,
+    TARGETED_CLASS_2025_ROW_SEARCHES,
     build_focal_period_completion_report,
 )
 
@@ -21,14 +22,44 @@ class FocalPeriodCompletionTest(unittest.TestCase):
             root=ROOT,
         )
 
-        self.assertIn("| missing_source | 37 |", report)
+        self.assertIn("| missing_source | 5 |", report)
         self.assertIn("| 2025 | LCPS | public | 4 |", report)
-        self.assertIn("| 2026 | FCPS | Trinity School at Meadow View | private |", report)
+        self.assertIn("| 2025 | Falls Church City | public | 1 |", report)
+        self.assertIn("| 2025 | LCPS | Woodgrove High School | public |", report)
+        self.assertIn("| 2025 | Falls Church City | Meridian High School | public |", report)
+        self.assertIn("## NMSC Virginia List Integration", report)
+        self.assertIn("| 2023 | nmsc_virginia_2023_semifinalists | 400 |", report)
+        self.assertIn("| 2024 | nmsc_virginia_2024_semifinalists | 470 |", report)
+        self.assertIn("| 2026 | nmsc_virginia_2026_semifinalists | 494 |", report)
+        self.assertIn("## Targeted Class 2025 Row Search", report)
+        self.assertIn("Recovering the full Class 2025 statewide packet", report)
+        self.assertIn("not required to close this public-source cleanup pass", report)
+        self.assertIn("LCPS total-only coverage and Patch omission cannot support zero inference", report)
         self.assertIn("Official press release only; no school-by-school list.", report)
         self.assertIn("does not create `verified_count`, `verified_zero`, or Virginia-share rows", report)
         self.assertIn("## Broad Source-Discovery Log", report)
-        self.assertIn("No complete public Virginia mirror was located through broad web search.", report)
+        self.assertIn("Class 2025 statewide list/total", report)
         self.assertIn("never use Patch absence for zero inference", report)
+        self.assertIn("optional future work, not a prerequisite for closing Milestone 10", report)
+
+    def test_targeted_class_2025_rows_remain_missing_source(self) -> None:
+        self.assertEqual(len(TARGETED_CLASS_2025_ROW_SEARCHES), 5)
+
+        schools = {search.school for search in TARGETED_CLASS_2025_ROW_SEARCHES}
+        self.assertEqual(
+            schools,
+            {
+                "Meridian High School",
+                "Loudoun Valley High School",
+                "Park View High School",
+                "Tuscarora High School",
+                "Woodgrove High School",
+            },
+        )
+
+        combined_actions = " ".join(search.action for search in TARGETED_CLASS_2025_ROW_SEARCHES)
+        self.assertIn("Retain as `missing_source`", combined_actions)
+        self.assertNotIn("verified_zero", combined_actions)
 
     def test_nmsc_press_release_files_are_archived(self) -> None:
         for source in NMSC_PRESS_RELEASES:

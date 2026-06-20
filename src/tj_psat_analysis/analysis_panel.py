@@ -113,6 +113,7 @@ def build_analysis_outputs(
     enrollment_panel_csv: Path,
     class_year_mapping_csv: Path,
     school_history_csv: Path,
+    statewide_totals_csv: Path | None = None,
     processed_dir: Path,
     report_dir: Path,
 ) -> dict[str, Path]:
@@ -121,6 +122,9 @@ def build_analysis_outputs(
     enrollment_rows = load_csv_rows(enrollment_panel_csv)
     class_year_rows = load_csv_rows(class_year_mapping_csv)
     history_rows = load_csv_rows(school_history_csv)
+    statewide_total_rows = (
+        load_csv_rows(statewide_totals_csv) if statewide_totals_csv and statewide_totals_csv.exists() else []
+    )
 
     panel_rows = build_analysis_panel_rows(
         roster_rows=roster_rows,
@@ -128,6 +132,7 @@ def build_analysis_outputs(
         enrollment_rows=enrollment_rows,
         class_year_rows=class_year_rows,
         history_rows=history_rows,
+        statewide_total_rows=statewide_total_rows,
     )
     checks = final_panel_checks(panel_rows)
 
@@ -150,11 +155,18 @@ def build_analysis_panel_rows(
     enrollment_rows: Sequence[Mapping[str, str]],
     class_year_rows: Sequence[Mapping[str, str]],
     history_rows: Sequence[Mapping[str, str]],
+    statewide_total_rows: Sequence[Mapping[str, str]] = (),
 ) -> list[dict[str, object]]:
     roster_by_school_id = _index_unique(roster_rows, ("school_id",), "school roster")
     nmsf_by_key = _index_unique(nmsf_rows, ("school_id", "class_year"), "NMSF observations")
     enrollment_by_key = _index_unique(enrollment_rows, ("school_id", "class_year"), "enrollment panel")
     class_year_by_year = _index_unique(class_year_rows, ("class_year",), "class-year mapping")
+    statewide_total_by_year = _index_unique(
+        statewide_total_rows,
+        ("class_year",),
+        "Virginia statewide NMSF totals",
+        allow_empty=True,
+    )
     class_years = [row["class_year"] for row in class_year_rows]
     history_by_school_id = _history_by_school_id(history_rows)
 
@@ -181,6 +193,7 @@ def build_analysis_panel_rows(
                     enrollment_row=enrollment_row,
                     class_year_row=class_year_row,
                     history_events=history_events,
+                    statewide_total_row=statewide_total_by_year.get((class_year,), {}),
                 )
             )
 
@@ -229,12 +242,37 @@ def final_panel_checks(rows: Sequence[Mapping[str, object]]) -> list[dict[str, s
             "Virginia cutoff columns are documented placeholders.",
         ),
         _check_row(
-            "statewide_total_placeholder",
-            {str(row["statewide_nmsf_semifinalist_total_status"]) for row in rows} == {"not_sourced"},
-            "Statewide total columns are documented placeholders.",
+            "statewide_total_source_metadata",
+            not _statewide_total_source_violations(rows),
+            "Sourced statewide total rows include source metadata; unsourced years remain placeholders.",
         ),
     ]
     return checks
+
+
+def _statewide_total_source_violations(rows: Sequence[Mapping[str, object]]) -> list[Mapping[str, object]]:
+    violations: list[Mapping[str, object]] = []
+    for row in rows:
+        total = str(row.get("statewide_nmsf_semifinalist_total", "")).strip()
+        status = str(row.get("statewide_nmsf_semifinalist_total_status", "")).strip()
+        if not total:
+            if status != "not_sourced":
+                violations.append(row)
+            continue
+        if status != "source_backed_total":
+            violations.append(row)
+            continue
+        if not all(
+            str(row.get(field, "")).strip()
+            for field in (
+                "statewide_nmsf_semifinalist_total_source_title",
+                "statewide_nmsf_semifinalist_total_source_url",
+                "statewide_nmsf_semifinalist_total_source_date",
+                "statewide_nmsf_semifinalist_total_source_hash",
+            )
+        ):
+            violations.append(row)
+    return violations
 
 
 def build_final_panel_report(
@@ -309,7 +347,11 @@ def build_final_panel_report(
         "- Pathway totals sum only rows with compatible NMSF and denominator coverage.",
         "- `missing_source` remains missing and is not converted to zero.",
         "- Grade-11 enrollment is an outcome denominator, not an admissions-seat allocation input.",
-        "- Virginia cutoff and statewide total fields remain `not_sourced` until reliable sources are added.",
+        "- Virginia cutoff fields remain `not_sourced` until reliable sources are added.",
+        (
+            "- Statewide total fields are populated only when a complete source-backed "
+            "Virginia list is available."
+        ),
         "",
     ]
     return "\n".join(lines)
@@ -322,6 +364,7 @@ def _analysis_row(
     enrollment_row: Mapping[str, str],
     class_year_row: Mapping[str, str],
     history_events: Sequence[Mapping[str, str]],
+    statewide_total_row: Mapping[str, str],
 ) -> dict[str, object]:
     nmsf_count = _int_or_none(nmsf_row.get("nmsf_count", ""))
     grade11_enrollment = _int_or_none(enrollment_row.get("grade11_enrollment", ""))
@@ -404,12 +447,14 @@ def _analysis_row(
         "va_nmsf_selection_index_cutoff_source_url": "",
         "va_nmsf_selection_index_cutoff_source_date": "",
         "va_nmsf_selection_index_cutoff_source_hash": "",
-        "statewide_nmsf_semifinalist_total": "",
-        "statewide_nmsf_semifinalist_total_status": "not_sourced",
-        "statewide_nmsf_semifinalist_total_source_title": "",
-        "statewide_nmsf_semifinalist_total_source_url": "",
-        "statewide_nmsf_semifinalist_total_source_date": "",
-        "statewide_nmsf_semifinalist_total_source_hash": "",
+        "statewide_nmsf_semifinalist_total": statewide_total_row.get("statewide_nmsf_semifinalist_total", ""),
+        "statewide_nmsf_semifinalist_total_status": statewide_total_row.get(
+            "statewide_nmsf_semifinalist_total_status", "not_sourced"
+        ),
+        "statewide_nmsf_semifinalist_total_source_title": statewide_total_row.get("source_title", ""),
+        "statewide_nmsf_semifinalist_total_source_url": statewide_total_row.get("source_url", ""),
+        "statewide_nmsf_semifinalist_total_source_date": statewide_total_row.get("source_date", ""),
+        "statewide_nmsf_semifinalist_total_source_hash": statewide_total_row.get("source_hash", ""),
         "denominator_type": "grade11_enrollment_outcome_denominator",
         "admissions_seat_allocation_input": "",
         "admissions_seat_allocation_input_status": "not_included_requires_sourced_8th_grade_population",
@@ -464,11 +509,15 @@ def _index_unique(
     rows: Sequence[Mapping[str, str]],
     fields: Sequence[str],
     label: str,
+    *,
+    allow_empty: bool = False,
 ) -> dict[tuple[str, ...], Mapping[str, str]]:
     output: dict[tuple[str, ...], Mapping[str, str]] = {}
     for row_number, row in enumerate(rows, start=2):
         key = tuple(str(row.get(field, "")).strip() for field in fields)
         if not all(key):
+            if allow_empty and not any(str(value).strip() for value in row.values()):
+                continue
             raise ValueError(f"{label} row {row_number} has blank key field in {fields}")
         if key in output:
             raise ValueError(f"{label} has duplicate key {key}")

@@ -867,3 +867,69 @@ sources:
     reported_total: 10
     reported_total_scope: Prince William County and Manassas schools listed in the Patch article
     notes: Patch groups 10 Prince William County and Manassas semifinalists by school. Only the still-missing St. John Paul the Great private-school row is imported; overlapping PWCS public rows and the nonroster Manassas City Osbourn row are retained in the archived snapshot for source-total reconciliation.
+  - source_id: nmsc_virginia_2023_semifinalists
+    provider: nmsc_virginia_list
+    graduating_class: 2023
+    geography_or_district: Virginia high schools
+    source_title: Semifinalists in the 2023 National Merit Scholarship Program - Virginia list
+    publisher: National Merit Scholarship Corporation
+    publication_date: 2022-09-14
+    source_url: https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view
+    retrieval_date: 2026-06-20
+    source_type: official_nmsc_media_list
+    completeness_scope: complete named Virginia school-by-school list
+    complete_for_zero_inference: true
+    zero_inference_scope: virginia_rostered_schools
+    archived_file_path: data/raw/nmsf/virginia/virginia_2023_semifinalists_snapshot.csv
+    archived_file_sha256: 390c4de436745814d47db4905b197a9d476d73116c7de765039100ea6f3b85cf
+    parser_name: nmsc_virginia_list_pdf_text
+    parser_version: 1
+    source_hash: 74eb7026c16f57ac140363fb5b833aa5518e06a2032a2341a05faa332ef2233c
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 400
+    reported_total_scope: All Virginia Semifinalists in the complete NMSC state list
+    notes: The source PDF is the NMSC media packet with Virginia semifinalists listed alphabetically by city and high school. The archived repo snapshot stores count-only school rows and omits student names. Only still-missing positive roster rows are imported from this source; absent operating roster rows receive verified zeros from the complete Virginia scope.
+  - source_id: nmsc_virginia_2024_semifinalists
+    provider: nmsc_virginia_list
+    graduating_class: 2024
+    geography_or_district: Virginia high schools
+    source_title: Semifinalists in the 2024 National Merit Scholarship Program - Virginia list
+    publisher: National Merit Scholarship Corporation
+    publication_date: 2023-09-13
+    source_url: https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf
+    retrieval_date: 2026-06-20
+    source_type: official_nmsc_media_list
+    completeness_scope: complete named Virginia school-by-school list
+    complete_for_zero_inference: true
+    zero_inference_scope: virginia_rostered_schools
+    archived_file_path: data/raw/nmsf/virginia/virginia_2024_semifinalists_snapshot.csv
+    archived_file_sha256: 9bf0580a9cc7fc5a3d661606e0895e1d454395b3e340df0be81f6bd0e816d5d8
+    parser_name: nmsc_virginia_list_pdf_text
+    parser_version: 1
+    source_hash: 06fd045aa5842b6093537c15a222b3145788727f7c52650f1b1d8f1de32e0f12
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 470
+    reported_total_scope: All Virginia Semifinalists in the complete NMSC state list
+    notes: The source PDF is the NMSC media packet with Virginia semifinalists listed alphabetically by city and high school. The archived repo snapshot stores count-only school rows and omits student names. Only still-missing positive roster rows are imported from this source; absent operating roster rows receive verified zeros from the complete Virginia scope.
+  - source_id: nmsc_virginia_2026_semifinalists
+    provider: nmsc_virginia_list
+    graduating_class: 2026
+    geography_or_district: Virginia high schools
+    source_title: Semifinalists in the 2026 National Merit Scholarship Program - Virginia list
+    publisher: National Merit Scholarship Corporation
+    publication_date: 2025-09-10
+    source_url: https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view
+    retrieval_date: 2026-06-20
+    source_type: official_nmsc_media_list
+    completeness_scope: complete named Virginia school-by-school list
+    complete_for_zero_inference: true
+    zero_inference_scope: virginia_rostered_schools
+    archived_file_path: data/raw/nmsf/virginia/virginia_2026_semifinalists_snapshot.csv
+    archived_file_sha256: 84b7384aa4beb85c315bc2f1ea21aec6d09f0aed4d6f96d2a4017298737863dc
+    parser_name: nmsc_virginia_list_pdf_text
+    parser_version: 1
+    source_hash: 1172227af16ae45b55c4a9df0a8d42b7d19fa8b614ba9f2744e002561eafe4ba
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
+    reported_total: 494
+    reported_total_scope: All Virginia Semifinalists in the complete NMSC state list
+    notes: The source PDF is the NMSC media packet with Virginia semifinalists listed alphabetically by city and high school. The archived repo snapshot stores count-only school rows and omits student names. Only still-missing positive roster rows are imported from this source; absent operating roster rows receive verified zeros from the complete Virginia scope.

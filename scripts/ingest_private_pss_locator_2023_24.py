@@ -23,7 +23,6 @@ from tj_psat_analysis.enrollment import (  # noqa: E402
 )
 from tj_psat_analysis.seed_workbook import write_csv  # noqa: E402
 
-
 SOURCE_DIR = ROOT / "data" / "raw" / "enrollment" / "pss_locator_2023_24"
 DEFAULT_MAPPING = ROOT / "data" / "manual" / "private_school_pss_locator_2023_24.csv"
 DEFAULT_OUTPUT = ROOT / "data" / "interim" / "private_grade11_enrollment_pss_locator_2023_24.csv"

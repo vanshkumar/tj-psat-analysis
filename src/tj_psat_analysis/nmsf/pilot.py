@@ -215,6 +215,8 @@ def _excluded_snapshot_rows(
     for source in sources.values():
         if not source.archived_file_path:
             continue
+        if source.provider == "nmsc_virginia_list":
+            continue
         snapshot_path = root / source.archived_file_path
         if not snapshot_path.exists():
             continue
@@ -267,21 +269,35 @@ def _source_reconciliation_rows(
         record_type = row.get("snapshot_record_type", "")
         excluded_notes[source.source_id].append(f"{school_name}: {count} {record_type}")
 
-    source_ids = sorted({row["source_id"] for row in rows if row.get("source_id")} | set(excluded_totals))
+    snapshot_totals = _complete_snapshot_totals(sources=sources, root=root)
+
+    source_ids = sorted(
+        {row["source_id"] for row in rows if row.get("source_id")}
+        | set(excluded_totals)
+        | set(snapshot_totals)
+    )
     output: list[list[object]] = []
     for source_id in source_ids:
         source = sources[source_id]
         reported = int(source.reported_total) if source.reported_total else None
         in_panel = in_panel_totals[source_id]
-        excluded = excluded_totals[source_id]
-        reconciled = in_panel + excluded
+        if source_id in snapshot_totals:
+            reconciled = snapshot_totals[source_id]
+            excluded = reconciled - in_panel
+            notes = (
+                "Complete Virginia count-only snapshot total; only still-missing positive roster rows "
+                "are imported from this source."
+            )
+        else:
+            excluded = excluded_totals[source_id]
+            reconciled = in_panel + excluded
+            notes = "; ".join(excluded_notes[source_id]) or source.reported_total_scope or ""
         if reported is None:
             status = "not_checked"
         elif reported == reconciled:
             status = "reconciled"
         else:
             status = "needs_review"
-        notes = "; ".join(excluded_notes[source_id]) or source.reported_total_scope or ""
         output.append(
             [
                 source_id,
@@ -295,6 +311,24 @@ def _source_reconciliation_rows(
             ]
         )
     return output
+
+
+def _complete_snapshot_totals(
+    *,
+    sources: Mapping[str, NmsfSource],
+    root: Path,
+) -> dict[str, int]:
+    totals: dict[str, int] = {}
+    for source in sources.values():
+        if source.provider != "nmsc_virginia_list" or not source.archived_file_path:
+            continue
+        snapshot_path = root / source.archived_file_path
+        if not snapshot_path.exists():
+            continue
+        totals[source.source_id] = sum(
+            int(row.get("nmsf_count") or 0) for row in load_csv_rows(snapshot_path)
+        )
+    return totals
 
 
 def _source_gap_rows(rows: Sequence[Mapping[str, str]]) -> list[list[object]]:

@@ -27,6 +27,7 @@ class AnalysisPanelTest(unittest.TestCase):
             enrollment_panel_csv=ROOT / "data" / "processed" / "enrollment_panel.csv",
             class_year_mapping_csv=ROOT / "data" / "processed" / "class_year_mapping.csv",
             school_history_csv=ROOT / "data" / "manual" / "school_history.csv",
+            statewide_totals_csv=ROOT / "data" / "sources" / "virginia_statewide_totals.csv",
             processed_dir=root / "processed",
             report_dir=root / "reports" / "data_quality",
         )
@@ -59,11 +60,11 @@ class AnalysisPanelTest(unittest.TestCase):
         self.assertEqual(tj_2026["nmsf_per_100_juniors"], f"{expected:.6f}")
 
         wakefield_2024 = self._lookup("wakefield_high_school", 2024)
-        self.assertEqual(wakefield_2024["nmsf_status"], "missing_source")
-        self.assertEqual(wakefield_2024["nmsf_count"], "")
-        self.assertEqual(wakefield_2024["nmsf_per_100_juniors"], "")
-        self.assertEqual(wakefield_2024["rate_status"], "missing_nmsf_count")
-        self.assertEqual(wakefield_2024["nmsf_missingness_flag"], "true")
+        self.assertEqual(wakefield_2024["nmsf_status"], "verified_zero")
+        self.assertEqual(wakefield_2024["nmsf_count"], "0")
+        self.assertEqual(wakefield_2024["nmsf_source_id"], "nmsc_virginia_2024_semifinalists")
+        self.assertEqual(wakefield_2024["rate_status"], "calculated")
+        self.assertEqual(wakefield_2024["nmsf_missingness_flag"], "false")
 
         loudoun_private_2025 = self._lookup("loudoun_school_for_advanced_studies", 2025)
         self.assertEqual(loudoun_private_2025["nmsf_count"], "1")
@@ -127,8 +128,13 @@ class AnalysisPanelTest(unittest.TestCase):
             {row["va_nmsf_selection_index_cutoff_status"] for row in self.panel}, {"not_sourced"}
         )
         self.assertEqual(
-            {row["statewide_nmsf_semifinalist_total_status"] for row in self.panel}, {"not_sourced"}
+            {row["statewide_nmsf_semifinalist_total_status"] for row in self.panel},
+            {"not_sourced", "source_backed_total"},
         )
+        self.assertEqual(
+            self._lookup("wakefield_high_school", 2024)["statewide_nmsf_semifinalist_total"], "470"
+        )
+        self.assertEqual(self._lookup("wakefield_high_school", 2025)["statewide_nmsf_semifinalist_total"], "")
         self.assertEqual(
             {row["denominator_type"] for row in self.panel},
             {"grade11_enrollment_outcome_denominator"},

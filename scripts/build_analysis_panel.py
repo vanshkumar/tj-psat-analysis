@@ -41,6 +41,11 @@ def main() -> int:
         default=ROOT / "data" / "manual" / "school_history.csv",
     )
     parser.add_argument(
+        "--statewide-totals-csv",
+        type=Path,
+        default=ROOT / "data" / "sources" / "virginia_statewide_totals.csv",
+    )
+    parser.add_argument(
         "--processed-dir",
         type=Path,
         default=ROOT / "data" / "processed",
@@ -58,6 +63,7 @@ def main() -> int:
         enrollment_panel_csv=args.enrollment_panel_csv,
         class_year_mapping_csv=args.class_year_mapping_csv,
         school_history_csv=args.school_history_csv,
+        statewide_totals_csv=args.statewide_totals_csv,
         processed_dir=args.processed_dir,
         report_dir=args.report_dir,
     )

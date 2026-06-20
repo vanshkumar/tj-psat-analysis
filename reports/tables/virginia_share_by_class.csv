@@ -1,0 +1,49 @@
+class_year,group,nmsf_count_total,missing_nmsf_rows,statewide_nmsf_semifinalist_total,share_of_statewide_total_pct,statewide_total_status,statewide_total_source_url,coverage_note
+2019,TJ-zone including TJHSST,,48,,,not_sourced,,statewide total not source-backed for this class year
+2019,TJHSST,159,0,,,not_sourced,,statewide total not source-backed for this class year
+2019,Conventional base public,,31,,,not_sourced,,statewide total not source-backed for this class year
+2019,Private/homeschool unallocated,,16,,,not_sourced,,statewide total not source-backed for this class year
+2019,TJ-zone excluding TJHSST,,48,,,not_sourced,,statewide total not source-backed for this class year
+2019,Virginia outside TJ-zone,,48,,,not_sourced,,statewide total not source-backed for this class year
+2020,TJ-zone including TJHSST,,48,,,not_sourced,,statewide total not source-backed for this class year
+2020,TJHSST,157,0,,,not_sourced,,statewide total not source-backed for this class year
+2020,Conventional base public,,31,,,not_sourced,,statewide total not source-backed for this class year
+2020,Private/homeschool unallocated,,16,,,not_sourced,,statewide total not source-backed for this class year
+2020,TJ-zone excluding TJHSST,,48,,,not_sourced,,statewide total not source-backed for this class year
+2020,Virginia outside TJ-zone,,48,,,not_sourced,,statewide total not source-backed for this class year
+2021,TJ-zone including TJHSST,,49,,,not_sourced,,statewide total not source-backed for this class year
+2021,TJHSST,132,0,,,not_sourced,,statewide total not source-backed for this class year
+2021,Conventional base public,,32,,,not_sourced,,statewide total not source-backed for this class year
+2021,Private/homeschool unallocated,,16,,,not_sourced,,statewide total not source-backed for this class year
+2021,TJ-zone excluding TJHSST,,49,,,not_sourced,,statewide total not source-backed for this class year
+2021,Virginia outside TJ-zone,,49,,,not_sourced,,statewide total not source-backed for this class year
+2022,TJ-zone including TJHSST,,50,,,not_sourced,,statewide total not source-backed for this class year
+2022,TJHSST,144,0,,,not_sourced,,statewide total not source-backed for this class year
+2022,Conventional base public,,33,,,not_sourced,,statewide total not source-backed for this class year
+2022,Private/homeschool unallocated,,16,,,not_sourced,,statewide total not source-backed for this class year
+2022,TJ-zone excluding TJHSST,,50,,,not_sourced,,statewide total not source-backed for this class year
+2022,Virginia outside TJ-zone,,50,,,not_sourced,,statewide total not source-backed for this class year
+2023,TJ-zone including TJHSST,323,0,400,80.750000,source_backed_total,https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view,source-backed count and complete Virginia list statewide denominator
+2023,TJHSST,132,0,400,33.000000,source_backed_total,https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view,source-backed count and complete Virginia list statewide denominator
+2023,Conventional base public,164,0,400,41.000000,source_backed_total,https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view,source-backed count and complete Virginia list statewide denominator
+2023,Private/homeschool unallocated,24,0,400,6.000000,source_backed_total,https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view,source-backed count and complete Virginia list statewide denominator
+2023,TJ-zone excluding TJHSST,191,0,400,47.750000,source_backed_total,https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view,source-backed count and complete Virginia list statewide denominator
+2023,Virginia outside TJ-zone,77,0,400,19.250000,source_backed_total,https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view,source-backed count and complete Virginia list statewide denominator
+2024,TJ-zone including TJHSST,364,0,470,77.446809,source_backed_total,https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf,source-backed count and complete Virginia list statewide denominator
+2024,TJHSST,165,0,470,35.106383,source_backed_total,https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf,source-backed count and complete Virginia list statewide denominator
+2024,Conventional base public,175,0,470,37.234043,source_backed_total,https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf,source-backed count and complete Virginia list statewide denominator
+2024,Private/homeschool unallocated,23,0,470,4.893617,source_backed_total,https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf,source-backed count and complete Virginia list statewide denominator
+2024,TJ-zone excluding TJHSST,199,0,470,42.340426,source_backed_total,https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf,source-backed count and complete Virginia list statewide denominator
+2024,Virginia outside TJ-zone,106,0,470,22.553191,source_backed_total,https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf,source-backed count and complete Virginia list statewide denominator
+2025,TJ-zone including TJHSST,,5,,,not_sourced,,statewide total not source-backed for this class year
+2025,TJHSST,81,0,,,not_sourced,,statewide total not source-backed for this class year
+2025,Conventional base public,,5,,,not_sourced,,statewide total not source-backed for this class year
+2025,Private/homeschool unallocated,34,0,,,not_sourced,,statewide total not source-backed for this class year
+2025,TJ-zone excluding TJHSST,,5,,,not_sourced,,statewide total not source-backed for this class year
+2025,Virginia outside TJ-zone,,5,,,not_sourced,,statewide total not source-backed for this class year
+2026,TJ-zone including TJHSST,385,0,494,77.935223,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
+2026,TJHSST,113,0,494,22.874494,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
+2026,Conventional base public,231,0,494,46.761134,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
+2026,Private/homeschool unallocated,35,0,494,7.085020,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
+2026,TJ-zone excluding TJHSST,272,0,494,55.060729,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
+2026,Virginia outside TJ-zone,109,0,494,22.064777,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
