@@ -1,6 +1,6 @@
 # Task 9 Robustness Checks
 
-Generated: 2026-06-19
+Generated: 2026-06-20
 
 ## Scope and analysis rules
 
@@ -15,9 +15,9 @@ The primary robustness window is Classes 2023-2026. Full-zone count coverage is 
 
 | Class | Count coverage | Rate-compatible coverage | Observed total | Covered rate /100 |
 |---|---|---|---|---|
-| 2023 | 63/76 (82.9%) | 58/76 (76.3%) | 312 | 1.009 |
-| 2024 | 64/76 (84.2%) | 56/76 (73.7%) | 359 | 1.167 |
-| 2025 | 71/76 (93.4%) | 52/76 (68.4%) | 288 | 0.868 |
+| 2023 | 63/76 (82.9%) | 60/76 (78.9%) | 312 | 0.987 |
+| 2024 | 64/76 (84.2%) | 58/76 (76.3%) | 359 | 1.151 |
+| 2025 | 71/76 (93.4%) | 64/76 (84.2%) | 288 | 0.871 |
 | 2026 | 69/76 (90.8%) | 58/76 (76.3%) | 379 | 1.089 |
 
 Coverage improved sharply for counts by Class 2025, but rate-compatible coverage did not: private-school denominators remain sparse and several public denominators or school-year observations are unavailable. This is why the balanced panels below are the cleanest like-for-like checks.
@@ -28,30 +28,30 @@ The table gives `count / rate per 100 grade-11 students` for balanced public pan
 
 | Class | Observed zone incl. TJ | Observed zone excl. TJ | TJHSST count / rate | Balanced base-public count / rate | Balanced public incl. TJ count / rate |
 |---|---|---|---|---|---|
-| 2023 | 312 | 180 | 132 / 28.633 | 156 / 0.592 | 288 / 1.074 |
-| 2024 | 359 | 194 | 165 / 37.415 | 159 / 0.600 | 324 / 1.202 |
-| 2025 | 288 | 207 | 81 / 16.071 | 166 / 0.604 | 247 / 0.883 |
-| 2026 | 379 | 266 | 113 / 21.606 | 217 / 0.787 | 330 / 1.174 |
+| 2023 | 312 | 180 | 132 / 28.633 | 159 / 0.582 | 291 / 1.048 |
+| 2024 | 359 | 194 | 165 / 37.415 | 166 / 0.603 | 331 / 1.184 |
+| 2025 | 288 | 207 | 81 / 16.071 | 168 / 0.591 | 249 / 0.861 |
+| 2026 | 379 | 266 | 113 / 21.606 | 224 / 0.783 | 337 / 1.157 |
 
 The principal discontinuity is not an enrollment artifact. From Class 2024 to Class 2025, TJHSST fell from **165 to 81 semifinalists (-50.9%)** and from **37.415 to 16.071 per 100 juniors (-57.0%)**. Class 2026 rebounded to **113** and **21.606 per 100**, but remained below Class 2024 by **-31.5% in count** and **-42.3% in rate**.
 
-Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from 194 in Class 2024 to 207 in Class 2025 and 266 in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced 50-school conventional public rate panel, the immediate Class 2025 change is nearly flat: **0.600 to 0.604 per 100 (+0.8%)**. The larger increase appears in Class 2026, to **0.787 (+30.2% versus 2025)**.
+Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from 194 in Class 2024 to 207 in Class 2025 and 266 in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced 52-school conventional public rate panel, the immediate Class 2025 change is nearly flat: **0.603 to 0.591 per 100 (-2.0%)**. The larger increase appears in Class 2026, to **0.783 (+32.5% versus 2025)**.
 
 ## 3. Balanced-panel sensitivity
 
-The balanced count panel includes **58 schools** with source-backed counts in every focal year: 52 conventional public high schools, one public secondary program, 4 private schools, and TJHSST. The balanced public rate panel includes **51 schools** with both counts and enrollment in every year: 50 conventional base public schools plus TJHSST.
+The balanced count panel includes **58 schools** with source-backed counts in every focal year: 52 conventional public high schools, one public secondary program, 4 private schools, and TJHSST. The balanced public rate panel includes **53 schools** with both counts and enrollment in every year: 52 conventional base public schools plus TJHSST.
 
 Pooled 2023-2024 versus 2025-2026 rates are secondary summaries because they conceal the very different 2025 and 2026 patterns:
 
 | Balanced group | 2023-24 count | 2025-26 count | Count change | 2023-24 pooled rate | 2025-26 pooled rate | Rate change |
 |---|---|---|---|---|---|---|
-| Balanced public including TJHSST | 612 | 577 | -35 | 1.138 | 1.029 | -9.6% |
-| Balanced conventional base public | 315 | 383 | +68 | 0.596 | 0.696 | +16.7% |
+| Balanced public including TJHSST | 622 | 586 | -36 | 1.116 | 1.009 | -9.6% |
+| Balanced conventional base public | 325 | 392 | +67 | 0.593 | 0.687 | +16.0% |
 | TJHSST | 297 | 194 | -103 | 32.927 | 18.890 | -42.6% |
 
-On this fixed 51-school public panel, base-school counts rise by **68**, arithmetically offsetting **66.0%** of TJHSST's **103-student decline**. The combined public count still falls by **35**. This is an accounting decomposition, not proof that the base-school gains consist of students displaced from TJHSST, and it should not replace the year-by-year results.
+On this fixed 53-school public panel, base-school counts rise by **67**, arithmetically offsetting **65.0%** of TJHSST's **103-student decline**. The combined public count still falls by **36**. This is an accounting decomposition, not proof that the base-school gains consist of students displaced from TJHSST, and it should not replace the year-by-year results.
 
-The base-school increase is heterogeneous rather than universal. Comparing pooled 2023-2024 and 2025-2026 school rates, **26 of 50 schools increase, 17 decrease, and 7 are unchanged**; the median school change is only **0.024 NMSF per 100 juniors**. Pathway aggregates also vary:
+The base-school increase is heterogeneous rather than universal. Comparing pooled 2023-2024 and 2025-2026 school rates, **26 of 52 schools increase, 18 decrease, and 8 are unchanged**; the median school change is only **0.011 NMSF per 100 juniors**. Pathway aggregates also vary:
 
 | Pathway | Balanced schools | 2024 rate | 2025 rate | 2026 rate |
 |---|---|---|---|---|
@@ -61,8 +61,8 @@ The base-school increase is heterogeneous rather than universal. Comparing poole
 | FCPS Region 3 | 5 | 0.039 | 0.146 | 0.109 |
 | FCPS Region 4 | 5 | 0.285 | 0.591 | 0.416 |
 | FCPS Region 5 | 4 | 1.222 | 0.896 | 1.312 |
-| Loudoun | 12 | 0.954 | 0.793 | 0.939 |
-| Prince William | 12 | 0.031 | 0.091 | 0.094 |
+| Loudoun | 13 | 0.995 | 0.756 | 0.982 |
+| Prince William | 13 | 0.029 | 0.085 | 0.087 |
 
 The Class 2026 increase is strongest in FCPS Regions 1, 2, and 5. FCPS Region 3 remains low, Region 4 falls from its 2025 spike, and Loudoun is close to its 2024 rate. The aggregate base-school gain should therefore not be described as a uniform zone-wide shift.
 
@@ -72,7 +72,7 @@ The Class 2026 increase is strongest in FCPS Regions 1, 2, and 5. FCPS Region 3 
 |---|---|---|---|---|---|
 | 2023 | 4/16 | 12 | 13 | 13 | 2 |
 | 2024 | 5/16 | 11 | 18 | 15 | 0 |
-| 2025 | 16/16 | 0 | 34 | 15 | 0 |
+| 2025 | 16/16 | 0 | 34 | 15 | 10 |
 | 2026 | 10/16 | 6 | 34 | 18 | 0 |
 
 The four complete private schools are Bishop O'Connell, Flint Hill, The Potomac School, and The Madeira School. Their total is **15 in 2024, 15 in 2025, and 18 in 2026**. The apparent full-observed increase from 18 to 34 coincides with coverage expanding from 5 to 16 private schools. It therefore cannot be interpreted as a measured private-school offset. No rate-compatible private panel exists for Classes 2024-2026.
@@ -83,9 +83,9 @@ H-B Woodlawn is the only `public_secondary_program` row. It has no grade-11 deno
 
 | Class | H-B count | Base-public count incl. program | Count excl. program | Covered conventional-public rate |
 |---|---|---|---|---|
-| 2023 | 3 | 167 | 164 | 0.567 |
-| 2024 | 1 | 176 | 175 | 0.598 |
-| 2025 | 3 | 173 | 170 | 0.596 |
+| 2023 | 3 | 167 | 164 | 0.559 |
+| 2024 | 1 | 176 | 175 | 0.601 |
+| 2025 | 3 | 173 | 170 | 0.583 |
 | 2026 | 6 | 232 | 226 | 0.738 |
 
 Excluding it changes the observed base-public count by only 1-6 students per year and leaves every covered rate unchanged. The main findings are not driven by the program row.
@@ -96,7 +96,7 @@ The 140-row manual-review queue includes 76 duplicate public-school source rows,
 
 At TJHSST, Class 2025 is the sharpest break, but Class 2026 is not a return to the earlier range. Across Classes 2019-2024, TJHSST averaged **33.296 NMSF per 100 juniors** on a pooled denominator and never fell below **28.633** or **132 semifinalists**. Class 2026's **21.606 per 100** and **113 semifinalists** remain below both pre-policy minima.
 
-For the balanced base-public panel, by contrast, 2023-2025 are nearly flat (0.592, 0.600, 0.604), followed by a distinct 2026 increase to 0.787. Thus, the evidence does **not** show a smooth post-policy trend. It shows a TJHSST break in 2025, a partial TJHSST rebound in 2026, and a base-school rise concentrated in 2026.
+For the balanced base-public panel, by contrast, 2023-2025 are nearly flat (0.582, 0.603, 0.591), followed by a distinct 2026 increase to 0.783. Thus, the evidence does **not** show a smooth post-policy trend. It shows a TJHSST break in 2025, a partial TJHSST rebound in 2026, and a base-school rise concentrated in 2026.
 
 ## 7. Virginia cutoff and statewide normalization
 
@@ -104,12 +104,12 @@ More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors
 
 | Class | VA cutoff | VA total | Balanced public share | Base-public share | TJHSST share |
 |---|---|---|---|---|---|
-| 2023 | 221 | 397 | 72.5% | 39.3% | 33.2% |
-| 2024 | 219 | 467 | 69.4% | 34.0% | 35.3% |
-| 2025 | 222 | 394 | 62.7% | 42.1% | 20.6% |
-| 2026 | 224 | 489 | 67.5% | 44.4% | 23.1% |
+| 2023 | 221 | 397 | 73.3% | 40.1% | 33.2% |
+| 2024 | 219 | 467 | 70.9% | 35.5% | 35.3% |
+| 2025 | 222 | 394 | 63.2% | 42.6% | 20.6% |
+| 2026 | 224 | 489 | 68.9% | 45.8% | 23.1% |
 
-The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the reported statewide semifinalist total rose from 394 to 489. A cutoff-only adjustment is therefore inadequate. On the supplemental statewide denominator, the balanced public share falls from **69.4% in 2024** to **62.7% in 2025** and recovers only to **67.5% in 2026**. TJHSST's share remains far below 2024 (35.3% to 20.6% to 23.1%). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, but they remain secondary-source checks.
+The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the reported statewide semifinalist total rose from 394 to 489. A cutoff-only adjustment is therefore inadequate. On the supplemental statewide denominator, the balanced public share falls from **70.9% in 2024** to **63.2% in 2025** and recovers only to **68.9% in 2026**. TJHSST's share remains far below 2024 (35.3% to 20.6% to 23.1%). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, but they remain secondary-source checks.
 
 ## 8. COVID, digital testing, and cohort timing
 

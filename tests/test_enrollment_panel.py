@@ -20,8 +20,13 @@ class EnrollmentPanelTest(unittest.TestCase):
         cls.outputs = build_enrollment_outputs(
             school_roster_csv=ROOT / "data" / "processed" / "school_roster.csv",
             public_seed_csv=ROOT / "data" / "processed" / "public_enrollment.csv",
+            public_supplement_csv=ROOT / "data" / "interim" / "public_grade11_enrollment_nces_supplement.csv",
             public_2024_25_csv=ROOT / "data" / "interim" / "public_grade11_enrollment_2024_25.csv",
             private_pss_csv=ROOT / "data" / "interim" / "private_grade11_enrollment.csv",
+            private_pss_locator_csv=ROOT
+            / "data"
+            / "interim"
+            / "private_grade11_enrollment_pss_locator_2023_24.csv",
             processed_dir=root / "processed",
             report_dir=root / "reports" / "data_quality",
         )
@@ -56,6 +61,19 @@ class EnrollmentPanelTest(unittest.TestCase):
         self.assertIn("ccd_sch_052_2425", tj_2026["enrollment_source_url"])
         self.assertEqual(len(tj_2026["enrollment_source_hash"]), 64)
 
+    def test_public_supplement_resolves_freedom_high_ambiguity(self) -> None:
+        south_riding_2025 = self._lookup("freedom_high_school_south_riding", 2025)
+        self.assertEqual(south_riding_2025["enrollment_status"], "reported")
+        self.assertTrue(south_riding_2025["grade11_enrollment"].isdigit())
+        self.assertEqual(south_riding_2025["nces_school_id"], "510225002447")
+        self.assertIn("ccd_sch_052_2324", south_riding_2025["enrollment_source_url"])
+
+        woodbridge_2025 = self._lookup("freedom_high_school_woodbridge", 2025)
+        self.assertEqual(woodbridge_2025["enrollment_status"], "reported")
+        self.assertTrue(woodbridge_2025["grade11_enrollment"].isdigit())
+        self.assertEqual(woodbridge_2025["nces_school_id"], "510313002458")
+        self.assertIn("ccd_sch_052_2324", woodbridge_2025["enrollment_source_url"])
+
     def test_private_pss_uses_p290_and_preserves_imputation_flag(self) -> None:
         trinity_2023 = self._lookup("trinity_christian_school", 2023)
         self.assertEqual(trinity_2023["grade11_enrollment"], "65")
@@ -67,6 +85,23 @@ class EnrollmentPanelTest(unittest.TestCase):
         trinity_2024 = self._lookup("trinity_christian_school", 2024)
         self.assertEqual(trinity_2024["grade11_enrollment"], "")
         self.assertEqual(trinity_2024["enrollment_status"], "private_pss_not_survey_year")
+
+    def test_private_pss_locator_supplies_class_2025_denominators(self) -> None:
+        trinity_2025 = self._lookup("trinity_christian_school", 2025)
+        self.assertEqual(trinity_2025["grade11_enrollment"], "67")
+        self.assertEqual(trinity_2025["enrollment_status"], "reported")
+        self.assertEqual(trinity_2025["enrollment_source_variable"], "PSS_ENROLL_11")
+        self.assertIn("school_detail.asp", trinity_2025["enrollment_source_url"])
+        self.assertEqual(len(trinity_2025["enrollment_source_hash"]), 64)
+        self.assertEqual(trinity_2025["pss_imputation_flag"], "not_available_locator")
+
+        loudoun_private_2025 = self._lookup("loudoun_school_for_advanced_studies", 2025)
+        self.assertEqual(loudoun_private_2025["grade11_enrollment"], "")
+        self.assertEqual(loudoun_private_2025["enrollment_status"], "ambiguous_pss_id")
+
+        flint_hill_2025 = self._lookup("flint_hill_school", 2025)
+        self.assertEqual(flint_hill_2025["grade11_enrollment"], "")
+        self.assertEqual(flint_hill_2025["enrollment_status"], "locator_search_not_found")
 
     def test_missingness_and_not_operating_are_distinct(self) -> None:
         gainesville_2022 = self._lookup("gainesville_high_school", 2022)
@@ -80,7 +115,8 @@ class EnrollmentPanelTest(unittest.TestCase):
     def test_reports_document_no_adjacent_year_estimates(self) -> None:
         report = self.outputs["enrollment_coverage_md"].read_text(encoding="utf-8")
         self.assertIn("No enrollment value is estimated from adjacent years.", report)
-        self.assertIn("PSS non-survey years remain blank", report)
+        self.assertIn("PSS non-survey years without a public-use or locator source row remain blank", report)
+        self.assertIn("PSS_ENROLL_11", report)
         self.assertIn("Status Counts", report)
 
     def test_generated_coverage_csv_has_expected_columns(self) -> None:

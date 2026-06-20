@@ -41,17 +41,17 @@ Pathway heatmap values are covered-subset aggregates. Treat them as full pathway
 
 | Rate status | Rows |
 | --- | --- |
-| calculated | 324 |
-| missing_grade11_enrollment | 43 |
+| calculated | 340 |
+| missing_grade11_enrollment | 27 |
 | missing_nmsf_and_grade11_enrollment | 82 |
 | missing_nmsf_count | 150 |
 | not_operating | 9 |
 
 | Pathway coverage status | Rows |
 | --- | --- |
-| complete_compatible_coverage | 231 |
-| no_compatible_rows | 255 |
-| partial_compatible_coverage | 122 |
+| complete_compatible_coverage | 304 |
+| no_compatible_rows | 239 |
+| partial_compatible_coverage | 65 |
 
 ## TJ-Zone Count Summary
 
@@ -72,11 +72,11 @@ The pre period is Classes 2023-2024 and the post period is Classes 2025-2026. Ob
 
 | Period | Group | Observed total | Annual average | Missing NMSF rows | Covered rate | Small-number warning |
 | --- | --- | --- | --- | --- | --- | --- |
-| pre_2023_2024 | Base public schools | 343 | 171.500000 | 2 | 0.582662 | false |
+| pre_2023_2024 | Base public schools | 343 | 171.500000 | 2 | 0.580092 | false |
 | pre_2023_2024 | Private schools | 31 | 15.500000 | 23 | 0.507614 | false |
 | pre_2023_2024 | TJHSST | 297 | 148.500000 | 0 | 32.926829 | false |
-| post_2025_2026 | Base public schools | 405 | 202.500000 | 6 | 0.670045 | false |
-| post_2025_2026 | Private schools | 68 | 34.000000 | 6 | (missing) | false |
+| post_2025_2026 | Base public schools | 405 | 202.500000 | 6 | 0.662695 | false |
+| post_2025_2026 | Private schools | 68 | 34.000000 | 6 | 1.622718 | false |
 | post_2025_2026 | TJHSST | 194 | 97.000000 | 0 | 18.889971 | false |
 
 ## Warnings

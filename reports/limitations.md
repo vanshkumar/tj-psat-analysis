@@ -1,6 +1,6 @@
 # Task 9 Limitations
 
-Generated: 2026-06-19
+Generated: 2026-06-20
 
 ## 1. NMSF measures only the extreme right tail
 
@@ -28,7 +28,7 @@ The panel is explicit about missingness, but the remaining gaps matter:
 
 - In Classes 2019-2022, 48-50 of 76 rows lack source-backed NMSF counts. Full-zone historical totals are therefore not comparable with 2023-2026.
 - Private count coverage is 4/16 schools in 2023, 5/16 in 2024, 16/16 in 2025, and 10/16 in 2026.
-- Rate-compatible private coverage is two schools in 2023 and zero in Classes 2024-2026.
+- Rate-compatible private coverage is 2/16 schools in 2023, 0/16 schools in 2024, 10/16 schools in 2025, and 0/16 schools in 2026.
 - The official LCPS Class 2025 release is total-only and cannot establish school-level counts or zeros; some LCPS school rows remain missing.
 
 The balanced panels improve comparability by holding schools fixed, but they answer a narrower question about continuously observed schools and may not represent omitted schools.
@@ -37,7 +37,7 @@ The balanced panels improve comparability by holding schools fixed, but they ans
 
 Private-school location does not prove that a student resided in the TJHSST service area, was eligible for TJHSST, applied to TJHSST, or would otherwise have attended a particular base school. The admissions rule places non-public applicants in the unallocated pool rather than assigning them by the private school's location. The private-school analysis is therefore a geographic outcome bucket, not a measured displacement channel.
 
-Four private schools have complete 2023-2026 counts, and no balanced private rate panel exists. The project cannot estimate a complete private-school offset.
+Four private schools have complete 2023-2026 counts. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for 10 private rows, but no balanced private rate panel spans Classes 2023-2026. The project cannot estimate a complete private-school offset.
 
 ## 6. Grade-11 enrollment is not an admissions allocation denominator
 

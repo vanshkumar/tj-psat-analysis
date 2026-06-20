@@ -36,7 +36,7 @@ SOURCE_NOTES = ROOT / "docs" / "source_notes"
 
 TJ_ID = "thomas_jefferson_high_school_for_science_and_technology"
 FOCAL_YEARS = [2023, 2024, 2025, 2026]
-TODAY = "2026-06-19"
+TODAY = "2026-06-20"
 
 # Supplemental values are intentionally NOT imported into analysis_panel.csv.
 VA_CUTOFF = {2023: 221, 2024: 219, 2025: 222, 2026: 224}
@@ -90,6 +90,12 @@ def fmt_pct(value: float | int | None, digits: int = 1, sign: bool = False) -> s
         return "—"
     prefix = "+" if sign and float(value) > 0 else ""
     return f"{prefix}{float(value):.{digits}f}%"
+
+
+def join_with_and(parts: list[str]) -> str:
+    if len(parts) <= 1:
+        return "".join(parts)
+    return ", ".join(parts[:-1]) + f", and {parts[-1]}"
 
 
 def md_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
@@ -334,6 +340,18 @@ def main() -> None:
         )
     private_sens = pd.DataFrame(private_rows)
     write_csv(private_sens, "task9_private_sensitivity.csv")
+    private_rate_coverage_text = join_with_and(
+        [
+            f"{int(row['rate_compatible_private_rows'])}/{int(row['private_operating_rows'])} schools in {int(row['class_year'])}"
+            for _, row in private_sens.iterrows()
+        ]
+    )
+    private_2025_rate_rows = int(
+        private_sens.loc[
+            private_sens["class_year"].eq(2025),
+            "rate_compatible_private_rows",
+        ].iloc[0]
+    )
 
     # Program sensitivity.
     program_rows = []
@@ -625,11 +643,11 @@ def main() -> None:
 
     # Internal checks for the canonical focal panels.
     assert len(balanced_count_ids) == 58
-    assert len(balanced_public_rate_ids) == 51
-    assert len(balanced_base_rate_ids) == 50
+    assert len(balanced_public_rate_ids) == 53
+    assert len(balanced_base_rate_ids) == 52
     assert len(private_balanced_ids) == 4
     assert (tj_count[2024], tj_count[2025], tj_count[2026]) == (165, 81, 113)
-    assert (base_count[2023], base_count[2024], base_count[2025], base_count[2026]) == (156, 159, 166, 217)
+    assert (base_count[2023], base_count[2024], base_count[2025], base_count[2026]) == (159, 166, 168, 224)
 
     # Markdown table rows.
     coverage_md_rows = []
@@ -673,16 +691,20 @@ def main() -> None:
         )
 
     state_md_rows = []
+    public_state_share: dict[int, float] = {}
+    tj_state_share: dict[int, float] = {}
     for y in FOCAL_YEARS:
         pub_share = state_sens[
             (state_sens["class_year"] == y) & (state_sens["group"] == "Balanced public including TJHSST")
         ]["group_share_of_statewide_total_pct"].iloc[0]
+        public_state_share[y] = pub_share
         base_share = state_sens[
             (state_sens["class_year"] == y) & (state_sens["group"] == "Balanced conventional base public")
         ]["group_share_of_statewide_total_pct"].iloc[0]
         tj_share = state_sens[(state_sens["class_year"] == y) & (state_sens["group"] == "TJHSST")][
             "group_share_of_statewide_total_pct"
         ].iloc[0]
+        tj_state_share[y] = tj_share
         state_md_rows.append(
             [y, VA_CUTOFF[y], VA_STATE_TOTAL[y], fmt_pct(pub_share), fmt_pct(base_share), fmt_pct(tj_share)]
         )
@@ -771,7 +793,7 @@ The table gives `count / rate per 100 grade-11 students` for balanced public pan
 
 The principal discontinuity is not an enrollment artifact. From Class 2024 to Class 2025, TJHSST fell from **{fmt_int(tj_count[2024])} to {fmt_int(tj_count[2025])} semifinalists ({fmt_pct(pct_change(tj_count[2025], tj_count[2024]))})** and from **{fmt_rate(tj_rate[2024])} to {fmt_rate(tj_rate[2025])} per 100 juniors ({fmt_pct(pct_change(tj_rate[2025], tj_rate[2024]))})**. Class 2026 rebounded to **{fmt_int(tj_count[2026])}** and **{fmt_rate(tj_rate[2026])} per 100**, but remained below Class 2024 by **{fmt_pct(pct_change(tj_count[2026], tj_count[2024]))} in count** and **{fmt_pct(pct_change(tj_rate[2026], tj_rate[2024]))} in rate**.
 
-Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2024), "observed_nmsf_total"].iloc[0])} in Class 2024 to {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2025), "observed_nmsf_total"].iloc[0])} in Class 2025 and {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2026), "observed_nmsf_total"].iloc[0])} in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced 50-school conventional public rate panel, the immediate Class 2025 change is nearly flat: **{fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 ({fmt_pct(pct_change(base_rate[2025], base_rate[2024]), sign=True)})**. The larger increase appears in Class 2026, to **{fmt_rate(base_rate[2026])} ({fmt_pct(pct_change(base_rate[2026], base_rate[2025]), sign=True)} versus 2025)**.
+Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2024), "observed_nmsf_total"].iloc[0])} in Class 2024 to {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2025), "observed_nmsf_total"].iloc[0])} in Class 2025 and {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2026), "observed_nmsf_total"].iloc[0])} in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced {len(balanced_base_rate_ids)}-school conventional public rate panel, the immediate Class 2025 change is nearly flat: **{fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 ({fmt_pct(pct_change(base_rate[2025], base_rate[2024]), sign=True)})**. The larger increase appears in Class 2026, to **{fmt_rate(base_rate[2026])} ({fmt_pct(pct_change(base_rate[2026], base_rate[2025]), sign=True)} versus 2025)**.
 
 ## 3. Balanced-panel sensitivity
 
@@ -781,9 +803,9 @@ Pooled 2023-2024 versus 2025-2026 rates are secondary summaries because they con
 
 {md_table(["Balanced group", "2023-24 count", "2025-26 count", "Count change", "2023-24 pooled rate", "2025-26 pooled rate", "Rate change"], pooled_md_rows)}
 
-On this fixed 51-school public panel, base-school counts rise by **{fmt_int(base_pooled_gain)}**, arithmetically offsetting **{fmt_pct(offset_pct)}** of TJHSST's **{fmt_int(abs(tj_pooled_change))}-student decline**. The combined public count still falls by **{fmt_int(abs(public_pooled_change))}**. This is an accounting decomposition, not proof that the base-school gains consist of students displaced from TJHSST, and it should not replace the year-by-year results.
+On this fixed {len(balanced_public_rate_ids)}-school public panel, base-school counts rise by **{fmt_int(base_pooled_gain)}**, arithmetically offsetting **{fmt_pct(offset_pct)}** of TJHSST's **{fmt_int(abs(tj_pooled_change))}-student decline**. The combined public count still falls by **{fmt_int(abs(public_pooled_change))}**. This is an accounting decomposition, not proof that the base-school gains consist of students displaced from TJHSST, and it should not replace the year-by-year results.
 
-The base-school increase is heterogeneous rather than universal. Comparing pooled 2023-2024 and 2025-2026 school rates, **{pooled_direction_counts.get("increase", 0)} of 50 schools increase, {pooled_direction_counts.get("decrease", 0)} decrease, and {pooled_direction_counts.get("unchanged", 0)} are unchanged**; the median school change is only **{fmt_rate(pooled_school_median_change)} NMSF per 100 juniors**. Pathway aggregates also vary:
+The base-school increase is heterogeneous rather than universal. Comparing pooled 2023-2024 and 2025-2026 school rates, **{pooled_direction_counts.get("increase", 0)} of {len(balanced_base_rate_ids)} schools increase, {pooled_direction_counts.get("decrease", 0)} decrease, and {pooled_direction_counts.get("unchanged", 0)} are unchanged**; the median school change is only **{fmt_rate(pooled_school_median_change)} NMSF per 100 juniors**. Pathway aggregates also vary:
 
 {md_table(["Pathway", "Balanced schools", "2024 rate", "2025 rate", "2026 rate"], pathway_md_rows)}
 
@@ -817,7 +839,7 @@ More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors
 
 {md_table(["Class", "VA cutoff", "VA total", "Balanced public share", "Base-public share", "TJHSST share"], state_md_rows)}
 
-The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the reported statewide semifinalist total rose from 394 to 489. A cutoff-only adjustment is therefore inadequate. On the supplemental statewide denominator, the balanced public share falls from **69.4% in 2024** to **62.7% in 2025** and recovers only to **67.5% in 2026**. TJHSST's share remains far below 2024 (35.3% to 20.6% to 23.1%). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, but they remain secondary-source checks.
+The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the reported statewide semifinalist total rose from 394 to 489. A cutoff-only adjustment is therefore inadequate. On the supplemental statewide denominator, the balanced public share falls from **{fmt_pct(public_state_share[2024])} in 2024** to **{fmt_pct(public_state_share[2025])} in 2025** and recovers only to **{fmt_pct(public_state_share[2026])} in 2026**. TJHSST's share remains far below 2024 ({fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, but they remain secondary-source checks.
 
 ## 8. COVID, digital testing, and cohort timing
 
@@ -904,7 +926,7 @@ The panel is explicit about missingness, but the remaining gaps matter:
 
 - In Classes 2019-2022, 48-50 of 76 rows lack source-backed NMSF counts. Full-zone historical totals are therefore not comparable with 2023-2026.
 - Private count coverage is 4/16 schools in 2023, 5/16 in 2024, 16/16 in 2025, and 10/16 in 2026.
-- Rate-compatible private coverage is two schools in 2023 and zero in Classes 2024-2026.
+- Rate-compatible private coverage is {private_rate_coverage_text}.
 - The official LCPS Class 2025 release is total-only and cannot establish school-level counts or zeros; some LCPS school rows remain missing.
 
 The balanced panels improve comparability by holding schools fixed, but they answer a narrower question about continuously observed schools and may not represent omitted schools.
@@ -913,7 +935,7 @@ The balanced panels improve comparability by holding schools fixed, but they ans
 
 Private-school location does not prove that a student resided in the TJHSST service area, was eligible for TJHSST, applied to TJHSST, or would otherwise have attended a particular base school. The admissions rule places non-public applicants in the unallocated pool rather than assigning them by the private school's location. The private-school analysis is therefore a geographic outcome bucket, not a measured displacement channel.
 
-Four private schools have complete 2023-2026 counts, and no balanced private rate panel exists. The project cannot estimate a complete private-school offset.
+Four private schools have complete 2023-2026 counts. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for {private_2025_rate_rows} private rows, but no balanced private rate panel spans Classes 2023-2026. The project cannot estimate a complete private-school offset.
 
 ## 6. Grade-11 enrollment is not an admissions allocation denominator
 
@@ -1006,7 +1028,7 @@ Thus, 2025 is an exceptional discontinuity, while 2026 provides evidence of pers
 
 ### 3. The immediate base-public offset is small; the 2026 increase is large
 
-In the balanced 50-school conventional public panel:
+In the balanced {len(balanced_base_rate_ids)}-school conventional public panel:
 
 - Class 2023: **{fmt_int(base_count[2023])} / {fmt_int(base_enroll[2023])} = {fmt_rate(base_rate[2023])} per 100**.
 - Class 2024: **{fmt_int(base_count[2024])} / {fmt_int(base_enroll[2024])} = {fmt_rate(base_rate[2024])}**.
@@ -1015,17 +1037,17 @@ In the balanced 50-school conventional public panel:
 
 The rate changes only **{fmt_pct(pct_change(base_rate[2025], base_rate[2024]), sign=True)}** from 2024 to 2025, then **{fmt_pct(pct_change(base_rate[2026], base_rate[2025]), sign=True)}** from 2025 to 2026. A simple story in which the first policy-affected cohort immediately reappears as NMSF gains at base schools is not supported by the aggregate 2025 data.
 
-Pooling 2023-2024 against 2025-2026, base-school counts increase by **{fmt_int(base_pooled_gain)}** while TJHSST declines by **{fmt_int(abs(tj_pooled_change))}**. The base gain therefore offsets **{fmt_pct(offset_pct)}** of the TJ decline arithmetically, leaving the balanced public panel down **{fmt_int(abs(public_pooled_change))}** semifinalists. The gain is heterogeneous: {pooled_direction_counts.get("increase", 0)} of 50 school rates rise, {pooled_direction_counts.get("decrease", 0)} fall, and {pooled_direction_counts.get("unchanged", 0)} are unchanged. This is not evidence that the gains are displaced TJHSST students.
+Pooling 2023-2024 against 2025-2026, base-school counts increase by **{fmt_int(base_pooled_gain)}** while TJHSST declines by **{fmt_int(abs(tj_pooled_change))}**. The base gain therefore offsets **{fmt_pct(offset_pct)}** of the TJ decline arithmetically, leaving the balanced public panel down **{fmt_int(abs(public_pooled_change))}** semifinalists. The gain is heterogeneous: {pooled_direction_counts.get("increase", 0)} of {len(balanced_base_rate_ids)} school rates rise, {pooled_direction_counts.get("decrease", 0)} fall, and {pooled_direction_counts.get("unchanged", 0)} are unchanged. This is not evidence that the gains are displaced TJHSST students.
 
 ### 4. The combined public-zone result falls in 2025 and nearly recovers locally in 2026
 
-For the balanced 51-school public panel including TJHSST, the rate is **{fmt_rate(pub_rate[2024])} in 2024, {fmt_rate(pub_rate[2025])} in 2025, and {fmt_rate(pub_rate[2026])} in 2026**. The 2026 value is **{fmt_pct(pct_change(pub_rate[2026], pub_rate[2024]))}** relative to 2024.
+For the balanced {len(balanced_public_rate_ids)}-school public panel including TJHSST, the rate is **{fmt_rate(pub_rate[2024])} in 2024, {fmt_rate(pub_rate[2025])} in 2025, and {fmt_rate(pub_rate[2026])} in 2026**. The 2026 value is **{fmt_pct(pct_change(pub_rate[2026], pub_rate[2024]))}** relative to 2024.
 
-This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using secondary statewide totals, the balanced public panel's share is approximately **69.4% in 2024, 62.7% in 2025, and 67.5% in 2026**. TJHSST's own share falls from **35.3% to 20.6% to 23.1%**.[^state]
+This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using secondary statewide totals, the balanced public panel's share is approximately **{fmt_pct(public_state_share[2024])} in 2024, {fmt_pct(public_state_share[2025])} in 2025, and {fmt_pct(public_state_share[2026])} in 2026**. TJHSST's own share falls from **{fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}**.[^state]
 
 ### 5. Private schools do not provide a measurable complete offset
 
-The full observed private total rises from 18 in 2024 to 34 in 2025, but count coverage simultaneously expands from 5 of 16 schools to 16 of 16. In the four-school balanced private panel, the totals are **{fmt_int(priv_bal[2023])}, {fmt_int(priv_bal[2024])}, {fmt_int(priv_bal[2025])}, and {fmt_int(priv_bal[2026])}** for Classes 2023-2026. There is no balanced private denominator panel after 2023.
+The full observed private total rises from 18 in 2024 to 34 in 2025, but count coverage simultaneously expands from 5 of 16 schools to 16 of 16. In the four-school balanced private panel, the totals are **{fmt_int(priv_bal[2023])}, {fmt_int(priv_bal[2024])}, {fmt_int(priv_bal[2025])}, and {fmt_int(priv_bal[2026])}** for Classes 2023-2026. The 2023-24 NCES locator pass adds Class 2025 denominators for {private_2025_rate_rows} private rows, but Classes 2024 and 2026 still lack private denominator coverage, so there is no balanced private denominator panel across Classes 2023-2026.
 
 The defensible conclusion is “private offset unresolved,” not “private offset observed.”
 

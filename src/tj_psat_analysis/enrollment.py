@@ -6,6 +6,7 @@ import csv
 import hashlib
 import io
 import subprocess
+import tempfile
 import zipfile
 from collections import Counter
 from collections.abc import Mapping, Sequence
@@ -37,6 +38,10 @@ PSS_SOURCE_URL_BY_SCHOOL_YEAR = {
 PSS_SOURCE_VARIABLE = "P290"
 PSS_IMPUTATION_FLAG_VARIABLE = "F_P290"
 PSS_SURVEY_SCHOOL_YEARS = frozenset(PSS_SOURCE_TITLE_BY_SCHOOL_YEAR)
+PSS_LOCATOR_2023_24_SOURCE_TITLE = "NCES Private School Search locator (PSS 2023-24)"
+PSS_LOCATOR_2023_24_SOURCE_DATE = "2023-24"
+PSS_LOCATOR_2023_24_SOURCE_VARIABLE = "PSS_ENROLL_11"
+PSS_LOCATOR_IMPUTATION_FLAG_STATUS = "not_available_locator"
 
 PANEL_FIELDS = [
     "school_id",
@@ -83,6 +88,15 @@ class PssZipSource:
     zip_path: Path
 
 
+@dataclass(frozen=True)
+class PublicCcdMembershipSource:
+    school_year: str
+    zip_path: Path
+    source_title: str
+    source_url: str
+    source_date: str
+
+
 def load_csv_rows(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         return []
@@ -103,6 +117,72 @@ def _single_csv_member(archive: zipfile.ZipFile, zip_path: Path) -> str:
     if len(csv_names) != 1:
         raise ValueError(f"Expected exactly one CSV in {zip_path}, found {csv_names}")
     return csv_names[0]
+
+
+@contextmanager
+def _single_csv_text_from_zip(zip_path: Path):
+    with zipfile.ZipFile(zip_path) as archive:
+        csv_names = [name for name in archive.namelist() if name.lower().endswith(".csv")]
+        if len(csv_names) == 1:
+            member_name = csv_names[0]
+            with _zip_member_text(zip_path, member_name) as handle:
+                yield member_name, handle
+            return
+
+        nested_csv_zips = [
+            name
+            for name in archive.namelist()
+            if name.lower().endswith(".zip") and "csv" in Path(name).name.lower()
+        ]
+        if csv_names or len(nested_csv_zips) != 1:
+            raise ValueError(
+                f"Expected one CSV or nested CSV ZIP in {zip_path}, found CSVs={csv_names}, "
+                f"nested CSV ZIPs={nested_csv_zips}"
+            )
+
+        nested_name = nested_csv_zips[0]
+        with tempfile.NamedTemporaryFile(suffix=".zip") as nested_file:
+            nested_file.write(archive.read(nested_name))
+            nested_file.flush()
+            nested_path = Path(nested_file.name)
+            with zipfile.ZipFile(nested_path) as nested_archive:
+                nested_csv_names = [
+                    name for name in nested_archive.namelist() if name.lower().endswith(".csv")
+                ]
+                if len(nested_csv_names) != 1:
+                    raise ValueError(
+                        f"Expected exactly one CSV in {zip_path}!{nested_name}, found {nested_csv_names}"
+                    )
+                nested_csv_name = nested_csv_names[0]
+                try:
+                    binary_handle = nested_archive.open(nested_csv_name)
+                except NotImplementedError:
+                    process = subprocess.Popen(
+                        ["unzip", "-p", str(nested_path), nested_csv_name],
+                        stdout=subprocess.PIPE,
+                    )
+                    if process.stdout is None:
+                        raise RuntimeError(
+                            f"Could not stream {nested_csv_name} from {zip_path}!{nested_name}"
+                        ) from None
+                    text_handle = io.TextIOWrapper(process.stdout, encoding="utf-8-sig", newline="")
+                    try:
+                        yield f"{nested_name}!{nested_csv_name}", text_handle
+                    finally:
+                        text_handle.close()
+                        return_code = process.wait()
+                        if return_code:
+                            raise RuntimeError(
+                                f"unzip exited with {return_code} for {zip_path}!{nested_name}"
+                            )
+                else:
+                    with binary_handle:
+                        text_handle = io.TextIOWrapper(binary_handle, encoding="utf-8-sig", newline="")
+                        try:
+                            yield f"{nested_name}!{nested_csv_name}", text_handle
+                        finally:
+                            text_handle.close()
+            return
 
 
 def _zip_member_date(archive: zipfile.ZipFile, member_name: str) -> str:
@@ -199,12 +279,16 @@ def _is_not_operating(roster_row: Mapping[str, str], class_year: int) -> bool:
 def build_enrollment_panel_rows(
     school_roster_rows: Sequence[Mapping[str, str]],
     public_seed_rows: Sequence[Mapping[str, str]],
+    public_supplement_rows: Sequence[Mapping[str, str]],
     public_2024_25_rows: Sequence[Mapping[str, str]],
     private_pss_rows: Sequence[Mapping[str, str]],
+    private_pss_locator_rows: Sequence[Mapping[str, str]],
 ) -> list[dict[str, object]]:
     public_seed_index = _index_by_school_year(public_seed_rows)
+    public_supplement_index = _index_by_school_year(public_supplement_rows)
     public_2024_25_index = _index_by_school_year(public_2024_25_rows)
     private_pss_index = _index_by_school_year(private_pss_rows)
+    private_pss_locator_index = _index_by_school_year(private_pss_locator_rows)
     has_private_sources = bool(private_pss_rows)
 
     output: list[dict[str, object]] = []
@@ -218,7 +302,9 @@ def build_enrollment_panel_rows(
                 row["enrollment_status"] = "not_operating"
             elif sector == "public":
                 source_row = (
-                    public_2024_25_index.get(key) if school_year == "2024-25" else public_seed_index.get(key)
+                    public_2024_25_index.get(key)
+                    if school_year == "2024-25"
+                    else public_supplement_index.get(key) or public_seed_index.get(key)
                 )
                 if source_row:
                     _copy_enrollment_fields(row, source_row)
@@ -227,7 +313,7 @@ def build_enrollment_panel_rows(
                 else:
                     row["enrollment_status"] = "public_enrollment_not_ingested"
             elif sector == "private":
-                source_row = private_pss_index.get(key)
+                source_row = private_pss_locator_index.get(key) or private_pss_index.get(key)
                 if source_row:
                     _copy_enrollment_fields(row, source_row)
                 elif school_year in PSS_SURVEY_SCHOOL_YEARS:
@@ -288,16 +374,14 @@ def extract_public_ccd_grade11_rows(
     target_ids = {row["nces_school_id"]: row for row in public_rows if row.get("nces_school_id")}
     grouped: dict[str, list[tuple[int, Mapping[str, str]]]] = {nces_id: [] for nces_id in target_ids}
 
-    with zipfile.ZipFile(membership_zip) as archive:
-        member_name = _single_csv_member(archive, membership_zip)
-        with _zip_member_text(membership_zip, member_name) as handle:
-            reader = csv.DictReader(handle)
-            if not reader.fieldnames or "NCESSCH" not in reader.fieldnames:
-                raise ValueError(f"{membership_zip} membership CSV is missing NCESSCH")
-            for row_number, row in enumerate(reader, start=2):
-                nces_school_id = (row.get("NCESSCH") or "").strip()
-                if nces_school_id in grouped and _is_grade11(row):
-                    grouped[nces_school_id].append((row_number, row))
+    with _single_csv_text_from_zip(membership_zip) as (_member_name, handle):
+        reader = csv.DictReader(handle)
+        if not reader.fieldnames or "NCESSCH" not in reader.fieldnames:
+            raise ValueError(f"{membership_zip} membership CSV is missing NCESSCH")
+        for row_number, row in enumerate(reader, start=2):
+            nces_school_id = (row.get("NCESSCH") or "").strip()
+            if nces_school_id in grouped and _is_grade11(row):
+                grouped[nces_school_id].append((row_number, row))
 
     output: list[dict[str, object]] = []
     for roster_row in public_rows:
@@ -327,6 +411,64 @@ def extract_public_ccd_grade11_rows(
                 "nces_school_id": nces_school_id,
             }
         )
+    return output
+
+
+def extract_public_ccd_membership_grade11_rows(
+    school_roster_rows: Sequence[Mapping[str, str]],
+    sources: Sequence[PublicCcdMembershipSource],
+    target_school_ids: set[str],
+) -> list[dict[str, object]]:
+    output: list[dict[str, object]] = []
+    target_rows = [
+        row
+        for row in school_roster_rows
+        if row["sector"] == "public" and row["school_id"] in target_school_ids
+    ]
+
+    for source in sources:
+        class_year = _class_year_for_school_year(source.school_year)
+        source_hash = sha256_file(source.zip_path)
+        target_ids = {row["nces_school_id"]: row for row in target_rows if row.get("nces_school_id")}
+        grouped: dict[str, list[tuple[int, Mapping[str, str]]]] = {nces_id: [] for nces_id in target_ids}
+
+        with _single_csv_text_from_zip(source.zip_path) as (_member_name, handle):
+            reader = csv.DictReader(handle)
+            if not reader.fieldnames or "NCESSCH" not in reader.fieldnames:
+                raise ValueError(f"{source.zip_path} membership CSV is missing NCESSCH")
+            for row_number, row in enumerate(reader, start=2):
+                nces_school_id = (row.get("NCESSCH") or "").strip()
+                if nces_school_id in grouped and _is_grade11(row):
+                    grouped[nces_school_id].append((row_number, row))
+
+        for roster_row in target_rows:
+            nces_school_id = roster_row.get("nces_school_id", "")
+            value = ""
+            status = "ccd_row_not_found"
+            source_rows = ""
+            if nces_school_id:
+                matches = grouped.get(nces_school_id, [])
+                if matches:
+                    value, status, source_rows = _public_grade11_value_from_rows(matches)
+            output.append(
+                {
+                    "school_id": roster_row["school_id"],
+                    "school": roster_row["school"],
+                    "class_year": class_year,
+                    "grade11_school_year": source.school_year,
+                    "grade11_enrollment": value,
+                    "enrollment_status": status,
+                    "enrollment_source_title": source.source_title,
+                    "enrollment_source_url": source.source_url,
+                    "enrollment_source_date": source.source_date,
+                    "enrollment_source_hash": source_hash,
+                    "enrollment_source_file": source.zip_path.name,
+                    "enrollment_source_rows": source_rows,
+                    "enrollment_source_variable": "GRADE=11 total STUDENT_COUNT",
+                    "nces_school_id": nces_school_id,
+                }
+            )
+
     return output
 
 
@@ -553,13 +695,18 @@ def build_enrollment_coverage_report(panel_rows: Sequence[Mapping[str, object]])
             "## Source Rules",
             "",
             "- Public Classes 2019-2025 are carried from the seed workbook export after deterministic "
-            "roster joins.",
+            "roster joins, with exact-NCES-ID CCD membership supplements used for documented ambiguous "
+            "seed rows.",
             "- Public Class 2026 comes from the NCES CCD 2024-25 school membership file when an "
             "extracted row is available.",
             "- Private-school PSS rows use `P290` for grade-11 enrollment and preserve `F_P290` "
             "as `pss_imputation_flag`.",
-            "- PSS non-survey years remain blank with `private_pss_not_survey_year` rather than "
-            "borrowing adjacent survey years.",
+            "- The 2023-24 NCES Private School Search locator supplement is an official interim "
+            "Class 2025 denominator source. It uses the locator file-layout field "
+            "`PSS_ENROLL_11` and records `pss_imputation_flag` as `not_available_locator` "
+            "because the detail pages do not expose `F_P290`.",
+            "- PSS non-survey years without a public-use or locator source row remain blank with "
+            "`private_pss_not_survey_year` rather than borrowing adjacent survey years.",
             "",
         ]
     )
@@ -569,20 +716,26 @@ def build_enrollment_coverage_report(panel_rows: Sequence[Mapping[str, object]])
 def build_enrollment_outputs(
     school_roster_csv: Path,
     public_seed_csv: Path,
+    public_supplement_csv: Path,
     public_2024_25_csv: Path,
     private_pss_csv: Path,
+    private_pss_locator_csv: Path,
     processed_dir: Path,
     report_dir: Path,
 ) -> dict[str, Path]:
     school_roster_rows = load_csv_rows(school_roster_csv)
     public_seed_rows = load_csv_rows(public_seed_csv)
+    public_supplement_rows = load_csv_rows(public_supplement_csv)
     public_2024_25_rows = load_csv_rows(public_2024_25_csv)
     private_pss_rows = load_csv_rows(private_pss_csv)
+    private_pss_locator_rows = load_csv_rows(private_pss_locator_csv)
     panel_rows = build_enrollment_panel_rows(
         school_roster_rows=school_roster_rows,
         public_seed_rows=public_seed_rows,
+        public_supplement_rows=public_supplement_rows,
         public_2024_25_rows=public_2024_25_rows,
         private_pss_rows=private_pss_rows,
+        private_pss_locator_rows=private_pss_locator_rows,
     )
     coverage_rows = build_enrollment_coverage_rows(panel_rows)
 

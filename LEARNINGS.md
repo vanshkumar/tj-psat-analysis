@@ -259,6 +259,51 @@
 - Action: Keep `pandas` and `numpy` declared in `pyproject.toml` and retain `uv.lock` so Task 9 regeneration works from a fresh environment.
 - Confidence: high
 
+**2026-06-20 - Private NMSF coverage audit**
+- Observation: The canonical roster has 16 private-school rows; across focal Classes 2023-2026, `data/processed/nmsf_observations.csv` currently has 35 private `verified_count` rows and 29 private `missing_source` rows, with no private `verified_zero` rows.
+- Action: Treat current private-school NMSF data as positive-count coverage only unless a complete private/source scope is found; use `reports/tables/task9_private_sensitivity.csv` or `reports/data_quality/focal_period_completion.md` to summarize the remaining private gaps.
+- Confidence: high
+
+**2026-06-19 - ProPublica private-school demographics source**
+- Observation: ProPublica's private-school demographics app is a derivative 2021-22 PSS-based presentation and notes exclusions/nonresponse; it does not expose the project-required `P290` grade-11 denominator workflow.
+- Action: Use it only for discovery or context, not as the canonical private-school enrollment source; ingest denominators from official NCES PSS public-use files by curated `PPIN`.
+- Confidence: high
+
+**2026-06-19 - Milestone 10 denominator cleanup**
+- Observation: The NCES CCD file-tool API exposes school membership ZIP URLs for Classes 2023-2025, but the 2021-22 membership download nests a `*_CSV.zip` whose CSV may require the system `unzip -p` fallback.
+- Action: Use `scripts/ingest_public_enrollment_nces_supplement.py` for targeted exact-NCES-ID public denominator backfills, and keep the nested-CSV streaming fallback in `enrollment.py`.
+- Confidence: high
+
+**2026-06-19 - PSS 2023-24 availability**
+- Observation: The official NCES PSS data page stated that 2023-24 data were being finalized and did not list a public-use CSV download on 2026-06-19; the guessed `pss2324_pu_csv.zip` URL returned 404.
+- Action: Leave Class 2025 private-school PSS denominators open until NCES lists the official 2023-24 public-use file; do not use guessed filenames or secondary copies.
+- Confidence: high
+
+**2026-06-19 - PSS 2023-24 locator route**
+- Observation: The NCES Private School Search locator is backed by 2023-24 PSS data and its file layout exposes `PSS_ENROLL_11` for eleventh-grade enrollment, but the locator layout does not expose `F_P290` or other imputation flags. The linked `State=47` URL is Tennessee, not Virginia.
+- Action: Treat the locator as a possible official interim source for Class 2025 private denominators only after archiving detail/download evidence, curating current school IDs or name matches, mapping `PSS_ENROLL_11` to the grade-11 denominator, and recording imputation flags as unavailable; still prefer the official public-use ZIP when NCES posts it.
+- Confidence: high
+
+**2026-06-19 - PSS 2023-24 Virginia grade-11 locator**
+- Observation: The NCES locator query `State=51&IncGrade=12` returns 262 Virginia private schools and includes grade spans ending in 11, so `IncGrade=12` is the locator's internal grade-11 filter rather than a twelfth-grade-only filter.
+- Action: Use that query as the candidate universe for Class 2025 private denominator matching, but extract denominators from the locator download/detail `PSS_ENROLL_11` field rather than from the visible search-result `Students` total.
+- Confidence: high
+
+**2026-06-19 - NMSC semifinalist press releases**
+- Observation: The archived NMSC `23_meritsemi.pdf` through `26_meritsemi.pdf` files are official annual press releases, but they state that named Semifinalist lists were distributed to media and are not posted on the NMSC website.
+- Action: Archive these PDFs only as source-discovery evidence; continue searching for complete public media mirrors before creating Virginia-list counts, zeros, or statewide-share metrics.
+- Confidence: high
+
+**2026-06-19 - Milestone 10 complete-list search**
+- Observation: A broad public-source sweep of NMSC archive indexes, class-year web searches, Common Crawl URL patterns, and major Virginia/DC media CDX patterns did not locate a complete Virginia school-by-school NMSF mirror for Classes 2023-2026.
+- Action: Keep the exact search attempts in `reports/data_quality/focal_period_completion.md`, leave unresolved focal rows as `missing_source`, and resume Priority A only if a source can resolve multiple rows from a complete list.
+- Confidence: medium
+
+**2026-06-20 - PSS locator denominator ingestion**
+- Observation: The archived NCES 2023-24 Private School Search locator detail pages resolved 10 of 16 rostered private Class 2025 grade-11 denominators; BASIS Independent McLean, Flint Hill, Oakcrest, Potomac, and Seton returned no current locator row, and Loudoun School for Advanced Studies returned two same-address candidates. Locator detail pages expose `PSS_ENROLL_11` but not `F_P290`.
+- Action: Use `scripts/ingest_private_pss_locator_2023_24.py` against archived locator HTML for interim Class 2025 private denominators, keep unresolved locator rows blank, and replace or reconcile this supplement when the official 2023-24 public-use PSS ZIP is posted.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

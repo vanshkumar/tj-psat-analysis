@@ -7,6 +7,7 @@
 - `data/interim/public_grade11_enrollment.csv`: canonical public-school grade 11 enrollment by class year.
 - `data/interim/public_grade11_enrollment_2024_25.csv`: Class 2026 public-school grade 11 enrollment extracted from the NCES CCD 2024-25 school membership file by NCES school ID.
 - `data/interim/private_grade11_enrollment.csv`: private-school PSS survey-year grade 11 enrollment extract using `P290`, with `F_P290` preserved as `pss_imputation_flag`.
+- `data/interim/private_grade11_enrollment_pss_locator_2023_24.csv`: interim Class 2025 private-school denominator supplement parsed from archived NCES Private School Search 2023-24 locator pages using `PSS_ENROLL_11`; unresolved locator searches remain blank.
 - `data/interim/panel_seed.csv`: school-by-class-year panel with blank NMSF counts and source-pending statuses.
 - `data/interim/panel_nmsf.csv`: legacy interim seed panel plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`; it should not be treated as the final analytical panel because it is seed-based and does not include all Milestone 3 denominator updates.
 - `data/processed/analysis_panel.csv`: Milestone 7 analytical panel joining the canonical roster, class-year mapping, NMSF observations, enrollment denominators, school-history flags, row-level rates, and covered-subset pathway aggregates.
@@ -18,6 +19,7 @@
 - `data/manual/school_history.csv`: source-noted rename, opening, and relocation events used to keep historical names and not-operating years explicit.
 - `data/manual/public_school_nces_ids.csv`: source-backed public-school NCES IDs matched from the NCES CCD 2023-24 directory by division and normalized alias.
 - `data/manual/private_school_pss_ids.csv`: curated private-school PSS `PPIN` match table used to prevent name-only private-school joins.
+- `data/manual/private_school_pss_locator_2023_24.csv`: curated NCES Private School Search locator detail/search URLs for Class 2025 private-school denominator extraction.
 - `reports/data_quality/roster_review.md`: Milestone 2 roster coverage, alias conflicts, history review, admissions-pathway source summary, and pathway review status.
 - `reports/data_quality/enrollment_coverage.csv`: one coverage row for each school and class year in `data/processed/enrollment_panel.csv`.
 - `reports/data_quality/enrollment_coverage.md`: Milestone 3 denominator coverage summary, source list, and no-estimation rules.
@@ -52,6 +54,7 @@
 - `data/sources/nmsf_counts.csv`: manual NMSF count transcriptions from named public sources. Each row must include source ID, provider, class year, school name, count, status, title, URL, date, scope, and completeness notes.
 - `data/sources/source_manifest.yml`: source-level registry with publisher, publication date, URL, retrieval date, source type, completeness scope, zero-inference scope, parser name/version, notes, and computed source hashes for NMSF count sources.
 - `data/raw/nmsf/*/*_snapshot.csv`: count-only archived snapshots for source-backed NMSF releases. Student names are intentionally omitted. Rows with `snapshot_record_type=observation_count` feed `data/sources/nmsf_counts.csv`; rows with other record types are retained only for reconciliation or review.
+- `data/raw/enrollment/pss_locator_2023_24/*.html`: archived NCES Private School Search locator pages used by the interim Class 2025 private-school denominator supplement. They are enrollment sources only, not NMSF count sources.
 
 ## NMSF Source Rules
 
@@ -114,7 +117,8 @@
 - `ccd_row_not_found`: the CCD membership file did not contain a grade-11 total row for the roster row's NCES school ID.
 - `private_pss_not_survey_year`: the grade-11 school year is not covered by an available PSS survey file; no adjacent-year value is substituted.
 - `private_pss_id_pending`: no unique curated PSS `PPIN` has been assigned for the private-school row.
-- `ambiguous_pss_id`: PSS contains multiple plausible private-school identifiers and the denominator remains blank until independently resolved.
+- `ambiguous_pss_id`: PSS contains multiple plausible private-school identifiers, including locator search duplicates, and the denominator remains blank until independently resolved.
+- `locator_search_not_found`: the 2023-24 NCES Private School Search locator returned no current row for the documented school-name search, so the Class 2025 denominator remains blank.
 - `pss_row_not_found`: the curated PSS `PPIN` was not present in that survey year's public-use file.
 - `blank`: the source row exists, but the grade-11 variable is blank.
 
@@ -123,6 +127,7 @@
 - Public Class 2026 CCD rows use the `Grade 11` total membership row where race and sex are `No Category Codes`.
 - Private PSS rows use `P290` for grade-11 enrollment.
 - Private PSS rows preserve `F_P290` in `pss_imputation_flag` when present.
+- The interim 2023-24 NCES Private School Search locator supplement uses `PSS_ENROLL_11` for Class 2025 private-school grade-11 enrollment and records `pss_imputation_flag=not_available_locator` because locator detail pages do not expose `F_P290`.
 - No enrollment value is estimated from adjacent school years.
 
 ## Roster Statuses

@@ -518,12 +518,43 @@ few inexpensive denominator gaps.
   - TJ-zone excluding TJHSST as a share of Virginia NMSFs
   - the remainder of Virginia outside the TJ zone
 
+Status note: The official NMSC `23_meritsemi.pdf`, `24_meritsemi.pdf`,
+`25_meritsemi.pdf`, and `26_meritsemi.pdf` files were located through the
+Internet Archive and archived under `data/raw/nmsf/virginia/`. Visual PDF
+inspection confirmed that these are annual press releases, not the
+school-by-school lists distributed to news media. They explicitly do not post
+the named Semifinalist list on the NMSC website, so this pass adds no
+school-level NMSF counts, no `verified_zero` rows, and no Virginia-share series.
+The current source-discovery decision and remaining 37 focal-period missing
+rows are documented in `reports/data_quality/focal_period_completion.md`.
+A follow-up broad-source sweep checked NMSC archive indexes, class-year web
+searches, Common Crawl URL indexes, and major Virginia/DC media CDX patterns;
+it did not locate a complete public Virginia school-by-school mirror. This
+adds search-limitation evidence only: no counts, zeros, or Virginia-share
+metrics are created from the sweep.
+
 ### Priority B — Minimal denominator cleanup
 
 - [ ] Ingest the NCES PSS 2023-24 public-use file for rostered private schools when available, using `P290` for grade-11 enrollment and preserving `F_P290` imputation flags.
 - [ ] Use the 2023-24 PSS data only for the corresponding Class 2025 denominator; do not interpolate Classes 2024 or 2026.
-- [ ] Fill Classes 2023-2025 grade-11 enrollment for Freedom High School (South Riding) and Freedom High School (Woodbridge) from NCES CCD and/or VDOE using their exact school identifiers.
-- [ ] Regenerate enrollment-coverage reports and verify that the two Freedom schools join to the intended canonical IDs.
+- [x] Fill Classes 2023-2025 grade-11 enrollment for Freedom High School (South Riding) and Freedom High School (Woodbridge) from NCES CCD and/or VDOE using their exact school identifiers.
+- [x] Regenerate enrollment-coverage reports and verify that the two Freedom schools join to the intended canonical IDs.
+
+Status note: `scripts/ingest_public_enrollment_nces_supplement.py` now
+extracts the two Freedom High School rows for Classes 2023-2025 from official
+NCES CCD school membership ZIPs using exact NCES IDs. The generated supplement
+is `data/interim/public_grade11_enrollment_nces_supplement.csv`; the enrollment
+panel prefers those rows over the ambiguous workbook seed rows. On 2026-06-20,
+`scripts/ingest_private_pss_locator_2023_24.py` added an official interim NCES
+Private School Search locator supplement for Class 2025 private denominators.
+It archived 16 locator detail/search pages under
+`data/raw/enrollment/pss_locator_2023_24/` and generated
+`data/interim/private_grade11_enrollment_pss_locator_2023_24.csv`: 10 private
+rows have source-backed grade-11 denominators, five current locator searches
+returned no row, and Loudoun School for Advanced Studies remains ambiguous
+because the locator returns two same-address candidates. The official public-use
+PSS 2023-24 ZIP is still preferred when NCES posts it because the locator does
+not expose `F_P290` imputation flags.
 
 ### Rebuild and reassess
 

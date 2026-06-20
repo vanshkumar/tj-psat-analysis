@@ -13,9 +13,9 @@ Completed: 2026-06-19
 
 - TJHSST pooled NMSF rate: 32.927 per 100 juniors in Classes 2023-2024
   versus 18.890 in Classes 2025-2026 (-42.6%).
-- Balanced 50-school conventional public base panel: 0.596 versus 0.696
-  (+16.7%).
-- Balanced 51-school public panel including TJHSST: 1.138 versus 1.029
+- Balanced 52-school conventional public base panel: 0.593 versus 0.687
+  (+16.0%).
+- Balanced 53-school public panel including TJHSST: 1.116 versus 1.009
   (-9.6%).
 - Class 2025 is the sharp break; Class 2026 shows a partial TJHSST rebound and
   a heterogeneous base-school increase. Private-school offset remains unresolved.
@@ -40,8 +40,8 @@ The script rebuilds all Task 9 reports and supporting tables from
 - Canonical schools: 76
 - Class years: 2019-2026
 - Canonical panel SHA-256:
-  `d2d4c3c87c6520828cc014174eff83a34fc2a04bbc10e493c5edd33de986ea60`
-- Input panel remained unchanged.
+  `279606efc11e373bb69f8c1457364157b61d27190c7abfa3982bef66f2ff0333`
+- Input panel reflects the Milestone 10 Freedom High denominator supplement.
 - Independent Task 9 validation assertions passed.
 
 ## Source boundary

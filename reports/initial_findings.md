@@ -1,6 +1,6 @@
 # Task 9 Initial Findings
 
-Generated: 2026-06-19
+Generated: 2026-06-20
 
 ## Bottom line
 
@@ -28,26 +28,26 @@ Thus, 2025 is an exceptional discontinuity, while 2026 provides evidence of pers
 
 ### 3. The immediate base-public offset is small; the 2026 increase is large
 
-In the balanced 50-school conventional public panel:
+In the balanced 52-school conventional public panel:
 
-- Class 2023: **156 / 26,346 = 0.592 per 100**.
-- Class 2024: **159 / 26,518 = 0.600**.
-- Class 2025: **166 / 27,471 = 0.604**.
-- Class 2026: **217 / 27,584 = 0.787**.
+- Class 2023: **159 / 27,317 = 0.582 per 100**.
+- Class 2024: **166 / 27,521 = 0.603**.
+- Class 2025: **168 / 28,425 = 0.591**.
+- Class 2026: **224 / 28,614 = 0.783**.
 
-The rate changes only **+0.8%** from 2024 to 2025, then **+30.2%** from 2025 to 2026. A simple story in which the first policy-affected cohort immediately reappears as NMSF gains at base schools is not supported by the aggregate 2025 data.
+The rate changes only **-2.0%** from 2024 to 2025, then **+32.5%** from 2025 to 2026. A simple story in which the first policy-affected cohort immediately reappears as NMSF gains at base schools is not supported by the aggregate 2025 data.
 
-Pooling 2023-2024 against 2025-2026, base-school counts increase by **68** while TJHSST declines by **103**. The base gain therefore offsets **66.0%** of the TJ decline arithmetically, leaving the balanced public panel down **35** semifinalists. The gain is heterogeneous: 26 of 50 school rates rise, 17 fall, and 7 are unchanged. This is not evidence that the gains are displaced TJHSST students.
+Pooling 2023-2024 against 2025-2026, base-school counts increase by **67** while TJHSST declines by **103**. The base gain therefore offsets **65.0%** of the TJ decline arithmetically, leaving the balanced public panel down **36** semifinalists. The gain is heterogeneous: 26 of 52 school rates rise, 18 fall, and 8 are unchanged. This is not evidence that the gains are displaced TJHSST students.
 
 ### 4. The combined public-zone result falls in 2025 and nearly recovers locally in 2026
 
-For the balanced 51-school public panel including TJHSST, the rate is **1.202 in 2024, 0.883 in 2025, and 1.174 in 2026**. The 2026 value is **-2.3%** relative to 2024.
+For the balanced 53-school public panel including TJHSST, the rate is **1.184 in 2024, 0.861 in 2025, and 1.157 in 2026**. The 2026 value is **-2.3%** relative to 2024.
 
-This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using secondary statewide totals, the balanced public panel's share is approximately **69.4% in 2024, 62.7% in 2025, and 67.5% in 2026**. TJHSST's own share falls from **35.3% to 20.6% to 23.1%**.[^state]
+This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using secondary statewide totals, the balanced public panel's share is approximately **70.9% in 2024, 63.2% in 2025, and 68.9% in 2026**. TJHSST's own share falls from **35.3% to 20.6% to 23.1%**.[^state]
 
 ### 5. Private schools do not provide a measurable complete offset
 
-The full observed private total rises from 18 in 2024 to 34 in 2025, but count coverage simultaneously expands from 5 of 16 schools to 16 of 16. In the four-school balanced private panel, the totals are **13, 15, 15, and 18** for Classes 2023-2026. There is no balanced private denominator panel after 2023.
+The full observed private total rises from 18 in 2024 to 34 in 2025, but count coverage simultaneously expands from 5 of 16 schools to 16 of 16. In the four-school balanced private panel, the totals are **13, 15, 15, and 18** for Classes 2023-2026. The 2023-24 NCES locator pass adds Class 2025 denominators for 10 private rows, but Classes 2024 and 2026 still lack private denominator coverage, so there is no balanced private denominator panel across Classes 2023-2026.
 
 The defensible conclusion is “private offset unresolved,” not “private offset observed.”
 

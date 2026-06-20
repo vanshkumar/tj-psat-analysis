@@ -34,23 +34,24 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 
 | Enrollment status | Rows |
 | --- | --- |
-| ambiguous_pss_id | 3 |
-| ambiguous_source_name | 14 |
+| ambiguous_pss_id | 4 |
+| ambiguous_source_name | 8 |
 | blank | 4 |
 | ccd_row_not_found | 1 |
+| locator_search_not_found | 5 |
 | not_operating | 9 |
 | private_pss_id_pending | 6 |
-| private_pss_not_survey_year | 80 |
+| private_pss_not_survey_year | 64 |
 | pss_row_not_found | 10 |
-| reported | 474 |
+| reported | 490 |
 | source_row_not_found | 7 |
 
 ## Rate Status Counts
 
 | Rate status | Rows |
 | --- | --- |
-| calculated | 324 |
-| missing_grade11_enrollment | 43 |
+| calculated | 340 |
+| missing_grade11_enrollment | 27 |
 | missing_nmsf_and_grade11_enrollment | 82 |
 | missing_nmsf_count | 150 |
 | not_operating | 9 |
@@ -59,9 +60,9 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 
 | Pathway coverage status | Rows |
 | --- | --- |
-| complete_compatible_coverage | 231 |
-| no_compatible_rows | 255 |
-| partial_compatible_coverage | 122 |
+| complete_compatible_coverage | 304 |
+| no_compatible_rows | 239 |
+| partial_compatible_coverage | 65 |
 
 ## Placeholder Source Gaps
 

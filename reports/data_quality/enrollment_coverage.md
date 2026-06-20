@@ -15,15 +15,16 @@ separate. No enrollment value is estimated from adjacent years.
 
 | Enrollment status | Rows |
 | --- | --- |
-| ambiguous_pss_id | 3 |
-| ambiguous_source_name | 14 |
+| ambiguous_pss_id | 4 |
+| ambiguous_source_name | 8 |
 | blank | 4 |
 | ccd_row_not_found | 1 |
+| locator_search_not_found | 5 |
 | not_operating | 9 |
 | private_pss_id_pending | 6 |
-| private_pss_not_survey_year | 80 |
+| private_pss_not_survey_year | 64 |
 | pss_row_not_found | 10 |
-| reported | 474 |
+| reported | 490 |
 | source_row_not_found | 7 |
 
 ## Class-Year Coverage
@@ -34,24 +35,44 @@ separate. No enrollment value is estimated from adjacent years.
 | 2020 | 2018-19 | 54 | 3 | 76 |
 | 2021 | 2019-20 | 63 | 2 | 76 |
 | 2022 | 2020-21 | 56 | 1 | 76 |
-| 2023 | 2021-22 | 67 | 0 | 76 |
-| 2024 | 2022-23 | 57 | 0 | 76 |
-| 2025 | 2023-24 | 57 | 0 | 76 |
+| 2023 | 2021-22 | 69 | 0 | 76 |
+| 2024 | 2022-23 | 59 | 0 | 76 |
+| 2025 | 2023-24 | 69 | 0 | 76 |
 | 2026 | 2024-25 | 59 | 0 | 76 |
 
 ## Source Files
 
 | Source title | URL | Date | SHA-256 |
 | --- | --- | --- | --- |
+| NCES CCD 2021-22 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/Data/zip/ccd_SCH_052_2122_l_1a_071722.zip | 2022-07-17 | 2c10f2bc915608c9eb1a84a6cb7a7b833a42b4149eb98b4a85e4a09309d4fd7b |
+| NCES CCD 2022-23 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/data/zip/ccd_sch_052_2223_l_1a_083023.zip | 2023-08-30 | 98f3556a9117c30c56bc5d3339b2b32fd27a1eb7def3b26e54def812ef7c493f |
+| NCES CCD 2023-24 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_2324_l_1a_073124.zip | 2024-07-31 | 06bd50eede0c036e4c92b6464b69f192ff3b8f9f739b403c2b218a9f6ec3e239 |
 | NCES CCD 2024-25 Public Elementary/Secondary School Universe Survey Data, v.2a, School Membership | https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_2425_l_1a_073025.zip | 2025-07-30 | 4a7f660c5fc5eaae488dd02fd43498f349fc828b227edd0970d5b6995ead4d4d |
 | NCES CCD Public Elementary/Secondary School Universe Survey via ELSI export | http://nces.ed.gov/ccd/elsi/ |  | a7e041846b405a3a54c18c69e80918d375229f1c0423a98bfd3b6fb414ba157f |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=02063874 | 2023-24 | ab0e46923a5ca9ac5f042dd0c2dc96401c27b6a676ca0f9f69c3e89d48945a77 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=02064266 | 2023-24 | 28481864dd40509bf3959f5aa01a78889f87a4d772c9c841a36b9d9f8e9e3a43 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=02122129 | 2023-24 | 5940ee516b2b74bd98cd0de94325f3a5b0ff3871610cac7cb451ed7ae6b824da |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A0110062 | 2023-24 | 42f9bc3dccd423fe91b41e3a9969f02075649000b7944f550f1e745876fde308 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A0990135 | 2023-24 | 3681cb995f66c55972cb5d0a464f869502552ee0510e469358f9ddbeb556ec32 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A0990136 | 2023-24 | 1ddd9f0ce04f899c3973531e86f7817bf1bcb8916e309afd88dc6ec77f65fc78 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A1703665 | 2023-24 | bcbbc05ebd824405c51971014864e7f4aef223358ca1e4e587a293335678367e |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A1904530 | 2023-24 | 42bcc983440da3bfe35a3872d100fac5b109d29325a32e6a01990fb456859558 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A9304211 | 2023-24 | e9e10a4d4240fdcb031e1f85a2670b11877d53d253de84a31ea46bf08fc72412 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=K9306124 | 2023-24 | a0716b809695eddf3031be8577afd7637f5465630e713db26e9f23ea6031817d |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=BASIS%20Independent%20McLean&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | 3c7bb62118b2b125339e824076211c07c26093868213313806fe0e59843ce167 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=Flint%20Hill%20School&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | 82f2bb009e2b2f5b80af7c7a5368ea58fa5179e394050b8ba96a2d0a7c1cfaa8 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=Loudoun%20School%20for%20Advanced%20Studies&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1 | 2023-24 | 22a764eeb79b3945c4db64d82ff1d5e9ab6ba6abb9829008773639f83cc633fc |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=Oakcrest&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | add5d078bc20009acba0d0100de62f8c9f50a8165f5999a4a33d94697fc90991 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=Seton&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | 5e206e3a8e36a472eec701700c44b59caeba1645673805732561ee39937af188 |
+| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=The%20Potomac%20School&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | e697abbc72bba6a6bba392d758563e62c1a58629faa7c45ea30235a1917aec33 |
 | NCES Private School Universe Survey (PSS) 2017-18 Public-Use CSV | https://nces.ed.gov/surveys/pss/zip/pss1718_pu_csv.zip | 2020-10-13 | 57b8f78cad046f2c50e1c82ba16ef892e5d322af573ab307a574e8ea45845d33 |
 | NCES Private School Universe Survey (PSS) 2019-20 Public-Use CSV | https://nces.ed.gov/surveys/pss/zip/pss1920_pu_csv.zip | 2021-09-24 | e382b00c0b6c88bf2b6618ce6b5a74907c2a8509a5d01c94d4f00c810ea3bfb7 |
 | NCES Private School Universe Survey (PSS) 2021-22 Public-Use CSV | https://nces.ed.gov/surveys/pss/zip/pss2122_pu_csv.zip | 2023-09-22 | 82acee7abc91dc2b07863405ca3fa172904fc45bf66f54191bbc0b0ad79022b1 |
 
 ## Source Rules
 
-- Public Classes 2019-2025 are carried from the seed workbook export after deterministic roster joins.
+- Public Classes 2019-2025 are carried from the seed workbook export after deterministic roster joins, with exact-NCES-ID CCD membership supplements used for documented ambiguous seed rows.
 - Public Class 2026 comes from the NCES CCD 2024-25 school membership file when an extracted row is available.
 - Private-school PSS rows use `P290` for grade-11 enrollment and preserve `F_P290` as `pss_imputation_flag`.
-- PSS non-survey years remain blank with `private_pss_not_survey_year` rather than borrowing adjacent survey years.
+- The 2023-24 NCES Private School Search locator supplement is an official interim Class 2025 denominator source. It uses the locator file-layout field `PSS_ENROLL_11` and records `pss_imputation_flag` as `not_available_locator` because the detail pages do not expose `F_P290`.
+- PSS non-survey years without a public-use or locator source row remain blank with `private_pss_not_survey_year` rather than borrowing adjacent survey years.
