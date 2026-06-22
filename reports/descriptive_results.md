@@ -91,12 +91,14 @@ Shares are calculated only when the class year has a source-backed statewide tot
 | 2025 | Private/homeschool unallocated | 34 | (missing) | (missing) | statewide total not source-backed for this class year |
 | 2025 | TJ-zone excluding TJHSST | (missing) | (missing) | (missing) | statewide total not source-backed for this class year |
 | 2025 | Virginia outside TJ-zone | (missing) | (missing) | (missing) | statewide total not source-backed for this class year |
-| 2026 | TJ-zone including TJHSST | 385 | 494 | 77.935223 | source-backed count and complete Virginia list statewide denominator |
-| 2026 | TJHSST | 113 | 494 | 22.874494 | source-backed count and complete Virginia list statewide denominator |
-| 2026 | Conventional base public | 231 | 494 | 46.761134 | source-backed count and complete Virginia list statewide denominator |
-| 2026 | Private/homeschool unallocated | 35 | 494 | 7.085020 | source-backed count and complete Virginia list statewide denominator |
-| 2026 | TJ-zone excluding TJHSST | 272 | 494 | 55.060729 | source-backed count and complete Virginia list statewide denominator |
-| 2026 | Virginia outside TJ-zone | 109 | 494 | 22.064777 | source-backed count and complete Virginia list statewide denominator |
+| 2026 | TJ-zone including TJHSST | 385 | 494 | 77.935223 | source-backed count; statewide denominator pending 2026 guide reconciliation |
+| 2026 | TJHSST | 113 | 494 | 22.874494 | source-backed count; statewide denominator pending 2026 guide reconciliation |
+| 2026 | Conventional base public | 231 | 494 | 46.761134 | source-backed count; statewide denominator pending 2026 guide reconciliation |
+| 2026 | Private/homeschool unallocated | 35 | 494 | 7.085020 | source-backed count; statewide denominator pending 2026 guide reconciliation |
+| 2026 | TJ-zone excluding TJHSST | 272 | 494 | 55.060729 | source-backed count; statewide denominator pending 2026 guide reconciliation |
+| 2026 | Virginia outside TJ-zone | 109 | 494 | 22.064777 | source-backed count; statewide denominator pending 2026 guide reconciliation |
+
+Class 2026 statewide shares use the committed supplied-list snapshot total of 494; the public NMSC 2026 guide cross-check lists Virginia at 489. Treat those shares as provisional until the statewide denominator discrepancy is reconciled.
 
 ## Pre/Post Summary
 

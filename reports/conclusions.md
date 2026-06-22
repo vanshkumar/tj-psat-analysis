@@ -30,6 +30,8 @@ These results do not establish that the admissions policy caused the changes, th
 
 The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains 54 schools, including 53 conventional base schools plus TJHSST. Private-school focal-period counts are complete, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school offset estimate.
 
+Supplemental statewide shares are useful context, but the 2026 statewide denominator is provisional pending reconciliation between the committed supplied-list snapshot and the public NMSC guide total.
+
 ## Highest-value next evidence
 
 The next useful data are school-level PSAT participation and score distributions; TJHSST applicant, offer, acceptance, enrollment, and allocation-pool data by source school; and broader upper-tail outcomes such as SAT threshold rates, AP 5 rates, and competition results. Those would help separate redistribution, threshold/participation effects, and possible school-context effects.

@@ -71,7 +71,12 @@ class NmsfPilotTest(unittest.TestCase):
             self.report,
         )
         self.assertIn(
-            "| nmsc_virginia_2026_semifinalists | 2026 | 494 | 6 | 488 | 494 | reconciled |",
+            (
+                "| nmsc_virginia_2026_semifinalists | 2026 | 494 | 6 | 488 | 494 | "
+                "reconciled | Complete Virginia count-only snapshot total; only still-missing "
+                "positive roster rows are imported from this source. Snapshot total pending "
+                "reconciliation against public NMSC guide total of 489. |"
+            ),
             self.report,
         )
         self.assertIn(

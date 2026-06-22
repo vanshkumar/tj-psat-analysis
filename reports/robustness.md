@@ -113,6 +113,8 @@ More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors
 | 2025 | 222 | 394 | secondary | 63.7% | 43.1% | 20.6% |
 | 2026 | 224 | 494 | source-backed | 68.2% | 45.3% | 22.9% |
 
+Class 2026 statewide-denominator caveat: the committed supplied-list snapshot totals 494, while the public 2026 NMSC guide lists Virginia at 489 semifinalists. Treat statewide shares using the 2026 denominator as provisional until reconciled; local school counts and focal coverage are unchanged.
+
 The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the statewide semifinalist total used here rises from the secondary Class 2025 value of 394 to the source-backed Class 2026 value of 494. A cutoff-only adjustment is therefore inadequate. On this mixed-source statewide denominator, the balanced public share falls from **70.4% in 2024** to **63.7% in 2025** and recovers only to **68.2% in 2026**. TJHSST's share remains far below 2024 (35.1% to 20.6% to 22.9%). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
 
 ## 8. COVID, digital testing, and cohort timing
@@ -158,7 +160,7 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 
 [^nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, https://www.nationalmerit.org/s/1758/images/gid2/editor_documents/guide_to_the_national_merit_scholarship_program.pdf?gid=2&pgid=61.
 [^cutoffs]: Compass Education Group, *Historical National Merit Cutoffs 2008 to Present*, https://www.compassprep.com/historical-national-merit-cutoffs/. Secondary source; not written into the canonical panel.
-[^state]: Source-backed statewide totals for Classes 2023, 2024, and 2026 come from the complete NMSC Virginia media-list snapshots recorded in `data/sources/virginia_statewide_totals.csv`; Class 2025 uses Compass Education Group's secondary statewide total, https://www.compassprep.com/national-merit-semifinalists-by-state/, only for this supplemental sensitivity table.
+[^state]: Source-backed statewide totals for Classes 2023, 2024, and 2026 come from the complete NMSC Virginia media-list snapshots recorded in `data/sources/virginia_statewide_totals.csv`; Class 2025 uses Compass Education Group's secondary statewide total, https://www.compassprep.com/national-merit-semifinalists-by-state/, only for this supplemental sensitivity table. The 2026 statewide total is pending reconciliation against the public NMSC guide total.
 [^virtual]: Fairfax County Public Schools, *FCPS 2020-21 Evaluation Report*, https://www.fcps.edu/sites/default/files/media/pdf/FCPS_2020_21_Evaluation_Report_0.pdf.
 [^inperson]: Fairfax County Public Schools, *FCPS This Week — August 25, 2021*, https://www.fcps.edu/sites/default/files/2022-02/Award%20Vax%20Up%20FCPS%20This%20Week%20-%20August%2025%2C%202021.pdf.
 [^digital]: College Board, *How to Get Ready for the Digital PSAT/NMSQT*, https://blog.collegeboard.org/how-get-ready-digital-psat-nmsqt.

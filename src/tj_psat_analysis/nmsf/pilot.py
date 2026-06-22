@@ -288,6 +288,8 @@ def _source_reconciliation_rows(
                 "Complete Virginia count-only snapshot total; only still-missing positive roster rows "
                 "are imported from this source."
             )
+            if source_id == "nmsc_virginia_2026_semifinalists":
+                notes += " Snapshot total pending reconciliation against public NMSC guide total of 489."
         else:
             excluded = excluded_totals[source_id]
             reconciled = in_panel + excluded

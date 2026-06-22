@@ -35,6 +35,8 @@ User-supplied NMSC media packets expose complete Virginia school-by-school lists
 | 2024 | nmsc_virginia_2024_semifinalists | 470 | data/raw/nmsf/virginia/virginia_2024_semifinalists_snapshot.csv | 9bf0580a9cc7fc5a3d661606e0895e1d454395b3e340df0be81f6bd0e816d5d8 |
 | 2026 | nmsc_virginia_2026_semifinalists | 494 | data/raw/nmsf/virginia/virginia_2026_semifinalists_snapshot.csv | 84b7384aa4beb85c315bc2f1ea21aec6d09f0aed4d6f96d2a4017298737863dc |
 
+Statewide-share caveat: the Class 2026 supplied-list snapshot totals 494, while the public NMSC 2026 guide cross-check lists Virginia at 489 semifinalists. This does not change local school counts or zero-inference coverage, but 2026 statewide-share denominators should be reconciled before final use.
+
 ## Targeted Class 2025 Row Search
 
 The remaining focal-period gaps are five public Class 2025 rows. Each was targeted directly after the 2023, 2024, and 2026 complete-list integration. None has a source-backed positive count, and none has a complete source scope that can support a verified zero. Recovering the full Class 2025 statewide packet would improve supplemental statewide-share metrics, but it is not required to close this public-source cleanup pass.

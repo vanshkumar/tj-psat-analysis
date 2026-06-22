@@ -11,6 +11,7 @@ reports/robustness.md
 reports/limitations.md
 reports/initial_findings.md
 reports/conclusions.md
+reports/task9_completion.md
 reports/tables/task9_*.csv
 docs/source_notes/task9_web_research_sources.md
 
@@ -22,6 +23,7 @@ placeholder fields.
 
 from __future__ import annotations
 
+import hashlib
 import re
 from collections.abc import Iterable
 from pathlib import Path
@@ -46,6 +48,12 @@ VA_CUTOFF = {2023: 221, 2024: 219, 2025: 222, 2026: 224}
 VA_STATE_TOTAL_SECONDARY = {2025: 394}
 CUTOFF_SOURCE = "https://www.compassprep.com/historical-national-merit-cutoffs/"
 STATE_TOTAL_SOURCE = "https://www.compassprep.com/national-merit-semifinalists-by-state/"
+STATEWIDE_2026_RECONCILIATION_NOTE = (
+    "Class 2026 statewide-denominator caveat: the committed supplied-list snapshot totals "
+    "494, while the public 2026 NMSC guide lists Virginia at 489 semifinalists. Treat "
+    "statewide shares using the 2026 denominator as provisional until reconciled; local "
+    "school counts and focal coverage are unchanged."
+)
 
 URLS = {
     "nmsc_2026": "https://www.nationalmerit.org/s/1758/images/gid2/editor_documents/guide_to_the_national_merit_scholarship_program.pdf?gid=2&pgid=61",
@@ -804,6 +812,8 @@ def main() -> None:
     assert (tj_count[2024], tj_count[2025], tj_count[2026]) == (165, 81, 113)
     assert (base_count[2023], base_count[2024], base_count[2025], base_count[2026]) == (161, 166, 170, 224)
 
+    panel_sha256 = hashlib.sha256(PANEL_PATH.read_bytes()).hexdigest()
+
     # Markdown table rows.
     coverage_md_rows = []
     for _, r in coverage.iterrows():
@@ -1007,6 +1017,8 @@ More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors
 
 {md_table(["Class", "VA cutoff", "VA total", "Total status", "Balanced public share", "Base-public share", "TJHSST share"], state_md_rows)}
 
+{STATEWIDE_2026_RECONCILIATION_NOTE}
+
 The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the statewide semifinalist total used here rises from the secondary Class 2025 value of 394 to the source-backed Class 2026 value of 494. A cutoff-only adjustment is therefore inadequate. On this mixed-source statewide denominator, the balanced public share falls from **{fmt_pct(public_state_share[2024])} in 2024** to **{fmt_pct(public_state_share[2025])} in 2025** and recovers only to **{fmt_pct(public_state_share[2026])} in 2026**. TJHSST's share remains far below 2024 ({fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
 
 ## 8. COVID, digital testing, and cohort timing
@@ -1052,7 +1064,7 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 
 [^nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, {URLS["nmsc_2026"]}.
 [^cutoffs]: Compass Education Group, *Historical National Merit Cutoffs 2008 to Present*, {URLS["cutoffs"]}. Secondary source; not written into the canonical panel.
-[^state]: Source-backed statewide totals for Classes 2023, 2024, and 2026 come from the complete NMSC Virginia media-list snapshots recorded in `data/sources/virginia_statewide_totals.csv`; Class 2025 uses Compass Education Group's secondary statewide total, {URLS["state_totals"]}, only for this supplemental sensitivity table.
+[^state]: Source-backed statewide totals for Classes 2023, 2024, and 2026 come from the complete NMSC Virginia media-list snapshots recorded in `data/sources/virginia_statewide_totals.csv`; Class 2025 uses Compass Education Group's secondary statewide total, {URLS["state_totals"]}, only for this supplemental sensitivity table. The 2026 statewide total is pending reconciliation against the public NMSC guide total.
 [^virtual]: Fairfax County Public Schools, *FCPS 2020-21 Evaluation Report*, {URLS["fcps_virtual_eval"]}.
 [^inperson]: Fairfax County Public Schools, *FCPS This Week — August 25, 2021*, {URLS["fcps_in_person_2021"]}.
 [^digital]: College Board, *How to Get Ready for the Digital PSAT/NMSQT*, {URLS["collegeboard_digital"]}.
@@ -1085,6 +1097,8 @@ Therefore, `NMSF per 100 juniors` is an outcome-rate proxy, not a direct qualifi
 ## 3. Virginia cutoff and test-form changes
 
 Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. Task 9 uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
+
+{STATEWIDE_2026_RECONCILIATION_NOTE}
 
 The focal policy boundary also coincides with the 2023 move to the digital PSAT/NMSQT.[^digital] Class 2025 is the first policy-affected TJHSST class and the first digital-PSAT NMSF class. That coincidence makes it impossible, with these data alone, to attribute the break uniquely to admissions policy.
 
@@ -1217,7 +1231,7 @@ For the balanced {len(balanced_public_rate_ids)}-school public panel including T
 
 The composition of that public right tail changes sharply even where the combined rate nearly recovers: TJHSST's share of balanced public NMSFs falls from **{fmt_pct(tj_public_share[2024])} in 2024** to **{fmt_pct(tj_public_share[2025])} in 2025** and **{fmt_pct(tj_public_share[2026])} in 2026**. The clearest supported conclusion is therefore deconcentration of exceptional PSAT outcomes away from TJHSST, not a demonstrated decline in the whole region's academic culture.
 
-This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using source-backed statewide totals for 2024 and 2026 plus a secondary fallback for the unresolved Class 2025 total, the balanced public panel's share is approximately **{fmt_pct(public_state_share[2024])} in 2024, {fmt_pct(public_state_share[2025])} in 2025, and {fmt_pct(public_state_share[2026])} in 2026**. TJHSST's own share falls from **{fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}**.[^state]
+This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using source-backed statewide totals for 2024 and 2026 plus a secondary fallback for the unresolved Class 2025 total, the balanced public panel's share is approximately **{fmt_pct(public_state_share[2024])} in 2024, {fmt_pct(public_state_share[2025])} in 2025, and {fmt_pct(public_state_share[2026])} in 2026**. TJHSST's own share falls from **{fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}**.[^state] The 2026 statewide denominator is provisional pending reconciliation against the NMSC guide total, so this caveat affects statewide-share interpretation but not local school counts.
 
 ### 5. Private schools do not provide a measurable complete offset
 
@@ -1254,7 +1268,7 @@ The evidence **does not yet support the causal context-effect version**. The ana
 The highest-value follow-on is not more NMSF name counting. It is obtaining: (1) school-level PSAT participation and score distributions; (2) TJ applicant, offer, waitpool, acceptance, and enrollment counts by source school and allocated/unallocated pool; and (3) one or more broader upper-tail measures such as SAT threshold rates, AP 5 rates, or contest outcomes. Those data would distinguish score-production changes from participation, threshold, and redistribution effects.
 
 [^nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, {URLS["nmsc_2026"]}.
-[^state]: The canonical panel includes source-backed NMSC Virginia statewide totals for Classes 2023, 2024, and 2026; Class 2025 uses the secondary Compass statewide total only for this sensitivity check. Virginia cutoff values are also secondary Compass values: {URLS["cutoffs"]} and {URLS["state_totals"]}.
+[^state]: The canonical panel includes source-backed NMSC Virginia statewide totals for Classes 2023, 2024, and 2026; Class 2025 uses the secondary Compass statewide total only for this sensitivity check. Virginia cutoff values are also secondary Compass values: {URLS["cutoffs"]} and {URLS["state_totals"]}. The 2026 statewide total is pending reconciliation against the public NMSC guide total.
 [^policy]: Fairfax County School Board, December 17, 2020 minutes, {URLS["board_minutes_2020"]}; FCPS Class 2025/2026 documentation in the March 4, 2022 court filing and Regulation 3355.14 exhibit, {URLS["court_filing"]}; Regulation 3355.15, {URLS["reg3355_15"]}.
 """
 
@@ -1300,6 +1314,8 @@ These results do not establish that the admissions policy caused the changes, th
 
 The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools, including {len(balanced_base_rate_ids)} conventional base schools plus TJHSST. Private-school focal-period counts are complete, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school offset estimate.
 
+Supplemental statewide shares are useful context, but the 2026 statewide denominator is provisional pending reconciliation between the committed supplied-list snapshot and the public NMSC guide total.
+
 ## Highest-value next evidence
 
 The next useful data are school-level PSAT participation and score distributions; TJHSST applicant, offer, acceptance, enrollment, and allocation-pool data by source school; and broader upper-tail outcomes such as SAT threshold rates, AP 5 rates, and competition results. Those would help separate redistribution, threshold/participation effects, and possible school-context effects.
@@ -1307,11 +1323,67 @@ The next useful data are school-level PSAT participation and score distributions
 For full methods and caveats, see `reports/robustness.md`, `reports/limitations.md`, and `reports/initial_findings.md`. Machine-readable decompositions are in `reports/tables/task9_public_concentration.csv` and `reports/tables/task9_rate_standardized_offset_decomposition.csv`.
 """
 
+    completion = f"""# Task 9 Completion Record
+
+Generated: {TODAY}
+
+## Deliverables
+
+- `reports/robustness.md`
+- `reports/limitations.md`
+- `reports/initial_findings.md`
+- `reports/conclusions.md`
+- `reports/tables/task9_*.csv`
+- `docs/source_notes/task9_web_research_sources.md`
+
+## Headline descriptive results
+
+- TJHSST pooled NMSF rate: {fmt_rate(pre_tj_rate)} per 100 juniors in Classes 2023-2024 versus {fmt_rate(post_tj_rate)} in Classes 2025-2026 ({fmt_pct(pct_change(post_tj_rate, pre_tj_rate))}).
+- Balanced {len(balanced_base_rate_ids)}-school conventional public base panel: {fmt_rate(pre_base_rate)} versus {fmt_rate(post_base_rate)} ({fmt_pct(pct_change(post_base_rate, pre_base_rate), sign=True)}).
+- Balanced {len(balanced_public_rate_ids)}-school public panel including TJHSST: {fmt_rate(pre_pub_rate)} versus {fmt_rate(post_pub_rate)} ({fmt_pct(pct_change(post_pub_rate, pre_pub_rate))}).
+- TJHSST's share of balanced public NMSFs falls from {fmt_pct(tj_public_share[2024])} in Class 2024 to {fmt_pct(tj_public_share[2025])} in Class 2025 and {fmt_pct(tj_public_share[2026])} in Class 2026.
+- Raw pooled counts imply that base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline; the enrollment-standardized decomposition reduces the offset to {fmt_pct(rate_adjusted_offset_common)} and leaves a {fmt_rate(public_shortfall_common, 1)}-student combined-public shortfall relative to component-specific baseline rates.
+- Private-school counts are complete for the focal period, but private-school denominator and eligibility context remain too limited to establish an offset.
+
+These are descriptive results, not causal estimates or measures of median achievement or school culture.
+
+## Reproduction
+
+Run:
+
+```bash
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_task9_outputs.py
+```
+
+The script rebuilds this completion record, Task 9 reports, source notes, and supporting tables from `data/processed/analysis_panel.csv`.
+
+## Integrity
+
+- Canonical panel rows: {len(df)}
+- Canonical schools: {df["school_id"].nunique()}
+- Class years: {df["class_year"].min()}-{df["class_year"].max()}
+- Canonical panel SHA-256: `{panel_sha256}`
+- Balanced count schools: {len(balanced_count_ids)}
+- Balanced public rate schools: {len(balanced_public_rate_ids)}
+- Balanced private count schools: {len(private_balanced_ids)}
+
+## Stopping decision
+
+The public-data phase is complete at the documented stopping point. After the broad complete-list and denominator pass, do not continue low-yield school-by-school scraping unless a new source can resolve multiple rows or a whole class-year scope.
+
+{STATEWIDE_2026_RECONCILIATION_NOTE}
+
+## Source boundary
+
+Historical Regulations 3355.14 and 3355.15, Regulation 3355.16, official FCPS Class 2025 and Class 2026 bulletins, Board minutes, NMSC materials, College Board documentation, and FCPS COVID-era instructional records were reviewed. The annual Notice 3355 documents themselves were not recovered. Reports state that limitation and do not infer unrecovered procedural details.
+"""
+
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / "robustness.md").write_text(robustness, encoding="utf-8")
     (REPORTS / "limitations.md").write_text(limitations, encoding="utf-8")
     (REPORTS / "initial_findings.md").write_text(initial_findings, encoding="utf-8")
     (REPORTS / "conclusions.md").write_text(conclusions, encoding="utf-8")
+    (REPORTS / "task9_completion.md").write_text(completion, encoding="utf-8")
 
     source_notes = f"""# Task 9 Web Research Sources
 
@@ -1349,6 +1421,10 @@ This file records external sources used for Task 9 interpretation and supplement
 - Class 2026 complete NMSC Virginia list: {state_total_by_year[2026]["source_url"]}
 
 The source-backed statewide totals are written to `data/sources/virginia_statewide_totals.csv` and carried into the panel for Classes 2023, 2024, and 2026. Compass remains a secondary source for Virginia cutoff values and for the unresolved Class 2025 statewide-total sensitivity value. NMSC's official guide is the source for its warning that program data do not measure school, district, or state educational quality.
+
+## Statewide-total reconciliation caveat
+
+{STATEWIDE_2026_RECONCILIATION_NOTE}
 
 ## Unresolved source gap
 
@@ -1393,6 +1469,7 @@ Archived annual Notice 3355 documents for the Class of 2025 and Class of 2026 ad
         REPORTS / "limitations.md",
         REPORTS / "initial_findings.md",
         REPORTS / "conclusions.md",
+        REPORTS / "task9_completion.md",
     ]:
         print(path.relative_to(ROOT))
     print(f"Balanced count schools: {len(balanced_count_ids)}")

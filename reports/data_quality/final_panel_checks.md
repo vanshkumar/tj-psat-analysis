@@ -80,3 +80,4 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 - Grade-11 enrollment is an outcome denominator, not an admissions-seat allocation input.
 - Virginia cutoff fields remain `not_sourced` until reliable sources are added.
 - Statewide total fields are populated only when a complete source-backed Virginia list is available.
+- The Class 2026 supplied-list statewide total is source-backed in the panel but pending reconciliation against the public NMSC guide total before final statewide-share use.

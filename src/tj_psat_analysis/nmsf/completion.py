@@ -346,6 +346,13 @@ def build_focal_period_completion_report(
             _virginia_list_table_rows(root),
         ),
         "",
+        (
+            "Statewide-share caveat: the Class 2026 supplied-list snapshot totals 494, while "
+            "the public NMSC 2026 guide cross-check lists Virginia at 489 semifinalists. This "
+            "does not change local school counts or zero-inference coverage, but 2026 "
+            "statewide-share denominators should be reconciled before final use."
+        ),
+        "",
         "## Targeted Class 2025 Row Search",
         "",
         "The remaining focal-period gaps are five public Class 2025 rows. Each was targeted "

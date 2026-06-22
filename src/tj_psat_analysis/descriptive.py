@@ -452,7 +452,7 @@ def _virginia_share_row(
         "share_of_statewide_total_pct": share,
         "statewide_total_status": statewide_status,
         "statewide_total_source_url": statewide_source_url,
-        "coverage_note": _virginia_share_note(missing, statewide_total),
+        "coverage_note": _virginia_share_note(class_year, missing, statewide_total),
     }
 
 
@@ -482,7 +482,7 @@ def _virginia_remainder_row(
         else "",
         "statewide_total_status": statewide_status,
         "statewide_total_source_url": statewide_source_url,
-        "coverage_note": _virginia_share_note(missing, statewide_total),
+        "coverage_note": _virginia_share_note(class_year, missing, statewide_total),
     }
 
 
@@ -767,6 +767,12 @@ def build_descriptive_report(
                 for row in table_rows["virginia_share_by_class"]
                 if row["class_year"] in {"2023", "2024", "2025", "2026"}
             ],
+        ),
+        "",
+        (
+            "Class 2026 statewide shares use the committed supplied-list snapshot total of 494; "
+            "the public NMSC 2026 guide cross-check lists Virginia at 489. Treat those shares "
+            "as provisional until the statewide denominator discrepancy is reconciled."
         ),
         "",
         "## Pre/Post Summary",
@@ -1521,11 +1527,13 @@ def _share_text(count: int | None, statewide_total: int | None) -> str:
     return f"{100 * count / statewide_total:.6f}"
 
 
-def _virginia_share_note(missing_rows: int, statewide_total: int | None) -> str:
+def _virginia_share_note(class_year: str, missing_rows: int, statewide_total: int | None) -> str:
     if statewide_total is None:
         return "statewide total not source-backed for this class year"
     if missing_rows:
         return "group count has missing NMSF rows; share not calculated"
+    if class_year == "2026":
+        return "source-backed count; statewide denominator pending 2026 guide reconciliation"
     return "source-backed count and complete Virginia list statewide denominator"
 
 

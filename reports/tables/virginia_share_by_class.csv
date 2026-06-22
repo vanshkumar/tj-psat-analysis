@@ -41,9 +41,9 @@ class_year,group,nmsf_count_total,missing_nmsf_rows,statewide_nmsf_semifinalist_
 2025,Private/homeschool unallocated,34,0,,,not_sourced,,statewide total not source-backed for this class year
 2025,TJ-zone excluding TJHSST,,5,,,not_sourced,,statewide total not source-backed for this class year
 2025,Virginia outside TJ-zone,,5,,,not_sourced,,statewide total not source-backed for this class year
-2026,TJ-zone including TJHSST,385,0,494,77.935223,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
-2026,TJHSST,113,0,494,22.874494,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
-2026,Conventional base public,231,0,494,46.761134,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
-2026,Private/homeschool unallocated,35,0,494,7.085020,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
-2026,TJ-zone excluding TJHSST,272,0,494,55.060729,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
-2026,Virginia outside TJ-zone,109,0,494,22.064777,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count and complete Virginia list statewide denominator
+2026,TJ-zone including TJHSST,385,0,494,77.935223,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count; statewide denominator pending 2026 guide reconciliation
+2026,TJHSST,113,0,494,22.874494,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count; statewide denominator pending 2026 guide reconciliation
+2026,Conventional base public,231,0,494,46.761134,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count; statewide denominator pending 2026 guide reconciliation
+2026,Private/homeschool unallocated,35,0,494,7.085020,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count; statewide denominator pending 2026 guide reconciliation
+2026,TJ-zone excluding TJHSST,272,0,494,55.060729,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count; statewide denominator pending 2026 guide reconciliation
+2026,Virginia outside TJ-zone,109,0,494,22.064777,source_backed_total,https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view,source-backed count; statewide denominator pending 2026 guide reconciliation

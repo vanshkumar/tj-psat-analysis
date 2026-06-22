@@ -334,6 +334,11 @@
 - Action: For future merge-only requests in this repo, verify the worktree is clean, fast-forward when possible, and do not push `origin/main` unless the user asks.
 - Confidence: high
 
+**2026-06-22 - Documentation cleanup and generated reports**
+- Observation: Task 9 conclusions, source caveats, and completion summaries are partly generated from `scripts/build_task9_outputs.py`, while descriptive and data-quality wording comes from package modules.
+- Action: Update generator-owned report wording before regenerating reports, and keep static docs such as `README.md` and `TASKS.md` as concise status summaries rather than duplicating computed numeric claims.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

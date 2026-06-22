@@ -352,6 +352,11 @@ def build_final_panel_report(
             "- Statewide total fields are populated only when a complete source-backed "
             "Virginia list is available."
         ),
+        (
+            "- The Class 2026 supplied-list statewide total is source-backed in the panel "
+            "but pending reconciliation against the public NMSC guide total before final "
+            "statewide-share use."
+        ),
         "",
     ]
     return "\n".join(lines)

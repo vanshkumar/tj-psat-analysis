@@ -35,6 +35,10 @@ This file records external sources used for Task 9 interpretation and supplement
 
 The source-backed statewide totals are written to `data/sources/virginia_statewide_totals.csv` and carried into the panel for Classes 2023, 2024, and 2026. Compass remains a secondary source for Virginia cutoff values and for the unresolved Class 2025 statewide-total sensitivity value. NMSC's official guide is the source for its warning that program data do not measure school, district, or state educational quality.
 
+## Statewide-total reconciliation caveat
+
+Class 2026 statewide-denominator caveat: the committed supplied-list snapshot totals 494, while the public 2026 NMSC guide lists Virginia at 489 semifinalists. Treat statewide shares using the 2026 denominator as provisional until reconciled; local school counts and focal coverage are unchanged.
+
 ## Unresolved source gap
 
 Archived annual Notice 3355 documents for the Class of 2025 and Class of 2026 admissions cycles were not recovered through web search. Official FCPS bulletins do establish the main application windows, writing-administration dates, and posted notification timing for those classes. The reports combine those bulletins with the historical regulation versions and court exhibits, while explicitly avoiding claims that every class-specific procedural detail has been reconstructed.
