@@ -345,3 +345,13 @@
 - Observation: CI runs `python -m mypy`, and formatting, lint, and unittest checks can pass while mypy still catches type-inference issues.
 - Action: Include `UV_CACHE_DIR=.uv-cache uv run --no-sync python -m mypy` in pre-push verification for source changes.
 - Confidence: high
+
+**2026-06-22 - CI mypy target**
+- Observation: Fresh CI installs can resolve NumPy stubs that use Python 3.12 `type` statement syntax, while `pyproject.toml` previously configured mypy with `python_version = "3.10"` despite CI running Python 3.12.
+- Action: Keep `[tool.mypy].python_version` aligned with the GitHub Actions Python runner unless dependency pins are tightened to stubs compatible with an older type-check target.
+- Confidence: high
+
+**2026-06-22 - NMSC Virginia statewide total cross-check**
+- Observation: The public 2026 NMSC Guide lists Virginia with 489 semifinalists, while the current supplied-list snapshot/parser totals 494 name-like Class 2026 Virginia lines and carries 494 into statewide-share tables.
+- Action: Reconcile supplied-list totals against the NMSC Guide table before treating statewide-normalized shares as final; do not let the discrepancy affect school-level local conclusions without checking whether any rostered school counts are implicated.
+- Confidence: medium
