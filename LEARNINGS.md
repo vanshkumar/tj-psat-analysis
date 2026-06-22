@@ -319,6 +319,16 @@
 - Action: For future rerun handoffs, include `src/`, selected scripts, processed panels, source manifests, count-only snapshots, and key reports under repo-relative paths, but exclude raw supplied-list PDFs and student-name files.
 - Confidence: high
 
+**2026-06-22 - Full rebuild reproducibility audit**
+- Observation: A clean full-pipeline rebuild exposed a stale committed `data/interim/panel_nmsf.csv`, four source-name aliases that were present only in the generated CSV rather than roster code, and tied Task 9 rankings whose row order depended on pandas sort behavior.
+- Action: Regenerate the interim panel after every count-source update, keep source-specific aliases in `SOURCE_ALIASES_BY_SCHOOL_ID`, and use explicit secondary sort keys plus stable sorting for committed analytical tables.
+- Confidence: high
+
+**2026-06-22 - Raw versus enrollment-standardized offset**
+- Observation: Pooling Classes 2023-2024 against 2025-2026, raw base-school gains offset about 65% of TJHSST's count decline, but applying prior group-specific rates to actual post-period enrollment reduces the offset to about 37% and leaves a material combined-public shortfall.
+- Action: Report the raw decomposition only as a generous arithmetic upper view and pair it with `task9_rate_standardized_offset_decomposition.csv`; do not describe the raw 65% figure as measured student redistribution.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

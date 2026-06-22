@@ -97,6 +97,34 @@ EXTRA_ALIASES_BY_SCHOOL_ID: dict[str, tuple[tuple[str, str, str], ...]] = {
     ),
 }
 
+# Source-specific spellings discovered after the original roster build.  Keep
+# these in code rather than hand-editing the generated alias CSV so a clean
+# pipeline rebuild preserves the same matching surface.
+SOURCE_ALIASES_BY_SCHOOL_ID: dict[str, tuple[tuple[str, str, str], ...]] = {
+    "h_b_woodlawn_secondary_program": (
+        ("H.B. Woodlawn Program", "source_name_variant", "Patch Arlington articles use this program name."),
+        (
+            "The H. B. Woodlawn Program",
+            "source_name_variant",
+            "Patch Arlington 2026 uses this program name.",
+        ),
+    ),
+    "immanuel_christian_high_school": (
+        (
+            "Immanuel Christian School",
+            "source_name_variant",
+            "Patch Vienna 2025 omits High from the school name.",
+        ),
+    ),
+    "ideaventions_academy_for_mathematics_science": (
+        (
+            "Ideaventions Academy of Math and Science",
+            "source_name_variant",
+            "Patch Vienna 2025 uses this wording.",
+        ),
+    ),
+}
+
 HISTORY_EVENTS: tuple[dict[str, object], ...] = (
     {
         "school_id": "washington_liberty_high_school",
@@ -285,6 +313,9 @@ def _alias_candidates(record: SchoolRecord) -> Iterable[tuple[str, str, str, str
 
     for alias, alias_type, note in EXTRA_ALIASES_BY_SCHOOL_ID.get(record.school_id, ()):
         yield alias, alias_type, "task2_manual_alias_rule", note
+
+    for alias, alias_type, note in SOURCE_ALIASES_BY_SCHOOL_ID.get(record.school_id, ()):
+        yield alias, alias_type, "task5_patch_local_media", note
 
 
 def build_alias_rows(roster: Sequence[SchoolRecord]) -> list[dict[str, object]]:

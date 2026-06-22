@@ -112,6 +112,23 @@ class ManualNmsfCountsTest(unittest.TestCase):
             self.assertIn("source_id", reader.fieldnames or [])
             self.assertIn("source_completeness", reader.fieldnames or [])
 
+    def test_committed_interim_panel_matches_current_manual_count_overlay(self) -> None:
+        persisted = load_csv_rows(ROOT / "data" / "interim" / "panel_nmsf.csv")
+        persisted_by_key = {(row["school_id"], row["class_year"]): row for row in persisted}
+
+        for expected in self.applied:
+            key = (expected["school_id"], expected["class_year"])
+            actual = persisted_by_key[key]
+            for column in (
+                "nmsf_count",
+                "nmsf_status",
+                "nmsf_source_title",
+                "nmsf_source_url",
+                "nmsf_source_date",
+                "nmsf_source_hash",
+            ):
+                self.assertEqual(actual[column], expected[column], f"Mismatch for {key} in {column}")
+
 
 if __name__ == "__main__":
     unittest.main()

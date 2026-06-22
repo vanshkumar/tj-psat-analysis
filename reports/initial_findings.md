@@ -1,12 +1,12 @@
 # Task 9 Initial Findings
 
-Generated: 2026-06-20
+Generated: 2026-06-22
 
 ## Bottom line
 
 The strongest descriptive finding is a large, enrollment-adjusted decline in TJHSST's National Merit Semifinalist right tail beginning with the first class admitted under the post-2020 process. The first affected class, 2025, is the sharpest break. Class 2026 rebounds, but TJHSST remains below every pre-policy class in the available 2019-2024 TJ series.
 
-Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Private-school denominator and eligibility data are not complete enough to determine whether private counts represent an offset.
+Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset 65.0% of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to 37.3%. Private-school denominator and eligibility data are not complete enough to determine whether private counts represent an offset.
 
 This pattern is consistent with a reduction in the concentration of the extreme PSAT right tail at TJHSST and some later increase at base schools. It does not prove that the admissions change caused either pattern or that broader academic culture declined.
 
@@ -39,9 +39,13 @@ The rate changes only **-0.9%** from 2024 to 2025, then **+31.2%** from 2025 to 
 
 Pooling 2023-2024 against 2025-2026, base-school counts increase by **67** while TJHSST declines by **103**. The base gain therefore offsets **65.0%** of the TJ decline arithmetically, leaving the balanced public panel down **36** semifinalists. The gain is heterogeneous: 26 of 53 school rates rise, 19 fall, and 8 are unchanged. This is not evidence that the gains are displaced TJHSST students.
 
+That 65.0% figure is the most generous accounting view because it does not adjust for enrollment growth. Holding each group's 2023-2024 rate constant at its actual 2025-2026 enrollment yields a TJHSST shortfall of **144.2** and a base-school excess of **53.7**, so the standardized offset is only **37.3%**. Using TJHSST's full 2019-2024 baseline gives **36.3%**. The component-standardized balanced public panel remains roughly **90.4 NMSFs below** its baseline-rate expectation.
+
 ### 4. The combined public-zone result falls in 2025 and nearly recovers locally in 2026
 
 For the balanced 54-school public panel including TJHSST, the rate is **1.156 in 2024, 0.847 in 2025, and 1.131 in 2026**. The 2026 value is **-2.2%** relative to 2024.
+
+The composition of that public right tail changes sharply even where the combined rate nearly recovers: TJHSST's share of balanced public NMSFs falls from **49.8% in 2024** to **32.3% in 2025** and **33.5% in 2026**. The clearest supported conclusion is therefore deconcentration of exceptional PSAT outcomes away from TJHSST, not a demonstrated decline in the whole region's academic culture.
 
 This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using source-backed statewide totals for 2024 and 2026 plus a secondary fallback for the unresolved Class 2025 total, the balanced public panel's share is approximately **70.4% in 2024, 63.7% in 2025, and 68.2% in 2026**. TJHSST's own share falls from **35.1% to 20.6% to 22.9%**.[^state]
 

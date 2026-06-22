@@ -69,6 +69,8 @@ Generated pipeline outputs include:
 - `reports/robustness.md`
 - `reports/limitations.md`
 - `reports/initial_findings.md`
+- `reports/conclusions.md`
+- `reports/task9_completion.md`
 - `reports/figures/*.svg`
 - `reports/tables/*.csv`
 
@@ -243,6 +245,8 @@ generates Milestone 9 outputs:
 - `reports/robustness.md`
 - `reports/limitations.md`
 - `reports/initial_findings.md`
+- `reports/conclusions.md`
+- `reports/task9_completion.md`
 - `reports/tables/task9_*.csv`
 - `docs/source_notes/task9_web_research_sources.md`
 
@@ -251,7 +255,9 @@ The script uses the canonical source-backed statewide totals for Classes 2023,
 2025 statewide-total sensitivity value as labeled secondary-source checks. The
 reports keep raw observed counts separate from rate-compatible covered totals,
 leave `missing_source` rows missing, and treat the admissions-policy discussion
-as descriptive rather than causal.
+as descriptive rather than causal. `reports/conclusions.md` is the compact
+decision-oriented summary; the Task 9 tables include both the raw-count offset
+and an enrollment-standardized decomposition.
 
 ## Source Discipline
 

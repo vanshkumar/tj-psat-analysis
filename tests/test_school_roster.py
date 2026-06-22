@@ -90,6 +90,18 @@ class SchoolRosterTest(unittest.TestCase):
             {"freedom_high_school_south_riding|freedom_high_school_woodbridge"},
         )
 
+        source_variants = {row["alias"]: row for row in aliases if row["source"] == "task5_patch_local_media"}
+        self.assertEqual(
+            set(source_variants),
+            {
+                "H.B. Woodlawn Program",
+                "The H. B. Woodlawn Program",
+                "Immanuel Christian School",
+                "Ideaventions Academy of Math and Science",
+            },
+        )
+        self.assertTrue(all(row["join_allowed"] == "true" for row in source_variants.values()))
+
     def test_history_and_review_report_capture_milestone_two_decisions(self) -> None:
         history = self._read("school_history")
         events = {(row["school_id"], row["event_type"]) for row in history}

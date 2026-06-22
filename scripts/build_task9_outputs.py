@@ -10,6 +10,7 @@ Outputs
 reports/robustness.md
 reports/limitations.md
 reports/initial_findings.md
+reports/conclusions.md
 reports/tables/task9_*.csv
 docs/source_notes/task9_web_research_sources.md
 
@@ -38,7 +39,7 @@ SOURCE_NOTES = ROOT / "docs" / "source_notes"
 
 TJ_ID = "thomas_jefferson_high_school_for_science_and_technology"
 FOCAL_YEARS = [2023, 2024, 2025, 2026]
-TODAY = "2026-06-20"
+TODAY = "2026-06-22"
 
 # Supplemental cutoff values are intentionally NOT imported into analysis_panel.csv.
 VA_CUTOFF = {2023: 221, 2024: 219, 2025: 222, 2026: 224}
@@ -352,6 +353,29 @@ def main() -> None:
     balanced_rates = pd.DataFrame(br_rows)
     write_csv(balanced_rates, "task9_balanced_rate_panel.csv")
 
+    concentration_rows = []
+    for year in FOCAL_YEARS:
+        tj_value = lookup(balanced_rates, "TJHSST", year, "nmsf_count")
+        base_value = lookup(
+            balanced_rates,
+            "Balanced conventional base public",
+            year,
+            "nmsf_count",
+        )
+        public_value = tj_value + base_value
+        concentration_rows.append(
+            {
+                "class_year": year,
+                "balanced_tjhsst_nmsf_count": tj_value,
+                "balanced_base_public_nmsf_count": base_value,
+                "balanced_public_nmsf_count": public_value,
+                "tjhsst_share_of_balanced_public_nmsf_pct": 100 * tj_value / public_value,
+                "base_public_share_of_balanced_public_nmsf_pct": 100 * base_value / public_value,
+            }
+        )
+    public_concentration = pd.DataFrame(concentration_rows)
+    write_csv(public_concentration, "task9_public_concentration.csv")
+
     # Membership audit.
     schools = df[df["class_year"] == 2026][
         ["school_id", "school", "sector", "analytical_unit_type", "division", "tj_pathway"]
@@ -541,7 +565,11 @@ def main() -> None:
     school_changes["rate_change_2025_2026"] = school_changes["rate_2026"] - school_changes["rate_2025"]
     school_changes["rate_change_2024_2026"] = school_changes["rate_2026"] - school_changes["rate_2024"]
     write_csv(
-        school_changes.sort_values("count_change_2025_2026", ascending=False),
+        school_changes.sort_values(
+            ["count_change_2025_2026", "school_id"],
+            ascending=[False, True],
+            kind="mergesort",
+        ),
         "task9_balanced_base_school_changes.csv",
     )
 
@@ -570,7 +598,11 @@ def main() -> None:
                 else ("decrease" if change < -1e-12 else "unchanged"),
             }
         )
-    pooled_school = pd.DataFrame(pooled_school_rows).sort_values("rate_point_change", ascending=False)
+    pooled_school = pd.DataFrame(pooled_school_rows).sort_values(
+        ["rate_point_change", "school_id"],
+        ascending=[False, True],
+        kind="mergesort",
+    )
     write_csv(pooled_school, "task9_school_pooled_changes.csv")
 
     pathway_rows = []
@@ -661,6 +693,10 @@ def main() -> None:
         for y in FOCAL_YEARS
     }
     priv_bal = {y: lookup(balanced_counts, "Balanced private schools", y, "nmsf_count") for y in FOCAL_YEARS}
+    tj_public_share = {
+        int(row["class_year"]): float(row["tjhsst_share_of_balanced_public_nmsf_pct"])
+        for _, row in public_concentration.iterrows()
+    }
 
     # Full TJ history for trend context.
     tj_history = df[is_tj].sort_values("class_year")
@@ -701,6 +737,64 @@ def main() -> None:
         ]
     )
     write_csv(offset, "task9_offset_decomposition.csv")
+
+    base_expected_post_common = post_base_enroll * pre_base_rate / 100
+    base_excess_common = post_base_count - base_expected_post_common
+    tj_expected_post_common = post_tj_enroll * pre_tj_rate / 100
+    tj_deficit_common = tj_expected_post_common - post_tj_count
+    public_expected_post_common = base_expected_post_common + tj_expected_post_common
+    public_shortfall_common = public_expected_post_common - post_pub_count
+    rate_adjusted_offset_common = 100 * base_excess_common / tj_deficit_common
+
+    tj_expected_post_extended = post_tj_enroll * pre_tj_rate_weighted / 100
+    tj_deficit_extended = tj_expected_post_extended - post_tj_count
+    public_expected_post_extended = base_expected_post_common + tj_expected_post_extended
+    public_shortfall_extended = public_expected_post_extended - post_pub_count
+    rate_adjusted_offset_extended = 100 * base_excess_common / tj_deficit_extended
+
+    rate_standardized_offset = pd.DataFrame(
+        [
+            {
+                "scenario": "common_2023_2024_baseline",
+                "base_public_baseline_years": "2023|2024",
+                "tjhsst_baseline_years": "2023|2024",
+                "base_public_baseline_rate_per_100": pre_base_rate,
+                "tjhsst_baseline_rate_per_100": pre_tj_rate,
+                "base_public_post_enrollment": post_base_enroll,
+                "tjhsst_post_enrollment": post_tj_enroll,
+                "base_public_expected_post_nmsf": base_expected_post_common,
+                "base_public_observed_post_nmsf": post_base_count,
+                "base_public_excess_vs_baseline_rate": base_excess_common,
+                "tjhsst_expected_post_nmsf": tj_expected_post_common,
+                "tjhsst_observed_post_nmsf": post_tj_count,
+                "tjhsst_shortfall_vs_baseline_rate": tj_deficit_common,
+                "base_excess_as_pct_of_tjhsst_shortfall": rate_adjusted_offset_common,
+                "component_standardized_public_expected_post_nmsf": public_expected_post_common,
+                "balanced_public_observed_post_nmsf": post_pub_count,
+                "balanced_public_shortfall_vs_component_baseline": public_shortfall_common,
+            },
+            {
+                "scenario": "extended_tjhsst_2019_2024_baseline",
+                "base_public_baseline_years": "2023|2024",
+                "tjhsst_baseline_years": "2019|2020|2021|2022|2023|2024",
+                "base_public_baseline_rate_per_100": pre_base_rate,
+                "tjhsst_baseline_rate_per_100": pre_tj_rate_weighted,
+                "base_public_post_enrollment": post_base_enroll,
+                "tjhsst_post_enrollment": post_tj_enroll,
+                "base_public_expected_post_nmsf": base_expected_post_common,
+                "base_public_observed_post_nmsf": post_base_count,
+                "base_public_excess_vs_baseline_rate": base_excess_common,
+                "tjhsst_expected_post_nmsf": tj_expected_post_extended,
+                "tjhsst_observed_post_nmsf": post_tj_count,
+                "tjhsst_shortfall_vs_baseline_rate": tj_deficit_extended,
+                "base_excess_as_pct_of_tjhsst_shortfall": rate_adjusted_offset_extended,
+                "component_standardized_public_expected_post_nmsf": public_expected_post_extended,
+                "balanced_public_observed_post_nmsf": post_pub_count,
+                "balanced_public_shortfall_vs_component_baseline": public_shortfall_extended,
+            },
+        ]
+    )
+    write_csv(rate_standardized_offset, "task9_rate_standardized_offset_decomposition.csv")
 
     # Internal checks for the canonical focal panels.
     assert len(balanced_count_ids) == 71
@@ -863,6 +957,8 @@ The table gives `count / rate per 100 grade-11 students` for balanced public pan
 
 The principal discontinuity is not an enrollment artifact. From Class 2024 to Class 2025, TJHSST fell from **{fmt_int(tj_count[2024])} to {fmt_int(tj_count[2025])} semifinalists ({fmt_pct(pct_change(tj_count[2025], tj_count[2024]))})** and from **{fmt_rate(tj_rate[2024])} to {fmt_rate(tj_rate[2025])} per 100 juniors ({fmt_pct(pct_change(tj_rate[2025], tj_rate[2024]))})**. Class 2026 rebounded to **{fmt_int(tj_count[2026])}** and **{fmt_rate(tj_rate[2026])} per 100**, but remained below Class 2024 by **{fmt_pct(pct_change(tj_count[2026], tj_count[2024]))} in count** and **{fmt_pct(pct_change(tj_rate[2026], tj_rate[2024]))} in rate**.
 
+The same break appears as deconcentration within the local public right tail. TJHSST's share of NMSFs in the balanced public panel falls from **{fmt_pct(tj_public_share[2024])} in Class 2024** to **{fmt_pct(tj_public_share[2025])} in Class 2025** and **{fmt_pct(tj_public_share[2026])} in Class 2026**. This is direct evidence that exceptional PSAT outcomes became less concentrated at TJHSST; it is not evidence about median achievement or school culture as a whole.
+
 Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2024), "observed_nmsf_total"].iloc[0])} in Class 2024 to {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2025), "observed_nmsf_total"].iloc[0])} in Class 2025 and {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2026), "observed_nmsf_total"].iloc[0])} in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced {len(balanced_base_rate_ids)}-school conventional public rate panel, the immediate Class 2025 change is nearly flat: **{fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 ({fmt_pct(pct_change(base_rate[2025], base_rate[2024]), sign=True)})**. The larger increase appears in Class 2026, to **{fmt_rate(base_rate[2026])} ({fmt_pct(pct_change(base_rate[2026], base_rate[2025]), sign=True)} versus 2025)**.
 
 ## 3. Balanced-panel sensitivity
@@ -874,6 +970,8 @@ Pooled 2023-2024 versus 2025-2026 rates are secondary summaries because they con
 {md_table(["Balanced group", "2023-24 count", "2025-26 count", "Count change", "2023-24 pooled rate", "2025-26 pooled rate", "Rate change"], pooled_md_rows)}
 
 On this fixed {len(balanced_public_rate_ids)}-school public panel, base-school counts rise by **{fmt_int(base_pooled_gain)}**, arithmetically offsetting **{fmt_pct(offset_pct)}** of TJHSST's **{fmt_int(abs(tj_pooled_change))}-student decline**. The combined public count still falls by **{fmt_int(abs(public_pooled_change))}**. This is an accounting decomposition, not proof that the base-school gains consist of students displaced from TJHSST, and it should not replace the year-by-year results.
+
+Raw counts overstate the offset because grade-11 enrollment grows between the two periods. Applying each group's 2023-2024 pooled rate to its actual 2025-2026 enrollment predicts **{fmt_rate(tj_expected_post_common, 1)} TJHSST NMSFs** and **{fmt_rate(base_expected_post_common, 1)} base-public NMSFs**. The observed values are {fmt_int(post_tj_count)} and {fmt_int(post_base_count)}, implying a **{fmt_rate(tj_deficit_common, 1)}-student TJHSST shortfall** and a **{fmt_rate(base_excess_common, 1)}-student base-school excess**. On that rate-standardized basis, the base excess offsets only **{fmt_pct(rate_adjusted_offset_common)}** of the TJHSST shortfall, leaving a component-standardized public shortfall of **{fmt_rate(public_shortfall_common, 1)}**. Using TJHSST's longer 2019-2024 baseline produces a similar offset estimate of **{fmt_pct(rate_adjusted_offset_extended)}**. These are descriptive counterfactuals, not causal estimates.
 
 The base-school increase is heterogeneous rather than universal. Comparing pooled 2023-2024 and 2025-2026 school rates, **{pooled_direction_counts.get("increase", 0)} of {len(balanced_base_rate_ids)} schools increase, {pooled_direction_counts.get("decrease", 0)} decrease, and {pooled_direction_counts.get("unchanged", 0)} are unchanged**; the median school change is only **{fmt_rate(pooled_school_median_change)} NMSF per 100 juniors**. Pathway aggregates also vary:
 
@@ -943,6 +1041,8 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 - `reports/tables/task9_program_sensitivity.csv`
 - `reports/tables/task9_manual_review_issue_counts.csv`
 - `reports/tables/task9_offset_decomposition.csv`
+- `reports/tables/task9_rate_standardized_offset_decomposition.csv`
+- `reports/tables/task9_public_concentration.csv`
 - `reports/tables/task9_state_normalization_supplemental.csv`
 - `reports/tables/task9_cohort_timing.csv`
 - `reports/tables/task9_change_summary.csv`
@@ -1076,7 +1176,7 @@ Generated: {TODAY}
 
 The strongest descriptive finding is a large, enrollment-adjusted decline in TJHSST's National Merit Semifinalist right tail beginning with the first class admitted under the post-2020 process. The first affected class, 2025, is the sharpest break. Class 2026 rebounds, but TJHSST remains below every pre-policy class in the available 2019-2024 TJ series.
 
-Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Private-school denominator and eligibility data are not complete enough to determine whether private counts represent an offset.
+Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to {fmt_pct(rate_adjusted_offset_common)}. Private-school denominator and eligibility data are not complete enough to determine whether private counts represent an offset.
 
 This pattern is consistent with a reduction in the concentration of the extreme PSAT right tail at TJHSST and some later increase at base schools. It does not prove that the admissions change caused either pattern or that broader academic culture declined.
 
@@ -1109,9 +1209,13 @@ The rate changes only **{fmt_pct(pct_change(base_rate[2025], base_rate[2024]), s
 
 Pooling 2023-2024 against 2025-2026, base-school counts increase by **{fmt_int(base_pooled_gain)}** while TJHSST declines by **{fmt_int(abs(tj_pooled_change))}**. The base gain therefore offsets **{fmt_pct(offset_pct)}** of the TJ decline arithmetically, leaving the balanced public panel down **{fmt_int(abs(public_pooled_change))}** semifinalists. The gain is heterogeneous: {pooled_direction_counts.get("increase", 0)} of {len(balanced_base_rate_ids)} school rates rise, {pooled_direction_counts.get("decrease", 0)} fall, and {pooled_direction_counts.get("unchanged", 0)} are unchanged. This is not evidence that the gains are displaced TJHSST students.
 
+That {fmt_pct(offset_pct)} figure is the most generous accounting view because it does not adjust for enrollment growth. Holding each group's 2023-2024 rate constant at its actual 2025-2026 enrollment yields a TJHSST shortfall of **{fmt_rate(tj_deficit_common, 1)}** and a base-school excess of **{fmt_rate(base_excess_common, 1)}**, so the standardized offset is only **{fmt_pct(rate_adjusted_offset_common)}**. Using TJHSST's full 2019-2024 baseline gives **{fmt_pct(rate_adjusted_offset_extended)}**. The component-standardized balanced public panel remains roughly **{fmt_rate(public_shortfall_common, 1)} NMSFs below** its baseline-rate expectation.
+
 ### 4. The combined public-zone result falls in 2025 and nearly recovers locally in 2026
 
 For the balanced {len(balanced_public_rate_ids)}-school public panel including TJHSST, the rate is **{fmt_rate(pub_rate[2024])} in 2024, {fmt_rate(pub_rate[2025])} in 2025, and {fmt_rate(pub_rate[2026])} in 2026**. The 2026 value is **{fmt_pct(pct_change(pub_rate[2026], pub_rate[2024]))}** relative to 2024.
+
+The composition of that public right tail changes sharply even where the combined rate nearly recovers: TJHSST's share of balanced public NMSFs falls from **{fmt_pct(tj_public_share[2024])} in 2024** to **{fmt_pct(tj_public_share[2025])} in 2025** and **{fmt_pct(tj_public_share[2026])} in 2026**. The clearest supported conclusion is therefore deconcentration of exceptional PSAT outcomes away from TJHSST, not a demonstrated decline in the whole region's academic culture.
 
 This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using source-backed statewide totals for 2024 and 2026 plus a secondary fallback for the unresolved Class 2025 total, the balanced public panel's share is approximately **{fmt_pct(public_state_share[2024])} in 2024, {fmt_pct(public_state_share[2025])} in 2025, and {fmt_pct(public_state_share[2026])} in 2026**. TJHSST's own share falls from **{fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}**.[^state]
 
@@ -1154,10 +1258,60 @@ The highest-value follow-on is not more NMSF name counting. It is obtaining: (1)
 [^policy]: Fairfax County School Board, December 17, 2020 minutes, {URLS["board_minutes_2020"]}; FCPS Class 2025/2026 documentation in the March 4, 2022 court filing and Regulation 3355.14 exhibit, {URLS["court_filing"]}; Regulation 3355.15, {URLS["reg3355_15"]}.
 """
 
+    conclusion_md_rows = []
+    for year in [2024, 2025, 2026]:
+        conclusion_md_rows.append(
+            [
+                year,
+                fmt_int(tj_count[year]),
+                fmt_rate(tj_rate[year]),
+                fmt_pct(tj_public_share[year]),
+                fmt_int(base_count[year]),
+                fmt_rate(base_rate[year]),
+                fmt_rate(pub_rate[year]),
+            ]
+        )
+
+    conclusions = f"""# Conclusions From the Current Data
+
+Generated: {TODAY}
+
+## What the evidence supports
+
+The clearest result is a sharp and persistent reduction in the concentration of National Merit Semifinalists at TJHSST in the first two classes admitted under the post-2020 process. TJHSST falls from **{fmt_int(tj_count[2024])} semifinalists ({fmt_rate(tj_rate[2024])} per 100 juniors)** in Class 2024 to **{fmt_int(tj_count[2025])} ({fmt_rate(tj_rate[2025])})** in Class 2025, then partially rebounds to **{fmt_int(tj_count[2026])} ({fmt_rate(tj_rate[2026])})** in Class 2026. Both post-policy rates remain below every annual TJHSST rate observed in Classes 2019-2024.
+
+{md_table(["Class", "TJ count", "TJ rate", "TJ share of public NMSFs", "Base count", "Base rate", "Combined public rate"], conclusion_md_rows)}
+
+The composition of the area's extreme PSAT right tail changes materially. TJHSST's share of NMSFs in the balanced public panel falls from **{fmt_pct(tj_public_share[2024])} in 2024** to **{fmt_pct(tj_public_share[2025])} in 2025** and **{fmt_pct(tj_public_share[2026])} in 2026**. That is strong descriptive evidence of **deconcentration away from TJHSST**.
+
+Base-school gains are delayed and incomplete. The balanced conventional-public rate is nearly flat from 2024 to 2025 ({fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 juniors), then rises to {fmt_rate(base_rate[2026])} in 2026. The increase is heterogeneous across schools and pathways rather than a uniform zone-wide shift.
+
+## How much of the TJHSST decline appears elsewhere?
+
+Pooling Classes 2023-2024 against 2025-2026, raw counts rise by **{fmt_int(base_pooled_gain)}** at balanced base schools while falling by **{fmt_int(abs(tj_pooled_change))}** at TJHSST. Raw-count accounting therefore implies a **{fmt_pct(offset_pct)} offset**, with the combined balanced public panel still down **{fmt_int(abs(public_pooled_change))} semifinalists**.
+
+That raw comparison overstates redistribution because grade-11 enrollment grew. Applying each group's 2023-2024 rate to its actual 2025-2026 enrollment yields a **{fmt_rate(tj_deficit_common, 1)}-student TJHSST shortfall** and a **{fmt_rate(base_excess_common, 1)}-student base-school excess**. The enrollment-standardized offset is therefore only **{fmt_pct(rate_adjusted_offset_common)}**, leaving the balanced public panel about **{fmt_rate(public_shortfall_common, 1)} semifinalists below** its component-specific baseline-rate expectation. Using TJHSST's longer 2019-2024 baseline gives a similar offset of **{fmt_pct(rate_adjusted_offset_extended)}**.
+
+The most defensible interpretation is therefore **partial and delayed redistribution, plus a net regional shortfall relative to prior group-specific rates**—not full displacement of former TJHSST semifinalists into base schools.
+
+## What the data do not establish
+
+These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, changing Virginia cutoffs and score distributions, possible participation changes, COVID recovery, and enrollment shifts.
+
+The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools, including {len(balanced_base_rate_ids)} conventional base schools plus TJHSST. Private-school focal-period counts are complete, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school offset estimate.
+
+## Highest-value next evidence
+
+The next useful data are school-level PSAT participation and score distributions; TJHSST applicant, offer, acceptance, enrollment, and allocation-pool data by source school; and broader upper-tail outcomes such as SAT threshold rates, AP 5 rates, and competition results. Those would help separate redistribution, threshold/participation effects, and possible school-context effects.
+
+For full methods and caveats, see `reports/robustness.md`, `reports/limitations.md`, and `reports/initial_findings.md`. Machine-readable decompositions are in `reports/tables/task9_public_concentration.csv` and `reports/tables/task9_rate_standardized_offset_decomposition.csv`.
+"""
+
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / "robustness.md").write_text(robustness, encoding="utf-8")
     (REPORTS / "limitations.md").write_text(limitations, encoding="utf-8")
     (REPORTS / "initial_findings.md").write_text(initial_findings, encoding="utf-8")
+    (REPORTS / "conclusions.md").write_text(conclusions, encoding="utf-8")
 
     source_notes = f"""# Task 9 Web Research Sources
 
@@ -1223,13 +1377,23 @@ Archived annual Notice 3355 documents for the Class of 2025 and Class of 2026 ad
         "public_2024_rate": pub_rate[2024],
         "public_2025_rate": pub_rate[2025],
         "public_2026_rate": pub_rate[2026],
+        "tj_2024_share_of_balanced_public_nmsf_pct": tj_public_share[2024],
+        "tj_2025_share_of_balanced_public_nmsf_pct": tj_public_share[2025],
+        "tj_2026_share_of_balanced_public_nmsf_pct": tj_public_share[2026],
+        "raw_base_gain_as_pct_of_tj_decline": offset_pct,
+        "rate_standardized_base_excess_as_pct_of_tj_shortfall": rate_adjusted_offset_common,
     }
     pd.DataFrame([validation]).to_csv(
         REPORTS / "tables" / "task9_validation_summary.csv", index=False, float_format="%.9f"
     )
 
     print("Task 9 outputs generated")
-    for path in [REPORTS / "robustness.md", REPORTS / "limitations.md", REPORTS / "initial_findings.md"]:
+    for path in [
+        REPORTS / "robustness.md",
+        REPORTS / "limitations.md",
+        REPORTS / "initial_findings.md",
+        REPORTS / "conclusions.md",
+    ]:
         print(path.relative_to(ROOT))
     print(f"Balanced count schools: {len(balanced_count_ids)}")
     print(f"Balanced public rate schools: {len(balanced_public_rate_ids)}")

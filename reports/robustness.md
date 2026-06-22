@@ -1,6 +1,6 @@
 # Task 9 Robustness Checks
 
-Generated: 2026-06-20
+Generated: 2026-06-22
 
 ## Scope and analysis rules
 
@@ -35,6 +35,8 @@ The table gives `count / rate per 100 grade-11 students` for balanced public pan
 
 The principal discontinuity is not an enrollment artifact. From Class 2024 to Class 2025, TJHSST fell from **165 to 81 semifinalists (-50.9%)** and from **37.415 to 16.071 per 100 juniors (-57.0%)**. Class 2026 rebounded to **113** and **21.606 per 100**, but remained below Class 2024 by **-31.5% in count** and **-42.3% in rate**.
 
+The same break appears as deconcentration within the local public right tail. TJHSST's share of NMSFs in the balanced public panel falls from **49.8% in Class 2024** to **32.3% in Class 2025** and **33.5% in Class 2026**. This is direct evidence that exceptional PSAT outcomes became less concentrated at TJHSST; it is not evidence about median achievement or school culture as a whole.
+
 Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from 199 in Class 2024 to 207 in Class 2025 and 272 in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced 53-school conventional public rate panel, the immediate Class 2025 change is nearly flat: **0.589 to 0.583 per 100 (-0.9%)**. The larger increase appears in Class 2026, to **0.765 (+31.2% versus 2025)**.
 
 ## 3. Balanced-panel sensitivity
@@ -50,6 +52,8 @@ Pooled 2023-2024 versus 2025-2026 rates are secondary summaries because they con
 | TJHSST | 297 | 194 | -103 | 32.927 | 18.890 | -42.6% |
 
 On this fixed 54-school public panel, base-school counts rise by **67**, arithmetically offsetting **65.0%** of TJHSST's **103-student decline**. The combined public count still falls by **36**. This is an accounting decomposition, not proof that the base-school gains consist of students displaced from TJHSST, and it should not replace the year-by-year results.
+
+Raw counts overstate the offset because grade-11 enrollment grows between the two periods. Applying each group's 2023-2024 pooled rate to its actual 2025-2026 enrollment predicts **338.2 TJHSST NMSFs** and **340.3 base-public NMSFs**. The observed values are 194 and 394, implying a **144.2-student TJHSST shortfall** and a **53.7-student base-school excess**. On that rate-standardized basis, the base excess offsets only **37.3%** of the TJHSST shortfall, leaving a component-standardized public shortfall of **90.4**. Using TJHSST's longer 2019-2024 baseline produces a similar offset estimate of **36.3%**. These are descriptive counterfactuals, not causal estimates.
 
 The base-school increase is heterogeneous rather than universal. Comparing pooled 2023-2024 and 2025-2026 school rates, **26 of 53 schools increase, 19 decrease, and 8 are unchanged**; the median school change is only **0.000 NMSF per 100 juniors**. Pathway aggregates also vary:
 
@@ -143,6 +147,8 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 - `reports/tables/task9_program_sensitivity.csv`
 - `reports/tables/task9_manual_review_issue_counts.csv`
 - `reports/tables/task9_offset_decomposition.csv`
+- `reports/tables/task9_rate_standardized_offset_decomposition.csv`
+- `reports/tables/task9_public_concentration.csv`
 - `reports/tables/task9_state_normalization_supplemental.csv`
 - `reports/tables/task9_cohort_timing.csv`
 - `reports/tables/task9_change_summary.csv`

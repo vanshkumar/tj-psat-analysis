@@ -1,6 +1,6 @@
 # Task 9 Limitations
 
-Generated: 2026-06-20
+Generated: 2026-06-22
 
 ## 1. NMSF measures only the extreme right tail
 
