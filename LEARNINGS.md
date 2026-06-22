@@ -329,6 +329,11 @@
 - Action: Report the raw decomposition only as a generous arithmetic upper view and pair it with `task9_rate_standardized_offset_decomposition.csv`; do not describe the raw 65% figure as measured student redistribution.
 - Confidence: high
 
+**2026-06-22 - Branch merge workflow**
+- Observation: Merging `analysis-refresh-2026-06-22` into `main` was a clean fast-forward to `a5ea42a`, leaving local `main` ahead of `origin/main` until an explicit push.
+- Action: For future merge-only requests in this repo, verify the worktree is clean, fast-forward when possible, and do not push `origin/main` unless the user asks.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
