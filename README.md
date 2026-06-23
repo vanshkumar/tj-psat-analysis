@@ -1,5 +1,7 @@
 # tj-psat-analysis
 
+![conclusion_graphic.png](reports/conclusion_graphic.png)
+
 Reproducible data pipeline and documentation for a TJHSST-area National Merit
 Semifinalist analysis.
 
