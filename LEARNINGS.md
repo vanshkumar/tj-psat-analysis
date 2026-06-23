@@ -344,6 +344,11 @@
 - Action: Phrase private-school findings as "private count increase observed, private offset unresolved" rather than implying the private data are unusable or that the increase is a displacement channel.
 - Confidence: high
 
+**2026-06-23 - Cutoff caveat wording**
+- Observation: Supplemental Virginia NMSF cutoffs stay in a narrow high-end band over the study window, with Compass focal values of 219, 222, and 224 for Classes 2024-2026; local conclusions are not primarily cutoff-driven.
+- Action: Avoid framing "changing Virginia cutoffs and score distributions" as a major standalone confound in conclusions; keep cutoff discussion as statewide-normalization and threshold/tie context in robustness materials.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

@@ -32,7 +32,7 @@ It should not be folded into the public-school offset estimate as if it were a m
 
 ## What the data do not establish
 
-These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, changing Virginia cutoffs and score distributions, possible participation changes, COVID recovery, and enrollment shifts.
+These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, possible participation changes, COVID recovery, enrollment shifts, and ordinary NMSF threshold/tie effects.
 
 The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains 54 schools, including 53 conventional base schools plus TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
 

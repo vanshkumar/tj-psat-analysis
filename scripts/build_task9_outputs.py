@@ -1024,7 +1024,7 @@ More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors
 
 {STATEWIDE_2026_RECONCILIATION_NOTE}
 
-The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the statewide semifinalist total used here rises from the secondary Class 2025 value of 394 to the source-backed Class 2026 value of 494. A cutoff-only adjustment is therefore inadequate. On this mixed-source statewide denominator, the balanced public share falls from **{fmt_pct(public_state_share[2024])} in 2024** to **{fmt_pct(public_state_share[2025])} in 2025** and recovers only to **{fmt_pct(public_state_share[2026])} in 2026**. TJHSST's share remains far below 2024 ({fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
+Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. On the mixed-source statewide denominator, the balanced public share falls from **{fmt_pct(public_state_share[2024])} in 2024** to **{fmt_pct(public_state_share[2025])} in 2025** and recovers only to **{fmt_pct(public_state_share[2026])} in 2026**. TJHSST's share remains far below 2024 ({fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
 
 ## 8. COVID, digital testing, and cohort timing
 
@@ -1033,7 +1033,7 @@ The Class 2026 Virginia cutoff was two Selection Index points higher than Class 
 - Class 2025 qualified in fall 2023, the first digital PSAT/NMSQT administration.[^digital]
 - Class 2026 qualified in fall 2024, the second digital administration.
 
-The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, cutoff, and cohort-composition changes.
+The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, threshold/tie, and cohort-composition changes.
 
 ## 9. Admissions mechanism interpretation
 
@@ -1099,7 +1099,7 @@ The denominator is grade-11 enrollment, not the number of eligible juniors who a
 
 Therefore, `NMSF per 100 juniors` is an outcome-rate proxy, not a direct qualification rate among test takers. A school could change its measured rate because participation changed even if the score distribution among test takers did not.
 
-## 3. Virginia cutoff and test-form changes
+## 3. Statewide normalization and test-form changes
 
 Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. Task 9 uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
 
@@ -1107,7 +1107,7 @@ Virginia's canonical cutoff columns remain blank with `not_sourced` status. The 
 
 The focal policy boundary also coincides with the 2023 move to the digital PSAT/NMSQT.[^digital] Class 2025 is the first policy-affected TJHSST class and the first digital-PSAT NMSF class. That coincidence makes it impossible, with these data alone, to attribute the break uniquely to admissions policy.
 
-A state cutoff does not fully standardize cohorts. The supplemental data show Virginia's cutoff rising from 222 to 224 between Classes 2025 and 2026 while the statewide total used here also rises markedly. Score-distribution and tie effects can change the number of semifinalists at a given cutoff.
+A state cutoff does not fully standardize cohorts, but the focal cutoff movement should not be overstated. The supplemental values put Virginia at 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That is useful context for statewide-share sensitivity, not a primary standalone explanation for the local TJHSST and base-school pattern. Tie effects and the unresolved Class 2025 statewide denominator still limit statewide normalization.
 
 ## 4. Incomplete and changing source coverage
 
@@ -1158,7 +1158,7 @@ There is no untreated comparison region, no student-level counterfactual, and on
 
 - admissions-policy effects;
 - digital-PSAT and scaling effects;
-- Virginia cutoff and statewide score-distribution changes;
+- statewide-normalization uncertainty and NMSF threshold/tie effects;
 - PSAT participation changes;
 - COVID and recovery effects;
 - enrollment and migration changes;
@@ -1321,7 +1321,7 @@ It should not be folded into the public-school offset estimate as if it were a m
 
 ## What the data do not establish
 
-These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, changing Virginia cutoffs and score distributions, possible participation changes, COVID recovery, and enrollment shifts.
+These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, possible participation changes, COVID recovery, enrollment shifts, and ordinary NMSF threshold/tie effects.
 
 The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools, including {len(balanced_base_rate_ids)} conventional base schools plus TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
 

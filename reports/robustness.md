@@ -117,7 +117,7 @@ More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors
 
 Class 2026 statewide-denominator caveat: the committed supplied-list snapshot totals 494, while the public 2026 NMSC guide lists Virginia at 489 semifinalists. Treat statewide shares using the 2026 denominator as provisional until reconciled; local school counts and focal coverage are unchanged.
 
-The Class 2026 Virginia cutoff was two Selection Index points higher than Class 2025 (224 versus 222), while the statewide semifinalist total used here rises from the secondary Class 2025 value of 394 to the source-backed Class 2026 value of 494. A cutoff-only adjustment is therefore inadequate. On this mixed-source statewide denominator, the balanced public share falls from **70.4% in 2024** to **63.7% in 2025** and recovers only to **68.2% in 2026**. TJHSST's share remains far below 2024 (35.1% to 20.6% to 22.9%). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
+Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. On the mixed-source statewide denominator, the balanced public share falls from **70.4% in 2024** to **63.7% in 2025** and recovers only to **68.2% in 2026**. TJHSST's share remains far below 2024 (35.1% to 20.6% to 22.9%). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
 
 ## 8. COVID, digital testing, and cohort timing
 
@@ -126,7 +126,7 @@ The Class 2026 Virginia cutoff was two Selection Index points higher than Class 
 - Class 2025 qualified in fall 2023, the first digital PSAT/NMSQT administration.[^digital]
 - Class 2026 qualified in fall 2024, the second digital administration.
 
-The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, cutoff, and cohort-composition changes.
+The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, threshold/tie, and cohort-composition changes.
 
 ## 9. Admissions mechanism interpretation
 

@@ -14,7 +14,7 @@ The denominator is grade-11 enrollment, not the number of eligible juniors who a
 
 Therefore, `NMSF per 100 juniors` is an outcome-rate proxy, not a direct qualification rate among test takers. A school could change its measured rate because participation changed even if the score distribution among test takers did not.
 
-## 3. Virginia cutoff and test-form changes
+## 3. Statewide normalization and test-form changes
 
 Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. Task 9 uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
 
@@ -22,7 +22,7 @@ Class 2026 statewide-denominator caveat: the committed supplied-list snapshot to
 
 The focal policy boundary also coincides with the 2023 move to the digital PSAT/NMSQT.[^digital] Class 2025 is the first policy-affected TJHSST class and the first digital-PSAT NMSF class. That coincidence makes it impossible, with these data alone, to attribute the break uniquely to admissions policy.
 
-A state cutoff does not fully standardize cohorts. The supplemental data show Virginia's cutoff rising from 222 to 224 between Classes 2025 and 2026 while the statewide total used here also rises markedly. Score-distribution and tie effects can change the number of semifinalists at a given cutoff.
+A state cutoff does not fully standardize cohorts, but the focal cutoff movement should not be overstated. The supplemental values put Virginia at 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That is useful context for statewide-share sensitivity, not a primary standalone explanation for the local TJHSST and base-school pattern. Tie effects and the unresolved Class 2025 statewide denominator still limit statewide normalization.
 
 ## 4. Incomplete and changing source coverage
 
@@ -73,7 +73,7 @@ There is no untreated comparison region, no student-level counterfactual, and on
 
 - admissions-policy effects;
 - digital-PSAT and scaling effects;
-- Virginia cutoff and statewide score-distribution changes;
+- statewide-normalization uncertainty and NMSF threshold/tie effects;
 - PSAT participation changes;
 - COVID and recovery effects;
 - enrollment and migration changes;
