@@ -44,11 +44,10 @@ The evidence supports a narrow descriptive version of the hypothesis:
   private-school rate or displacement-offset estimate.
 
 The evidence does not establish the causal context-effect version. The timing
-also overlaps the digital PSAT transition, COVID recovery, participation
-uncertainty, enrollment shifts, and ordinary NMSF threshold/tie effects. A
-causal analysis would require school-level PSAT participation and score
-distributions, student/application pathway data, broader outcomes, and a
-credible comparison design.
+also overlaps the digital PSAT transition, COVID recovery, and participation
+uncertainty. A causal analysis would require school-level PSAT participation
+and score distributions, student/application pathway data, broader outcomes,
+and a credible comparison design.
 
 ## Scope And Claim Boundary
 

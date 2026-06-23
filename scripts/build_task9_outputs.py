@@ -1033,7 +1033,7 @@ Virginia's cutoff moved within a narrow high-end band in the focal period: 219 i
 - Class 2025 qualified in fall 2023, the first digital PSAT/NMSQT administration.[^digital]
 - Class 2026 qualified in fall 2024, the second digital administration.
 
-The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, threshold/tie, and cohort-composition changes.
+The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, and cohort-composition changes.
 
 ## 9. Admissions mechanism interpretation
 
@@ -1107,7 +1107,7 @@ Virginia's canonical cutoff columns remain blank with `not_sourced` status. The 
 
 The focal policy boundary also coincides with the 2023 move to the digital PSAT/NMSQT.[^digital] Class 2025 is the first policy-affected TJHSST class and the first digital-PSAT NMSF class. That coincidence makes it impossible, with these data alone, to attribute the break uniquely to admissions policy.
 
-A state cutoff does not fully standardize cohorts, but the focal cutoff movement should not be overstated. The supplemental values put Virginia at 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That is useful context for statewide-share sensitivity, not a primary standalone explanation for the local TJHSST and base-school pattern. Tie effects and the unresolved Class 2025 statewide denominator still limit statewide normalization.
+A state cutoff does not fully standardize cohorts, but the focal cutoff movement should not be overstated. The supplemental values put Virginia at 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That is useful context for statewide-share sensitivity, not a primary standalone explanation for the local TJHSST and base-school pattern. The unresolved Class 2025 statewide denominator still limits statewide normalization.
 
 ## 4. Incomplete and changing source coverage
 
@@ -1158,10 +1158,9 @@ There is no untreated comparison region, no student-level counterfactual, and on
 
 - admissions-policy effects;
 - digital-PSAT and scaling effects;
-- statewide-normalization uncertainty and NMSF threshold/tie effects;
+- statewide-normalization uncertainty;
 - PSAT participation changes;
 - COVID and recovery effects;
-- enrollment and migration changes;
 - base-school program changes; or
 - ordinary year-to-year sampling variation.
 
@@ -1321,7 +1320,7 @@ It should not be folded into the public-school offset estimate as if it were a m
 
 ## What the data do not establish
 
-These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, possible participation changes, COVID recovery, enrollment shifts, and ordinary NMSF threshold/tie effects.
+These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, possible participation changes, and COVID recovery.
 
 The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools, including {len(balanced_base_rate_ids)} conventional base schools plus TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
 

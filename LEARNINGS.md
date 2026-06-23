@@ -346,7 +346,12 @@
 
 **2026-06-23 - Cutoff caveat wording**
 - Observation: Supplemental Virginia NMSF cutoffs stay in a narrow high-end band over the study window, with Compass focal values of 219, 222, and 224 for Classes 2024-2026; local conclusions are not primarily cutoff-driven.
-- Action: Avoid framing "changing Virginia cutoffs and score distributions" as a major standalone confound in conclusions; keep cutoff discussion as statewide-normalization and threshold/tie context in robustness materials.
+- Action: Avoid framing "changing Virginia cutoffs and score distributions" as a major standalone confound in conclusions; keep cutoff discussion as statewide-normalization context in robustness materials.
+- Confidence: high
+
+**2026-06-23 - Aggregate limitation framing**
+- Observation: Enrollment shifts are already addressed by the project's enrollment-normalized NMSF rates and rate-standardized offset decomposition, while marginal NMSF threshold/tie wording does not materially clarify aggregate public/private compensation for TJHSST declines.
+- Action: Keep top-level limitations focused on unmeasured participation, digital-PSAT timing, COVID recovery, missing denominators, and missing counterfactual/applicant data; do not list enrollment shifts or threshold/tie effects as separate headline caveats.
 - Confidence: high
 
 ## What Has Failed

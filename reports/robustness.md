@@ -126,7 +126,7 @@ Virginia's cutoff moved within a narrow high-end band in the focal period: 219 i
 - Class 2025 qualified in fall 2023, the first digital PSAT/NMSQT administration.[^digital]
 - Class 2026 qualified in fall 2024, the second digital administration.
 
-The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, threshold/tie, and cohort-composition changes.
+The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, and cohort-composition changes.
 
 ## 9. Admissions mechanism interpretation
 
