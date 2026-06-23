@@ -39,7 +39,7 @@ The balanced panels improve comparability by holding schools fixed, but they ans
 
 Private-school location does not prove that a student resided in the TJHSST service area, was eligible for TJHSST, applied to TJHSST, or would otherwise have attended a particular base school. The admissions rule places non-public applicants in the unallocated pool rather than assigning them by the private school's location. The private-school analysis is therefore a geographic outcome bucket, not a measured displacement channel.
 
-All 16 rostered private schools now have complete 2023-2026 counts. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for 10 private rows, but no balanced private rate panel spans Classes 2023-2026 because Classes 2024 and 2026 still lack private denominator coverage. The project still cannot estimate a complete private-school offset.
+All 16 rostered private schools now have complete 2023-2026 counts, and those counts are informative: the bucket rises from **47 observed NMSFs in Classes 2023-2024 to 69 in Classes 2025-2026**. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for 10 private rows, but no balanced private rate panel spans Classes 2023-2026 because Classes 2024 and 2026 still lack private denominator coverage. The project can report the private count increase, but it still cannot estimate a complete private-school rate trend or displacement offset.
 
 ## 6. Grade-11 enrollment is not an admissions allocation denominator
 

@@ -41,12 +41,16 @@ source or a complete Class 2025 Virginia list.
 Private-school focal-period counts are complete: all 16 rostered private rows
 have source-backed counts for Classes 2023-2026.
 
-That does not create a credible private-school offset estimate. The exact
-grade-11 denominator years needed for comparable private rates are not complete:
-the 2023-24 NCES Private School Search locator supports only an interim Class
-2025 denominator pass, while Classes 2024 and 2026 still lack compatible
-private denominator rows. Counts also do not establish residence, TJHSST
-eligibility, applications, or counterfactual base-school placement.
+Those counts do say something. Observed private-school NMSFs rise from 47 in
+Classes 2023-2024 to 69 in Classes 2025-2026, a post-period increase of 22 in
+the rostered private-school bucket.
+
+That count signal does not create a credible private-school offset estimate.
+The exact grade-11 denominator years needed for comparable private rates are
+not complete: the 2023-24 NCES Private School Search locator supports only an
+interim Class 2025 denominator pass, while Classes 2024 and 2026 still lack
+compatible private denominator rows. Counts also do not establish residence,
+TJHSST eligibility, applications, or counterfactual base-school placement.
 
 ## Statewide-Share Caveat
 

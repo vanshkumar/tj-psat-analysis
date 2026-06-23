@@ -6,7 +6,7 @@ Generated: 2026-06-22
 
 The strongest descriptive finding is a large, enrollment-adjusted decline in TJHSST's National Merit Semifinalist right tail beginning with the first class admitted under the post-2020 process. The first affected class, 2025, is the sharpest break. Class 2026 rebounds, but TJHSST remains below every pre-policy class in the available 2019-2024 TJ series.
 
-Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset 65.0% of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to 37.3%. Private-school denominator and eligibility data are not complete enough to determine whether private counts represent an offset.
+Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset 65.0% of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to 37.3%. Private-school counts also rise by 22 across the pooled post period, but denominator and eligibility data are not complete enough to determine whether that count increase represents an offset.
 
 This pattern is consistent with a reduction in the concentration of the extreme PSAT right tail at TJHSST and some later increase at base schools. It does not prove that the admissions change caused either pattern or that broader academic culture declined.
 
@@ -49,11 +49,11 @@ The composition of that public right tail changes sharply even where the combine
 
 This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using source-backed statewide totals for 2024 and 2026 plus a secondary fallback for the unresolved Class 2025 total, the balanced public panel's share is approximately **70.4% in 2024, 63.7% in 2025, and 68.2% in 2026**. TJHSST's own share falls from **35.1% to 20.6% to 22.9%**.[^state] The 2026 statewide denominator is provisional pending reconciliation against the NMSC guide total, so this caveat affects statewide-share interpretation but not local school counts.
 
-### 5. Private schools do not provide a measurable complete offset
+### 5. Private schools show count growth, but not a measurable complete offset
 
-The full observed private total is now count-complete: **24, 23, 34, and 35** for Classes 2023-2026 across all 16 rostered private schools. The 2023-24 NCES locator pass adds Class 2025 denominators for 10 private rows, but Classes 2024 and 2026 still lack private denominator coverage, so there is no balanced private denominator panel across Classes 2023-2026.
+The full observed private total is now count-complete: **24, 23, 34, and 35** for Classes 2023-2026 across all 16 rostered private schools. Pooled private counts rise from **47 pre-period NMSFs to 69 post-period NMSFs**, so the data do show private-sector right-tail growth in the rostered area. The 2023-24 NCES locator pass adds Class 2025 denominators for 10 private rows, but Classes 2024 and 2026 still lack private denominator coverage, so there is no balanced private denominator panel across Classes 2023-2026.
 
-The defensible conclusion is still “private offset unresolved,” not “private offset observed,” because counts alone do not identify residency, eligibility, applications, or counterfactual school placement.
+The defensible conclusion is therefore “private count increase observed, private offset unresolved,” not “private offset observed,” because counts alone do not identify normalized rates, residency, eligibility, applications, or counterfactual school placement.
 
 ### 6. Non-conventional programs do not drive the result
 

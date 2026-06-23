@@ -38,9 +38,10 @@ The evidence supports a narrow descriptive version of the hypothesis:
 - Combining TJHSST and base public schools shows partial local recovery by
   Class 2026, but enrollment-standardized decompositions still leave a regional
   shortfall relative to component-specific baseline rates.
-- Private-school counts are complete for the focal period, but denominator,
-  residence, eligibility, and counterfactual-placement limits prevent a
-  credible private-school offset estimate.
+- Private-school counts are complete for the focal period and rise from 47
+  pre-period NMSFs to 69 post-period NMSFs, but denominator, residence,
+  eligibility, and counterfactual-placement limits prevent a credible
+  private-school rate or displacement-offset estimate.
 
 The evidence does not establish the causal context-effect version. The timing
 also overlaps the digital PSAT transition, Virginia cutoff and score-distribution

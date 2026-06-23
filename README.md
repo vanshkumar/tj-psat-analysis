@@ -25,13 +25,15 @@ What is complete:
   including TJHSST and 53 conventional base public schools.
 - Private counts: all 16 rostered private schools have source-backed counts for
   Classes 2023-2026.
+- Private count signal: observed private-school NMSFs rise from 47 in Classes
+  2023-2024 to 69 in Classes 2025-2026, a post-period increase of 22.
 - Private rates: no balanced private rate panel exists because exact-year
   private grade-11 denominators remain unavailable for Classes 2024 and 2026;
   the 2023-24 NCES Private School Search locator is used only as an interim
   Class 2025 denominator source.
 - Interpretation: reports support a narrow descriptive finding of reduced
   NMSF concentration at TJHSST, partial and delayed base-school gains, and no
-  credible private-school offset estimate.
+  credible private-school rate or displacement-offset estimate.
 
 Known unresolved public-data items:
 

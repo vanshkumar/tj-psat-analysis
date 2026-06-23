@@ -79,7 +79,9 @@ The Class 2026 increase is strongest in FCPS Regions 1, 2, and 5. FCPS Region 3 
 | 2025 | 16/16 | 0 | 34 | 34 | 10 |
 | 2026 | 16/16 | 0 | 35 | 35 | 0 |
 
-All 16 rostered private-school rows now have source-backed focal-period counts after the complete-list integration. Their observed total is **23 in 2024, 34 in 2025, and 35 in 2026**. That resolves count missingness, but it still does not identify residency, TJ eligibility, applications, or counterfactual base schools. No rate-compatible private panel exists for Classes 2024-2026 because private denominators remain unavailable in 2024 and 2026.
+All 16 rostered private-school rows now have source-backed focal-period counts after the complete-list integration. Their observed total is **24 in 2023, 23 in 2024, 34 in 2025, and 35 in 2026**. Pooled private counts therefore rise from **47 in Classes 2023-2024 to 69 in Classes 2025-2026**, a **22-student observed count increase** in the rostered private-school bucket.
+
+That is a real private-sector right-tail count signal. The limitation is narrower: counts alone still do not identify enrollment-normalized rates, residency, TJ eligibility, applications, or counterfactual base schools. No rate-compatible private panel exists for Classes 2024-2026 because private denominators remain unavailable in 2024 and 2026.
 
 ## 5. Excluding non-conventional programs
 
@@ -136,7 +138,7 @@ The archived annual Notice 3355 documents themselves were not recovered. The off
 
 ## Robustness conclusion
 
-The TJHSST decline in the first affected class is large in both raw counts and enrollment-normalized rates, and it is not explained by the H-B Woodlawn program or simple enrollment growth. Conventional base-school rates do not show an immediate offset in Class 2025; a substantial increase appears in Class 2026. Combining TJHSST and base schools produces a near return to the 2024 local rate by 2026, but only a partial recovery after supplemental statewide normalization. Private-school counts are now complete for the focal period, but denominator and eligibility limits still prevent interpreting them as a measured offset. These are descriptive findings, not causal estimates.
+The TJHSST decline in the first affected class is large in both raw counts and enrollment-normalized rates, and it is not explained by the H-B Woodlawn program or simple enrollment growth. Conventional base-school rates do not show an immediate offset in Class 2025; a substantial increase appears in Class 2026. Combining TJHSST and base schools produces a near return to the 2024 local rate by 2026, but only a partial recovery after supplemental statewide normalization. Private-school counts are now complete and show a material post-period increase, but denominator and eligibility limits prevent interpreting that count increase as a measured displacement offset. These are descriptive findings, not causal estimates.
 
 ## Generated supporting tables
 

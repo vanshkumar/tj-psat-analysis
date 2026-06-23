@@ -701,6 +701,9 @@ def main() -> None:
         for y in FOCAL_YEARS
     }
     priv_bal = {y: lookup(balanced_counts, "Balanced private schools", y, "nmsf_count") for y in FOCAL_YEARS}
+    pre_private_count = priv_bal[2023] + priv_bal[2024]
+    post_private_count = priv_bal[2025] + priv_bal[2026]
+    private_pooled_gain = post_private_count - pre_private_count
     tj_public_share = {
         int(row["class_year"]): float(row["tjhsst_share_of_balanced_public_nmsf_pct"])
         for _, row in public_concentration.iterrows()
@@ -993,7 +996,9 @@ The Class 2026 increase is strongest in FCPS Regions 1, 2, and 5. FCPS Region 3 
 
 {md_table(["Class", "Private count rows observed", "Missing rows", "Full observed total", f"Balanced {len(private_balanced_ids)}-school total", "Rate-compatible rows"], private_md_rows)}
 
-All 16 rostered private-school rows now have source-backed focal-period counts after the complete-list integration. Their observed total is **{fmt_int(priv_bal[2024])} in 2024, {fmt_int(priv_bal[2025])} in 2025, and {fmt_int(priv_bal[2026])} in 2026**. That resolves count missingness, but it still does not identify residency, TJ eligibility, applications, or counterfactual base schools. No rate-compatible private panel exists for Classes 2024-2026 because private denominators remain unavailable in 2024 and 2026.
+All 16 rostered private-school rows now have source-backed focal-period counts after the complete-list integration. Their observed total is **{fmt_int(priv_bal[2023])} in 2023, {fmt_int(priv_bal[2024])} in 2024, {fmt_int(priv_bal[2025])} in 2025, and {fmt_int(priv_bal[2026])} in 2026**. Pooled private counts therefore rise from **{fmt_int(pre_private_count)} in Classes 2023-2024 to {fmt_int(post_private_count)} in Classes 2025-2026**, a **{fmt_int(private_pooled_gain)}-student observed count increase** in the rostered private-school bucket.
+
+That is a real private-sector right-tail count signal. The limitation is narrower: counts alone still do not identify enrollment-normalized rates, residency, TJ eligibility, applications, or counterfactual base schools. No rate-compatible private panel exists for Classes 2024-2026 because private denominators remain unavailable in 2024 and 2026.
 
 ## 5. Excluding non-conventional programs
 
@@ -1040,7 +1045,7 @@ The archived annual Notice 3355 documents themselves were not recovered. The off
 
 ## Robustness conclusion
 
-The TJHSST decline in the first affected class is large in both raw counts and enrollment-normalized rates, and it is not explained by the H-B Woodlawn program or simple enrollment growth. Conventional base-school rates do not show an immediate offset in Class 2025; a substantial increase appears in Class 2026. Combining TJHSST and base schools produces a near return to the 2024 local rate by 2026, but only a partial recovery after supplemental statewide normalization. Private-school counts are now complete for the focal period, but denominator and eligibility limits still prevent interpreting them as a measured offset. These are descriptive findings, not causal estimates.
+The TJHSST decline in the first affected class is large in both raw counts and enrollment-normalized rates, and it is not explained by the H-B Woodlawn program or simple enrollment growth. Conventional base-school rates do not show an immediate offset in Class 2025; a substantial increase appears in Class 2026. Combining TJHSST and base schools produces a near return to the 2024 local rate by 2026, but only a partial recovery after supplemental statewide normalization. Private-school counts are now complete and show a material post-period increase, but denominator and eligibility limits prevent interpreting that count increase as a measured displacement offset. These are descriptive findings, not causal estimates.
 
 ## Generated supporting tables
 
@@ -1119,7 +1124,7 @@ The balanced panels improve comparability by holding schools fixed, but they ans
 
 Private-school location does not prove that a student resided in the TJHSST service area, was eligible for TJHSST, applied to TJHSST, or would otherwise have attended a particular base school. The admissions rule places non-public applicants in the unallocated pool rather than assigning them by the private school's location. The private-school analysis is therefore a geographic outcome bucket, not a measured displacement channel.
 
-All 16 rostered private schools now have complete 2023-2026 counts. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for {private_2025_rate_rows} private rows, but no balanced private rate panel spans Classes 2023-2026 because Classes 2024 and 2026 still lack private denominator coverage. The project still cannot estimate a complete private-school offset.
+All 16 rostered private schools now have complete 2023-2026 counts, and those counts are informative: the bucket rises from **{fmt_int(pre_private_count)} observed NMSFs in Classes 2023-2024 to {fmt_int(post_private_count)} in Classes 2025-2026**. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for {private_2025_rate_rows} private rows, but no balanced private rate panel spans Classes 2023-2026 because Classes 2024 and 2026 still lack private denominator coverage. The project can report the private count increase, but it still cannot estimate a complete private-school rate trend or displacement offset.
 
 ## 6. Grade-11 enrollment is not an admissions allocation denominator
 
@@ -1190,7 +1195,7 @@ Generated: {TODAY}
 
 The strongest descriptive finding is a large, enrollment-adjusted decline in TJHSST's National Merit Semifinalist right tail beginning with the first class admitted under the post-2020 process. The first affected class, 2025, is the sharpest break. Class 2026 rebounds, but TJHSST remains below every pre-policy class in the available 2019-2024 TJ series.
 
-Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to {fmt_pct(rate_adjusted_offset_common)}. Private-school denominator and eligibility data are not complete enough to determine whether private counts represent an offset.
+Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to {fmt_pct(rate_adjusted_offset_common)}. Private-school counts also rise by {fmt_int(private_pooled_gain)} across the pooled post period, but denominator and eligibility data are not complete enough to determine whether that count increase represents an offset.
 
 This pattern is consistent with a reduction in the concentration of the extreme PSAT right tail at TJHSST and some later increase at base schools. It does not prove that the admissions change caused either pattern or that broader academic culture declined.
 
@@ -1233,11 +1238,11 @@ The composition of that public right tail changes sharply even where the combine
 
 This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using source-backed statewide totals for 2024 and 2026 plus a secondary fallback for the unresolved Class 2025 total, the balanced public panel's share is approximately **{fmt_pct(public_state_share[2024])} in 2024, {fmt_pct(public_state_share[2025])} in 2025, and {fmt_pct(public_state_share[2026])} in 2026**. TJHSST's own share falls from **{fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}**.[^state] The 2026 statewide denominator is provisional pending reconciliation against the NMSC guide total, so this caveat affects statewide-share interpretation but not local school counts.
 
-### 5. Private schools do not provide a measurable complete offset
+### 5. Private schools show count growth, but not a measurable complete offset
 
-The full observed private total is now count-complete: **{fmt_int(priv_bal[2023])}, {fmt_int(priv_bal[2024])}, {fmt_int(priv_bal[2025])}, and {fmt_int(priv_bal[2026])}** for Classes 2023-2026 across all 16 rostered private schools. The 2023-24 NCES locator pass adds Class 2025 denominators for {private_2025_rate_rows} private rows, but Classes 2024 and 2026 still lack private denominator coverage, so there is no balanced private denominator panel across Classes 2023-2026.
+The full observed private total is now count-complete: **{fmt_int(priv_bal[2023])}, {fmt_int(priv_bal[2024])}, {fmt_int(priv_bal[2025])}, and {fmt_int(priv_bal[2026])}** for Classes 2023-2026 across all 16 rostered private schools. Pooled private counts rise from **{fmt_int(pre_private_count)} pre-period NMSFs to {fmt_int(post_private_count)} post-period NMSFs**, so the data do show private-sector right-tail growth in the rostered area. The 2023-24 NCES locator pass adds Class 2025 denominators for {private_2025_rate_rows} private rows, but Classes 2024 and 2026 still lack private denominator coverage, so there is no balanced private denominator panel across Classes 2023-2026.
 
-The defensible conclusion is still “private offset unresolved,” not “private offset observed,” because counts alone do not identify residency, eligibility, applications, or counterfactual school placement.
+The defensible conclusion is therefore “private count increase observed, private offset unresolved,” not “private offset observed,” because counts alone do not identify normalized rates, residency, eligibility, applications, or counterfactual school placement.
 
 ### 6. Non-conventional programs do not drive the result
 
@@ -1308,11 +1313,17 @@ That raw comparison overstates redistribution because grade-11 enrollment grew. 
 
 The most defensible interpretation is therefore **partial and delayed redistribution, plus a net regional shortfall relative to prior group-specific rates**—not full displacement of former TJHSST semifinalists into base schools.
 
+## What the private-school counts add
+
+The private-school bucket is not blank. Across the 16 rostered private schools, source-backed counts rise from **{fmt_int(pre_private_count)} in Classes 2023-2024 to {fmt_int(post_private_count)} in Classes 2025-2026**, an observed increase of **{fmt_int(private_pooled_gain)} NMSFs**. That supports a descriptive statement that the rostered private sector's right-tail count increased in the post period.
+
+It should not be folded into the public-school offset estimate as if it were a measured displacement channel. Comparable grade-11 private denominators are missing for Classes 2024 and 2026, and the counts do not identify whether students lived in the TJHSST service area, were TJ-eligible, applied to TJHSST, or would otherwise have attended TJHSST or a particular base public school.
+
 ## What the data do not establish
 
 These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, changing Virginia cutoffs and score distributions, possible participation changes, COVID recovery, and enrollment shifts.
 
-The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools, including {len(balanced_base_rate_ids)} conventional base schools plus TJHSST. Private-school focal-period counts are complete, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school offset estimate.
+The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools, including {len(balanced_base_rate_ids)} conventional base schools plus TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
 
 Supplemental statewide shares are useful context, but the 2026 statewide denominator is provisional pending reconciliation between the committed supplied-list snapshot and the public NMSC guide total.
 
@@ -1343,7 +1354,7 @@ Generated: {TODAY}
 - Balanced {len(balanced_public_rate_ids)}-school public panel including TJHSST: {fmt_rate(pre_pub_rate)} versus {fmt_rate(post_pub_rate)} ({fmt_pct(pct_change(post_pub_rate, pre_pub_rate))}).
 - TJHSST's share of balanced public NMSFs falls from {fmt_pct(tj_public_share[2024])} in Class 2024 to {fmt_pct(tj_public_share[2025])} in Class 2025 and {fmt_pct(tj_public_share[2026])} in Class 2026.
 - Raw pooled counts imply that base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline; the enrollment-standardized decomposition reduces the offset to {fmt_pct(rate_adjusted_offset_common)} and leaves a {fmt_rate(public_shortfall_common, 1)}-student combined-public shortfall relative to component-specific baseline rates.
-- Private-school counts are complete for the focal period, but private-school denominator and eligibility context remain too limited to establish an offset.
+- Private-school counts are complete for the focal period and rise by {fmt_int(private_pooled_gain)} pooled post-period NMSFs, but private-school denominator and eligibility context remain too limited to establish an offset.
 
 These are descriptive results, not causal estimates or measures of median achievement or school culture.
 

@@ -24,11 +24,17 @@ That raw comparison overstates redistribution because grade-11 enrollment grew. 
 
 The most defensible interpretation is therefore **partial and delayed redistribution, plus a net regional shortfall relative to prior group-specific rates**—not full displacement of former TJHSST semifinalists into base schools.
 
+## What the private-school counts add
+
+The private-school bucket is not blank. Across the 16 rostered private schools, source-backed counts rise from **47 in Classes 2023-2024 to 69 in Classes 2025-2026**, an observed increase of **22 NMSFs**. That supports a descriptive statement that the rostered private sector's right-tail count increased in the post period.
+
+It should not be folded into the public-school offset estimate as if it were a measured displacement channel. Comparable grade-11 private denominators are missing for Classes 2024 and 2026, and the counts do not identify whether students lived in the TJHSST service area, were TJ-eligible, applied to TJHSST, or would otherwise have attended TJHSST or a particular base public school.
+
 ## What the data do not establish
 
 These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, changing Virginia cutoffs and score distributions, possible participation changes, COVID recovery, and enrollment shifts.
 
-The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains 54 schools, including 53 conventional base schools plus TJHSST. Private-school focal-period counts are complete, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school offset estimate.
+The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains 54 schools, including 53 conventional base schools plus TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
 
 Supplemental statewide shares are useful context, but the 2026 statewide denominator is provisional pending reconciliation between the committed supplied-list snapshot and the public NMSC guide total.
 

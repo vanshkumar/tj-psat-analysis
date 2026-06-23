@@ -339,6 +339,11 @@
 - Action: Update generator-owned report wording before regenerating reports, and keep static docs such as `README.md` and `TASKS.md` as concise status summaries rather than duplicating computed numeric claims.
 - Confidence: high
 
+**2026-06-22 - Private-school interpretation wording**
+- Observation: The private-school focal-period data support a count-level statement (47 pre-period NMSFs versus 69 post-period NMSFs) even though missing denominator, residence, eligibility, and counterfactual data prevent a measured offset estimate.
+- Action: Phrase private-school findings as "private count increase observed, private offset unresolved" rather than implying the private data are unusable or that the increase is a displacement channel.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
