@@ -1,0 +1,9 @@
+finding,comparison,required_post_vs_pre_participation_ratio,required_relative_participation_change_pct,interpretation
+TJHSST pooled participant-yield decline eliminated,Classes 2023-2024 vs 2025-2026,0.573695,-42.630459,TJHSST participation would need to fall by this relative amount if participant yield were otherwise unchanged.
+Base-public pooled participant-yield increase eliminated,Classes 2023-2024 vs 2025-2026,1.157956,15.795605,Base-public participation would need to rise by this relative amount if participant yield were otherwise unchanged.
+Combined-public component-standardized shortfall eliminated,Classes 2023-2024 vs 2025-2026,0.866728,-13.327164,A common participation decline of this relative size would make the participation-scaled component baseline equal observed public NMSFs.
+TJHSST Class 2025 participant-yield decline eliminated,Class 2024 vs Class 2025,0.429545,-57.045455,TJHSST participation would need to fall by this relative amount to explain the annual enrolled-rate decline mechanically.
+TJHSST Class 2026 gap from Class 2024 eliminated,Class 2024 vs Class 2026,0.577473,-42.252738,TJHSST participation would need to fall by this relative amount to explain the annual enrolled-rate gap mechanically.
+Base-public Class 2025 participant-yield change is zero,Class 2024 vs Class 2025,0.990682,-0.931754,The immediate base-public direction flips around this small participation change.
+Base-public Class 2026 increase from Class 2025 eliminated,Class 2025 vs Class 2026,1.311707,31.170664,Base-public participation would need to rise by this relative amount to explain the annual enrolled-rate increase mechanically.
+Combined-public Class 2026 gap from Class 2024 eliminated,Class 2024 vs Class 2026,0.978327,-2.167305,The exact just-below versus just-above Class 2024 direction flips around this small common participation change.

@@ -24,7 +24,9 @@ Pooling Classes 2023-2024 against 2025-2026, raw counts rise by **67** at balanc
 
 That raw comparison overstates redistribution because grade-11 enrollment grew. Applying each group's 2023-2024 rate to its actual 2025-2026 enrollment yields a **144.2-student TJHSST shortfall** and a **53.7-student base-school excess**. The enrollment-standardized offset is therefore only **37.3%**, leaving the balanced public panel about **90.4 semifinalists below** its component-specific baseline-rate expectation. Using TJHSST's longer 2019-2024 baseline gives a similar offset of **36.3%**.
 
-The most defensible interpretation is therefore **partial and delayed redistribution, plus a net regional shortfall relative to prior group-specific rates**—not full displacement of former TJHSST semifinalists into base schools.
+The participation check does not overturn that pooled result within a source-backed Virginia benchmark or the wider group-specific ±10% grid. It does show that the offset percentage is imprecise—ranging from **11.1% to 79.5%**—and that near-zero annual comparisons should be described as approximately flat rather than directionally definitive.
+
+The most defensible interpretation is therefore **partial and delayed redistribution, plus a net regional shortfall relative to prior group-specific rates within the tested participation range**—not full displacement of former TJHSST semifinalists into base schools.
 
 ### What the private-school counts add
 
@@ -203,7 +205,32 @@ The base-school increase is heterogeneous rather than universal. Comparing poole
 
 The Class 2026 increase is strongest in FCPS Regions 1, 2, and 5. FCPS Region 3 remains low, Region 4 falls from its 2025 spike, and Loudoun is close to its 2024 rate. The aggregate base-school gain should therefore not be described as a uniform zone-wide shift.
 
-### 4. Private-school count coverage and denominator limits
+### 4. PSAT participation sensitivity
+
+The panel does not contain school-level PSAT/NMSQT participation. College Board's Virginia reports provide a useful external scale: the reported statewide 11th-grade participation rate is **50% for Classes 2023 and 2024 and 49% for Classes 2025 and 2026**. Using the reports' underlying taker and enrollment counts, the pooled post/pre participation ratio is **-2.4%**.[^robustness_participation] This is a statewide benchmark, not an estimate for TJHSST or the balanced base-school panel.
+
+The sensitivity model writes the enrolled NMSF rate as participation multiplied by NMSF yield among participants. For each scenario, it scales the pre-period expected post count by the assumed post/pre participation ratio. The model is proportional and does not assume that marginal test takers have the same score distribution; it is a stress test, not identification.
+
+| Participation assumption | TJ pooled participant-yield change | Base pooled participant-yield change | Standardized offset | Public shortfall |
+|---|---|---|---|---|
+| No participation change | -42.6% | +15.8% | 37.3% | 90.4 |
+| VA benchmark applied to both (-2.4%) | -41.2% | +18.7% | 45.5% | 74.1 |
+| Group-specific ±10% grid | -47.8% to -36.3% | +5.3% to +28.7% | 11.1% to 79.5% | 22.6 to 158.3 |
+
+Applying the Virginia benchmark to both groups leaves the qualitative pooled result intact: TJHSST's participant-yield proxy remains **-41.2% lower**, the base-public proxy remains **+18.7% higher**, the offset is still partial at **45.5%**, and the balanced public panel remains **74.1 NMSFs below** the participation-scaled component baseline.
+
+Every combination in the wider group-specific ±10% grid preserves those same four qualitative pooled findings. The offset magnitude is not stable, however: it spans **11.1% to 79.5%**. Participation uncertainty therefore weakens precision more than direction within this band.
+
+The break-even thresholds show where conclusions can change:
+
+- Eliminating the pooled TJHSST participant-yield decline would require a **42.6% relative participation drop** from the pre period.
+- Eliminating the pooled base-public participant-yield increase would require a **+15.8% participation increase**.
+- Eliminating the component-standardized combined-public shortfall under a common participation change would require a **13.3% decline**, compared with the Virginia benchmark's 2.4% decline.
+- Narrow annual wording is fragile: the Class 2024-to-2025 base-public direction flips around a **-0.9%** participation change, and the combined-public Class 2026 just-below/just-above Class 2024 direction flips around **-2.2%**. Applying the exact Virginia Class 2024-to-2026 participation ratio makes the combined-public participant-yield proxy **+0.1%**, effectively flat.
+
+The sensitivity check therefore supports the pooled conclusion of a large TJHSST decline, a positive but incomplete base-school offset, and a remaining combined-public shortfall under statewide-like or ±10% participation changes. It does **not** support precision about the offset percentage or whether a near-flat annual comparison is fractionally above or below zero.
+
+### 5. Private-school count coverage and denominator limits
 
 | Class | Private count rows observed | Missing rows | Full observed total | Balanced 16-school total | Rate-compatible rows |
 |---|---|---|---|---|---|
@@ -216,7 +243,7 @@ All 16 rostered private-school rows now have source-backed focal-period counts a
 
 That is a real private-sector right-tail count signal. The limitation is narrower: counts alone still do not identify enrollment-normalized rates, residency, TJ eligibility, applications, or counterfactual base schools. No rate-compatible private panel exists for Classes 2024-2026 because private denominators remain unavailable in 2024 and 2026.
 
-### 5. Excluding non-conventional programs
+### 6. Excluding non-conventional programs
 
 H-B Woodlawn is the only `public_secondary_program` row. It has no grade-11 denominator in the panel, so it never contributes to a covered rate.
 
@@ -231,13 +258,13 @@ Excluding it changes the observed base-public count by only 1-6 students per yea
 
 The 108-row manual-review queue includes 76 excluded duplicate public school count; 11 excluded nonroster school; 7 excluded tjhsst resident subset; 5 excluded duplicate private school count; 5 missing school year source; 3 excluded tjhsst former pwcs student; 1 source incomplete unattributed total. They are not added because doing so could double count schools or TJHSST, turn source gaps into zeros, or mix resident totals with school totals.
 
-### 6. Is Class 2025 isolated?
+### 7. Is Class 2025 isolated?
 
 At TJHSST, Class 2025 is the sharpest break, but Class 2026 is not a return to the earlier range. Across Classes 2019-2024, TJHSST averaged **33.296 NMSF per 100 juniors** on a pooled denominator and never fell below **28.633** or **132 semifinalists**. Class 2026's **21.606 per 100** and **113 semifinalists** remain below both pre-policy minima.
 
 For the balanced base-public panel, by contrast, 2023-2025 are nearly flat (0.576, 0.589, 0.583), followed by a distinct 2026 increase to 0.765. Thus, the evidence does **not** show a smooth post-policy trend. It shows a TJHSST break in 2025, a partial TJHSST rebound in 2026, and a base-school rise concentrated in 2026.
 
-### 7. Virginia cutoff and statewide normalization
+### 8. Virginia cutoff and statewide normalization
 
 More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors nationally and are named on a state-representational basis.[^robustness_nmsc] The canonical panel now carries source-backed Virginia statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media lists; the Class 2025 statewide total remains unsourced in the panel. Virginia cutoff values are still supplemental secondary-source checks.[^robustness_cutoffs][^robustness_state]
 
@@ -252,7 +279,7 @@ Class 2026 statewide-denominator caveat: the committed supplied-list snapshot to
 
 Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. On the mixed-source statewide denominator, the balanced public share falls from **70.4% in 2024** to **63.7% in 2025** and recovers only to **68.2% in 2026**. TJHSST's share remains far below 2024 (35.1% to 20.6% to 22.9%). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
 
-### 8. COVID, digital testing, and cohort timing
+### 9. COVID, digital testing, and cohort timing
 
 - FCPS provided virtual instruction in spring and fall 2020, then phased in concurrent instruction beginning in February 2021.[^robustness_virtual]
 - FCPS reopened all schools for five-day in-person learning in August 2021, with 99.5% of students returning in person.[^robustness_inperson]
@@ -261,7 +288,7 @@ Virginia's cutoff moved within a narrow high-end band in the focal period: 219 i
 
 The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, and cohort-composition changes.
 
-### 9. Admissions mechanism interpretation
+### 10. Admissions mechanism interpretation
 
 The adopted process should not be described as random selection. On December 17, 2020, the Board rejected the proposed “Hybrid Merit Lottery” motion and adopted a holistic-review motion effective for the class entering in fall 2021.[^robustness_board] For the Class of 2025, FCPS replaced the prior admissions tests and teacher recommendations, raised the minimum GPA, used essays/holistic review and experience factors, expanded the class toward 550, and provided a 1.5% public-middle-school allocation with remaining seats unallocated.[^robustness_court][^robustness_profile] An official January 2021 application bulletin confirms the Class 2025 application, eligibility, Student Portrait Sheet, essay, and calendar details.[^robustness_class25]
 
@@ -285,6 +312,9 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 - `reports/tables/analysis_manual_review_issue_counts.csv`
 - `reports/tables/analysis_offset_decomposition.csv`
 - `reports/tables/analysis_rate_standardized_offset_decomposition.csv`
+- `reports/tables/analysis_psat_participation_benchmark.csv`
+- `reports/tables/analysis_participation_sensitivity.csv`
+- `reports/tables/analysis_participation_break_even.csv`
 - `reports/tables/analysis_public_concentration.csv`
 - `reports/tables/analysis_state_normalization_supplemental.csv`
 - `reports/tables/analysis_cohort_timing.csv`
@@ -299,6 +329,7 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 [^robustness_virtual]: Fairfax County Public Schools, *FCPS 2020-21 Evaluation Report*, https://www.fcps.edu/sites/default/files/media/pdf/FCPS_2020_21_Evaluation_Report_0.pdf.
 [^robustness_inperson]: Fairfax County Public Schools, *FCPS This Week — August 25, 2021*, https://www.fcps.edu/sites/default/files/2022-02/Award%20Vax%20Up%20FCPS%20This%20Week%20-%20August%2025%2C%202021.pdf.
 [^robustness_digital]: College Board, *How to Get Ready for the Digital PSAT/NMSQT*, https://blog.collegeboard.org/how-get-ready-digital-psat-nmsqt.
+[^robustness_participation]: College Board, Virginia SAT Suite of Assessments Annual Reports for 2022-2025; URLs and reported counts are recorded in `reports/tables/analysis_psat_participation_benchmark.csv`.
 [^robustness_board]: Fairfax County School Board, December 17, 2020 minutes, https://go.boarddocs.com/vsba/fairfax/Board.nsf/files/BY5JH34D3388/%24file/12-17-20%20ERM%20FINAL.pdf.
 [^robustness_court]: Fairfax County School Board court filing with the Jeremy Shughart declaration and Regulation 3355.14 exhibit, March 4, 2022, https://www.ffxnow.com/files/2022/03/FCPS-Brief-in-Support-of-Motion-to-Stay-Pending-Appeal.pdf.
 [^robustness_reg15]: Archived copy of Fairfax County Public Schools Regulation 3355.15, effective November 9, 2021, https://valor-dictus.com/wp-content/uploads/2022/05/R3355.pdf. A local copy is archived at `docs/source_notes/FCPS Regulation 3355.15 TJHSST Admissions.pdf`.
@@ -321,6 +352,8 @@ NMSC itself cautions that its qualifying data do not measure the quality or effe
 The denominator is grade-11 enrollment, not the number of eligible juniors who actually took the PSAT/NMSQT. Schools and districts can differ in test-day participation, absenteeism, alternative testing, and whether all juniors are tested. COVID disrupted schooling and test access, and the panel has no school-year PSAT participation control.[^limitations_virtual]
 
 Therefore, `NMSF per 100 juniors` is an outcome-rate proxy, not a direct qualification rate among test takers. A school could change its measured rate because participation changed even if the score distribution among test takers did not.
+
+The source-backed Virginia benchmark and proportional sensitivity grid bound this concern without resolving it. Virginia's pooled participation declines only 2.4% between the focal pre and post periods, and every group-specific ±10% scenario preserves the pooled TJHSST decline, positive base-public increase, partial offset, and combined-public shortfall. The offset magnitude remains highly sensitive, and exact near-zero annual comparisons can flip sign. These checks do not substitute for school-level participation or score distributions.
 
 ### 3. Statewide normalization and test-form changes
 
@@ -423,6 +456,7 @@ The defensible claim is narrow: the data describe changes in source-backed NMSF 
 - Balanced 54-school public panel including TJHSST: 1.094 versus 0.989 (-9.6%).
 - TJHSST's share of balanced public NMSFs falls from 49.8% in Class 2024 to 32.3% in Class 2025 and 33.5% in Class 2026.
 - Raw pooled counts imply that base-school gains offset 65.0% of TJHSST's decline; the enrollment-standardized decomposition reduces the offset to 37.3% and leaves a 90.4-student combined-public shortfall relative to component-specific baseline rates.
+- The Virginia participation benchmark and every group-specific ±10% participation scenario preserve the pooled TJHSST decline, positive base-public increase, partial offset, and combined-public shortfall; the offset spans 11.1%-79.5% across that grid.
 - Private-school counts are complete for the focal period and rise by 22 pooled post-period NMSFs, but private-school denominator and eligibility context remain too limited to establish an offset.
 
 These are descriptive results, not causal estimates or measures of median achievement or school culture.

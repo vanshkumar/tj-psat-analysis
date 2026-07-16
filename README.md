@@ -38,6 +38,13 @@ defensible conclusions are:
   leaves a shortfall relative to the groups' prior rates. These annual and pooled
   comparisons answer different questions and should not be treated as
   interchangeable.
+- College Board's Virginia benchmark is nearly flat—reported 11th-grade
+  PSAT/NMSQT participation is 50% for Classes 2023-2024 and 49% for Classes
+  2025-2026. Applying that benchmark or a wider group-specific ±10% stress grid
+  preserves the pooled TJHSST decline, positive base-public increase, partial
+  offset, and combined-public shortfall. The offset itself ranges from 11.1% to
+  79.5%, so its direction is more robust than its magnitude; near-zero annual
+  comparisons can flip sign.
 - The 16 rostered private schools have complete source-backed focal-period counts:
   47 NMSFs in Classes 2023-2024 and 69 in Classes 2025-2026. Missing comparable
   denominators, residence, eligibility, and counterfactual-placement data prevent

@@ -1418,6 +1418,8 @@ The denominator is grade-11 enrollment, not the number of eligible juniors who a
 
 Therefore, `NMSF per 100 juniors` is an outcome-rate proxy, not a direct qualification rate among test takers. A school could change its measured rate because participation changed even if the score distribution among test takers did not.
 
+The source-backed Virginia benchmark and proportional sensitivity grid bound this concern without resolving it. Virginia's pooled participation declines only {fmt_pct(abs(100 * (va_post_vs_pre_participation_ratio - 1)))} between the focal pre and post periods, and every group-specific ±10% scenario preserves the pooled TJHSST decline, positive base-public increase, partial offset, and combined-public shortfall. The offset magnitude remains highly sensitive, and exact near-zero annual comparisons can flip sign. These checks do not substitute for school-level participation or score distributions.
+
 ## 3. Statewide normalization and test-form changes
 
 Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. The supplemental analysis uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
@@ -1629,7 +1631,9 @@ Pooling Classes 2023-2024 against 2025-2026, raw counts rise by **{fmt_int(base_
 
 That raw comparison overstates redistribution because grade-11 enrollment grew. Applying each group's 2023-2024 rate to its actual 2025-2026 enrollment yields a **{fmt_rate(tj_deficit_common, 1)}-student TJHSST shortfall** and a **{fmt_rate(base_excess_common, 1)}-student base-school excess**. The enrollment-standardized offset is therefore only **{fmt_pct(rate_adjusted_offset_common)}**, leaving the balanced public panel about **{fmt_rate(public_shortfall_common, 1)} semifinalists below** its component-specific baseline-rate expectation. Using TJHSST's longer 2019-2024 baseline gives a similar offset of **{fmt_pct(rate_adjusted_offset_extended)}**.
 
-The most defensible interpretation is therefore **partial and delayed redistribution, plus a net regional shortfall relative to prior group-specific rates**—not full displacement of former TJHSST semifinalists into base schools.
+The participation check does not overturn that pooled result within a source-backed Virginia benchmark or the wider group-specific ±10% grid. It does show that the offset percentage is imprecise—ranging from **{fmt_pct(stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].min())} to {fmt_pct(stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].max())}**—and that near-zero annual comparisons should be described as approximately flat rather than directionally definitive.
+
+The most defensible interpretation is therefore **partial and delayed redistribution, plus a net regional shortfall relative to prior group-specific rates within the tested participation range**—not full displacement of former TJHSST semifinalists into base schools.
 
 ## What the private-school counts add
 
@@ -1669,6 +1673,7 @@ Generated: {TODAY}
 - Balanced {len(balanced_public_rate_ids)}-school public panel including TJHSST: {fmt_rate(pre_pub_rate)} versus {fmt_rate(post_pub_rate)} ({fmt_pct(pct_change(post_pub_rate, pre_pub_rate))}).
 - TJHSST's share of balanced public NMSFs falls from {fmt_pct(tj_public_share[2024])} in Class 2024 to {fmt_pct(tj_public_share[2025])} in Class 2025 and {fmt_pct(tj_public_share[2026])} in Class 2026.
 - Raw pooled counts imply that base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline; the enrollment-standardized decomposition reduces the offset to {fmt_pct(rate_adjusted_offset_common)} and leaves a {fmt_rate(public_shortfall_common, 1)}-student combined-public shortfall relative to component-specific baseline rates.
+- The Virginia participation benchmark and every group-specific ±10% participation scenario preserve the pooled TJHSST decline, positive base-public increase, partial offset, and combined-public shortfall; the offset spans {fmt_pct(stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].min())}-{fmt_pct(stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].max())} across that grid.
 - Private-school counts are complete for the focal period and rise by {fmt_int(private_pooled_gain)} pooled post-period NMSFs, but private-school denominator and eligibility context remain too limited to establish an offset.
 
 These are descriptive results, not causal estimates or measures of median achievement or school culture.
@@ -1741,6 +1746,10 @@ This file records external sources used for interpretation and supplemental chec
 - Fairfax County Public Schools, current freshman application and seat-allocation process: {URLS["fcps_current"]}
 - Fairfax County School Board numeric index listing R3355 and N3355: {URLS["fcps_index"]}
 - College Board, digital PSAT/NMSQT transition: {URLS["collegeboard_digital"]}
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2023: {VA_PSAT_PARTICIPATION[2023]["source_url"]}
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2024: {VA_PSAT_PARTICIPATION[2024]["source_url"]}
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2025: {VA_PSAT_PARTICIPATION[2025]["source_url"]}
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2026: {VA_PSAT_PARTICIPATION[2026]["source_url"]}
 - FCPS, 2020-21 virtual-learning evaluation: {URLS["fcps_virtual_eval"]}
 - FCPS, five-day in-person reopening update, August 25, 2021: {URLS["fcps_in_person_2021"]}
 - Fairfax County School Board, December 17, 2020 admissions vote minutes: {URLS["board_minutes_2020"]}
@@ -1799,6 +1808,10 @@ Archived annual Notice 3355 documents for the Class of 2025 and Class of 2026 ad
         "tj_2026_share_of_balanced_public_nmsf_pct": tj_public_share[2026],
         "raw_base_gain_as_pct_of_tj_decline": offset_pct,
         "rate_standardized_base_excess_as_pct_of_tj_shortfall": rate_adjusted_offset_common,
+        "virginia_pooled_post_vs_pre_participation_ratio": va_post_vs_pre_participation_ratio,
+        "virginia_benchmark_offset_pct": va_participation_scenario["base_excess_as_pct_of_tjhsst_shortfall"],
+        "participation_grid_min_offset_pct": stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].min(),
+        "participation_grid_max_offset_pct": stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].max(),
     }
     pd.DataFrame([validation]).to_csv(
         REPORTS / "tables" / "analysis_validation_summary.csv", index=False, float_format="%.9f"

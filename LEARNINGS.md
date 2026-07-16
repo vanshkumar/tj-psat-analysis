@@ -369,6 +369,11 @@
 - Action: Distinguish the Class 2025 full-zone count gap from the larger participation, applicant-pathway, private-denominator, and counterfactual-data limitations; do not impute the five missing school counts from adjacent years.
 - Confidence: high
 
+**2026-07-16 - PSAT participation sensitivity**
+- Observation: College Board's Virginia reports show 11th-grade PSAT/NMSQT participation at 50%, 50%, 49%, and 49% for Classes 2023-2026; applying that benchmark or a group-specific ±10% relative-change grid preserves the pooled TJHSST decline, positive base-public increase, partial offset, and combined-public shortfall, while the standardized offset spans 11.1%-79.5% and near-zero annual comparisons can flip sign.
+- Action: Describe the pooled participation-sensitivity direction as robust only within the tested range, treat the exact offset percentage and near-flat annual directions as imprecise, and replace the benchmark scenarios when school-level participation becomes available.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**

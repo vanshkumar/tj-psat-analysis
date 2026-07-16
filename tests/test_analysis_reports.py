@@ -66,6 +66,75 @@ class AnalysisReportsTest(unittest.TestCase):
             shortfall = float(row["balanced_public_shortfall_vs_component_baseline"])
             self.assertTrue(math.isclose(expected_public - observed_public, shortfall, abs_tol=1e-6))
 
+    def test_virginia_participation_benchmark_is_source_backed_and_nearly_flat(self) -> None:
+        rows = read_rows(TABLES / "analysis_psat_participation_benchmark.csv")
+        self.assertEqual([int(row["class_year"]) for row in rows], [2023, 2024, 2025, 2026])
+        self.assertEqual(
+            [int(row["reported_participation_rate_pct"]) for row in rows],
+            [50, 50, 49, 49],
+        )
+        self.assertTrue(
+            all(row["source_url"].startswith("https://reports.collegeboard.org/") for row in rows)
+        )
+
+        pre_takers = sum(int(row["virginia_psat_nmsqt_takers"]) for row in rows[:2])
+        pre_enrollment = sum(int(row["virginia_grade11_enrollment"]) for row in rows[:2])
+        post_takers = sum(int(row["virginia_psat_nmsqt_takers"]) for row in rows[2:])
+        post_enrollment = sum(int(row["virginia_grade11_enrollment"]) for row in rows[2:])
+        ratio = (post_takers / post_enrollment) / (pre_takers / pre_enrollment)
+        self.assertAlmostEqual(ratio, 0.975900581, places=6)
+
+    def test_participation_grid_preserves_pooled_qualitative_findings(self) -> None:
+        rows = read_rows(TABLES / "analysis_participation_sensitivity.csv")
+        benchmark = [row for row in rows if row["scenario_family"] == "statewide_benchmark"]
+        grid = [row for row in rows if row["scenario_family"] == "plus_or_minus_10pct_group_specific_grid"]
+        self.assertEqual(len(benchmark), 1)
+        self.assertEqual(len(grid), 25)
+        for row in grid:
+            self.assertEqual(row["tjhsst_participant_yield_below_pre"], "True")
+            self.assertEqual(row["base_public_participant_yield_above_pre"], "True")
+            self.assertEqual(row["partial_offset"], "True")
+            self.assertEqual(row["balanced_public_shortfall_positive"], "True")
+
+        offsets = [float(row["base_excess_as_pct_of_tjhsst_shortfall"]) for row in grid]
+        self.assertAlmostEqual(min(offsets), 11.080144, places=6)
+        self.assertAlmostEqual(max(offsets), 79.543798, places=6)
+        self.assertAlmostEqual(
+            float(benchmark[0]["base_excess_as_pct_of_tjhsst_shortfall"]),
+            45.544913,
+            places=6,
+        )
+
+    def test_participation_break_even_thresholds_identify_fragile_claims(self) -> None:
+        rows = {row["finding"]: row for row in read_rows(TABLES / "analysis_participation_break_even.csv")}
+        self.assertAlmostEqual(
+            float(
+                rows["TJHSST pooled participant-yield decline eliminated"][
+                    "required_relative_participation_change_pct"
+                ]
+            ),
+            -42.630459,
+            places=6,
+        )
+        self.assertAlmostEqual(
+            float(
+                rows["Combined-public component-standardized shortfall eliminated"][
+                    "required_relative_participation_change_pct"
+                ]
+            ),
+            -13.327164,
+            places=6,
+        )
+        self.assertAlmostEqual(
+            float(
+                rows["Combined-public Class 2026 gap from Class 2024 eliminated"][
+                    "required_relative_participation_change_pct"
+                ]
+            ),
+            -2.167305,
+            places=6,
+        )
+
     def test_tied_rank_tables_have_deterministic_secondary_ordering(self) -> None:
         count_rows = read_rows(TABLES / "analysis_balanced_base_school_changes.csv")
         count_keys = [(-float(row["count_change_2025_2026"]), row["school_id"]) for row in count_rows]
@@ -79,6 +148,8 @@ class AnalysisReportsTest(unittest.TestCase):
         report = (ROOT / "reports" / "analysis.md").read_text(encoding="utf-8")
         self.assertIn("deconcentration away from TJHSST", report)
         self.assertIn("enrollment-standardized offset", report)
+        self.assertIn("PSAT participation sensitivity", report)
+        self.assertIn("Every combination in the wider group-specific ±10% grid", report)
         self.assertIn("do not establish that the admissions policy caused", report)
         self.assertIn("median TJHSST student or academic culture declined", report)
 

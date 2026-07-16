@@ -13,6 +13,10 @@ This file records external sources used for interpretation and supplemental chec
 - Fairfax County Public Schools, current freshman application and seat-allocation process: https://www.fcps.edu/about-fcps/registration/tjhsst-admissions/freshman-application-process
 - Fairfax County School Board numeric index listing R3355 and N3355: https://insys.fcps.edu/schoolboardapps/report_policy/cache/numeric-3000.htm
 - College Board, digital PSAT/NMSQT transition: https://blog.collegeboard.org/how-get-ready-digital-psat-nmsqt
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2023: https://reports.collegeboard.org/media/pdf/2022-virginia-sat-suite-of-assessments-annual-report.pdf
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2024: https://reports.collegeboard.org/media/pdf/2023-virginia-sat-suite-of-assessments-annual-report-ADA.pdf
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2025: https://reports.collegeboard.org/media/pdf/2024-virginia-sat-suite-of-assessments-annual-report-ADA.pdf
+- College Board, Virginia PSAT/NMSQT participation benchmark for Class 2026: https://reports.collegeboard.org/media/pdf/2025-virginia-sat-suite-of-assessments-annual-report%20ADA-v0.2.pdf
 - FCPS, 2020-21 virtual-learning evaluation: https://www.fcps.edu/sites/default/files/media/pdf/FCPS_2020_21_Evaluation_Report_0.pdf
 - FCPS, five-day in-person reopening update, August 25, 2021: https://www.fcps.edu/sites/default/files/2022-02/Award%20Vax%20Up%20FCPS%20This%20Week%20-%20August%2025%2C%202021.pdf
 - Fairfax County School Board, December 17, 2020 admissions vote minutes: https://go.boarddocs.com/vsba/fairfax/Board.nsf/files/BY5JH34D3388/%24file/12-17-20%20ERM%20FINAL.pdf
