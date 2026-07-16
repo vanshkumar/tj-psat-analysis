@@ -354,6 +354,11 @@
 - Action: Keep top-level limitations focused on unmeasured participation, digital-PSAT timing, COVID recovery, missing denominators, and missing counterfactual/applicant data; do not list enrollment shifts or threshold/tie effects as separate headline caveats.
 - Confidence: high
 
+**2026-07-16 - Conclusion graphic replacement**
+- Observation: `README.md` embeds the conclusion graphic directly from `reports/conclusion_graphic.png`.
+- Action: Replace that asset in place when updating the conclusion graphic so the README reference remains valid without a documentation edit.
+- Confidence: high
+
 ## What Has Failed
 
 **2026-06-19 - CI formatting check**
