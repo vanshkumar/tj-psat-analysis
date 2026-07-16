@@ -1,4 +1,4 @@
-"""Milestone 10 focal-period completion and source-discovery reporting."""
+"""Build focal-period completion and source-discovery reporting."""
 
 from __future__ import annotations
 
@@ -297,7 +297,7 @@ def build_focal_period_completion_report(
     lines = [
         "# Focal-Period Completion Report",
         "",
-        "Generated for Milestone 10 from the current focal-period observation layer, archived "
+        "Generated from the current focal-period observation layer, archived "
         "NMSC press-release source artifacts, and count-only complete Virginia list snapshots "
         "where available.",
         "",
@@ -429,7 +429,7 @@ def build_focal_period_completion_report(
         "source-backed count, zero-inference, and statewide-total sources.",
         "- Do not infer zeros for missing public or private rows from these press releases.",
         "- Treat a complete Class 2025 Virginia school-by-school list as optional future work, not "
-        "a prerequisite for closing Milestone 10.",
+        "a prerequisite for closing the public-source cleanup pass.",
         "- Retain the five targeted Class 2025 rows as `missing_source` unless a school-attributed "
         "count source or complete zero-inference scope appears.",
         "- Publish Virginia statewide-share metrics for source-backed complete-list years only; "

@@ -49,19 +49,14 @@
 - Action: Preserve source notes by default, but stage these specific deletions when publishing this repo state because the user explicitly confirmed them.
 - Confidence: high
 
-**2026-06-18 - Task plan status review**
-- Observation: `TASKS.md` is newly added with unchecked boxes, while the repo already contains tested first-milestone seed outputs and a partial FCPS NMSF pilot under `data/interim/` and `data/sources/`.
-- Action: Treat `TASKS.md` checkboxes as unsynced planning state until they are reconciled against repository artifacts and tests.
-- Confidence: high
-
-**2026-06-18 - Milestone 1 completion**
-- Observation: `scripts/build_seed_data.py` now emits both legacy interim files and milestone deliverables under `data/processed/`, plus `reports/data_quality/workbook_ingestion.md` and a byte-identical workbook copy under `data/manual/`.
-- Action: Use `python scripts/build_seed_data.py` as the single regeneration command for Milestone 1; keep `docs/source_notes/tj psat investigation.xlsx` and `data/manual/tj psat investigation.xlsx` hash-identical.
+**2026-06-18 - Seed-data completion**
+- Observation: `scripts/build_seed_data.py` emits both legacy interim files and processed deliverables, plus `reports/data_quality/workbook_ingestion.md` and a byte-identical workbook copy under `data/manual/`.
+- Action: Use `python scripts/build_seed_data.py` as the single seed-data regeneration command; keep `docs/source_notes/tj psat investigation.xlsx` and `data/manual/tj psat investigation.xlsx` hash-identical.
 - Confidence: high
 
 **2026-06-18 - Main-branch publishing**
 - Observation: The repository's active branch is `main` tracking `origin/main`, and the user's "merge & push everything" request applies directly to that branch rather than a feature branch PR.
-- Action: For this repo state, commit the confirmed Milestone 1 scope on `main` and push `origin/main`; do not create an extra `codex/` branch unless the user asks for PR-style review.
+- Action: For this repo state, commit the confirmed seed-data scope on `main` and push `origin/main`; do not create an extra `codex/` branch unless the user asks for PR-style review.
 - Confidence: high
 
 **2026-06-18 - TJ pathway assignment**
@@ -84,14 +79,14 @@
 - Action: Set `lineterminator="\n"` in project CSV writers and regenerate CSV outputs before publishing.
 - Confidence: high
 
-**2026-06-18 - Milestone 2 roster matching**
+**2026-06-18 - Roster matching**
 - Observation: The NCES CCD data-file API exposes the 2023-24 school directory ZIP, and matching public roster rows by LEA name plus normalized aliases resolves both Freedom High Schools. H-B Woodlawn needs the CCD spelling `HB Woodlawn Secondary Program`.
 - Action: Refresh `data/manual/public_school_nces_ids.csv` with `scripts/build_school_roster.py --ccd-directory-zip ...`; avoid name-only NCES matching for duplicated school names.
 - Confidence: high
 
 **2026-06-18 — NMSF panel integration**
-- Observation: `data/interim/panel_nmsf.csv` is built from `data/interim/panel_seed.csv`, so it does not include Milestone 3 denominators from `data/processed/enrollment_panel.csv`; Class 2026 parsed NMSF rows still have blank rates there.
-- Action: Use `data/processed/enrollment_panel.csv` when auditing post-Milestone-3 rates, and build the future analysis panel by joining NMSF observations to that processed enrollment panel rather than relying on `panel_nmsf.csv` alone.
+- Observation: `data/interim/panel_nmsf.csv` is built from `data/interim/panel_seed.csv`, so it does not include processed denominators from `data/processed/enrollment_panel.csv`; Class 2026 parsed NMSF rows still have blank rates there.
+- Action: Use `data/processed/enrollment_panel.csv` when auditing final rates, and build the analysis panel by joining NMSF observations to that processed enrollment panel rather than relying on `panel_nmsf.csv` alone.
 - Confidence: high
 
 **2026-06-18 — NMSF observation layer**
@@ -100,7 +95,7 @@
 - Confidence: high
 
 **2026-06-18 - NMSF source archiving**
-- Observation: FCPS NMSF release pages list individual student names, while Task 4 only needs source-backed school-level counts and archive hashes.
+- Observation: FCPS NMSF release pages list individual student names, while the observation layer needs only source-backed school-level counts and archive hashes.
 - Action: Archive FCPS releases as count-only snapshots under `data/raw/nmsf/fcps/`, record their SHA-256 hashes in `data/sources/source_manifest.yml`, and let manifest validation reject missing or changed archive files.
 - Confidence: high
 
@@ -129,12 +124,12 @@
 - Action: Keep these rows blank with machine-readable enrollment statuses in `enrollment_panel.csv`; do not backfill from adjacent years or similar schools.
 - Confidence: high
 
-**2026-06-19 - Milestone 5 readiness review**
-- Observation: At the start of Milestone 5, the NMSF manifest and observation framework passed tests, but the four-year pilot had source-backed rows only for FCPS Classes 2024-2026; Class 2023 and non-FCPS/public-private coverage remained `missing_source`.
-- Action: Start Milestone 5 with source collection and archival for Class 2023 FCPS plus LCPS, APS, PWCS, Falls Church City/Meridian, and verifiable private-school sources before building reconciliation outputs.
+**2026-06-19 - Focal-period readiness review**
+- Observation: At the start of focal-period collection, the NMSF manifest and observation framework passed tests, but the four-year slice had source-backed rows only for FCPS Classes 2024-2026; Class 2023 and non-FCPS/public-private coverage remained `missing_source`.
+- Action: Start focal-period collection with archival for Class 2023 FCPS plus LCPS, APS, PWCS, Falls Church City/Meridian, and verifiable private-school sources before building reconciliation outputs.
 - Confidence: high
 
-**2026-06-19 - Milestone 5 jurisdictional source handling**
+**2026-06-19 - Jurisdictional source handling**
 - Observation: APS and LCPS NMSF releases list resident students attending TJHSST separately from base-school lists, while the project panel treats TJHSST as one school row sourced from the FCPS/TJHSST release.
 - Action: Keep jurisdictional TJHSST subsets in count-only snapshots for source-total reconciliation, but exclude them from `nmsf_observations.csv` to avoid double counting or splitting TJHSST by residence.
 - Confidence: high
@@ -150,13 +145,13 @@
 - Confidence: high
 
 **2026-06-19 - Shared NMSF count CSV compatibility**
-- Observation: `data/sources/nmsf_counts.csv` is read by both the Milestone 4 observation builder with `school_aliases.csv` and the legacy interim panel applier with seed-workbook aliases only.
+- Observation: `data/sources/nmsf_counts.csv` is read by both the observation builder with `school_aliases.csv` and the legacy interim panel applier with seed-workbook aliases only.
 - Action: Use canonical-compatible source school names for rows like H-B Woodlawn, and keep provider-aware ambiguity resolution for duplicated public names such as Freedom High School.
 - Confidence: high
 
-**2026-06-19 - Milestone 5 queue interpretation**
+**2026-06-19 - Manual-review queue interpretation**
 - Observation: `reports/data_quality/manual_review_queue.csv` includes 175 true `missing_school_year_source` rows plus six intentional non-observation snapshot rows used for APS/LCPS TJHSST, Arlington Tech, and LCPS 2025 unattributed-total reconciliation.
-- Action: Use the reconciliation report's Source Gaps table, not the raw manual-review queue row count, when summarizing unresolved Milestone 5 source coverage.
+- Action: Use the reconciliation report's Source Gaps table, not the raw manual-review queue row count, when summarizing unresolved focal-period source coverage.
 - Confidence: high
 
 **2026-06-19 - PWCS NMSF source handling**
@@ -219,9 +214,9 @@
 - Action: For older LCPS Blackboard NMSF searches, fetch a September `PageType=14` module list page and search its titles before downloading individual `PageType=3` article pages.
 - Confidence: high
 
-**2026-06-19 - Task 6 sequencing**
+**2026-06-19 - Historical backfill sequencing**
 - Observation: Historical NMSF backfill beyond the official FCPS/TJHSST Classes 2019-2022 slice is optional robustness work, not a prerequisite for the analytical panel.
-- Action: Start Milestone 7 from the current observation statuses and compatible coverage; leave non-FCPS historical gaps as missing unless a high-payoff source appears later.
+- Action: Build the analysis panel from the current observation statuses and compatible coverage; leave non-FCPS historical gaps as missing unless a high-payoff source appears later.
 - Confidence: high
 
 **2026-06-19 - Historical FCPS NMSF backfill**
@@ -235,7 +230,7 @@
 - Confidence: high
 
 **2026-06-19 - Descriptive output aggregation**
-- Observation: Task 8 summaries can have source-backed observed NMSF counts without compatible rate denominators, especially for private-school rows and historical coverage gaps.
+- Observation: Descriptive summaries can have source-backed observed NMSF counts without compatible rate denominators, especially for private-school rows and historical coverage gaps.
 - Action: Keep observed count totals separate from rate-compatible count/enrollment totals in future descriptive or robustness outputs; do not reuse observed count totals as normalized-rate numerators when denominators are missing.
 - Confidence: high
 
@@ -244,24 +239,24 @@
 - Action: Treat Class 2025 statewide packet recovery as optional future work; keep those rows `missing_source` unless a school-attributed count source or complete zero-inference scope appears.
 - Confidence: high
 
-**2026-06-19 - Task 9 handoff**
+**2026-06-19 - Analysis handoff**
 - Observation: Robustness and interpretation can be handed off from `data/processed/analysis_panel.csv`, `reports/descriptive_results.md`, `reports/tables/`, and coverage/provenance reports; raw source snapshots are only needed for provenance audit or source-row disputes.
-- Action: For Task 9 drafting, provide the final panel, data dictionary, task/hypothesis framing, descriptive tables, final panel checks, NMSF reconciliation, and Regulation 3355.16; avoid substituting raw source archives for the generated coverage/status fields.
+- Action: For analysis drafting, provide the final panel, data dictionary, hypothesis framing, descriptive tables, final panel checks, NMSF reconciliation, and Regulation 3355.16; avoid substituting raw source archives for the generated coverage/status fields.
 - Confidence: high
 
-**2026-06-19 - Task 9 upload package**
+**2026-06-19 - Analysis upload package**
 - Observation: A ChatGPT Web handoff package is most usable when it preserves project-relative paths and includes a top-level README with the exact drafting prompt and interpretation guardrails.
-- Action: Put future upload bundles under `handoff/`, include `README_TASK*_HANDOFF.md`, and zip the whole task folder rather than flattening CSV/report filenames.
+- Action: Put future upload bundles under `handoff/`, include `README_HANDOFF.md`, and zip the whole handoff folder rather than flattening CSV/report filenames.
 - Confidence: high
 
-**2026-06-19 - Task 9 integration**
-- Observation: The web-completed Task 9 package included reproducible outputs plus package-only metadata; the durable repo artifacts are `scripts/build_task9_outputs.py`, `reports/robustness.md`, `reports/limitations.md`, `reports/initial_findings.md`, `reports/tables/task9_*.csv`, and Task 9 source notes.
+**2026-06-19 - Analysis integration**
+- Observation: The web-completed analysis package included reproducible outputs plus package-only metadata; the durable repo artifacts are the checked-in generator, consolidated analysis report, supporting tables, and research-source notes.
 - Action: Integrate completed task packages by copying repo-relative deliverables, regenerating outputs from the checked-in script, and deleting package metadata/folders after validation.
 - Confidence: high
 
-**2026-06-19 - Task 9 dependencies**
-- Observation: `scripts/build_task9_outputs.py` uses `pandas` and `numpy`, which were not in the original project dependency list; syncing those dependencies also creates `uv.lock`.
-- Action: Keep `pandas` and `numpy` declared in `pyproject.toml` and retain `uv.lock` so Task 9 regeneration works from a fresh environment.
+**2026-06-19 - Analysis dependencies**
+- Observation: `scripts/build_analysis_reports.py` uses `pandas` and `numpy`, which were not in the original project dependency list; syncing those dependencies also creates `uv.lock`.
+- Action: Keep `pandas` and `numpy` declared in `pyproject.toml` and retain `uv.lock` so analysis regeneration works from a fresh environment.
 - Confidence: high
 
 **2026-06-20 - Private NMSF coverage audit**
@@ -274,7 +269,7 @@
 - Action: Use it only for discovery or context, not as the canonical private-school enrollment source; ingest denominators from official NCES PSS public-use files by curated `PPIN`.
 - Confidence: high
 
-**2026-06-19 - Milestone 10 denominator cleanup**
+**2026-06-19 - Denominator cleanup**
 - Observation: The NCES CCD file-tool API exposes school membership ZIP URLs for Classes 2023-2025, but the 2021-22 membership download nests a `*_CSV.zip` whose CSV may require the system `unzip -p` fallback.
 - Action: Use `scripts/ingest_public_enrollment_nces_supplement.py` for targeted exact-NCES-ID public denominator backfills, and keep the nested-CSV streaming fallback in `enrollment.py`.
 - Confidence: high
@@ -299,7 +294,7 @@
 - Action: Archive these PDFs only as source-discovery evidence; continue searching for complete public media mirrors before creating Virginia-list counts, zeros, or statewide-share metrics.
 - Confidence: high
 
-**2026-06-19 - Milestone 10 complete-list search**
+**2026-06-19 - Complete-list search**
 - Observation: A broad public-source sweep did not locate complete Virginia school-by-school NMSF mirrors, but user-supplied NMSC Virginia media lists later resolved Classes 2023, 2024, and 2026; Class 2025 remains the only focal complete-list gap.
 - Action: Keep the search attempts in `reports/data_quality/focal_period_completion.md` as Class 2025 limitation evidence, and use `scripts/ingest_nmsc_virginia_lists.py` plus count-only snapshots for the supplied complete-list years.
 - Confidence: high
@@ -314,19 +309,19 @@
 - Action: Keep source PDFs only in the ignored `data/raw/nmsf/virginia/supplied_lists/` local directory, commit the count-only snapshots and `data/sources/virginia_statewide_totals.csv`, and leave Class 2025 unresolved until an equivalent complete list is found.
 - Confidence: high
 
-**2026-06-20 - Task 10 rerun handoff**
-- Observation: The Milestone 10 Web rerun package needs the `src/tj_psat_analysis/` package as well as the scripts, because the rebuild scripts import local package modules; raw supplied NMSC PDFs are unnecessary when count-only snapshots and source manifests are included.
+**2026-06-20 - Completion rerun handoff**
+- Observation: A web rerun package needs the `src/tj_psat_analysis/` package as well as the scripts, because the rebuild scripts import local package modules; raw supplied NMSC PDFs are unnecessary when count-only snapshots and source manifests are included.
 - Action: For future rerun handoffs, include `src/`, selected scripts, processed panels, source manifests, count-only snapshots, and key reports under repo-relative paths, but exclude raw supplied-list PDFs and student-name files.
 - Confidence: high
 
 **2026-06-22 - Full rebuild reproducibility audit**
-- Observation: A clean full-pipeline rebuild exposed a stale committed `data/interim/panel_nmsf.csv`, four source-name aliases that were present only in the generated CSV rather than roster code, and tied Task 9 rankings whose row order depended on pandas sort behavior.
+- Observation: A clean full-pipeline rebuild exposed a stale committed `data/interim/panel_nmsf.csv`, four source-name aliases that were present only in the generated CSV rather than roster code, and tied analytical rankings whose row order depended on pandas sort behavior.
 - Action: Regenerate the interim panel after every count-source update, keep source-specific aliases in `SOURCE_ALIASES_BY_SCHOOL_ID`, and use explicit secondary sort keys plus stable sorting for committed analytical tables.
 - Confidence: high
 
 **2026-06-22 - Raw versus enrollment-standardized offset**
 - Observation: Pooling Classes 2023-2024 against 2025-2026, raw base-school gains offset about 65% of TJHSST's count decline, but applying prior group-specific rates to actual post-period enrollment reduces the offset to about 37% and leaves a material combined-public shortfall.
-- Action: Report the raw decomposition only as a generous arithmetic upper view and pair it with `task9_rate_standardized_offset_decomposition.csv`; do not describe the raw 65% figure as measured student redistribution.
+- Action: Report the raw decomposition only as a generous arithmetic upper view and pair it with `analysis_rate_standardized_offset_decomposition.csv`; do not describe the raw 65% figure as measured student redistribution.
 - Confidence: high
 
 **2026-06-22 - Branch merge workflow**
@@ -335,8 +330,8 @@
 - Confidence: high
 
 **2026-06-22 - Documentation cleanup and generated reports**
-- Observation: Task 9 conclusions, source caveats, and completion summaries are partly generated from `scripts/build_task9_outputs.py`, while descriptive and data-quality wording comes from package modules.
-- Action: Update generator-owned report wording before regenerating reports, and keep static docs such as `README.md` and `TASKS.md` as concise status summaries rather than duplicating computed numeric claims.
+- Observation: Conclusions, source caveats, and integrity summaries are generated from `scripts/build_analysis_reports.py`, while descriptive and data-quality wording comes from package modules.
+- Action: Update generator-owned report wording before regenerating reports, and keep `README.md` and `docs/data_dictionary.md` as the only hand-maintained entry points rather than duplicating computed numeric claims.
 - Confidence: high
 
 **2026-06-22 - Private-school interpretation wording**
@@ -357,6 +352,21 @@
 **2026-07-16 - Conclusion graphic replacement**
 - Observation: `README.md` embeds the conclusion graphic directly from `reports/conclusion_graphic.png`.
 - Action: Replace that asset in place when updating the conclusion graphic so the README reference remains valid without a documentation edit.
+- Confidence: high
+
+**2026-07-16 - Conclusion artifact consistency audit**
+- Observation: `reports/analysis.md` reflects the current canonical panel and pooled enrollment-standardized analysis, while the conclusion graphic emphasizes the Class 2026 near-recovery; the artifacts therefore use different time comparisons to frame the regional result.
+- Action: When presenting both artifacts, distinguish the annual Class 2026 near-recovery from the pooled Classes 2025-2026 standardized shortfall rather than treating their headline wording as interchangeable.
+- Confidence: high
+
+**2026-07-16 - Documentation consolidation**
+- Observation: Washington-Liberty rename metadata previously cited a planning document, while the official APS history timeline establishes the name change as effective July 1, 2019.
+- Action: Keep school-history provenance independent of planning documentation, and regenerate the roster and downstream analysis panel after changing history metadata.
+- Confidence: high
+
+**2026-07-16 - Missing-data limitation audit**
+- Observation: The five missing Class 2025 public NMSF rows are excluded from the 53-school balanced base-public panel and therefore limit full-zone and pathway totals rather than directly entering the fixed-panel estimates; those five schools total 3, 9, and 7 NMSFs in the fully observed Classes 2023, 2024, and 2026.
+- Action: Distinguish the Class 2025 full-zone count gap from the larger participation, applicant-pathway, private-denominator, and counterfactual-data limitations; do not impute the five missing school counts from adjacent years.
 - Confidence: high
 
 ## What Has Failed

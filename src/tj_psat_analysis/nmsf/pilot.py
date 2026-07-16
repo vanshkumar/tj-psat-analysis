@@ -1,4 +1,4 @@
-"""Milestone 5 four-year NMSF pilot outputs."""
+"""Build the focal four-year NMSF observation and reconciliation outputs."""
 
 from __future__ import annotations
 
@@ -133,7 +133,7 @@ def build_reconciliation_report(
     lines = [
         "# NMSF Reconciliation 2023-2026",
         "",
-        "This report is generated for Milestone 5 from the source-backed NMSF observation layer.",
+        "This report is generated from the source-backed focal-period NMSF observation layer.",
         (
             "TJHSST is kept as one school row; jurisdictional or former-school "
             "TJHSST references in APS/LCPS/PWCS releases are excluded from the "

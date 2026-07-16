@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Milestone 7 analytical panel."""
+"""Build the analytical panel."""
 
 from __future__ import annotations
 

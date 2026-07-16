@@ -1,4 +1,4 @@
-"""Build Milestone 8 descriptive tables, figures, and report."""
+"""Build descriptive tables, figures, and the output inventory report."""
 
 from __future__ import annotations
 

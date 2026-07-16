@@ -1,8 +1,8 @@
-# Task 9 Web Research Sources
+# Analysis Research Sources
 
-Generated: 2026-06-22
+Generated: 2026-07-16
 
-This file records external sources used for Task 9 interpretation and supplemental checks. The canonical panel now includes source-backed Virginia statewide totals for complete-list years.
+This file records external sources used for interpretation and supplemental checks. The canonical panel includes source-backed Virginia statewide totals for complete-list years.
 
 ## Primary sources
 

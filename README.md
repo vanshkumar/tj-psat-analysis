@@ -1,78 +1,102 @@
-# tj-psat-analysis
+# TJHSST-Area PSAT Analysis
 
-![conclusion_graphic.png](reports/conclusion_graphic.png)
+![Summary of the main findings](reports/conclusion_graphic.png)
 
-Reproducible data pipeline and documentation for a TJHSST-area National Merit
-Semifinalist analysis.
+This repository builds a sourced, reproducible panel for studying National Merit
+Semifinalist (NMSF) outcomes in the TJHSST geographic area. It combines a
+canonical school roster, school-level NMSF observations, grade-11 enrollment
+denominators, validation reports, descriptive outputs, and a guarded
+interpretation of the results for graduating Classes 2019-2026.
 
-The repo builds a canonical school roster, source-backed NMSF observation layer,
-grade-11 enrollment denominator panel, analysis panel, figures, tables, and
-interpretive reports for graduating Classes 2019-2026. The source workbook
-`docs/source_notes/tj psat investigation.xlsx` remains the seed for roster and
-legacy enrollment inputs. Every numeric NMSF value, including zero, is routed
-through source metadata and hash validation.
+## Research question and claim boundary
 
-## Current Status
+The project asks whether TJHSST's post-2020 admissions change coincided with a
+change in extreme-right-tail PSAT outcomes at TJHSST and whether changes at base
+public or private schools offset that decline after accounting for class size.
+A TJHSST-only decline is not enough to answer that question, so the analysis
+tests regional and sector-level patterns as well.
 
-The core descriptive NMSF project is complete at the documented public-data
-stopping point.
+NMSF is a narrow outcome. It does not measure median achievement, student
+well-being, school quality, academic culture as a whole, or whether an admissions
+policy was good or bad. The analysis is descriptive, not causal: it does not
+observe school-level PSAT participation, applicants' counterfactual schools,
+student-level admissions pathways, or broader achievement distributions.
 
-What is complete:
+## Current findings
 
-- Canonical panel: 608 school-year rows, 76 schools, Classes 2019-2026.
-- Focal NMSF coverage: Classes 2023, 2024, and 2026 have complete count
-  coverage from source-backed lists; Class 2025 has five public rows left
-  `missing_source`.
-- Public denominator coverage: the fixed public rate panel covers 54 schools,
-  including TJHSST and 53 conventional base public schools.
-- Private counts: all 16 rostered private schools have source-backed counts for
-  Classes 2023-2026.
-- Private count signal: observed private-school NMSFs rise from 47 in Classes
-  2023-2024 to 69 in Classes 2025-2026, a post-period increase of 22.
-- Private rates: no balanced private rate panel exists because exact-year
-  private grade-11 denominators remain unavailable for Classes 2024 and 2026;
-  the 2023-24 NCES Private School Search locator is used only as an interim
-  Class 2025 denominator source.
-- Interpretation: reports support a narrow descriptive finding of reduced
-  NMSF concentration at TJHSST, partial and delayed base-school gains, and no
-  credible private-school rate or displacement-offset estimate.
+The public-data analysis is complete at the documented stopping point. The most
+defensible conclusions are:
 
-Known unresolved public-data items:
+- TJHSST's NMSF count and enrollment-normalized rate fall sharply in Class 2025
+  and partially rebound in Class 2026, while remaining below the pre-policy
+  range.
+- A balanced 53-school conventional base-public panel is nearly flat in Class
+  2025 and rises in Class 2026. The increase is delayed and heterogeneous rather
+  than a uniform regional shift.
+- The combined local public rate nearly returns to its Class 2024 level in Class
+  2026, but pooling Classes 2025-2026 and standardizing for enrollment still
+  leaves a shortfall relative to the groups' prior rates. These annual and pooled
+  comparisons answer different questions and should not be treated as
+  interchangeable.
+- The 16 rostered private schools have complete source-backed focal-period counts:
+  47 NMSFs in Classes 2023-2024 and 69 in Classes 2025-2026. Missing comparable
+  denominators, residence, eligibility, and counterfactual-placement data prevent
+  treating that increase as a measured displacement offset.
 
-- A complete Class 2025 Virginia school-by-school NMSF list would resolve the
-  remaining five public count gaps and allow source-backed Class 2025 statewide
-  shares.
-- The committed Class 2026 Virginia supplied-list snapshot totals 494
-  semifinalists, while the public NMSC 2026 guide cross-check lists Virginia at
-  489. Local school counts and zero-inference coverage are unchanged, but
-  statewide-share denominators should be treated as provisional until that
-  discrepancy is reconciled.
-- Historical non-FCPS Classes 2019-2022 backfill is optional robustness work,
-  not part of the current core analysis.
-- Stronger causal or school-context claims require non-public/public-records
-  data such as school-level PSAT participation and scores, TJ applicant/offers/
-  enrollment by source school and allocation pool, and broader upper-tail
-  outcomes.
+See `reports/analysis.md` for the full findings, robustness checks, limitations,
+and integrity summary.
 
-## Main Outputs
+## Coverage and unresolved items
 
-- `reports/conclusions.md`: compact decision-oriented summary.
-- `reports/robustness.md`: balanced panels, offsets, private sensitivity,
-  statewide normalization, and policy-source caveats.
-- `reports/limitations.md`: claim boundaries and missing-data limits.
-- `reports/initial_findings.md`: conservative interpretation of the results.
-- `reports/data_quality/focal_period_completion.md`: focal source gaps and
-  stopping decision.
-- `reports/descriptive_results.md`: generated figure/table inventory and
-  descriptive summaries.
-- `data/processed/analysis_panel.csv`: final analysis panel.
-- `docs/data_dictionary.md`: field, status, and output definitions.
-- `TASKS.md`: concise completion ledger and optional future work.
+- The canonical panel contains 608 rows: 76 schools across Classes 2019-2026.
+- Classes 2023, 2024, and 2026 have complete source-backed NMSF count coverage.
+- Class 2025 retains five public `missing_source` rows: Meridian, Loudoun Valley,
+  Park View, Tuscarora, and Woodgrove high schools. Their absence from incomplete
+  sources is not evidence of zero.
+- The fixed public rate panel contains TJHSST and 53 conventional base public
+  schools with compatible counts and denominators in every focal year.
+- The Class 2026 complete-list snapshot totals 494 Virginia semifinalists, while
+  the public NMSC guide lists 489. Local school counts and zero inference are
+  unchanged, but 2026 statewide-share metrics remain provisional.
+- Historical non-FCPS Classes 2019-2022 source backfill is optional and is not
+  required for the current focal-period conclusions.
+
+The highest-value additions are a complete Class 2025 Virginia school list,
+school-level PSAT participation and score distributions, exact-year private
+grade-11 denominators, TJHSST applicant/offer/enrollment records by source school
+and allocation pool, and broader upper-tail outcomes.
+
+## Documentation and outputs
+
+The repository intentionally keeps only two hand-maintained entry points:
+
+- `README.md`: project scope, status, workflow, and operating rules.
+- `docs/data_dictionary.md`: data products, fields, statuses, and output
+  semantics.
+
+Analytical Markdown, CSV, and SVG outputs under `reports/` are generated from
+committed inputs. `reports/conclusion_graphic.png` is the presentation graphic
+embedded above.
+
+- `reports/analysis.md`: consolidated findings, robustness checks, limitations,
+  and reproduction/integrity record.
+- `reports/descriptive_results.md`: descriptive figure and table inventory with
+  coverage warnings.
+- `reports/data_quality/`: roster, enrollment, source-reconciliation, and final
+  panel audit reports.
+- `reports/tables/` and `reports/figures/`: machine-readable analytical tables
+  and rendered charts.
+- `data/processed/analysis_panel.csv`: canonical analytical panel.
+
+Source-specific notes live next to the source artifacts. `data/raw/nmsf/README.md`
+documents the count-only NMSF snapshots, and
+`docs/source_notes/analysis_research_sources.md` records external sources used
+only for interpretation and supplemental checks.
 
 ## Reproduce
 
-After the uv environment has been synced, regenerate the committed artifacts
-with:
+Install the project and development dependencies once with `uv sync --extra
+dev`. Then regenerate the committed artifacts in dependency order:
 
 ```bash
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_seed_data.py
@@ -84,11 +108,11 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_pilot_2023_202
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_focal_period_completion.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_panel.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_descriptive_outputs.py
-UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_task9_outputs.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_reports.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 ```
 
-Development checks:
+Run the development checks with:
 
 ```bash
 UV_CACHE_DIR=.uv-cache uv run --no-sync python -m ruff format --check .
@@ -97,30 +121,47 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python -m mypy
 UV_CACHE_DIR=.uv-cache uv run --no-sync python -m unittest discover -s tests
 ```
 
-## Data Rules
+## Data and provenance rules
 
-- Do not use the workbook `nsmf 2019` sheet as count evidence.
-- Numeric NMSF counts require URL, title, date, and source hash.
-- A missing school in an incomplete article is blank, not zero.
-- `verified_zero` is valid only for complete named lists covering the relevant
+- Treat `docs/source_notes/tj psat investigation.xlsx` as the roster and legacy
+  enrollment seed. `data/manual/tj psat investigation.xlsx` is the byte-identical
+  pipeline copy.
+- Do not use the workbook sheet `nsmf 2019` as count evidence.
+- Every numeric NMSF count, including zero, requires a source URL, title, date,
+  and validated source hash.
+- A missing school in an incomplete article remains blank; it is not zero.
+- Use `verified_zero` only when a complete named list covers the relevant
   geography and class year.
-- TJHSST stays as one school row; do not split TJ students back to base
-  schools.
-- Private-school rows are non-public/unallocated analytical buckets. School
-  location alone does not establish residence, TJ eligibility, application
-  status, or counterfactual base school.
-- Grade-11 enrollment normalizes NMSF outcomes. It is not an admissions-seat
-  allocation denominator.
+- Keep TJHSST as one school row. Jurisdictional references to students attending
+  TJHSST are retained only for source reconciliation and are not split back to
+  base schools.
+- Preserve school renames, openings, and relocations in the roster history.
+- Private schools remain non-public/unallocated analytical buckets. School
+  location does not establish residence, TJ eligibility, application status, or
+  counterfactual public-school placement.
+- Grade-11 enrollment is an outcome denominator for NMSF rates, not an input to
+  TJHSST admissions-seat allocation.
 
-## Source Boundaries
+## Class-year mapping
 
-`docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf` supports the
-current roster treatment of non-public applicants and the unallocated-seat pool.
-It should not be applied retroactively as the governing regulation for the
-Class 2025 or Class 2026 admissions cycles. Task 9 interpretation instead uses
-Regulation 3355.14, Regulation 3355.15, official class-specific FCPS bulletins,
-Board materials, and the documented absence of archived annual Notice 3355
-procedures.
+| Graduating class | Qualifying PSAT | Grade-11 enrollment year |
+| ---: | ---: | ---: |
+| 2019 | Fall 2017 | 2017-18 |
+| 2020 | Fall 2018 | 2018-19 |
+| 2021 | Fall 2019 | 2019-20 |
+| 2022 | Fall 2020 | 2020-21 |
+| 2023 | Fall 2021 | 2021-22 |
+| 2024 | Fall 2022 | 2022-23 |
+| 2025 | Fall 2023 | 2023-24 |
+| 2026 | Fall 2024 | 2024-25 |
 
-The repo is intentionally conservative: when a source is incomplete, missing
-rows stay missing; when a denominator is unavailable, rates stay blank.
+## Admissions-policy source boundary
+
+Regulation 3355.16 supports the current roster treatment of non-public
+applicants and the unallocated-seat pool, but it became effective after the
+Class 2026 notification date and is not applied retroactively to the focal
+Classes 2025 or 2026. Historical interpretation uses Regulation 3355.14,
+Regulation 3355.15, official class-specific FCPS bulletins, Board materials, and
+the documented absence of archived annual Notice 3355 procedures. The reports
+describe the broad class-specific regimes without claiming that every
+implementation detail has been reconstructed.

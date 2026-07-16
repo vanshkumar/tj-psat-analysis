@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Milestone 5 four-year NMSF pilot outputs."""
+"""Build the focal four-year NMSF observation and reconciliation outputs."""
 
 from __future__ import annotations
 

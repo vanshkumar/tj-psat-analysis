@@ -1,6 +1,6 @@
 # Data Dictionary
 
-## Generated CSVs
+## Data Products and Reports
 
 - `data/interim/canonical_schools.csv`: canonical roster from the workbook `raw` sheet.
 - `data/interim/public_enrollment_raw.csv`: long-form transcription of public enrollment rows from `Sheet6`.
@@ -9,25 +9,25 @@
 - `data/interim/private_grade11_enrollment.csv`: private-school PSS survey-year grade 11 enrollment extract using `P290`, with `F_P290` preserved as `pss_imputation_flag`.
 - `data/interim/private_grade11_enrollment_pss_locator_2023_24.csv`: interim Class 2025 private-school denominator supplement parsed from archived NCES Private School Search 2023-24 locator pages using `PSS_ENROLL_11`; unresolved locator searches remain blank.
 - `data/interim/panel_seed.csv`: school-by-class-year panel with blank NMSF counts and source-pending statuses.
-- `data/interim/panel_nmsf.csv`: legacy interim seed panel plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`; it should not be treated as the final analytical panel because it is seed-based and does not include all Milestone 3 denominator updates.
-- `data/processed/analysis_panel.csv`: Milestone 7 analytical panel joining the canonical roster, class-year mapping, NMSF observations, enrollment denominators, school-history flags, row-level rates, and covered-subset pathway aggregates.
-- `data/processed/nmsf_observations.csv`: Milestone 4 NMSF observation layer with one row per school/class year, source-backed positive counts, source-backed complete-list zeros, explicit missingness, and no enrollment denominators or rates.
-- `data/processed/nmsf_observations_2023_2026.csv`: Milestone 5 four-year pilot slice filtered from `data/processed/nmsf_observations.csv` for Classes 2023-2026.
-- `data/processed/school_roster.csv`: Milestone 2 roster with canonical school IDs, pathway status, pathway assignment method, pathway source metadata, sector, district, NCES IDs where source-backed, and operating-year boundaries.
-- `data/processed/enrollment_panel.csv`: Milestone 3 school-by-class-year grade 11 enrollment denominator panel for public and private schools, with source metadata and explicit missingness statuses.
+- `data/interim/panel_nmsf.csv`: legacy interim seed panel plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`; it is not the final analytical panel because it is seed-based and does not include all processed denominator updates.
+- `data/processed/analysis_panel.csv`: analytical panel joining the canonical roster, class-year mapping, NMSF observations, enrollment denominators, school-history flags, row-level rates, and covered-subset pathway aggregates.
+- `data/processed/nmsf_observations.csv`: NMSF observation layer with one row per school/class year, source-backed positive counts, source-backed complete-list zeros, explicit missingness, and no enrollment denominators or rates.
+- `data/processed/nmsf_observations_2023_2026.csv`: focal-period slice filtered from `data/processed/nmsf_observations.csv` for Classes 2023-2026.
+- `data/processed/school_roster.csv`: roster with canonical school IDs, pathway status, pathway assignment method, pathway source metadata, sector, district, NCES IDs where source-backed, and operating-year boundaries.
+- `data/processed/enrollment_panel.csv`: school-by-class-year grade-11 enrollment denominator panel for public and private schools, with source metadata and explicit missingness statuses.
 - `data/manual/school_aliases.csv`: deterministic alias table. Rows with `join_allowed=false` are known ambiguous aliases and must not be used for automatic observation joins.
 - `data/manual/school_history.csv`: source-noted rename, opening, and relocation events used to keep historical names and not-operating years explicit.
 - `data/manual/public_school_nces_ids.csv`: source-backed public-school NCES IDs matched from the NCES CCD 2023-24 directory by division and normalized alias.
 - `data/manual/private_school_pss_ids.csv`: curated private-school PSS `PPIN` match table used to prevent name-only private-school joins.
 - `data/manual/private_school_pss_locator_2023_24.csv`: curated NCES Private School Search locator detail/search URLs for Class 2025 private-school denominator extraction.
-- `reports/data_quality/roster_review.md`: Milestone 2 roster coverage, alias conflicts, history review, admissions-pathway source summary, and pathway review status.
+- `reports/data_quality/roster_review.md`: roster coverage, alias conflicts, history review, admissions-pathway source summary, and pathway review status.
 - `reports/data_quality/enrollment_coverage.csv`: one coverage row for each school and class year in `data/processed/enrollment_panel.csv`.
-- `reports/data_quality/enrollment_coverage.md`: Milestone 3 denominator coverage summary, source list, and no-estimation rules.
-- `reports/data_quality/nmsf_source_registry.md`: Milestone 4 source-registry summary for NMSF observations, including status counts, source counts, and zero-inference rules.
-- `reports/data_quality/nmsf_reconciliation_2023_2026.md`: Milestone 5 reconciliation summary for the four-year pilot, including source reported totals, in-panel totals, excluded count-only snapshot totals, and remaining source gaps.
-- `reports/data_quality/manual_review_queue.csv`: Milestone 5 review queue for missing school-year sources plus source rows excluded from the panel, such as jurisdictional TJHSST subsets and non-roster schools. Use the reconciliation report's Source Gaps table, not the raw queue length, for the true unresolved-observation count.
-- `reports/data_quality/final_panel_checks.md`: Milestone 7 validation summary for the analytical panel, including uniqueness, source-provenance, rate-null, pathway-flag, and placeholder checks.
-- `reports/descriptive_results.md`: Milestone 8 descriptive report generated from `analysis_panel.csv`, with figure/table inventory, source-status summaries, TJ-zone count summaries, pre/post summaries, small-number warnings, and the unsourced Virginia-cutoff placeholder note.
+- `reports/data_quality/enrollment_coverage.md`: denominator coverage summary, source list, and no-estimation rules.
+- `reports/data_quality/nmsf_source_registry.md`: source-registry summary for NMSF observations, including status counts, source counts, and zero-inference rules.
+- `reports/data_quality/nmsf_reconciliation_2023_2026.md`: focal-period reconciliation summary, including source reported totals, in-panel totals, excluded count-only snapshot totals, and remaining source gaps.
+- `reports/data_quality/manual_review_queue.csv`: review queue for missing school-year sources plus source rows excluded from the panel, such as jurisdictional TJHSST subsets and non-roster schools. Use the reconciliation report's Source Gaps table, not the raw queue length, for the true unresolved-observation count.
+- `reports/data_quality/final_panel_checks.md`: validation summary for the analytical panel, including uniqueness, source-provenance, rate-null, pathway-flag, and placeholder checks.
+- `reports/descriptive_results.md`: descriptive report generated from `analysis_panel.csv`, with figure/table inventory, source-status summaries, TJ-zone count summaries, pre/post summaries, small-number warnings, and the unsourced Virginia-cutoff placeholder note.
 - `reports/tables/school_counts_by_year.csv`: school-by-class raw NMSF counts, count statuses, source metadata, and count-missingness notes.
 - `reports/tables/school_rates_by_year.csv`: school-by-class NMSF per 100 juniors, grade-11 denominators, rate statuses, and missingness notes.
 - `reports/tables/pathway_by_class_heatmap.csv`: source table for the pathway heatmap; all values are covered-subset aggregates with pathway coverage-status fields.
@@ -35,19 +35,16 @@
 - `reports/tables/tj_zone_counts_by_class.csv`: observed source-backed totals with and without TJHSST, plus missing-row counts.
 - `reports/tables/data_coverage_by_class.csv`: class-year row counts by rate-compatible coverage, NMSF gaps, denominator gaps, combined gaps, not-operating rows, and missing NMSF sources.
 - `reports/tables/pre_post_summary_2023_2024_vs_2025_2026.csv`: pre/post summaries for Classes 2023-2024 versus 2025-2026 by comparison group, with coverage and small-number flags.
-- `reports/figures/*.svg`: Milestone 8 dependency-light SVG charts generated by `scripts/build_descriptive_outputs.py`.
-- `reports/robustness.md`: Milestone 9 robustness report generated by `scripts/build_task9_outputs.py`, including balanced panels, TJHSST inclusion/exclusion, private-school missingness, program sensitivity, supplemental statewide normalization, cohort timing, and admissions-policy interpretation checks.
-- `reports/limitations.md`: Milestone 9 limitations report generated by `scripts/build_task9_outputs.py`, documenting missing PSAT participation, cutoff/test-format issues, incomplete private coverage, denominator limits, admissions-history gaps, and causal-design limits.
-- `reports/initial_findings.md`: Milestone 9 conservative findings report generated by `scripts/build_task9_outputs.py`, separating descriptive right-tail patterns from causal claims and broader school-culture claims.
-- `reports/tables/task9_*.csv`: Milestone 9 supporting robustness tables generated by `scripts/build_task9_outputs.py`; supplemental cutoff/statewide fields in these tables are not written back to the canonical panel.
-- `reports/task9_completion.md`: compact Task 9 completion record generated from the current analysis panel, including headline descriptive results and regeneration command.
+- `reports/figures/*.svg`: dependency-light SVG charts generated by `scripts/build_descriptive_outputs.py`.
+- `reports/analysis.md`: consolidated findings, robustness, limitations, and integrity report generated by `scripts/build_analysis_reports.py`.
+- `reports/tables/analysis_*.csv`: supporting analysis and robustness tables generated by `scripts/build_analysis_reports.py`; supplemental cutoff/statewide fields in these tables are not written back to the canonical panel.
 
 ## Source Notes
 
 - `docs/source_notes/tj psat investigation.xlsx`: seed workbook for roster and enrollment data.
-- `docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf`: admissions-policy source used by `data/processed/school_roster.csv` for current roster/pathway treatment. It supports not assigning private-school observations from school location alone because non-public applicants are considered for unallocated seats, and high-school pathway buckets are analytical geographies rather than observed admissions-pathway counts. It points to annual Notice 3355 materials for implementation details and does not by itself supply class-specific admissions outcomes. Task 9 does not apply Regulation 3355.16 retroactively as the governing regulation for focal Classes 2025 or 2026.
-- `docs/source_notes/FCPS Regulation 3355.15 TJHSST Admissions.pdf`: archived historical regulation used only for Task 9 interpretation of the Class 2026 admissions cycle; the annual Notice 3355 files were not recovered.
-- `docs/source_notes/task9_web_research_sources.md`: external interpretation and supplemental-check source list used by Milestone 9; those sources do not modify canonical NMSF counts or panel placeholders except when explicitly represented in source-backed local data files.
+- `docs/source_notes/FCPS Regulation 3355.16 TJHSST Admissions.pdf`: admissions-policy source used by `data/processed/school_roster.csv` for current roster/pathway treatment. It supports not assigning private-school observations from school location alone because non-public applicants are considered for unallocated seats, and high-school pathway buckets are analytical geographies rather than observed admissions-pathway counts. It points to annual Notice 3355 materials for implementation details and does not by itself supply class-specific admissions outcomes. The analysis does not apply it retroactively as the governing regulation for focal Classes 2025 or 2026.
+- `docs/source_notes/FCPS Regulation 3355.15 TJHSST Admissions.pdf`: archived historical regulation used for interpretation of the Class 2026 admissions cycle; the annual Notice 3355 files were not recovered.
+- `docs/source_notes/analysis_research_sources.md`: external interpretation and supplemental-check source list; those sources do not modify canonical NMSF counts or panel placeholders except when explicitly represented in source-backed local data files.
 
 ## Source CSVs
 
@@ -132,7 +129,7 @@
 
 ## Roster Statuses
 
-- `pathway_status=assigned`: the public-school or TJHSST roster row has a source-backed task-plan pathway.
+- `pathway_status=assigned`: the public-school or TJHSST roster row has a source-backed analytical pathway assignment.
 - `pathway_status=unallocated_private_applicant`: the private-school row is intentionally not assigned to an FCPS region or participating-jurisdiction pathway by school location because Regulation 3355.16 places non-public applicants in the unallocated-seat pool.
 - `pathway_assignment_method=base_school_region`: an FCPS public-school row is assigned from a seed-workbook high-school-to-region analytical bucket; Regulation 3355.16 allocates admissions seats by each public school's 8th-grade population.
 - `pathway_assignment_method=participating_jurisdiction`: a public-school row is assigned from the seed workbook to Arlington, Falls Church City, Loudoun, or Prince William as an analytical bucket; annual cooperating-division participation and actual admissions outcomes require separate sources.

@@ -361,7 +361,7 @@ def build_nmsf_source_report(
     lines = [
         "# NMSF Source Registry Report",
         "",
-        "This report is generated from the Milestone 4 NMSF observation builder.",
+        "This report is generated from the NMSF observation builder.",
         "Counts and verified zeros are stored separately from enrollment denominators.",
         "",
         "## Output Summary",

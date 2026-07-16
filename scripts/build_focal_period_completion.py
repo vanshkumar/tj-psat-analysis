@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Milestone 10 focal-period completion report."""
+"""Build the focal-period completion report."""
 
 from __future__ import annotations
 

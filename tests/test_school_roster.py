@@ -90,7 +90,9 @@ class SchoolRosterTest(unittest.TestCase):
             {"freedom_high_school_south_riding|freedom_high_school_woodbridge"},
         )
 
-        source_variants = {row["alias"]: row for row in aliases if row["source"] == "task5_patch_local_media"}
+        source_variants = {
+            row["alias"]: row for row in aliases if row["source"] == "local_media_source_alias"
+        }
         self.assertEqual(
             set(source_variants),
             {

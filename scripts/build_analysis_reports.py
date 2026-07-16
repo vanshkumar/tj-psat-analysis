@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Milestone 9 robustness tables and interpretation reports.
+"""Build robustness tables and the consolidated analysis report.
 
 Inputs
 ------
@@ -7,13 +7,9 @@ data/processed/analysis_panel.csv
 
 Outputs
 -------
-reports/robustness.md
-reports/limitations.md
-reports/initial_findings.md
-reports/conclusions.md
-reports/task9_completion.md
-reports/tables/task9_*.csv
-docs/source_notes/task9_web_research_sources.md
+reports/analysis.md
+reports/tables/analysis_*.csv
+docs/source_notes/analysis_research_sources.md
 
 The canonical panel provides source-backed Virginia statewide-total values for
 complete NMSC Virginia list years. Virginia cutoff values remain supplemental
@@ -41,13 +37,48 @@ SOURCE_NOTES = ROOT / "docs" / "source_notes"
 
 TJ_ID = "thomas_jefferson_high_school_for_science_and_technology"
 FOCAL_YEARS = [2023, 2024, 2025, 2026]
-TODAY = "2026-06-22"
+TODAY = "2026-07-16"
 
 # Supplemental cutoff values are intentionally NOT imported into analysis_panel.csv.
 VA_CUTOFF = {2023: 221, 2024: 219, 2025: 222, 2026: 224}
 VA_STATE_TOTAL_SECONDARY = {2025: 394}
 CUTOFF_SOURCE = "https://www.compassprep.com/historical-national-merit-cutoffs/"
 STATE_TOTAL_SOURCE = "https://www.compassprep.com/national-merit-semifinalists-by-state/"
+VA_PSAT_PARTICIPATION: dict[int, dict[str, str | int]] = {
+    2023: {
+        "testing_school_year": "2021-22",
+        "psat_nmsqt_takers": 51_714,
+        "grade11_enrollment": 103_313,
+        "reported_participation_rate_pct": 50,
+        "source_title": "2022 Virginia SAT Suite of Assessments Annual Report",
+        "source_url": "https://reports.collegeboard.org/media/pdf/2022-virginia-sat-suite-of-assessments-annual-report.pdf",
+    },
+    2024: {
+        "testing_school_year": "2022-23",
+        "psat_nmsqt_takers": 52_098,
+        "grade11_enrollment": 104_906,
+        "reported_participation_rate_pct": 50,
+        "source_title": "2023 Virginia SAT Suite of Assessments Annual Report",
+        "source_url": "https://reports.collegeboard.org/media/pdf/2023-virginia-sat-suite-of-assessments-annual-report-ADA.pdf",
+    },
+    2025: {
+        "testing_school_year": "2023-24",
+        "psat_nmsqt_takers": 52_259,
+        "grade11_enrollment": 107_119,
+        "reported_participation_rate_pct": 49,
+        "source_title": "2024 Virginia SAT Suite of Assessments Annual Report",
+        "source_url": "https://reports.collegeboard.org/media/pdf/2024-virginia-sat-suite-of-assessments-annual-report-ADA.pdf",
+    },
+    2026: {
+        "testing_school_year": "2024-25",
+        "psat_nmsqt_takers": 51_501,
+        "grade11_enrollment": 106_135,
+        "reported_participation_rate_pct": 49,
+        "source_title": "2025 Virginia SAT Suite of Assessments Annual Report",
+        "source_url": "https://reports.collegeboard.org/media/pdf/2025-virginia-sat-suite-of-assessments-annual-report%20ADA-v0.2.pdf",
+    },
+}
+PARTICIPATION_STRESS_CHANGES = [-0.10, -0.05, 0.0, 0.05, 0.10]
 STATEWIDE_2026_RECONCILIATION_NOTE = (
     "Class 2026 statewide-denominator caveat: the committed supplied-list snapshot totals "
     "494, while the public 2026 NMSC guide lists Virginia at 489 semifinalists. Treat "
@@ -254,10 +285,24 @@ def write_csv(df: pd.DataFrame, name: str) -> None:
     df.to_csv(TABLES / name, index=False, float_format="%.6f")
 
 
+def report_section(document: str, title: str, footnote_namespace: str) -> str:
+    """Convert a standalone Markdown report into a section of the combined report."""
+    lines = document.strip().splitlines()[1:]
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    if lines and lines[0].startswith("Generated: "):
+        lines.pop(0)
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    body = re.sub(r"^(#{1,5})(?= )", r"#\1", "\n".join(lines), flags=re.MULTILINE)
+    body = re.sub(r"\[\^([^]]+)\]", rf"[^{footnote_namespace}_\1]", body)
+    return f"## {title}\n\n{body}"
+
+
 def main() -> None:
     TABLES.mkdir(parents=True, exist_ok=True)
-    # Remove stale Task 9 artifacts from earlier drafts before regenerating.
-    for pattern in ("task9_*.csv", "task9_*.json"):
+    # Remove stale analytical artifacts from earlier drafts before regenerating.
+    for pattern in ("analysis_*.csv", "analysis_*.json"):
         for old_path in TABLES.glob(pattern):
             old_path.unlink()
 
@@ -305,7 +350,7 @@ def main() -> None:
     group_summary["rate_coverage_pct"] = (
         100 * group_summary["rate_compatible_rows"] / group_summary["operating_school_rows"]
     )
-    write_csv(group_summary, "task9_group_year_summary.csv")
+    write_csv(group_summary, "analysis_group_year_summary.csv")
 
     coverage = group_summary[group_summary["group"] == "All TJ-zone roster rows"].copy()
     coverage = coverage[
@@ -323,7 +368,7 @@ def main() -> None:
             "covered_nmsf_per_100_grade11",
         ]
     ]
-    write_csv(coverage, "task9_coverage_2023_2026.csv")
+    write_csv(coverage, "analysis_coverage_2023_2026.csv")
 
     # Balanced panels.
     balanced_count_ids = ids_complete(df, "nmsf_count_available", FOCAL_YEARS)
@@ -345,7 +390,7 @@ def main() -> None:
     ]:
         bc_rows.extend(balanced_count_summary(df, ids, name))
     balanced_counts = pd.DataFrame(bc_rows)
-    write_csv(balanced_counts, "task9_balanced_count_panel.csv")
+    write_csv(balanced_counts, "analysis_balanced_count_panel.csv")
 
     public_rate_mask = is_public_any
     balanced_public_rate_ids = ids_complete(df, "rate_input_compatible", FOCAL_YEARS, public_rate_mask)
@@ -359,7 +404,7 @@ def main() -> None:
     ]:
         br_rows.extend(balanced_rate_summary(df, ids, name))
     balanced_rates = pd.DataFrame(br_rows)
-    write_csv(balanced_rates, "task9_balanced_rate_panel.csv")
+    write_csv(balanced_rates, "analysis_balanced_rate_panel.csv")
 
     concentration_rows = []
     for year in FOCAL_YEARS:
@@ -382,7 +427,7 @@ def main() -> None:
             }
         )
     public_concentration = pd.DataFrame(concentration_rows)
-    write_csv(public_concentration, "task9_public_concentration.csv")
+    write_csv(public_concentration, "analysis_public_concentration.csv")
 
     # Membership audit.
     schools = df[df["class_year"] == 2026][
@@ -391,7 +436,9 @@ def main() -> None:
     schools["balanced_count_2023_2026"] = schools["school_id"].isin(balanced_count_ids)
     schools["balanced_public_rate_2023_2026"] = schools["school_id"].isin(balanced_public_rate_ids)
     schools["balanced_private_count_2023_2026"] = schools["school_id"].isin(private_balanced_ids)
-    write_csv(schools.sort_values(["analytical_unit_type", "school"]), "task9_balanced_panel_membership.csv")
+    write_csv(
+        schools.sort_values(["analytical_unit_type", "school"]), "analysis_balanced_panel_membership.csv"
+    )
 
     # Private missingness sensitivity.
     private_rows = []
@@ -422,7 +469,7 @@ def main() -> None:
             }
         )
     private_sens = pd.DataFrame(private_rows)
-    write_csv(private_sens, "task9_private_sensitivity.csv")
+    write_csv(private_sens, "analysis_private_sensitivity.csv")
     private_rate_coverage_text = join_with_and(
         [
             f"{int(row['rate_compatible_private_rows'])}/{int(row['private_operating_rows'])} schools in {int(row['class_year'])}"
@@ -463,7 +510,7 @@ def main() -> None:
             }
         )
     program_sens = pd.DataFrame(program_rows)
-    write_csv(program_sens, "task9_program_sensitivity.csv")
+    write_csv(program_sens, "analysis_program_sensitivity.csv")
 
     # Manual-review queue audit. Rows remain excluded; this table only summarizes why.
     manual_review = pd.read_csv(MANUAL_REVIEW_PATH)
@@ -473,7 +520,7 @@ def main() -> None:
         .reset_index()
         .sort_values(["rows", "issue_type"], ascending=[False, True])
     )
-    write_csv(manual_issue_counts, "task9_manual_review_issue_counts.csv")
+    write_csv(manual_issue_counts, "analysis_manual_review_issue_counts.csv")
     manual_review_rows = int(manual_issue_counts["rows"].sum())
     manual_queue_summary = "; ".join(
         f"{int(row['rows'])} {str(row['issue_type']).replace('_', ' ')}"
@@ -513,7 +560,7 @@ def main() -> None:
                 }
             )
     state_sens = pd.DataFrame(state_rows)
-    write_csv(state_sens, "task9_state_normalization_supplemental.csv")
+    write_csv(state_sens, "analysis_state_normalization_supplemental.csv")
 
     # Cohort timing and measurement changes.
     unique_map = df[["class_year", "qualifying_psat_year"]].drop_duplicates().sort_values("class_year")
@@ -551,7 +598,7 @@ def main() -> None:
             }
         )
     timing = pd.DataFrame(timing_rows)
-    write_csv(timing, "task9_cohort_timing.csv")
+    write_csv(timing, "analysis_cohort_timing.csv")
 
     # School-level changes within balanced conventional public rate panel.
     base = df[df["school_id"].isin(balanced_base_rate_ids) & df["class_year"].isin(FOCAL_YEARS)].copy()
@@ -578,7 +625,7 @@ def main() -> None:
             ascending=[False, True],
             kind="mergesort",
         ),
-        "task9_balanced_base_school_changes.csv",
+        "analysis_balanced_base_school_changes.csv",
     )
 
     # Pooled school-level and pathway-level distribution checks.
@@ -611,7 +658,7 @@ def main() -> None:
         ascending=[False, True],
         kind="mergesort",
     )
-    write_csv(pooled_school, "task9_school_pooled_changes.csv")
+    write_csv(pooled_school, "analysis_school_pooled_changes.csv")
 
     pathway_rows = []
     pathway_order = [
@@ -640,7 +687,7 @@ def main() -> None:
                 }
             )
     pathway_sens = pd.DataFrame(pathway_rows)
-    write_csv(pathway_sens, "task9_pathway_rate_sensitivity.csv")
+    write_csv(pathway_sens, "analysis_pathway_rate_sensitivity.csv")
 
     # Change summary.
     change_rows = []
@@ -674,7 +721,7 @@ def main() -> None:
                 }
             )
     change_summary = pd.DataFrame(change_rows)
-    write_csv(change_summary, "task9_change_summary.csv")
+    write_csv(change_summary, "analysis_change_summary.csv")
 
     # Metrics used in reports.
     obs_all = group_summary[group_summary["group"] == "All TJ-zone roster rows"]
@@ -747,7 +794,7 @@ def main() -> None:
             }
         ]
     )
-    write_csv(offset, "task9_offset_decomposition.csv")
+    write_csv(offset, "analysis_offset_decomposition.csv")
 
     base_expected_post_common = post_base_enroll * pre_base_rate / 100
     base_excess_common = post_base_count - base_expected_post_common
@@ -805,7 +852,208 @@ def main() -> None:
             },
         ]
     )
-    write_csv(rate_standardized_offset, "task9_rate_standardized_offset_decomposition.csv")
+    write_csv(rate_standardized_offset, "analysis_rate_standardized_offset_decomposition.csv")
+
+    # Participation sensitivity. School-level participation is unavailable, so this uses
+    # source-backed Virginia participation only as an external benchmark and a wider
+    # group-specific stress grid. It does not write statewide rates into the canonical panel.
+    participation_benchmark_rows = []
+    for year, metadata in sorted(VA_PSAT_PARTICIPATION.items()):
+        takers = int(metadata["psat_nmsqt_takers"])
+        enrollment = int(metadata["grade11_enrollment"])
+        participation_benchmark_rows.append(
+            {
+                "class_year": year,
+                "testing_school_year": str(metadata["testing_school_year"]),
+                "virginia_psat_nmsqt_takers": takers,
+                "virginia_grade11_enrollment": enrollment,
+                "reported_participation_rate_pct": int(metadata["reported_participation_rate_pct"]),
+                "calculated_participation_rate_pct": 100 * takers / enrollment,
+                "source_title": str(metadata["source_title"]),
+                "source_url": str(metadata["source_url"]),
+                "applicability": "Virginia-wide benchmark; not a school-level participation estimate",
+            }
+        )
+    participation_benchmark = pd.DataFrame(participation_benchmark_rows)
+    write_csv(participation_benchmark, "analysis_psat_participation_benchmark.csv")
+
+    va_pre_takers = sum(int(VA_PSAT_PARTICIPATION[y]["psat_nmsqt_takers"]) for y in [2023, 2024])
+    va_pre_enrollment = sum(int(VA_PSAT_PARTICIPATION[y]["grade11_enrollment"]) for y in [2023, 2024])
+    va_post_takers = sum(int(VA_PSAT_PARTICIPATION[y]["psat_nmsqt_takers"]) for y in [2025, 2026])
+    va_post_enrollment = sum(int(VA_PSAT_PARTICIPATION[y]["grade11_enrollment"]) for y in [2025, 2026])
+    va_pre_participation = va_pre_takers / va_pre_enrollment
+    va_post_participation = va_post_takers / va_post_enrollment
+    va_post_vs_pre_participation_ratio = va_post_participation / va_pre_participation
+
+    def participation_scenario_row(
+        scenario: str,
+        scenario_family: str,
+        base_post_vs_pre_participation_ratio: float,
+        tj_post_vs_pre_participation_ratio: float,
+    ) -> dict[str, object]:
+        scenario_base_expected = base_expected_post_common * base_post_vs_pre_participation_ratio
+        scenario_tj_expected = tj_expected_post_common * tj_post_vs_pre_participation_ratio
+        scenario_base_excess = post_base_count - scenario_base_expected
+        scenario_tj_shortfall = scenario_tj_expected - post_tj_count
+        scenario_public_expected = scenario_base_expected + scenario_tj_expected
+        scenario_public_shortfall = scenario_public_expected - post_pub_count
+        scenario_offset = (
+            100 * scenario_base_excess / scenario_tj_shortfall if scenario_tj_shortfall > 0 else np.nan
+        )
+        base_yield_change = 100 * (
+            (post_base_rate / pre_base_rate) / base_post_vs_pre_participation_ratio - 1
+        )
+        tj_yield_change = 100 * ((post_tj_rate / pre_tj_rate) / tj_post_vs_pre_participation_ratio - 1)
+        partial_offset = (
+            scenario_base_excess > 0
+            and scenario_tj_shortfall > 0
+            and pd.notna(scenario_offset)
+            and 0 < scenario_offset < 100
+        )
+        return {
+            "scenario": scenario,
+            "scenario_family": scenario_family,
+            "base_public_post_vs_pre_participation_ratio": base_post_vs_pre_participation_ratio,
+            "base_public_relative_participation_change_pct": 100 * (base_post_vs_pre_participation_ratio - 1),
+            "tjhsst_post_vs_pre_participation_ratio": tj_post_vs_pre_participation_ratio,
+            "tjhsst_relative_participation_change_pct": 100 * (tj_post_vs_pre_participation_ratio - 1),
+            "base_public_participant_yield_change_pct": base_yield_change,
+            "tjhsst_participant_yield_change_pct": tj_yield_change,
+            "base_public_expected_post_nmsf_at_unchanged_participant_yield": scenario_base_expected,
+            "base_public_observed_post_nmsf": post_base_count,
+            "base_public_excess_vs_participation_scaled_baseline": scenario_base_excess,
+            "tjhsst_expected_post_nmsf_at_unchanged_participant_yield": scenario_tj_expected,
+            "tjhsst_observed_post_nmsf": post_tj_count,
+            "tjhsst_shortfall_vs_participation_scaled_baseline": scenario_tj_shortfall,
+            "base_excess_as_pct_of_tjhsst_shortfall": scenario_offset,
+            "component_scaled_public_expected_post_nmsf": scenario_public_expected,
+            "balanced_public_observed_post_nmsf": post_pub_count,
+            "balanced_public_shortfall_vs_participation_scaled_baseline": scenario_public_shortfall,
+            "tjhsst_participant_yield_below_pre": tj_yield_change < 0,
+            "base_public_participant_yield_above_pre": base_yield_change > 0,
+            "partial_offset": partial_offset,
+            "balanced_public_shortfall_positive": scenario_public_shortfall > 0,
+            "interpretation": "Proportional participation scenario; not an estimate of local participation or causality",
+        }
+
+    participation_rows = [
+        participation_scenario_row(
+            "virginia_statewide_benchmark_applied_to_both_groups",
+            "statewide_benchmark",
+            va_post_vs_pre_participation_ratio,
+            va_post_vs_pre_participation_ratio,
+        )
+    ]
+    for base_change in PARTICIPATION_STRESS_CHANGES:
+        for tj_change in PARTICIPATION_STRESS_CHANGES:
+            participation_rows.append(
+                participation_scenario_row(
+                    f"stress_base_{base_change:+.0%}_tj_{tj_change:+.0%}",
+                    "plus_or_minus_10pct_group_specific_grid",
+                    1 + base_change,
+                    1 + tj_change,
+                )
+            )
+    participation_sensitivity = pd.DataFrame(participation_rows)
+    write_csv(participation_sensitivity, "analysis_participation_sensitivity.csv")
+
+    stress_grid = participation_sensitivity[
+        participation_sensitivity["scenario_family"].eq("plus_or_minus_10pct_group_specific_grid")
+    ].copy()
+    no_change_participation = stress_grid[
+        stress_grid["base_public_relative_participation_change_pct"].eq(0)
+        & stress_grid["tjhsst_relative_participation_change_pct"].eq(0)
+    ].iloc[0]
+    va_participation_scenario = participation_sensitivity[
+        participation_sensitivity["scenario_family"].eq("statewide_benchmark")
+    ].iloc[0]
+
+    tj_pooled_participation_break_even = post_tj_rate / pre_tj_rate
+    base_pooled_participation_break_even = post_base_rate / pre_base_rate
+    public_shortfall_common_participation_break_even = post_pub_count / public_expected_post_common
+    tj_2024_2025_participation_break_even = tj_rate[2025] / tj_rate[2024]
+    tj_2024_2026_participation_break_even = tj_rate[2026] / tj_rate[2024]
+    base_2024_2025_participation_break_even = base_rate[2025] / base_rate[2024]
+    base_2025_2026_participation_break_even = base_rate[2026] / base_rate[2025]
+    public_2024_2026_participation_break_even = pub_rate[2026] / pub_rate[2024]
+    break_even_specs = [
+        (
+            "TJHSST pooled participant-yield decline eliminated",
+            "Classes 2023-2024 vs 2025-2026",
+            tj_pooled_participation_break_even,
+            "TJHSST participation would need to fall by this relative amount if participant yield were otherwise unchanged.",
+        ),
+        (
+            "Base-public pooled participant-yield increase eliminated",
+            "Classes 2023-2024 vs 2025-2026",
+            base_pooled_participation_break_even,
+            "Base-public participation would need to rise by this relative amount if participant yield were otherwise unchanged.",
+        ),
+        (
+            "Combined-public component-standardized shortfall eliminated",
+            "Classes 2023-2024 vs 2025-2026",
+            public_shortfall_common_participation_break_even,
+            "A common participation decline of this relative size would make the participation-scaled component baseline equal observed public NMSFs.",
+        ),
+        (
+            "TJHSST Class 2025 participant-yield decline eliminated",
+            "Class 2024 vs Class 2025",
+            tj_2024_2025_participation_break_even,
+            "TJHSST participation would need to fall by this relative amount to explain the annual enrolled-rate decline mechanically.",
+        ),
+        (
+            "TJHSST Class 2026 gap from Class 2024 eliminated",
+            "Class 2024 vs Class 2026",
+            tj_2024_2026_participation_break_even,
+            "TJHSST participation would need to fall by this relative amount to explain the annual enrolled-rate gap mechanically.",
+        ),
+        (
+            "Base-public Class 2025 participant-yield change is zero",
+            "Class 2024 vs Class 2025",
+            base_2024_2025_participation_break_even,
+            "The immediate base-public direction flips around this small participation change.",
+        ),
+        (
+            "Base-public Class 2026 increase from Class 2025 eliminated",
+            "Class 2025 vs Class 2026",
+            base_2025_2026_participation_break_even,
+            "Base-public participation would need to rise by this relative amount to explain the annual enrolled-rate increase mechanically.",
+        ),
+        (
+            "Combined-public Class 2026 gap from Class 2024 eliminated",
+            "Class 2024 vs Class 2026",
+            public_2024_2026_participation_break_even,
+            "The exact just-below versus just-above Class 2024 direction flips around this small common participation change.",
+        ),
+    ]
+    participation_break_even = pd.DataFrame(
+        [
+            {
+                "finding": finding,
+                "comparison": comparison,
+                "required_post_vs_pre_participation_ratio": ratio,
+                "required_relative_participation_change_pct": 100 * (ratio - 1),
+                "interpretation": interpretation,
+            }
+            for finding, comparison, ratio, interpretation in break_even_specs
+        ]
+    )
+    write_csv(participation_break_even, "analysis_participation_break_even.csv")
+
+    va_2024_participation = float(
+        participation_benchmark.loc[
+            participation_benchmark["class_year"].eq(2024), "calculated_participation_rate_pct"
+        ].iloc[0]
+    )
+    va_2026_participation = float(
+        participation_benchmark.loc[
+            participation_benchmark["class_year"].eq(2026), "calculated_participation_rate_pct"
+        ].iloc[0]
+    )
+    va_2026_vs_2024_participation_ratio = va_2026_participation / va_2024_participation
+    public_2026_vs_2024_yield_change_va_benchmark = 100 * (
+        (pub_rate[2026] / pub_rate[2024]) / va_2026_vs_2024_participation_ratio - 1
+    )
 
     # Internal checks for the canonical focal panels.
     assert len(balanced_count_ids) == 71
@@ -814,6 +1062,10 @@ def main() -> None:
     assert len(private_balanced_ids) == 16
     assert (tj_count[2024], tj_count[2025], tj_count[2026]) == (165, 81, 113)
     assert (base_count[2023], base_count[2024], base_count[2025], base_count[2026]) == (161, 166, 170, 224)
+    assert stress_grid["tjhsst_participant_yield_below_pre"].all()
+    assert stress_grid["base_public_participant_yield_above_pre"].all()
+    assert stress_grid["partial_offset"].all()
+    assert stress_grid["balanced_public_shortfall_positive"].all()
 
     panel_sha256 = hashlib.sha256(PANEL_PATH.read_bytes()).hexdigest()
 
@@ -943,13 +1195,55 @@ def main() -> None:
         ],
     ]
 
-    robustness = f"""# Task 9 Robustness Checks
+    participation_md_rows = [
+        [
+            "No participation change",
+            fmt_pct(no_change_participation["tjhsst_participant_yield_change_pct"], sign=True),
+            fmt_pct(no_change_participation["base_public_participant_yield_change_pct"], sign=True),
+            fmt_pct(no_change_participation["base_excess_as_pct_of_tjhsst_shortfall"]),
+            fmt_rate(
+                no_change_participation["balanced_public_shortfall_vs_participation_scaled_baseline"],
+                1,
+            ),
+        ],
+        [
+            f"VA benchmark applied to both ({fmt_pct(100 * (va_post_vs_pre_participation_ratio - 1), sign=True)})",
+            fmt_pct(va_participation_scenario["tjhsst_participant_yield_change_pct"], sign=True),
+            fmt_pct(va_participation_scenario["base_public_participant_yield_change_pct"], sign=True),
+            fmt_pct(va_participation_scenario["base_excess_as_pct_of_tjhsst_shortfall"]),
+            fmt_rate(
+                va_participation_scenario["balanced_public_shortfall_vs_participation_scaled_baseline"],
+                1,
+            ),
+        ],
+        [
+            "Group-specific ±10% grid",
+            (
+                f"{fmt_pct(stress_grid['tjhsst_participant_yield_change_pct'].min(), sign=True)} to "
+                f"{fmt_pct(stress_grid['tjhsst_participant_yield_change_pct'].max(), sign=True)}"
+            ),
+            (
+                f"{fmt_pct(stress_grid['base_public_participant_yield_change_pct'].min(), sign=True)} to "
+                f"{fmt_pct(stress_grid['base_public_participant_yield_change_pct'].max(), sign=True)}"
+            ),
+            (
+                f"{fmt_pct(stress_grid['base_excess_as_pct_of_tjhsst_shortfall'].min())} to "
+                f"{fmt_pct(stress_grid['base_excess_as_pct_of_tjhsst_shortfall'].max())}"
+            ),
+            (
+                f"{fmt_rate(stress_grid['balanced_public_shortfall_vs_participation_scaled_baseline'].min(), 1)} to "
+                f"{fmt_rate(stress_grid['balanced_public_shortfall_vs_participation_scaled_baseline'].max(), 1)}"
+            ),
+        ],
+    ]
+
+    robustness = f"""# Robustness Checks
 
 Generated: {TODAY}
 
 ## Scope and analysis rules
 
-This report recomputes every numerical result from `data/processed/analysis_panel.csv` rather than copying the Milestone 8 descriptive report. It treats `missing_source` as missing, never as zero. Two distinct estimands are kept separate:
+This report recomputes every numerical result from `data/processed/analysis_panel.csv` independently of the descriptive-output report. It treats `missing_source` as missing, never as zero. Two distinct estimands are kept separate:
 
 1. **Observed-count totals** sum all source-backed counts, even where enrollment is unavailable.
 2. **Covered rates** sum NMSF counts and grade-11 enrollment only over rows with both inputs, then calculate `100 × NMSF / grade-11 enrollment`.
@@ -992,7 +1286,28 @@ The base-school increase is heterogeneous rather than universal. Comparing poole
 
 The Class 2026 increase is strongest in FCPS Regions 1, 2, and 5. FCPS Region 3 remains low, Region 4 falls from its 2025 spike, and Loudoun is close to its 2024 rate. The aggregate base-school gain should therefore not be described as a uniform zone-wide shift.
 
-## 4. Private-school count coverage and denominator limits
+## 4. PSAT participation sensitivity
+
+The panel does not contain school-level PSAT/NMSQT participation. College Board's Virginia reports provide a useful external scale: the reported statewide 11th-grade participation rate is **50% for Classes 2023 and 2024 and 49% for Classes 2025 and 2026**. Using the reports' underlying taker and enrollment counts, the pooled post/pre participation ratio is **{fmt_pct(100 * (va_post_vs_pre_participation_ratio - 1), sign=True)}**.[^participation] This is a statewide benchmark, not an estimate for TJHSST or the balanced base-school panel.
+
+The sensitivity model writes the enrolled NMSF rate as participation multiplied by NMSF yield among participants. For each scenario, it scales the pre-period expected post count by the assumed post/pre participation ratio. The model is proportional and does not assume that marginal test takers have the same score distribution; it is a stress test, not identification.
+
+{md_table(["Participation assumption", "TJ pooled participant-yield change", "Base pooled participant-yield change", "Standardized offset", "Public shortfall"], participation_md_rows)}
+
+Applying the Virginia benchmark to both groups leaves the qualitative pooled result intact: TJHSST's participant-yield proxy remains **{fmt_pct(va_participation_scenario["tjhsst_participant_yield_change_pct"])} lower**, the base-public proxy remains **{fmt_pct(va_participation_scenario["base_public_participant_yield_change_pct"], sign=True)} higher**, the offset is still partial at **{fmt_pct(va_participation_scenario["base_excess_as_pct_of_tjhsst_shortfall"])}**, and the balanced public panel remains **{fmt_rate(va_participation_scenario["balanced_public_shortfall_vs_participation_scaled_baseline"], 1)} NMSFs below** the participation-scaled component baseline.
+
+Every combination in the wider group-specific ±10% grid preserves those same four qualitative pooled findings. The offset magnitude is not stable, however: it spans **{fmt_pct(stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].min())} to {fmt_pct(stress_grid["base_excess_as_pct_of_tjhsst_shortfall"].max())}**. Participation uncertainty therefore weakens precision more than direction within this band.
+
+The break-even thresholds show where conclusions can change:
+
+- Eliminating the pooled TJHSST participant-yield decline would require a **{fmt_pct(abs(100 * (tj_pooled_participation_break_even - 1)))} relative participation drop** from the pre period.
+- Eliminating the pooled base-public participant-yield increase would require a **{fmt_pct(100 * (base_pooled_participation_break_even - 1), sign=True)} participation increase**.
+- Eliminating the component-standardized combined-public shortfall under a common participation change would require a **{fmt_pct(abs(100 * (public_shortfall_common_participation_break_even - 1)))} decline**, compared with the Virginia benchmark's {fmt_pct(abs(100 * (va_post_vs_pre_participation_ratio - 1)))} decline.
+- Narrow annual wording is fragile: the Class 2024-to-2025 base-public direction flips around a **{fmt_pct(100 * (base_2024_2025_participation_break_even - 1), sign=True)}** participation change, and the combined-public Class 2026 just-below/just-above Class 2024 direction flips around **{fmt_pct(100 * (public_2024_2026_participation_break_even - 1), sign=True)}**. Applying the exact Virginia Class 2024-to-2026 participation ratio makes the combined-public participant-yield proxy **{fmt_pct(public_2026_vs_2024_yield_change_va_benchmark, sign=True)}**, effectively flat.
+
+The sensitivity check therefore supports the pooled conclusion of a large TJHSST decline, a positive but incomplete base-school offset, and a remaining combined-public shortfall under statewide-like or ±10% participation changes. It does **not** support precision about the offset percentage or whether a near-flat annual comparison is fractionally above or below zero.
+
+## 5. Private-school count coverage and denominator limits
 
 {md_table(["Class", "Private count rows observed", "Missing rows", "Full observed total", f"Balanced {len(private_balanced_ids)}-school total", "Rate-compatible rows"], private_md_rows)}
 
@@ -1000,7 +1315,7 @@ All 16 rostered private-school rows now have source-backed focal-period counts a
 
 That is a real private-sector right-tail count signal. The limitation is narrower: counts alone still do not identify enrollment-normalized rates, residency, TJ eligibility, applications, or counterfactual base schools. No rate-compatible private panel exists for Classes 2024-2026 because private denominators remain unavailable in 2024 and 2026.
 
-## 5. Excluding non-conventional programs
+## 6. Excluding non-conventional programs
 
 H-B Woodlawn is the only `public_secondary_program` row. It has no grade-11 denominator in the panel, so it never contributes to a covered rate.
 
@@ -1010,13 +1325,13 @@ Excluding it changes the observed base-public count by only 1-6 students per yea
 
 The {manual_review_rows}-row manual-review queue includes {manual_queue_summary}. They are not added because doing so could double count schools or TJHSST, turn source gaps into zeros, or mix resident totals with school totals.
 
-## 6. Is Class 2025 isolated?
+## 7. Is Class 2025 isolated?
 
 At TJHSST, Class 2025 is the sharpest break, but Class 2026 is not a return to the earlier range. Across Classes 2019-2024, TJHSST averaged **{fmt_rate(pre_tj_rate_weighted)} NMSF per 100 juniors** on a pooled denominator and never fell below **{fmt_rate(pre_tj_min_rate)}** or **{fmt_int(pre_tj_min_count)} semifinalists**. Class 2026's **{fmt_rate(tj_rate[2026])} per 100** and **{fmt_int(tj_count[2026])} semifinalists** remain below both pre-policy minima.
 
 For the balanced base-public panel, by contrast, 2023-2025 are nearly flat ({fmt_rate(base_rate[2023])}, {fmt_rate(base_rate[2024])}, {fmt_rate(base_rate[2025])}), followed by a distinct 2026 increase to {fmt_rate(base_rate[2026])}. Thus, the evidence does **not** show a smooth post-policy trend. It shows a TJHSST break in 2025, a partial TJHSST rebound in 2026, and a base-school rise concentrated in 2026.
 
-## 7. Virginia cutoff and statewide normalization
+## 8. Virginia cutoff and statewide normalization
 
 More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors nationally and are named on a state-representational basis.[^nmsc] The canonical panel now carries source-backed Virginia statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media lists; the Class 2025 statewide total remains unsourced in the panel. Virginia cutoff values are still supplemental secondary-source checks.[^cutoffs][^state]
 
@@ -1026,7 +1341,7 @@ More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors
 
 Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. On the mixed-source statewide denominator, the balanced public share falls from **{fmt_pct(public_state_share[2024])} in 2024** to **{fmt_pct(public_state_share[2025])} in 2025** and recovers only to **{fmt_pct(public_state_share[2026])} in 2026**. TJHSST's share remains far below 2024 ({fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
 
-## 8. COVID, digital testing, and cohort timing
+## 9. COVID, digital testing, and cohort timing
 
 - FCPS provided virtual instruction in spring and fall 2020, then phased in concurrent instruction beginning in February 2021.[^virtual]
 - FCPS reopened all schools for five-day in-person learning in August 2021, with 99.5% of students returning in person.[^inperson]
@@ -1035,7 +1350,7 @@ Virginia's cutoff moved within a narrow high-end band in the focal period: 219 i
 
 The assessment-format break occurs at the same Class 2025 boundary as the TJHSST admissions-policy exposure. Without school-level PSAT participation and score-distribution data, the policy effect cannot be separated cleanly from test-format, participation, and cohort-composition changes.
 
-## 9. Admissions mechanism interpretation
+## 10. Admissions mechanism interpretation
 
 The adopted process should not be described as random selection. On December 17, 2020, the Board rejected the proposed “Hybrid Merit Lottery” motion and adopted a holistic-review motion effective for the class entering in fall 2021.[^board] For the Class of 2025, FCPS replaced the prior admissions tests and teacher recommendations, raised the minimum GPA, used essays/holistic review and experience factors, expanded the class toward 550, and provided a 1.5% public-middle-school allocation with remaining seats unallocated.[^court][^profile] An official January 2021 application bulletin confirms the Class 2025 application, eligibility, Student Portrait Sheet, essay, and calendar details.[^class25]
 
@@ -1049,23 +1364,26 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 
 ## Generated supporting tables
 
-- `reports/tables/task9_group_year_summary.csv`
-- `reports/tables/task9_coverage_2023_2026.csv`
-- `reports/tables/task9_balanced_count_panel.csv`
-- `reports/tables/task9_balanced_rate_panel.csv`
-- `reports/tables/task9_balanced_panel_membership.csv`
-- `reports/tables/task9_private_sensitivity.csv`
-- `reports/tables/task9_program_sensitivity.csv`
-- `reports/tables/task9_manual_review_issue_counts.csv`
-- `reports/tables/task9_offset_decomposition.csv`
-- `reports/tables/task9_rate_standardized_offset_decomposition.csv`
-- `reports/tables/task9_public_concentration.csv`
-- `reports/tables/task9_state_normalization_supplemental.csv`
-- `reports/tables/task9_cohort_timing.csv`
-- `reports/tables/task9_change_summary.csv`
-- `reports/tables/task9_balanced_base_school_changes.csv`
-- `reports/tables/task9_school_pooled_changes.csv`
-- `reports/tables/task9_pathway_rate_sensitivity.csv`
+- `reports/tables/analysis_group_year_summary.csv`
+- `reports/tables/analysis_coverage_2023_2026.csv`
+- `reports/tables/analysis_balanced_count_panel.csv`
+- `reports/tables/analysis_balanced_rate_panel.csv`
+- `reports/tables/analysis_balanced_panel_membership.csv`
+- `reports/tables/analysis_private_sensitivity.csv`
+- `reports/tables/analysis_program_sensitivity.csv`
+- `reports/tables/analysis_manual_review_issue_counts.csv`
+- `reports/tables/analysis_offset_decomposition.csv`
+- `reports/tables/analysis_rate_standardized_offset_decomposition.csv`
+- `reports/tables/analysis_psat_participation_benchmark.csv`
+- `reports/tables/analysis_participation_sensitivity.csv`
+- `reports/tables/analysis_participation_break_even.csv`
+- `reports/tables/analysis_public_concentration.csv`
+- `reports/tables/analysis_state_normalization_supplemental.csv`
+- `reports/tables/analysis_cohort_timing.csv`
+- `reports/tables/analysis_change_summary.csv`
+- `reports/tables/analysis_balanced_base_school_changes.csv`
+- `reports/tables/analysis_school_pooled_changes.csv`
+- `reports/tables/analysis_pathway_rate_sensitivity.csv`
 
 [^nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, {URLS["nmsc_2026"]}.
 [^cutoffs]: Compass Education Group, *Historical National Merit Cutoffs 2008 to Present*, {URLS["cutoffs"]}. Secondary source; not written into the canonical panel.
@@ -1073,6 +1391,7 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 [^virtual]: Fairfax County Public Schools, *FCPS 2020-21 Evaluation Report*, {URLS["fcps_virtual_eval"]}.
 [^inperson]: Fairfax County Public Schools, *FCPS This Week — August 25, 2021*, {URLS["fcps_in_person_2021"]}.
 [^digital]: College Board, *How to Get Ready for the Digital PSAT/NMSQT*, {URLS["collegeboard_digital"]}.
+[^participation]: College Board, Virginia SAT Suite of Assessments Annual Reports for 2022-2025; URLs and reported counts are recorded in `reports/tables/analysis_psat_participation_benchmark.csv`.
 [^board]: Fairfax County School Board, December 17, 2020 minutes, {URLS["board_minutes_2020"]}.
 [^court]: Fairfax County School Board court filing with the Jeremy Shughart declaration and Regulation 3355.14 exhibit, March 4, 2022, {URLS["court_filing"]}.
 [^reg15]: Archived copy of Fairfax County Public Schools Regulation 3355.15, effective November 9, 2021, {URLS["reg3355_15"]}. A local copy is archived at `docs/source_notes/FCPS Regulation 3355.15 TJHSST Admissions.pdf`.
@@ -1083,7 +1402,7 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 [^index]: Fairfax County School Board, numeric policy index listing R3355 and N3355, {URLS["fcps_index"]}.
 """
 
-    limitations = f"""# Task 9 Limitations
+    limitations = f"""# Limitations
 
 Generated: {TODAY}
 
@@ -1101,7 +1420,7 @@ Therefore, `NMSF per 100 juniors` is an outcome-rate proxy, not a direct qualifi
 
 ## 3. Statewide normalization and test-form changes
 
-Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. Task 9 uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
+Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. The supplemental analysis uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
 
 {STATEWIDE_2026_RECONCILIATION_NOTE}
 
@@ -1186,7 +1505,7 @@ The defensible claim is narrow: the data describe changes in source-backed NMSF 
 [^profile]: TJHSST, *School Profile 2021-22*, {URLS["tj_profile_2021"]}.
 """
 
-    initial_findings = f"""# Task 9 Initial Findings
+    initial_findings = f"""# Detailed Findings
 
 Generated: {TODAY}
 
@@ -1330,21 +1649,18 @@ Supplemental statewide shares are useful context, but the 2026 statewide denomin
 
 The next useful data are school-level PSAT participation and score distributions; TJHSST applicant, offer, acceptance, enrollment, and allocation-pool data by source school; and broader upper-tail outcomes such as SAT threshold rates, AP 5 rates, and competition results. Those would help separate redistribution, threshold/participation effects, and possible school-context effects.
 
-For full methods and caveats, see `reports/robustness.md`, `reports/limitations.md`, and `reports/initial_findings.md`. Machine-readable decompositions are in `reports/tables/task9_public_concentration.csv` and `reports/tables/task9_rate_standardized_offset_decomposition.csv`.
+The detailed findings, robustness checks, and limitations follow below. Machine-readable decompositions are in `reports/tables/analysis_public_concentration.csv` and `reports/tables/analysis_rate_standardized_offset_decomposition.csv`.
 """
 
-    completion = f"""# Task 9 Completion Record
+    completion = f"""# Reproduction and Integrity
 
 Generated: {TODAY}
 
-## Deliverables
+## Generated outputs
 
-- `reports/robustness.md`
-- `reports/limitations.md`
-- `reports/initial_findings.md`
-- `reports/conclusions.md`
-- `reports/tables/task9_*.csv`
-- `docs/source_notes/task9_web_research_sources.md`
+- `reports/analysis.md`
+- `reports/tables/analysis_*.csv`
+- `docs/source_notes/analysis_research_sources.md`
 
 ## Headline descriptive results
 
@@ -1362,10 +1678,10 @@ These are descriptive results, not causal estimates or measures of median achiev
 Run:
 
 ```bash
-UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_task9_outputs.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_reports.py
 ```
 
-The script rebuilds this completion record, Task 9 reports, source notes, and supporting tables from `data/processed/analysis_panel.csv`.
+The script rebuilds this report, its research-source note, and supporting tables from `data/processed/analysis_panel.csv`.
 
 ## Integrity
 
@@ -1388,18 +1704,33 @@ The public-data phase is complete at the documented stopping point. After the br
 Historical Regulations 3355.14 and 3355.15, Regulation 3355.16, official FCPS Class 2025 and Class 2026 bulletins, Board minutes, NMSC materials, College Board documentation, and FCPS COVID-era instructional records were reviewed. The annual Notice 3355 documents themselves were not recovered. Reports state that limitation and do not infer unrecovered procedural details.
 """
 
+    analysis_report = "\n\n".join(
+        [
+            f"# Analysis and Findings\n\nGenerated: {TODAY}",
+            report_section(conclusions, "Conclusions", "conclusions"),
+            report_section(initial_findings, "Detailed Findings", "findings"),
+            report_section(robustness, "Robustness Checks", "robustness"),
+            report_section(limitations, "Limitations", "limitations"),
+            report_section(completion, "Reproduction and Integrity", "integrity"),
+        ]
+    )
     REPORTS.mkdir(parents=True, exist_ok=True)
-    (REPORTS / "robustness.md").write_text(robustness, encoding="utf-8")
-    (REPORTS / "limitations.md").write_text(limitations, encoding="utf-8")
-    (REPORTS / "initial_findings.md").write_text(initial_findings, encoding="utf-8")
-    (REPORTS / "conclusions.md").write_text(conclusions, encoding="utf-8")
-    (REPORTS / "task9_completion.md").write_text(completion, encoding="utf-8")
+    for stale_name in (
+        "conclusions.md",
+        "initial_findings.md",
+        "limitations.md",
+        "robustness.md",
+    ):
+        stale_path = REPORTS / stale_name
+        if stale_path.exists():
+            stale_path.unlink()
+    (REPORTS / "analysis.md").write_text(f"{analysis_report}\n", encoding="utf-8")
 
-    source_notes = f"""# Task 9 Web Research Sources
+    source_notes = f"""# Analysis Research Sources
 
 Generated: {TODAY}
 
-This file records external sources used for Task 9 interpretation and supplemental checks. The canonical panel now includes source-backed Virginia statewide totals for complete-list years.
+This file records external sources used for interpretation and supplemental checks. The canonical panel includes source-backed Virginia statewide totals for complete-list years.
 
 ## Primary sources
 
@@ -1441,7 +1772,7 @@ The source-backed statewide totals are written to `data/sources/virginia_statewi
 Archived annual Notice 3355 documents for the Class of 2025 and Class of 2026 admissions cycles were not recovered through web search. Official FCPS bulletins do establish the main application windows, writing-administration dates, and posted notification timing for those classes. The reports combine those bulletins with the historical regulation versions and court exhibits, while explicitly avoiding claims that every class-specific procedural detail has been reconstructed.
 """
     SOURCE_NOTES.mkdir(parents=True, exist_ok=True)
-    (SOURCE_NOTES / "task9_web_research_sources.md").write_text(source_notes, encoding="utf-8")
+    (SOURCE_NOTES / "analysis_research_sources.md").write_text(source_notes, encoding="utf-8")
 
     # Compact machine-readable validation summary.
     validation = {
@@ -1470,17 +1801,11 @@ Archived annual Notice 3355 documents for the Class of 2025 and Class of 2026 ad
         "rate_standardized_base_excess_as_pct_of_tj_shortfall": rate_adjusted_offset_common,
     }
     pd.DataFrame([validation]).to_csv(
-        REPORTS / "tables" / "task9_validation_summary.csv", index=False, float_format="%.9f"
+        REPORTS / "tables" / "analysis_validation_summary.csv", index=False, float_format="%.9f"
     )
 
-    print("Task 9 outputs generated")
-    for path in [
-        REPORTS / "robustness.md",
-        REPORTS / "limitations.md",
-        REPORTS / "initial_findings.md",
-        REPORTS / "conclusions.md",
-        REPORTS / "task9_completion.md",
-    ]:
+    print("Analysis outputs generated")
+    for path in [REPORTS / "analysis.md", SOURCE_NOTES / "analysis_research_sources.md"]:
         print(path.relative_to(ROOT))
     print(f"Balanced count schools: {len(balanced_count_ids)}")
     print(f"Balanced public rate schools: {len(balanced_public_rate_ids)}")

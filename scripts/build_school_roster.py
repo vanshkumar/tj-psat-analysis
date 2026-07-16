@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Milestone 2 canonical roster, aliases, and history outputs."""
+"""Build the canonical roster, aliases, and school-history outputs."""
 
 from __future__ import annotations
 

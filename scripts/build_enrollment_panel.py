@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Milestone 3 enrollment panel and coverage reports."""
+"""Build the enrollment panel and coverage reports."""
 
 from __future__ import annotations
 

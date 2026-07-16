@@ -14,9 +14,11 @@ def read_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-class Task9OutputsTest(unittest.TestCase):
+class AnalysisReportsTest(unittest.TestCase):
     def test_public_concentration_quantifies_deconcentration(self) -> None:
-        rows = {int(row["class_year"]): row for row in read_rows(TABLES / "task9_public_concentration.csv")}
+        rows = {
+            int(row["class_year"]): row for row in read_rows(TABLES / "analysis_public_concentration.csv")
+        }
 
         self.assertAlmostEqual(
             float(rows[2024]["tjhsst_share_of_balanced_public_nmsf_pct"]),
@@ -37,9 +39,9 @@ class Task9OutputsTest(unittest.TestCase):
     def test_rate_standardized_offset_is_smaller_than_raw_count_offset(self) -> None:
         standardized = {
             row["scenario"]: row
-            for row in read_rows(TABLES / "task9_rate_standardized_offset_decomposition.csv")
+            for row in read_rows(TABLES / "analysis_rate_standardized_offset_decomposition.csv")
         }
-        raw = read_rows(TABLES / "task9_offset_decomposition.csv")[0]
+        raw = read_rows(TABLES / "analysis_offset_decomposition.csv")[0]
         common = standardized["common_2023_2024_baseline"]
         extended = standardized["extended_tjhsst_2019_2024_baseline"]
 
@@ -57,7 +59,7 @@ class Task9OutputsTest(unittest.TestCase):
         )
 
     def test_standardized_decomposition_reconciles(self) -> None:
-        rows = read_rows(TABLES / "task9_rate_standardized_offset_decomposition.csv")
+        rows = read_rows(TABLES / "analysis_rate_standardized_offset_decomposition.csv")
         for row in rows:
             expected_public = float(row["component_standardized_public_expected_post_nmsf"])
             observed_public = float(row["balanced_public_observed_post_nmsf"])
@@ -65,16 +67,16 @@ class Task9OutputsTest(unittest.TestCase):
             self.assertTrue(math.isclose(expected_public - observed_public, shortfall, abs_tol=1e-6))
 
     def test_tied_rank_tables_have_deterministic_secondary_ordering(self) -> None:
-        count_rows = read_rows(TABLES / "task9_balanced_base_school_changes.csv")
+        count_rows = read_rows(TABLES / "analysis_balanced_base_school_changes.csv")
         count_keys = [(-float(row["count_change_2025_2026"]), row["school_id"]) for row in count_rows]
         self.assertEqual(count_keys, sorted(count_keys))
 
-        pooled_rows = read_rows(TABLES / "task9_school_pooled_changes.csv")
+        pooled_rows = read_rows(TABLES / "analysis_school_pooled_changes.csv")
         pooled_keys = [(-float(row["rate_point_change"]), row["school_id"]) for row in pooled_rows]
         self.assertEqual(pooled_keys, sorted(pooled_keys))
 
-    def test_compact_conclusions_preserve_claim_boundary(self) -> None:
-        report = (ROOT / "reports" / "conclusions.md").read_text(encoding="utf-8")
+    def test_consolidated_report_preserves_claim_boundary(self) -> None:
+        report = (ROOT / "reports" / "analysis.md").read_text(encoding="utf-8")
         self.assertIn("deconcentration away from TJHSST", report)
         self.assertIn("enrollment-standardized offset", report)
         self.assertIn("do not establish that the admissions policy caused", report)

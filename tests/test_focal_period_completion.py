@@ -40,7 +40,10 @@ class FocalPeriodCompletionTest(unittest.TestCase):
         self.assertIn("## Broad Source-Discovery Log", report)
         self.assertIn("Class 2025 statewide list/total", report)
         self.assertIn("never use Patch absence for zero inference", report)
-        self.assertIn("optional future work, not a prerequisite for closing Milestone 10", report)
+        self.assertIn(
+            "optional future work, not a prerequisite for closing the public-source cleanup pass",
+            report,
+        )
 
     def test_targeted_class_2025_rows_remain_missing_source(self) -> None:
         self.assertEqual(len(TARGETED_CLASS_2025_ROW_SEARCHES), 5)

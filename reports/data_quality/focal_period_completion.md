@@ -1,6 +1,6 @@
 # Focal-Period Completion Report
 
-Generated for Milestone 10 from the current focal-period observation layer, archived NMSC press-release source artifacts, and count-only complete Virginia list snapshots where available.
+Generated from the current focal-period observation layer, archived NMSC press-release source artifacts, and count-only complete Virginia list snapshots where available.
 
 ## Current Observation Coverage
 
@@ -78,6 +78,6 @@ An earlier public-source sweep looked for complete Virginia school-by-school lis
 - Do not add the NMSC press-release-only PDFs to `data/sources/source_manifest.yml` as numeric count sources because they do not provide school-level Virginia counts.
 - Use the supplied complete NMSC Virginia lists for Classes 2023, 2024, and 2026 as source-backed count, zero-inference, and statewide-total sources.
 - Do not infer zeros for missing public or private rows from these press releases.
-- Treat a complete Class 2025 Virginia school-by-school list as optional future work, not a prerequisite for closing Milestone 10.
+- Treat a complete Class 2025 Virginia school-by-school list as optional future work, not a prerequisite for closing the public-source cleanup pass.
 - Retain the five targeted Class 2025 rows as `missing_source` unless a school-attributed count source or complete zero-inference scope appears.
 - Publish Virginia statewide-share metrics for source-backed complete-list years only; leave Class 2025 shares blank until a source-backed statewide total is added.
