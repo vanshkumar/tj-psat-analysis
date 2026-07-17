@@ -427,6 +427,28 @@ sources:
     reported_total: 57
     reported_total_scope: LCPS students with no school-level attribution in the release
     notes: Official LCPS release lists student names but not schools, so it is not used for school observations or zero inference.
+  - source_id: lcps_2025_named_list_reconciliation
+    provider: lcps
+    graduating_class: 2025
+    geography_or_district: LCPS public high schools in roster
+    source_title: Class 2025 LCPS named-list school-scope reconciliation
+    publisher: Loudoun County Public Schools; Fairfax County Public Schools; Patch; U.S. Department of Education
+    publication_date: 2026-07-16
+    source_url: https://www.lcps.org/article/1786023
+    retrieval_date: 2026-07-16
+    source_type: cross_source_named_list_reconciliation
+    completeness_scope: complete identity-level reconciliation of official 57-name LCPS list to 42 school-attributed LCPS-public names plus 15 TJHSST names
+    complete_for_zero_inference: true
+    zero_inference_scope: lcps_public_high_schools_in_roster
+    archived_file_path: data/raw/nmsf/lcps/lcps_2025_named_list_reconciliation_snapshot.csv
+    archived_file_sha256: b002229faada5b981593bac8f63103e2450bca9a9227ed72979755b67f0fedcb
+    parser_name: manual_reviewed_table
+    parser_version: 1
+    source_hash: efc152779eb0500a59a7957444dcedef20bfca555ae7c5b43c5a57c2b8975dcd
+    hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and explicit verified-zero rows.
+    reported_total: 0
+    reported_total_scope: Sum of the four explicit verified-zero school observations; the reconciliation evidence covers all 57 official LCPS identities.
+    notes: The official LCPS release's 57 distinct names reconcile exactly to 42 names directly attributed by Patch to LCPS public schools and 15 names on FCPS's official TJHSST list. The partitions are disjoint and exhaustive; Patch's four private/nonroster names are absent from the LCPS release. An official U.S. Department of Education candidate list resolves one LCPS/FCPS spelling variance by full name, Ashburn locality, and TJHSST. Student names are omitted from the archived snapshot, which records supporting URLs, dates, and validated content hashes. TJHSST remains one row and no resident subset is allocated to LCPS schools.
   - source_id: lcps_2026_semifinalists
     provider: lcps
     graduating_class: 2026
@@ -881,10 +903,10 @@ sources:
     complete_for_zero_inference: true
     zero_inference_scope: virginia_rostered_schools
     archived_file_path: data/raw/nmsf/virginia/virginia_2023_semifinalists_snapshot.csv
-    archived_file_sha256: 390c4de436745814d47db4905b197a9d476d73116c7de765039100ea6f3b85cf
+    archived_file_sha256: 1be00a4b986afdf51107ff29e3218305fcf270e31ca2bfc11b5b730d095a52ea
     parser_name: nmsc_virginia_list_pdf_text
     parser_version: 1
-    source_hash: 74eb7026c16f57ac140363fb5b833aa5518e06a2032a2341a05faa332ef2233c
+    source_hash: a5a1b914b24274d5d25d965097cf8b13fb010cbe8bbd88056c17adf691162299
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
     reported_total: 400
     reported_total_scope: All Virginia Semifinalists in the complete NMSC state list
@@ -903,10 +925,10 @@ sources:
     complete_for_zero_inference: true
     zero_inference_scope: virginia_rostered_schools
     archived_file_path: data/raw/nmsf/virginia/virginia_2024_semifinalists_snapshot.csv
-    archived_file_sha256: 9bf0580a9cc7fc5a3d661606e0895e1d454395b3e340df0be81f6bd0e816d5d8
+    archived_file_sha256: ed46b323666d6e2365a552b57526b80456a6cd2cbee990d748de3299a8e2a774
     parser_name: nmsc_virginia_list_pdf_text
     parser_version: 1
-    source_hash: 06fd045aa5842b6093537c15a222b3145788727f7c52650f1b1d8f1de32e0f12
+    source_hash: 51f0d3110d1e143f3a88232cd089a1ef8ca0614c20066ac7a5b6b40af1311a82
     hash_basis: Computed from data/sources/nmsf_counts.csv source metadata and transcribed counts.
     reported_total: 470
     reported_total_scope: All Virginia Semifinalists in the complete NMSC state list

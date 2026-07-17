@@ -99,6 +99,7 @@ class SchoolRosterTest(unittest.TestCase):
                 "H.B. Woodlawn Program",
                 "The H. B. Woodlawn Program",
                 "Immanuel Christian School",
+                "Ideaventions Academy for Math and Science",
                 "Ideaventions Academy of Math and Science",
             },
         )

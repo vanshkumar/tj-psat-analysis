@@ -3,6 +3,6 @@ excluded_duplicate_public_school_count,76,589.000000
 excluded_nonroster_school,11,11.000000
 excluded_tjhsst_resident_subset,7,80.000000
 excluded_duplicate_private_school_count,5,18.000000
-missing_school_year_source,5,0.000000
 excluded_tjhsst_former_pwcs_student,3,6.000000
+missing_school_year_source,1,0.000000
 source_incomplete_unattributed_total,1,57.000000

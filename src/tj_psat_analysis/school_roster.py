@@ -118,6 +118,11 @@ SOURCE_ALIASES_BY_SCHOOL_ID: dict[str, tuple[tuple[str, str, str], ...]] = {
     ),
     "ideaventions_academy_for_mathematics_science": (
         (
+            "Ideaventions Academy for Math and Science",
+            "source_name_variant",
+            "Complete NMSC Virginia lists use Math rather than Mathematics.",
+        ),
+        (
             "Ideaventions Academy of Math and Science",
             "source_name_variant",
             "Patch Vienna 2025 uses this wording.",

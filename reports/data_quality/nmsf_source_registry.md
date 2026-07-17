@@ -13,25 +13,25 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 | Status | Rows |
 | --- | --- |
-| missing_source | 200 |
+| missing_source | 196 |
 | not_operating | 9 |
-| verified_count | 269 |
-| verified_zero | 130 |
+| verified_count | 271 |
+| verified_zero | 132 |
 
 ## Observation Basis Counts
 
 | Basis | Rows |
 | --- | --- |
-| complete_source_zero_inference | 130 |
-| manual_transcription | 269 |
-| no_source_recorded | 200 |
+| complete_source_zero_inference | 128 |
+| manual_transcription | 275 |
+| no_source_recorded | 196 |
 | school_not_operating | 9 |
 
 ## Source Coverage Counts
 
 | Source ID | Rows |
 | --- | --- |
-| (none) | 209 |
+| (none) | 205 |
 | aps_2023_semifinalists | 4 |
 | aps_2025_semifinalists | 4 |
 | aps_2026_semifinalists | 4 |
@@ -45,6 +45,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2026_semifinalists | 25 |
 | lcps_2023_semifinalists | 17 |
 | lcps_2024_semifinalists | 17 |
+| lcps_2025_named_list_reconciliation | 4 |
 | lcps_2026_semifinalists | 17 |
 | nmsc_virginia_2023_semifinalists | 13 |
 | nmsc_virginia_2024_semifinalists | 12 |
@@ -90,10 +91,11 @@ Counts and verified zeros are stored separately from enrollment denominators.
 | fcps_2026_semifinalists | data/raw/nmsf/fcps/fcps_2026_semifinalists_snapshot.csv | 25436587ef644424c6476a967be884e61a83ba8385a187d948a49eaed194d295 |
 | lcps_2023_semifinalists | data/raw/nmsf/lcps/lcps_2023_semifinalists_snapshot.csv | 77a271d48e0665e5d90a5397fe111a81a2af31863ea75ec0bb5fa70e4259debf |
 | lcps_2024_semifinalists | data/raw/nmsf/lcps/lcps_2024_semifinalists_snapshot.csv | 2084ef4d9dec83f0b8f3e2a2723241ab0692ac6288a9d3f0293866ed07fdc201 |
+| lcps_2025_named_list_reconciliation | data/raw/nmsf/lcps/lcps_2025_named_list_reconciliation_snapshot.csv | b002229faada5b981593bac8f63103e2450bca9a9227ed72979755b67f0fedcb |
 | lcps_2025_semifinalists | data/raw/nmsf/lcps/lcps_2025_semifinalists_snapshot.csv | bdfe4856bc2c9d6c75def4551571cb910270556d5bff5a0014043306e7247d63 |
 | lcps_2026_semifinalists | data/raw/nmsf/lcps/lcps_2026_semifinalists_snapshot.csv | b7d76805097061b66c8d3812ec38d0029671b1eb68ed0a773ea0807cea290259 |
-| nmsc_virginia_2023_semifinalists | data/raw/nmsf/virginia/virginia_2023_semifinalists_snapshot.csv | 390c4de436745814d47db4905b197a9d476d73116c7de765039100ea6f3b85cf |
-| nmsc_virginia_2024_semifinalists | data/raw/nmsf/virginia/virginia_2024_semifinalists_snapshot.csv | 9bf0580a9cc7fc5a3d661606e0895e1d454395b3e340df0be81f6bd0e816d5d8 |
+| nmsc_virginia_2023_semifinalists | data/raw/nmsf/virginia/virginia_2023_semifinalists_snapshot.csv | 1be00a4b986afdf51107ff29e3218305fcf270e31ca2bfc11b5b730d095a52ea |
+| nmsc_virginia_2024_semifinalists | data/raw/nmsf/virginia/virginia_2024_semifinalists_snapshot.csv | ed46b323666d6e2365a552b57526b80456a6cd2cbee990d748de3299a8e2a774 |
 | nmsc_virginia_2026_semifinalists | data/raw/nmsf/virginia/virginia_2026_semifinalists_snapshot.csv | 84b7384aa4beb85c315bc2f1ea21aec6d09f0aed4d6f96d2a4017298737863dc |
 | patch_arlington_2023_semifinalists | data/raw/nmsf/local_media/patch_arlington_2023_semifinalists_snapshot.csv | 704513f3beef06c69039eb7cc24d0286b8b9cf3588d5d70ad869e6d68704cd00 |
 | patch_arlington_2024_semifinalists | data/raw/nmsf/local_media/patch_arlington_2024_semifinalists_snapshot.csv | 06460c0a5300a9a4f3c21799d3b1a8ca4c2e67d555244e4087ee63ac3ba48d2c |
@@ -128,7 +130,7 @@ Counts and verified zeros are stored separately from enrollment denominators.
 
 ## Machine Summary
 
-- missing_source: 200
+- missing_source: 196
 - not_operating: 9
-- verified_count: 269
-- verified_zero: 130
+- verified_count: 271
+- verified_zero: 132

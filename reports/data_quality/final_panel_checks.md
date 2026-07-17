@@ -19,58 +19,59 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 | rate_null_behavior | pass | affected rows: 0 |
 | pathway_bucket_flags | pass | affected rows: 0 |
 | selection_index_placeholder | pass | Virginia cutoff columns are documented placeholders. |
-| statewide_total_source_metadata | pass | Sourced statewide total rows include source metadata; unsourced years remain placeholders. |
+| statewide_total_source_metadata | pass | Sourced state-selection-unit and Virginia-location totals include source metadata. |
 
 ## NMSF Status Counts
 
 | NMSF status | Rows |
 | --- | --- |
-| missing_source | 200 |
+| missing_source | 196 |
 | not_operating | 9 |
-| verified_count | 269 |
-| verified_zero | 130 |
+| verified_count | 271 |
+| verified_zero | 132 |
 
 ## Enrollment Status Counts
 
 | Enrollment status | Rows |
 | --- | --- |
-| ambiguous_pss_id | 4 |
+| ambiguous_pss_id | 3 |
 | ambiguous_source_name | 8 |
 | blank | 4 |
-| ccd_row_not_found | 1 |
-| locator_search_not_found | 5 |
+| locator_search_not_found | 4 |
 | not_operating | 9 |
 | private_pss_id_pending | 6 |
-| private_pss_not_survey_year | 64 |
+| private_pss_not_survey_year | 63 |
 | pss_row_not_found | 10 |
-| reported | 490 |
-| source_row_not_found | 7 |
+| reported | 497 |
+| source_row_not_found | 4 |
 
 ## Rate Status Counts
 
 | Rate status | Rows |
 | --- | --- |
-| calculated | 351 |
-| missing_grade11_enrollment | 48 |
+| calculated | 362 |
+| missing_grade11_enrollment | 41 |
 | missing_nmsf_and_grade11_enrollment | 61 |
-| missing_nmsf_count | 139 |
+| missing_nmsf_count | 135 |
 | not_operating | 9 |
 
 ## Pathway Coverage Status Counts
 
 | Pathway coverage status | Rows |
 | --- | --- |
-| complete_compatible_coverage | 306 |
-| no_compatible_rows | 237 |
-| partial_compatible_coverage | 65 |
+| complete_compatible_coverage | 339 |
+| no_compatible_rows | 221 |
+| partial_compatible_coverage | 48 |
 
 ## Placeholder Source Gaps
 
 | Placeholder | Status | Rows |
 | --- | --- | --- |
 | Virginia NMSF Selection Index cutoff | not_sourced | 608 |
-| Statewide semifinalist total | not_sourced | 380 |
-| Statewide semifinalist total | source_backed_total | 228 |
+| Virginia state-selection-unit total | not_sourced | 380 |
+| Virginia state-selection-unit total | source_backed_state_selection_unit_total | 228 |
+| Virginia school-location total | not_sourced | 380 |
+| Virginia school-location total | source_backed_location_total | 228 |
 
 ## Source Rules
 
@@ -79,5 +80,5 @@ Pathway aggregates are covered-subset totals and carry coverage flags.
 - `missing_source` remains missing and is not converted to zero.
 - Grade-11 enrollment is an outcome denominator, not an admissions-seat allocation input.
 - Virginia cutoff fields remain `not_sourced` until reliable sources are added.
-- Statewide total fields are populated only when a complete source-backed Virginia list is available.
-- The Class 2026 supplied-list statewide total is source-backed in the panel but pending reconciliation against the public NMSC guide total before final statewide-share use.
+- Virginia school-location totals come from complete media-list packets; official state-selection-unit totals come from annual NMSC Guides.
+- The two scopes are retained separately. Classes 2023 and 2026 reconcile through Virginia-located boarding-school blocks; Class 2024 retains a two-student unresolved difference.

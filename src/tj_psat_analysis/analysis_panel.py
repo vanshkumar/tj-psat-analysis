@@ -77,6 +77,17 @@ ANALYSIS_PANEL_FIELDNAMES = (
     "statewide_nmsf_semifinalist_total_source_url",
     "statewide_nmsf_semifinalist_total_source_date",
     "statewide_nmsf_semifinalist_total_source_hash",
+    "virginia_location_nmsf_semifinalist_total",
+    "virginia_location_nmsf_semifinalist_total_status",
+    "virginia_location_nmsf_semifinalist_total_source_title",
+    "virginia_location_nmsf_semifinalist_total_source_url",
+    "virginia_location_nmsf_semifinalist_total_source_date",
+    "virginia_location_nmsf_semifinalist_total_source_hash",
+    "nmsc_guide_virginia_school_count",
+    "known_boarding_location_count",
+    "unresolved_location_difference",
+    "state_selection_unit_reconciliation_status",
+    "state_selection_unit_reconciliation_notes",
     "denominator_type",
     "admissions_seat_allocation_input",
     "admissions_seat_allocation_input_status",
@@ -244,7 +255,7 @@ def final_panel_checks(rows: Sequence[Mapping[str, object]]) -> list[dict[str, s
         _check_row(
             "statewide_total_source_metadata",
             not _statewide_total_source_violations(rows),
-            "Sourced statewide total rows include source metadata; unsourced years remain placeholders.",
+            "Sourced state-selection-unit and Virginia-location totals include source metadata.",
         ),
     ]
     return checks
@@ -259,7 +270,26 @@ def _statewide_total_source_violations(rows: Sequence[Mapping[str, object]]) -> 
             if status != "not_sourced":
                 violations.append(row)
             continue
-        if status != "source_backed_total":
+        if status != "source_backed_state_selection_unit_total":
+            violations.append(row)
+        location_total = str(row.get("virginia_location_nmsf_semifinalist_total", "")).strip()
+        location_status = str(row.get("virginia_location_nmsf_semifinalist_total_status", "")).strip()
+        if not location_total:
+            if location_status != "not_sourced":
+                violations.append(row)
+            continue
+        if location_status != "source_backed_location_total":
+            violations.append(row)
+            continue
+        if not all(
+            str(row.get(field, "")).strip()
+            for field in (
+                "virginia_location_nmsf_semifinalist_total_source_title",
+                "virginia_location_nmsf_semifinalist_total_source_url",
+                "virginia_location_nmsf_semifinalist_total_source_date",
+                "virginia_location_nmsf_semifinalist_total_source_hash",
+            )
+        ):
             violations.append(row)
             continue
         if not all(
@@ -286,6 +316,9 @@ def build_final_panel_report(
     source_placeholder_counts = Counter(str(row["va_nmsf_selection_index_cutoff_status"]) for row in rows)
     statewide_placeholder_counts = Counter(
         str(row["statewide_nmsf_semifinalist_total_status"]) for row in rows
+    )
+    location_total_counts = Counter(
+        str(row["virginia_location_nmsf_semifinalist_total_status"]) for row in rows
     )
 
     lines = [
@@ -336,8 +369,12 @@ def build_final_panel_report(
                 for status, count in sorted(source_placeholder_counts.items())
             ]
             + [
-                ["Statewide semifinalist total", status, count]
+                ["Virginia state-selection-unit total", status, count]
                 for status, count in sorted(statewide_placeholder_counts.items())
+            ]
+            + [
+                ["Virginia school-location total", status, count]
+                for status, count in sorted(location_total_counts.items())
             ],
         ),
         "",
@@ -349,13 +386,13 @@ def build_final_panel_report(
         "- Grade-11 enrollment is an outcome denominator, not an admissions-seat allocation input.",
         "- Virginia cutoff fields remain `not_sourced` until reliable sources are added.",
         (
-            "- Statewide total fields are populated only when a complete source-backed "
-            "Virginia list is available."
+            "- Virginia school-location totals come from complete media-list packets; official "
+            "state-selection-unit totals come from annual NMSC Guides."
         ),
         (
-            "- The Class 2026 supplied-list statewide total is source-backed in the panel "
-            "but pending reconciliation against the public NMSC guide total before final "
-            "statewide-share use."
+            "- The two scopes are retained separately. Classes 2023 and 2026 reconcile through "
+            "Virginia-located boarding-school blocks; Class 2024 retains a two-student unresolved "
+            "difference."
         ),
         "",
     ]
@@ -460,6 +497,33 @@ def _analysis_row(
         "statewide_nmsf_semifinalist_total_source_url": statewide_total_row.get("source_url", ""),
         "statewide_nmsf_semifinalist_total_source_date": statewide_total_row.get("source_date", ""),
         "statewide_nmsf_semifinalist_total_source_hash": statewide_total_row.get("source_hash", ""),
+        "virginia_location_nmsf_semifinalist_total": statewide_total_row.get(
+            "virginia_location_nmsf_semifinalist_total", ""
+        ),
+        "virginia_location_nmsf_semifinalist_total_status": statewide_total_row.get(
+            "virginia_location_nmsf_semifinalist_total_status", "not_sourced"
+        ),
+        "virginia_location_nmsf_semifinalist_total_source_title": statewide_total_row.get(
+            "virginia_location_source_title", ""
+        ),
+        "virginia_location_nmsf_semifinalist_total_source_url": statewide_total_row.get(
+            "virginia_location_source_url", ""
+        ),
+        "virginia_location_nmsf_semifinalist_total_source_date": statewide_total_row.get(
+            "virginia_location_source_date", ""
+        ),
+        "virginia_location_nmsf_semifinalist_total_source_hash": statewide_total_row.get(
+            "virginia_location_source_hash", ""
+        ),
+        "nmsc_guide_virginia_school_count": statewide_total_row.get("nmsc_guide_virginia_school_count", ""),
+        "known_boarding_location_count": statewide_total_row.get("known_boarding_location_count", ""),
+        "unresolved_location_difference": statewide_total_row.get("unresolved_location_difference", ""),
+        "state_selection_unit_reconciliation_status": statewide_total_row.get(
+            "state_selection_unit_reconciliation_status", "not_sourced"
+        ),
+        "state_selection_unit_reconciliation_notes": statewide_total_row.get(
+            "state_selection_unit_reconciliation_notes", ""
+        ),
         "denominator_type": "grade11_enrollment_outcome_denominator",
         "admissions_seat_allocation_input": "",
         "admissions_seat_allocation_input_status": "not_included_requires_sourced_8th_grade_population",

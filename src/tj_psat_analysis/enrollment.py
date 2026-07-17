@@ -283,12 +283,14 @@ def build_enrollment_panel_rows(
     public_2024_25_rows: Sequence[Mapping[str, str]],
     private_pss_rows: Sequence[Mapping[str, str]],
     private_pss_locator_rows: Sequence[Mapping[str, str]],
+    targeted_supplement_rows: Sequence[Mapping[str, str]] = (),
 ) -> list[dict[str, object]]:
     public_seed_index = _index_by_school_year(public_seed_rows)
     public_supplement_index = _index_by_school_year(public_supplement_rows)
     public_2024_25_index = _index_by_school_year(public_2024_25_rows)
     private_pss_index = _index_by_school_year(private_pss_rows)
     private_pss_locator_index = _index_by_school_year(private_pss_locator_rows)
+    targeted_supplement_index = _index_by_school_year(targeted_supplement_rows)
     has_private_sources = bool(private_pss_rows)
 
     output: list[dict[str, object]] = []
@@ -324,6 +326,10 @@ def build_enrollment_panel_rows(
                     row["enrollment_status"] = "private_pss_not_survey_year"
             else:
                 row["enrollment_status"] = "enrollment_not_applicable"
+
+            targeted_row = targeted_supplement_index.get(key)
+            if targeted_row and not _is_not_operating(roster_row, class_year):
+                _copy_enrollment_fields(row, targeted_row)
 
             output.append({field: row.get(field, "") for field in PANEL_FIELDS})
     return output
@@ -705,6 +711,9 @@ def build_enrollment_coverage_report(panel_rows: Sequence[Mapping[str, object]])
             "Class 2025 denominator source. It uses the locator file-layout field "
             "`PSS_ENROLL_11` and records `pss_imputation_flag` as `not_available_locator` "
             "because the detail pages do not expose `F_P290`.",
+            "- Exact targeted supplements override an unavailable default CCD/PSS row only when "
+            "the mapped-year Grade 11 count is stated by an official local membership report, "
+            "official school profile, or an identity-reconciled PSS row set.",
             "- PSS non-survey years without a public-use or locator source row remain blank with "
             "`private_pss_not_survey_year` rather than borrowing adjacent survey years.",
             "",
@@ -722,6 +731,7 @@ def build_enrollment_outputs(
     private_pss_locator_csv: Path,
     processed_dir: Path,
     report_dir: Path,
+    targeted_supplement_csv: Path | None = None,
 ) -> dict[str, Path]:
     school_roster_rows = load_csv_rows(school_roster_csv)
     public_seed_rows = load_csv_rows(public_seed_csv)
@@ -729,6 +739,11 @@ def build_enrollment_outputs(
     public_2024_25_rows = load_csv_rows(public_2024_25_csv)
     private_pss_rows = load_csv_rows(private_pss_csv)
     private_pss_locator_rows = load_csv_rows(private_pss_locator_csv)
+    targeted_supplement_rows = (
+        load_csv_rows(targeted_supplement_csv)
+        if targeted_supplement_csv and targeted_supplement_csv.exists()
+        else []
+    )
     panel_rows = build_enrollment_panel_rows(
         school_roster_rows=school_roster_rows,
         public_seed_rows=public_seed_rows,
@@ -736,6 +751,7 @@ def build_enrollment_outputs(
         public_2024_25_rows=public_2024_25_rows,
         private_pss_rows=private_pss_rows,
         private_pss_locator_rows=private_pss_locator_rows,
+        targeted_supplement_rows=targeted_supplement_rows,
     )
     coverage_rows = build_enrollment_coverage_rows(panel_rows)
 

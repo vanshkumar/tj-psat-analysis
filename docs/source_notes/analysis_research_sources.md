@@ -2,7 +2,7 @@
 
 Generated: 2026-07-16
 
-This file records external sources used for interpretation and supplemental checks. The canonical panel includes source-backed Virginia statewide totals for complete-list years.
+This file records external sources used for interpretation and supplemental checks. For Classes 2023, 2024, and 2026, the canonical panel keeps official NMSC Virginia state-selection-unit totals separate from complete-media-list totals for students attending Virginia-located schools.
 
 ## Primary sources
 
@@ -31,17 +31,20 @@ This file records external sources used for interpretation and supplemental chec
 - Compass historical state cutoffs: https://www.compassprep.com/historical-national-merit-cutoffs/
 - Compass semifinalist totals by state: https://www.compassprep.com/national-merit-semifinalists-by-state/ (Class 2025 statewide-total sensitivity only)
 
-## Source-backed Virginia list totals
+## Source-backed Virginia totals by scope
 
-- Class 2023 complete NMSC Virginia list: https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view
-- Class 2024 complete NMSC Virginia list: https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf
-- Class 2026 complete NMSC Virginia list: https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view
+- Class 2023 official NMSC state-selection-unit guide: https://web.archive.org/web/20230127104949id_/https://www.nationalmerit.org/s/1758/images/gid2/editor_documents/guide_to_the_national_merit_scholarship_program.pdf
+- Class 2024 official NMSC state-selection-unit guide: https://web.archive.org/web/20231024130754id_/https://www.nationalmerit.org/s/1758/images/gid2/editor_documents/guide_to_the_national_merit_scholarship_program.pdf
+- Class 2026 official NMSC state-selection-unit guide: https://www.nationalmerit.org/s/1758/images/gid2/editor_documents/guide_to_the_national_merit_scholarship_program.pdf?cc=1&gid=2&pgid=61
+- Class 2023 complete Virginia school-location list: https://drive.google.com/file/d/1lukNgBPkoLPTaAptU7YrhkG8YtauqYqa/view
+- Class 2024 complete Virginia school-location list: https://web.archive.org/web/20230915001040if_/https%3A//litter.catbox.moe/5lujlt.pdf
+- Class 2026 complete Virginia school-location list: https://drive.google.com/file/d/1xCdjpoXII9oTmu_hWYFqeWl5XWmTblSu/view
 
-The source-backed statewide totals are written to `data/sources/virginia_statewide_totals.csv` and carried into the panel for Classes 2023, 2024, and 2026. Compass remains a secondary source for Virginia cutoff values and for the unresolved Class 2025 statewide-total sensitivity value. NMSC's official guide is the source for its warning that program data do not measure school, district, or state educational quality.
+The official state-unit totals (397, 467, and 489) and the corresponding school-location totals (400, 470, and 494) are written to `data/sources/virginia_statewide_totals.csv` and carried into distinct panel fields. Compass remains a secondary source for Virginia cutoff values and for the unresolved Class 2025 state-total sensitivity value. NMSC's official guide is also the source for its warning that program data do not measure school, district, or state educational quality.
 
 ## Statewide-total reconciliation caveat
 
-Class 2026 statewide-denominator caveat: the committed supplied-list snapshot totals 494, while the public 2026 NMSC guide lists Virginia at 489 semifinalists. Treat statewide shares using the 2026 denominator as provisional until reconciled; local school counts and focal coverage are unchanged.
+Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, 2024, and 2026; official NMSC state-selection-unit totals are 397, 467, and 489. Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. The two denominator scopes are retained separately.
 
 ## Unresolved source gap
 

@@ -134,6 +134,8 @@ NMSC_VIRGINIA_LIST_SNAPSHOTS = (
     ),
 )
 
+FOCAL_CLASS_YEARS = (2023, 2024, 2025, 2026)
+
 SOURCE_DISCOVERY_ATTEMPTS = (
     SourceDiscoveryAttempt(
         workflow="Internet Archive CDX",
@@ -211,12 +213,51 @@ SOURCE_DISCOVERY_ATTEMPTS = (
         finding="Patch coverage remains local or school-area coverage, not a complete Virginia list.",
         action="Keep Patch-derived rows positive-only; never use Patch absence for zero inference.",
     ),
+    SourceDiscoveryAttempt(
+        workflow="Reddit metadata APIs plus Internet Archive and Common Crawl",
+        query_or_source=(
+            "Deleted r/psat gallery post `1fekyi6` (`2025 NMSF Virginia`) with recovered media IDs "
+            "`1xu2738au8od1`, `nwinp3feu8od1`, and `ynlabcqhu8od1`; corrected first-page post "
+            "`1femf90` with media ID `wdipgaas59od1`"
+        ),
+        result=(
+            "The archived shell preserves three page-image URLs, but the Reddit CDN objects now return "
+            "404 and neither Internet Archive nor Common Crawl has recoverable image bytes."
+        ),
+        finding=(
+            "The strongest statewide-list lead is identifiable but its school-list images are unavailable."
+        ),
+        action=(
+            "Retain the media IDs as a future recovery lead; do not create counts or zeros from the "
+            "deleted-gallery shell."
+        ),
+    ),
+    SourceDiscoveryAttempt(
+        workflow="Identity-level source reconciliation",
+        query_or_source=(
+            "Official LCPS 57-name release against Patch's school-attributed Loudoun list and FCPS's "
+            "official TJHSST list, with one spelling variant checked against a U.S. Education list"
+        ),
+        result=(
+            "All 57 distinct LCPS identities partition exactly into 42 Patch-attributed LCPS-public "
+            "students and 15 students on the official TJHSST list."
+        ),
+        finding=(
+            "The school-attributed LCPS-public partition is exhaustive without allocating the district "
+            "total or assigning TJHSST residents to base schools."
+        ),
+        action=(
+            "Use the archived count-only reconciliation to verify zero for the four absent operating "
+            "LCPS roster schools; keep Patch alone incomplete for zero inference."
+        ),
+    ),
 )
 
 LCPS_2025_TARGETED_SOURCES = (
     "NMSC 2025 press release; official LCPS 57-student total-only release; "
-    "Ashburn Patch positive school-grouped article; LCPS school sites/APIs; "
-    "LCPS, Patch, Loudoun Now, and Loudoun Times targeted web/CDX checks"
+    "Ashburn Patch school-grouped article; official FCPS TJHSST list; U.S. Education "
+    "candidate list for one spelling check; LCPS school sites/APIs; LCPS, Patch, "
+    "Loudoun Now, and Loudoun Times targeted web/CDX checks"
 )
 
 TARGETED_CLASS_2025_ROW_SEARCHES = (
@@ -226,10 +267,16 @@ TARGETED_CLASS_2025_ROW_SEARCHES = (
         school="Meridian High School",
         sources_checked=(
             "NMSC 2025 press release; FCCPS/Meridian Apptegy news, live-feed, "
-            "and search surfaces; Falls Church News-Press issue-week checks; "
-            "Patch Falls Church/Fairfax City checks; FCCPS/Meridian/Patch CDX checks"
+            "and search surfaces; Falls Church News-Press graduation report "
+            "(https://www.fcnp.com/2025/05/28/meridian-graduation-noonans-farewell/); "
+            "Patch Falls Church/Fairfax City checks; FCCPS/Meridian/Patch CDX checks; "
+            "deleted Reddit Virginia-gallery metadata and archive checks"
         ),
-        result=("No Meridian school-level count and no complete Class 2025 Virginia list were found."),
+        result=(
+            "No source-backed Meridian semifinalist count was found. A Falls Church News-Press "
+            "graduation report gives four finalists, which cannot establish the semifinalist count; "
+            "the deleted statewide gallery's image bytes remain unavailable."
+        ),
         action="Retain as `missing_source`; no zero inference.",
     ),
     TargetedMissingRowSearch(
@@ -238,10 +285,10 @@ TARGETED_CLASS_2025_ROW_SEARCHES = (
         school="Loudoun Valley High School",
         sources_checked=LCPS_2025_TARGETED_SOURCES,
         result=(
-            "No school-level count found; LCPS total-only coverage and Patch omission "
-            "cannot support zero inference."
+            "Verified zero: the official 57-name LCPS list reconciles exhaustively to 42 "
+            "Patch-attributed LCPS-public identities plus 15 official TJHSST identities."
         ),
-        action="Retain as `missing_source`; no zero inference.",
+        action="Record `verified_zero` from `lcps_2025_named_list_reconciliation`.",
     ),
     TargetedMissingRowSearch(
         class_year=2025,
@@ -249,10 +296,10 @@ TARGETED_CLASS_2025_ROW_SEARCHES = (
         school="Park View High School",
         sources_checked=LCPS_2025_TARGETED_SOURCES,
         result=(
-            "No school-level count found; LCPS total-only coverage and Patch omission "
-            "cannot support zero inference."
+            "Verified zero: the official 57-name LCPS list reconciles exhaustively to 42 "
+            "Patch-attributed LCPS-public identities plus 15 official TJHSST identities."
         ),
-        action="Retain as `missing_source`; no zero inference.",
+        action="Record `verified_zero` from `lcps_2025_named_list_reconciliation`.",
     ),
     TargetedMissingRowSearch(
         class_year=2025,
@@ -260,10 +307,10 @@ TARGETED_CLASS_2025_ROW_SEARCHES = (
         school="Tuscarora High School",
         sources_checked=LCPS_2025_TARGETED_SOURCES,
         result=(
-            "No school-level count found; LCPS total-only coverage and Patch omission "
-            "cannot support zero inference."
+            "Verified zero: the official 57-name LCPS list reconciles exhaustively to 42 "
+            "Patch-attributed LCPS-public identities plus 15 official TJHSST identities."
         ),
-        action="Retain as `missing_source`; no zero inference.",
+        action="Record `verified_zero` from `lcps_2025_named_list_reconciliation`.",
     ),
     TargetedMissingRowSearch(
         class_year=2025,
@@ -271,10 +318,10 @@ TARGETED_CLASS_2025_ROW_SEARCHES = (
         school="Woodgrove High School",
         sources_checked=LCPS_2025_TARGETED_SOURCES,
         result=(
-            "No school-level count found; LCPS total-only coverage and Patch omission "
-            "cannot support zero inference."
+            "Verified zero: the official 57-name LCPS list reconciles exhaustively to 42 "
+            "Patch-attributed LCPS-public identities plus 15 official TJHSST identities."
         ),
-        action="Retain as `missing_source`; no zero inference.",
+        action="Record `verified_zero` from `lcps_2025_named_list_reconciliation`.",
     ),
 )
 
@@ -299,7 +346,8 @@ def build_focal_period_completion_report(
         "",
         "Generated from the current focal-period observation layer, archived "
         "NMSC press-release source artifacts, and count-only complete Virginia list snapshots "
-        "where available.",
+        "where available. Statewide totals are reported separately for Virginia-location media "
+        "lists and official NMSC Virginia selection units.",
         "",
         "## Current Observation Coverage",
         "",
@@ -338,29 +386,48 @@ def build_focal_period_completion_report(
         "Classes 2023, 2024, and 2026. The repo archives count-only snapshots that omit student "
         "names, imports only still-missing positive roster rows from those lists, and uses the "
         "complete Virginia scope to infer verified zeros for absent operating roster schools in "
-        "those class years. Class 2025 lacks a comparable complete list, so statewide-share metrics "
-        "remain blank there; the remaining row-level gaps are handled individually below.",
+        "those class years. These packets are location lists: their totals include Semifinalists "
+        "grouped under Virginia-located schools, including students who may belong to NMSC's "
+        "separate U.S. boarding-school selection unit. NMSC's guides report the Virginia state "
+        "selection unit separately. Class 2025 lacks a source-backed total in either scope, so "
+        "statewide-share metrics remain blank there; the remaining row-level gaps are handled "
+        "individually below.",
         "",
         _markdown_table(
-            ["Class", "Source ID", "Statewide Total", "Snapshot", "SHA-256"],
+            [
+                "Class",
+                "Virginia-Location Media-List Total",
+                "Official NMSC Virginia Selection-Unit Total",
+                "Location Source ID",
+                "Location Snapshot",
+                "Location SHA-256",
+                "Official Guide Source",
+                "Official Guide Date",
+                "Official Guide SHA-256",
+            ],
             _virginia_list_table_rows(root),
         ),
         "",
         (
-            "Statewide-share caveat: the Class 2026 supplied-list snapshot totals 494, while "
-            "the public NMSC 2026 guide cross-check lists Virginia at 489 semifinalists. This "
-            "does not change local school counts or zero-inference coverage, but 2026 "
-            "statewide-share denominators should be reconciled before final use."
+            "Statewide scope rule: use the Virginia-location media-list totals (400, 470, and "
+            "494) only with location-scoped numerators. Use the official NMSC Virginia "
+            "selection-unit totals (397, 467, and 489) only with numerators that exclude students "
+            "assigned to other NMSC selection units. These are different scopes, not competing "
+            "estimates. Do not substitute an official selection-unit denominator beneath an "
+            "unadjusted location-list numerator. No source-backed statewide denominator is "
+            "available for Class 2025 in either scope."
         ),
         "",
         "## Targeted Class 2025 Row Search",
         "",
-        "The remaining focal-period gaps are five public Class 2025 rows. Each was targeted "
-        "directly after the 2023, 2024, and 2026 complete-list integration. None has a "
-        "source-backed positive count, and none has a complete source scope that can support "
-        "a verified zero. Recovering the full Class 2025 statewide packet would improve "
-        "supplemental statewide-share metrics, but it is not required to close this "
-        "public-source cleanup pass.",
+        "Five public Class 2025 rows were targeted directly after the 2023, 2024, and 2026 "
+        "complete-list integration. Exact identity-level reconciliation closes the four LCPS "
+        "rows as verified zeros without allocating the unattributed district total: 42 directly "
+        "school-attributed LCPS-public identities plus 15 official TJHSST identities exhaust the "
+        "official 57-name LCPS release. Meridian remains missing because the available graduation "
+        "report counts finalists rather than semifinalists and the deleted statewide gallery's "
+        "image bytes could not be recovered. A full Class 2025 statewide packet would still improve "
+        "supplemental statewide-share metrics.",
         "",
         _markdown_table(
             ["Class", "Division", "School", "Sources Checked", "Result", "Action"],
@@ -401,11 +468,11 @@ def build_focal_period_completion_report(
         "",
         "## Broad Source-Discovery Log",
         "",
-        "An earlier public-source sweep looked for complete Virginia school-by-school lists or "
-        "authoritative mirrors for Classes 2023-2026. It did not locate the now-supplied 2023, "
-        "2024, and 2026 list files, and it remains useful limitation evidence for the unsourced "
-        "Class 2025 statewide list/total. These searches do not establish zeros for missing "
-        "schools.",
+        "Public-source sweeps looked for complete Virginia school-by-school lists or authoritative "
+        "mirrors for Classes 2023-2026. The latest pass recovered the deleted Class 2025 Reddit "
+        "gallery's metadata and archived shell but not its image bytes. Separately, exact LCPS "
+        "name-set reconciliation establishes the four LCPS zeros; archive or search absence alone "
+        "does not establish any zero.",
         "",
         _markdown_table(
             ["Workflow", "Query Or Source", "Result", "Finding", "Action"],
@@ -426,14 +493,20 @@ def build_focal_period_completion_report(
         "- Do not add the NMSC press-release-only PDFs to `data/sources/source_manifest.yml` as "
         "numeric count sources because they do not provide school-level Virginia counts.",
         "- Use the supplied complete NMSC Virginia lists for Classes 2023, 2024, and 2026 as "
-        "source-backed count, zero-inference, and statewide-total sources.",
+        "source-backed count, zero-inference, and Virginia-location-total sources; do not label "
+        "their totals as official Virginia selection-unit totals.",
+        "- Preserve the official NMSC Virginia selection-unit totals of 397, 467, and 489 as a "
+        "separate statewide scope and require scope-matched numerators before calculating shares.",
         "- Do not infer zeros for missing public or private rows from these press releases.",
-        "- Treat a complete Class 2025 Virginia school-by-school list as optional future work, not "
-        "a prerequisite for closing the public-source cleanup pass.",
-        "- Retain the five targeted Class 2025 rows as `missing_source` unless a school-attributed "
-        "count source or complete zero-inference scope appears.",
-        "- Publish Virginia statewide-share metrics for source-backed complete-list years only; "
-        "leave Class 2025 shares blank until a source-backed statewide total is added.",
+        "- Treat recovery of the deleted Class 2025 Virginia gallery images or another complete "
+        "statewide list as useful future work for Meridian and statewide-share metrics.",
+        "- Use `lcps_2025_named_list_reconciliation` for the four Class 2025 LCPS verified zeros; "
+        "the source exhausts the official named population and keeps TJHSST as one row.",
+        "- Retain Meridian High School Class 2025 as `missing_source`; four reported finalists do "
+        "not establish the semifinalist count.",
+        "- Publish Virginia statewide-share metrics only when both numerator and denominator use "
+        "the same documented scope; leave Class 2025 shares blank until a source-backed statewide "
+        "total is added.",
         "",
     ]
     return "\n".join(lines)
@@ -441,17 +514,29 @@ def build_focal_period_completion_report(
 
 def _virginia_list_table_rows(root: Path) -> list[list[str]]:
     totals_path = root / "data" / "sources" / "virginia_statewide_totals.csv"
-    totals = {row["source_id"]: row for row in load_csv_rows(totals_path)} if totals_path.exists() else {}
+    totals = (
+        {int(row["class_year"]): row for row in load_csv_rows(totals_path)} if totals_path.exists() else {}
+    )
+    snapshots = {source.class_year: source for source in NMSC_VIRGINIA_LIST_SNAPSHOTS}
     rows: list[list[str]] = []
-    for source in NMSC_VIRGINIA_LIST_SNAPSHOTS:
-        total = totals.get(source.source_id, {}).get("statewide_nmsf_semifinalist_total", "")
+    for class_year in FOCAL_CLASS_YEARS:
+        snapshot = snapshots.get(class_year)
+        total_row = totals.get(class_year, {})
+        location_total = total_row.get("virginia_location_nmsf_semifinalist_total", "")
+        selection_total = total_row.get("statewide_nmsf_semifinalist_total", "")
+        guide_title = total_row.get("source_title", "")
+        guide_url = total_row.get("source_url", "")
         rows.append(
             [
-                str(source.class_year),
-                source.source_id,
-                total,
-                source.archived_file_path,
-                _sha256(root / source.archived_file_path),
+                str(class_year),
+                location_total or "not sourced",
+                selection_total or "not sourced",
+                snapshot.source_id if snapshot is not None else "",
+                snapshot.archived_file_path if snapshot is not None else "",
+                _sha256(root / snapshot.archived_file_path) if snapshot is not None else "",
+                f"[{guide_title}]({guide_url})" if guide_title and guide_url else "",
+                total_row.get("source_date", ""),
+                total_row.get("source_hash", ""),
             ]
         )
     return rows

@@ -1,4 +1,5 @@
 school_id,school,tj_pathway,nmsf_2023_2024,grade11_2023_2024,rate_2023_2024,nmsf_2025_2026,grade11_2025_2026,rate_2025_2026,rate_point_change,direction
+h_b_woodlawn_secondary_program,H-B Woodlawn Secondary Program,Arlington,4.000000,218.000000,1.834862,9.000000,225.000000,4.000000,2.165138,increase
 langley_high_school,Langley High School,FCPS Region 1,28.000000,1036.000000,2.702703,42.000000,1071.000000,3.921569,1.218866,increase
 oakton_high_school,Oakton High School,FCPS Region 1,25.000000,1364.000000,1.832845,36.000000,1335.000000,2.696629,0.863785,increase
 riverside_high_school,Riverside High School,Loudoun,3.000000,895.000000,0.335196,9.000000,896.000000,1.004464,0.669269,increase
@@ -16,6 +17,7 @@ herndon_high_school,Herndon High School,FCPS Region 1,1.000000,1138.000000,0.087
 charles_j_colgan_sr_high_school,Charles J. Colgan Sr. High School,Prince William,0.000000,1452.000000,0.000000,2.000000,1387.000000,0.144196,0.144196,increase
 west_springfield_high_school,West Springfield High School,FCPS Region 4,3.000000,1283.000000,0.233827,5.000000,1386.000000,0.360750,0.126923,increase
 patriot_high_school,Patriot High School,Prince William,1.000000,1124.000000,0.088968,2.000000,950.000000,0.210526,0.121558,increase
+woodgrove_high_school,Woodgrove High School,Loudoun,1.000000,756.000000,0.132275,2.000000,794.000000,0.251889,0.119614,increase
 c_d_hylton_high_school,C.D. Hylton High School,Prince William,0.000000,1024.000000,0.000000,1.000000,854.000000,0.117096,0.117096,increase
 hayfield_secondary_school_hs,Hayfield Secondary School (HS),FCPS Region 3,0.000000,1057.000000,0.000000,1.000000,1117.000000,0.089526,0.089526,increase
 washington_liberty_high_school,Washington-Liberty High School,Arlington,13.000000,1284.000000,1.012461,16.000000,1452.000000,1.101928,0.089467,increase
@@ -29,6 +31,7 @@ brentsville_district_high_school,Brentsville District High School,Prince William
 freedom_high_school_woodbridge,Freedom High School (Woodbridge),Prince William,0.000000,965.000000,0.000000,0.000000,981.000000,0.000000,0.000000,unchanged
 gar_field_high_school,Gar-Field High School,Prince William,0.000000,1092.000000,0.000000,0.000000,1179.000000,0.000000,0.000000,unchanged
 mount_vernon_high_school,Mount Vernon High School,FCPS Region 3,0.000000,918.000000,0.000000,0.000000,940.000000,0.000000,0.000000,unchanged
+park_view_high_school,Park View High School,Loudoun,0.000000,717.000000,0.000000,0.000000,692.000000,0.000000,0.000000,unchanged
 potomac_high_school,Potomac High School,Prince William,0.000000,887.000000,0.000000,0.000000,973.000000,0.000000,0.000000,unchanged
 south_county_high_school,South County High School,FCPS Region 4,0.000000,1140.000000,0.000000,0.000000,1095.000000,0.000000,0.000000,unchanged
 unity_reed_high_school,Unity Reed High School,Prince William,0.000000,1030.000000,0.000000,0.000000,969.000000,0.000000,0.000000,unchanged
@@ -51,4 +54,6 @@ mclean_high_school,McLean High School,FCPS Region 2,38.000000,1185.000000,3.2067
 broad_run_high_school,Broad Run High School,Loudoun,8.000000,786.000000,1.017812,5.000000,795.000000,0.628931,-0.388881,decrease
 loudoun_county_high_school,Loudoun County High School,Loudoun,4.000000,746.000000,0.536193,1.000000,728.000000,0.137363,-0.398830,decrease
 heritage_high_school_leesburg,Heritage High School (Leesburg),Loudoun,5.000000,715.000000,0.699301,2.000000,742.000000,0.269542,-0.429759,decrease
+tuscarora_high_school,Tuscarora High School,Loudoun,3.000000,678.000000,0.442478,0.000000,716.000000,0.000000,-0.442478,decrease
 rock_ridge_high_school,Rock Ridge High School,Loudoun,14.000000,688.000000,2.034884,12.000000,766.000000,1.566580,-0.468304,decrease
+loudoun_valley_high_school,Loudoun Valley High School,Loudoun,3.000000,616.000000,0.487013,0.000000,563.000000,0.000000,-0.487013,decrease

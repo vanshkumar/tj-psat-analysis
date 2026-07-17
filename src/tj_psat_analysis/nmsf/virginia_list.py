@@ -32,6 +32,18 @@ STATEWIDE_TOTAL_FIELDNAMES = (
     "source_url",
     "source_date",
     "source_hash",
+    "virginia_location_nmsf_semifinalist_total",
+    "virginia_location_nmsf_semifinalist_total_status",
+    "virginia_location_source_id",
+    "virginia_location_source_title",
+    "virginia_location_source_url",
+    "virginia_location_source_date",
+    "virginia_location_source_hash",
+    "nmsc_guide_virginia_school_count",
+    "known_boarding_location_count",
+    "unresolved_location_difference",
+    "state_selection_unit_reconciliation_status",
+    "state_selection_unit_reconciliation_notes",
 )
 
 SCHOOLISH_RE = re.compile(
@@ -202,14 +214,32 @@ def statewide_total_row(
 ) -> dict[str, str]:
     return {
         "class_year": str(class_year),
-        "statewide_nmsf_semifinalist_total": str(total),
-        "statewide_nmsf_semifinalist_total_status": "source_backed_total",
-        "source_id": source_id,
-        "source_title": source_title,
-        "source_url": source_url,
-        "source_date": source_date,
-        "source_hash": source_hash,
+        "virginia_location_nmsf_semifinalist_total": str(total),
+        "virginia_location_nmsf_semifinalist_total_status": "source_backed_location_total",
+        "virginia_location_source_id": source_id,
+        "virginia_location_source_title": source_title,
+        "virginia_location_source_url": source_url,
+        "virginia_location_source_date": source_date,
+        "virginia_location_source_hash": source_hash,
     }
+
+
+def combine_statewide_total_rows(
+    *,
+    location_row: Mapping[str, str],
+    selection_unit_row: Mapping[str, str],
+) -> dict[str, str]:
+    class_year = location_row.get("class_year", "")
+    if selection_unit_row.get("class_year", "") != class_year:
+        raise ValueError(f"Statewide total class-year mismatch: {class_year}")
+    combined = {field: selection_unit_row.get(field, "") for field in STATEWIDE_TOTAL_FIELDNAMES}
+    combined.update(location_row)
+    combined["class_year"] = class_year
+    combined["state_selection_unit_reconciliation_status"] = selection_unit_row.get(
+        "reconciliation_status", ""
+    )
+    combined["state_selection_unit_reconciliation_notes"] = selection_unit_row.get("reconciliation_notes", "")
+    return {field: combined.get(field, "") for field in STATEWIDE_TOTAL_FIELDNAMES}
 
 
 def write_snapshot_csv(path: Path, rows: Sequence[Mapping[str, str]]) -> None:

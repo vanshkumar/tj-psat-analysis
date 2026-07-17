@@ -131,10 +131,13 @@ VIRGINIA_SHARE_FIELDNAMES = (
     "group",
     "nmsf_count_total",
     "missing_nmsf_rows",
-    "statewide_nmsf_semifinalist_total",
-    "share_of_statewide_total_pct",
-    "statewide_total_status",
-    "statewide_total_source_url",
+    "virginia_location_nmsf_semifinalist_total",
+    "share_of_virginia_location_total_pct",
+    "virginia_location_total_status",
+    "virginia_location_total_source_url",
+    "state_selection_unit_nmsf_semifinalist_total",
+    "state_selection_unit_total_status",
+    "state_selection_unit_reconciliation_status",
     "coverage_note",
 )
 
@@ -389,9 +392,16 @@ def virginia_share_rows(rows: Sequence[Mapping[str, str]]) -> list[dict[str, str
     for class_year in CLASS_YEAR_LABELS:
         year_rows = [row for row in rows if row["class_year"] == class_year and is_operating(row)]
         representative = year_rows[0] if year_rows else {}
-        statewide_total = _int_or_none(representative.get("statewide_nmsf_semifinalist_total", ""))
-        status = representative.get("statewide_nmsf_semifinalist_total_status", "not_sourced")
-        source_url = representative.get("statewide_nmsf_semifinalist_total_source_url", "")
+        location_total = _int_or_none(representative.get("virginia_location_nmsf_semifinalist_total", ""))
+        location_status = representative.get(
+            "virginia_location_nmsf_semifinalist_total_status", "not_sourced"
+        )
+        location_source_url = representative.get("virginia_location_nmsf_semifinalist_total_source_url", "")
+        selection_unit_total = _int_or_none(representative.get("statewide_nmsf_semifinalist_total", ""))
+        selection_unit_status = representative.get("statewide_nmsf_semifinalist_total_status", "not_sourced")
+        reconciliation_status = representative.get(
+            "state_selection_unit_reconciliation_status", "not_sourced"
+        )
         all_summary = summarize_rows(year_rows)
         group_specs = [
             ("TJ-zone including TJHSST", year_rows),
@@ -413,18 +423,24 @@ def virginia_share_rows(rows: Sequence[Mapping[str, str]]) -> list[dict[str, str
                     class_year=class_year,
                     group=group,
                     group_rows=group_rows,
-                    statewide_total=statewide_total,
-                    statewide_status=status,
-                    statewide_source_url=source_url,
+                    location_total=location_total,
+                    location_status=location_status,
+                    location_source_url=location_source_url,
+                    selection_unit_total=selection_unit_total,
+                    selection_unit_status=selection_unit_status,
+                    reconciliation_status=reconciliation_status,
                 )
             )
         output.append(
             _virginia_remainder_row(
                 class_year=class_year,
                 all_summary=all_summary,
-                statewide_total=statewide_total,
-                statewide_status=status,
-                statewide_source_url=source_url,
+                location_total=location_total,
+                location_status=location_status,
+                location_source_url=location_source_url,
+                selection_unit_total=selection_unit_total,
+                selection_unit_status=selection_unit_status,
+                reconciliation_status=reconciliation_status,
             )
         )
     return output
@@ -435,24 +451,34 @@ def _virginia_share_row(
     class_year: str,
     group: str,
     group_rows: Sequence[Mapping[str, str]],
-    statewide_total: int | None,
-    statewide_status: str,
-    statewide_source_url: str,
+    location_total: int | None,
+    location_status: str,
+    location_source_url: str,
+    selection_unit_total: int | None,
+    selection_unit_status: str,
+    reconciliation_status: str,
 ) -> dict[str, str]:
     summary = summarize_rows(group_rows)
     count = _int_or_none(summary["nmsf_count_observed_total"])
     missing = int(summary["missing_nmsf_rows"])
-    share = _share_text(count, statewide_total) if missing == 0 else ""
+    share = _share_text(count, location_total) if missing == 0 else ""
     return {
         "class_year": class_year,
         "group": group,
         "nmsf_count_total": str(count) if count is not None and missing == 0 else "",
         "missing_nmsf_rows": str(missing),
-        "statewide_nmsf_semifinalist_total": str(statewide_total) if statewide_total is not None else "",
-        "share_of_statewide_total_pct": share,
-        "statewide_total_status": statewide_status,
-        "statewide_total_source_url": statewide_source_url,
-        "coverage_note": _virginia_share_note(class_year, missing, statewide_total),
+        "virginia_location_nmsf_semifinalist_total": str(location_total)
+        if location_total is not None
+        else "",
+        "share_of_virginia_location_total_pct": share,
+        "virginia_location_total_status": location_status,
+        "virginia_location_total_source_url": location_source_url,
+        "state_selection_unit_nmsf_semifinalist_total": str(selection_unit_total)
+        if selection_unit_total is not None
+        else "",
+        "state_selection_unit_total_status": selection_unit_status,
+        "state_selection_unit_reconciliation_status": reconciliation_status,
+        "coverage_note": _virginia_share_note(missing, location_total),
     }
 
 
@@ -460,29 +486,37 @@ def _virginia_remainder_row(
     *,
     class_year: str,
     all_summary: Mapping[str, str],
-    statewide_total: int | None,
-    statewide_status: str,
-    statewide_source_url: str,
+    location_total: int | None,
+    location_status: str,
+    location_source_url: str,
+    selection_unit_total: int | None,
+    selection_unit_status: str,
+    reconciliation_status: str,
 ) -> dict[str, str]:
     count = _int_or_none(all_summary["nmsf_count_observed_total"])
     missing = int(all_summary["missing_nmsf_rows"])
     remainder = (
-        statewide_total - count
-        if statewide_total is not None and count is not None and missing == 0
-        else None
+        location_total - count if location_total is not None and count is not None and missing == 0 else None
     )
     return {
         "class_year": class_year,
         "group": "Virginia outside TJ-zone",
         "nmsf_count_total": str(remainder) if remainder is not None else "",
         "missing_nmsf_rows": str(missing),
-        "statewide_nmsf_semifinalist_total": str(statewide_total) if statewide_total is not None else "",
-        "share_of_statewide_total_pct": _share_text(remainder, statewide_total)
+        "virginia_location_nmsf_semifinalist_total": str(location_total)
+        if location_total is not None
+        else "",
+        "share_of_virginia_location_total_pct": _share_text(remainder, location_total)
         if remainder is not None
         else "",
-        "statewide_total_status": statewide_status,
-        "statewide_total_source_url": statewide_source_url,
-        "coverage_note": _virginia_share_note(class_year, missing, statewide_total),
+        "virginia_location_total_status": location_status,
+        "virginia_location_total_source_url": location_source_url,
+        "state_selection_unit_nmsf_semifinalist_total": str(selection_unit_total)
+        if selection_unit_total is not None
+        else "",
+        "state_selection_unit_total_status": selection_unit_status,
+        "state_selection_unit_reconciliation_status": reconciliation_status,
+        "coverage_note": _virginia_share_note(missing, location_total),
     }
 
 
@@ -749,8 +783,9 @@ def build_descriptive_report(
         "## Virginia Statewide Shares",
         "",
         (
-            "Shares are calculated only when the class year has a source-backed statewide total "
-            "and the group has no missing NMSF rows."
+            "Shares use the source-backed Virginia school-location media-packet total so the "
+            "denominator matches the location-based school counts. Official NMSC state-selection-"
+            "unit totals are retained separately."
         ),
         "",
         _markdown_table(
@@ -760,8 +795,8 @@ def build_descriptive_report(
                     row["class_year"],
                     row["group"],
                     row["nmsf_count_total"] or "(missing)",
-                    row["statewide_nmsf_semifinalist_total"] or "(missing)",
-                    row["share_of_statewide_total_pct"] or "(missing)",
+                    row["virginia_location_nmsf_semifinalist_total"] or "(missing)",
+                    row["share_of_virginia_location_total_pct"] or "(missing)",
                     row["coverage_note"],
                 ]
                 for row in table_rows["virginia_share_by_class"]
@@ -770,9 +805,10 @@ def build_descriptive_report(
         ),
         "",
         (
-            "Class 2026 statewide shares use the committed supplied-list snapshot total of 494; "
-            "the public NMSC 2026 guide cross-check lists Virginia at 489. Treat those shares "
-            "as provisional until the statewide denominator discrepancy is reconciled."
+            "NMSC state-selection-unit totals are 397, 467, and 489 for Classes 2023, 2024, "
+            "and 2026, compared with school-location totals of 400, 470, and 494. Classes 2023 "
+            "and 2026 reconcile through boarding-school blocks; two Class 2024 students remain "
+            "scope-unresolved."
         ),
         "",
         "## Pre/Post Summary",
@@ -1527,14 +1563,12 @@ def _share_text(count: int | None, statewide_total: int | None) -> str:
     return f"{100 * count / statewide_total:.6f}"
 
 
-def _virginia_share_note(class_year: str, missing_rows: int, statewide_total: int | None) -> str:
-    if statewide_total is None:
-        return "statewide total not source-backed for this class year"
+def _virginia_share_note(missing_rows: int, location_total: int | None) -> str:
+    if location_total is None:
+        return "Virginia school-location total not source-backed for this class year"
     if missing_rows:
         return "group count has missing NMSF rows; share not calculated"
-    if class_year == "2026":
-        return "source-backed count; statewide denominator pending 2026 guide reconciliation"
-    return "source-backed count and complete Virginia list statewide denominator"
+    return "source-backed count and scope-matched Virginia school-location denominator"
 
 
 def _counter_rows(counter: Counter[str]) -> list[list[object]]:

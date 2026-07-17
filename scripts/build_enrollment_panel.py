@@ -46,6 +46,11 @@ def main() -> int:
         default=ROOT / "data" / "interim" / "private_grade11_enrollment_pss_locator_2023_24.csv",
     )
     parser.add_argument(
+        "--targeted-supplement-csv",
+        type=Path,
+        default=ROOT / "data" / "sources" / "targeted_grade11_enrollment.csv",
+    )
+    parser.add_argument(
         "--processed-dir",
         type=Path,
         default=ROOT / "data" / "processed",
@@ -64,6 +69,7 @@ def main() -> int:
         public_2024_25_csv=args.public_2024_25_csv,
         private_pss_csv=args.private_pss_csv,
         private_pss_locator_csv=args.private_pss_locator_csv,
+        targeted_supplement_csv=args.targeted_supplement_csv,
         processed_dir=args.processed_dir,
         report_dir=args.report_dir,
     )

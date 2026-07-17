@@ -102,8 +102,8 @@ class AnalysisPanelTest(unittest.TestCase):
         self.assertEqual(wakefield_2026["pathway_nmsf_count_covered"], str(expected_count))
         self.assertEqual(wakefield_2026["pathway_grade11_enrollment_covered"], str(expected_enrollment))
         self.assertEqual(wakefield_2026["pathway_nmsf_per_100_juniors_covered"], f"{expected_rate:.6f}")
-        self.assertEqual(wakefield_2026["pathway_coverage_status"], "partial_compatible_coverage")
-        self.assertEqual(wakefield_2026["pathway_has_complete_compatible_coverage"], "false")
+        self.assertEqual(wakefield_2026["pathway_coverage_status"], "complete_compatible_coverage")
+        self.assertEqual(wakefield_2026["pathway_has_complete_compatible_coverage"], "true")
 
     def test_history_pathway_and_placeholder_flags_are_explicit(self) -> None:
         meridian_2024 = self._lookup("meridian_high_school", 2024)
@@ -129,10 +129,18 @@ class AnalysisPanelTest(unittest.TestCase):
         )
         self.assertEqual(
             {row["statewide_nmsf_semifinalist_total_status"] for row in self.panel},
-            {"not_sourced", "source_backed_total"},
+            {"not_sourced", "source_backed_state_selection_unit_total"},
         )
         self.assertEqual(
-            self._lookup("wakefield_high_school", 2024)["statewide_nmsf_semifinalist_total"], "470"
+            self._lookup("wakefield_high_school", 2024)["statewide_nmsf_semifinalist_total"], "467"
+        )
+        self.assertEqual(
+            self._lookup("wakefield_high_school", 2024)["virginia_location_nmsf_semifinalist_total"],
+            "470",
+        )
+        self.assertEqual(
+            self._lookup("wakefield_high_school", 2024)["state_selection_unit_reconciliation_status"],
+            "partial_scope_reconciliation",
         )
         self.assertEqual(self._lookup("wakefield_high_school", 2025)["statewide_nmsf_semifinalist_total"], "")
         self.assertEqual(

@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from tj_psat_analysis.nmsf.observations import load_csv_rows  # noqa: E402
 from tj_psat_analysis.nmsf.virginia_list import (  # noqa: E402
+    combine_statewide_total_rows,
     parse_virginia_list_text,
     read_pdf_lines,
     snapshot_rows,
@@ -115,10 +116,16 @@ def main() -> int:
         type=Path,
         default=ROOT / "data" / "sources" / "virginia_statewide_totals.csv",
     )
+    parser.add_argument(
+        "--selection-unit-totals-csv",
+        type=Path,
+        default=ROOT / "data" / "sources" / "virginia_state_selection_unit_totals.csv",
+    )
     args = parser.parse_args()
 
     school_rows = load_csv_rows(args.school_roster_csv)
     alias_rows = load_csv_rows(args.school_aliases_csv)
+    selection_rows = {row["class_year"]: row for row in load_csv_rows(args.selection_unit_totals_csv)}
     statewide_rows = []
     for source in SOURCES:
         if not source.pdf_path.exists():
@@ -137,15 +144,22 @@ def main() -> int:
         rows = snapshot_rows(source_id=source.source_id, class_year=source.class_year, counts=counts)
         write_snapshot_csv(source.snapshot_path, rows)
         digest = hashlib.sha256(source.snapshot_path.read_bytes()).hexdigest()
+        location_row = statewide_total_row(
+            class_year=source.class_year,
+            total=statewide_total,
+            source_id=source.source_id,
+            source_title=source.source_title,
+            source_url=source.source_url,
+            source_date=source.source_date,
+            source_hash=digest,
+        )
+        selection_row = selection_rows.get(str(source.class_year))
+        if selection_row is None:
+            raise ValueError(f"Missing state-selection-unit total for Class {source.class_year}")
         statewide_rows.append(
-            statewide_total_row(
-                class_year=source.class_year,
-                total=statewide_total,
-                source_id=source.source_id,
-                source_title=source.source_title,
-                source_url=source.source_url,
-                source_date=source.source_date,
-                source_hash=digest,
+            combine_statewide_total_rows(
+                location_row=location_row,
+                selection_unit_row=selection_row,
             )
         )
         print(

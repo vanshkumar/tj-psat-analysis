@@ -27,6 +27,7 @@ class EnrollmentPanelTest(unittest.TestCase):
             / "data"
             / "interim"
             / "private_grade11_enrollment_pss_locator_2023_24.csv",
+            targeted_supplement_csv=ROOT / "data" / "sources" / "targeted_grade11_enrollment.csv",
             processed_dir=root / "processed",
             report_dir=root / "reports" / "data_quality",
         )
@@ -103,14 +104,39 @@ class EnrollmentPanelTest(unittest.TestCase):
         self.assertEqual(flint_hill_2025["grade11_enrollment"], "")
         self.assertEqual(flint_hill_2025["enrollment_status"], "locator_search_not_found")
 
+    def test_targeted_supplements_fill_exact_mapped_year_denominators(self) -> None:
+        expected = {
+            ("h_b_woodlawn_secondary_program", 2023): "109",
+            ("h_b_woodlawn_secondary_program", 2024): "109",
+            ("h_b_woodlawn_secondary_program", 2025): "115",
+            ("h_b_woodlawn_secondary_program", 2026): "110",
+            ("loudoun_school_for_advanced_studies", 2023): "11",
+            ("basis_independent_mclean", 2025): "29",
+            ("basis_independent_mclean", 2026): "40",
+        }
+        for (school_id, class_year), count in expected.items():
+            row = self._lookup(school_id, class_year)
+            self.assertEqual(row["grade11_enrollment"], count)
+            self.assertEqual(row["enrollment_status"], "reported")
+            self.assertEqual(len(row["enrollment_source_hash"]), 64)
+
+        self.assertEqual(
+            self._lookup("loudoun_school_for_advanced_studies", 2023)["pss_ppin"],
+            "A1703674;A1992096",
+        )
+        self.assertIn(
+            "basisindependent.com",
+            self._lookup("basis_independent_mclean", 2026)["enrollment_source_url"],
+        )
+
     def test_missingness_and_not_operating_are_distinct(self) -> None:
         gainesville_2022 = self._lookup("gainesville_high_school", 2022)
         self.assertEqual(gainesville_2022["grade11_enrollment"], "")
         self.assertEqual(gainesville_2022["enrollment_status"], "not_operating")
 
         loudoun_private_2023 = self._lookup("loudoun_school_for_advanced_studies", 2023)
-        self.assertEqual(loudoun_private_2023["grade11_enrollment"], "")
-        self.assertEqual(loudoun_private_2023["enrollment_status"], "ambiguous_pss_id")
+        self.assertEqual(loudoun_private_2023["grade11_enrollment"], "11")
+        self.assertEqual(loudoun_private_2023["enrollment_status"], "reported")
 
     def test_reports_document_no_adjacent_year_estimates(self) -> None:
         report = self.outputs["enrollment_coverage_md"].read_text(encoding="utf-8")

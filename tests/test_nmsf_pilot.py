@@ -57,25 +57,30 @@ class NmsfPilotTest(unittest.TestCase):
         self.assertIn("| aps_2026_semifinalists | 2026 | 30 | 20 | 10 | 30 | reconciled |", self.report)
         self.assertIn("| fcps_2023_semifinalists | 2023 | 238 | 238 | 0 | 238 | reconciled |", self.report)
         self.assertIn("| lcps_2025_semifinalists | 2025 | 57 | 0 | 57 | 57 | reconciled |", self.report)
+        self.assertIn(
+            "| lcps_2025_named_list_reconciliation | 2025 | 0 | 0 | 0 | 0 | reconciled |",
+            self.report,
+        )
         self.assertIn("| lcps_2026_semifinalists | 2026 | 69 | 57 | 12 | 69 | reconciled |", self.report)
         self.assertIn("| pwcs_2023_semifinalists | 2023 | 3 | 2 | 1 | 3 | reconciled |", self.report)
         self.assertIn("| pwcs_2024_semifinalists | 2024 | 6 | 2 | 4 | 6 | reconciled |", self.report)
         self.assertIn("| pwcs_2025_semifinalists | 2025 | 7 | 6 | 1 | 7 | reconciled |", self.report)
         self.assertIn("| pwcs_2026_semifinalists | 2026 | 6 | 6 | 0 | 6 | reconciled |", self.report)
         self.assertIn(
-            "| nmsc_virginia_2023_semifinalists | 2023 | 400 | 11 | 389 | 400 | reconciled |",
+            "| nmsc_virginia_2023_semifinalists | 2023 | 400 | 13 | 387 | 400 | reconciled |",
             self.report,
         )
         self.assertIn(
-            "| nmsc_virginia_2024_semifinalists | 2024 | 470 | 5 | 465 | 470 | reconciled |",
+            "| nmsc_virginia_2024_semifinalists | 2024 | 470 | 8 | 462 | 470 | reconciled |",
             self.report,
         )
         self.assertIn(
             (
                 "| nmsc_virginia_2026_semifinalists | 2026 | 494 | 6 | 488 | 494 | "
                 "reconciled | Complete Virginia count-only snapshot total; only still-missing "
-                "positive roster rows are imported from this source. Snapshot total pending "
-                "reconciliation against public NMSC guide total of 489. |"
+                "positive roster rows are imported from this source. This is a Virginia "
+                "school-location total; official NMSC state-selection-unit totals are stored "
+                "separately. |"
             ),
             self.report,
         )

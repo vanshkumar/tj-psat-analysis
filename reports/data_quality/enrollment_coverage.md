@@ -15,17 +15,16 @@ separate. No enrollment value is estimated from adjacent years.
 
 | Enrollment status | Rows |
 | --- | --- |
-| ambiguous_pss_id | 4 |
+| ambiguous_pss_id | 3 |
 | ambiguous_source_name | 8 |
 | blank | 4 |
-| ccd_row_not_found | 1 |
-| locator_search_not_found | 5 |
+| locator_search_not_found | 4 |
 | not_operating | 9 |
 | private_pss_id_pending | 6 |
-| private_pss_not_survey_year | 64 |
+| private_pss_not_survey_year | 63 |
 | pss_row_not_found | 10 |
-| reported | 490 |
-| source_row_not_found | 7 |
+| reported | 497 |
+| source_row_not_found | 4 |
 
 ## Class-Year Coverage
 
@@ -35,15 +34,21 @@ separate. No enrollment value is estimated from adjacent years.
 | 2020 | 2018-19 | 54 | 3 | 76 |
 | 2021 | 2019-20 | 63 | 2 | 76 |
 | 2022 | 2020-21 | 56 | 1 | 76 |
-| 2023 | 2021-22 | 69 | 0 | 76 |
-| 2024 | 2022-23 | 59 | 0 | 76 |
-| 2025 | 2023-24 | 69 | 0 | 76 |
-| 2026 | 2024-25 | 59 | 0 | 76 |
+| 2023 | 2021-22 | 71 | 0 | 76 |
+| 2024 | 2022-23 | 60 | 0 | 76 |
+| 2025 | 2023-24 | 71 | 0 | 76 |
+| 2026 | 2024-25 | 61 | 0 | 76 |
 
 ## Source Files
 
 | Source title | URL | Date | SHA-256 |
 | --- | --- | --- | --- |
+| APS September 30, 2021 Membership Summary | https://www.apsva.us/wp-content/uploads/2021/10/U-MEM_281_Summary_10_6_2021_430PM_FINAL.pdf | 2021-09-30 | e0ff5618c11c0a7167e82d6f9d61f18a2c121296e8c66b5f3fcad47155519ec5 |
+| APS September 30, 2022 Membership Summary | https://www.apsva.us/wp-content/uploads/2022/10/U_MEM_281_MEMBERSHIP-SUMMARY-ALL_10_9_2022_Final_Sept.pdf | 2022-09-30 | d7b24ef7400501f5692e1fe9639b0c627afe35a140fa882d123c4baa495e2283 |
+| APS September 30, 2023 Membership Summary | https://www.apsva.us/wp-content/uploads/sites/57/2023/10/U_MEM_281_Summary_10_4_2023.pdf | 2023-09-30 | 01ef279ae858ca1777fea1aad90810a97be4541bb818b5529c3642d4cc78ba85 |
+| APS September 30, 2024 Membership Summary | https://www.apsva.us/wp-content/uploads/sites/57/2024/10/U-MEM_281_SummaryALL_Final_10_4_2024.pdf | 2024-09-30 | 4bae96d09aec31fa1af96ca5aa50953eeaaeb0c2cc53977c4a2cf4704ed75562 |
+| BASIS Independent McLean 2023-2024 High School Profile | https://basisindependent.com/wp-content/uploads/2024/07/BIM-2023-2024-High-School-Profile.pdf | 2024-06-10 | 2c75acbd48ab06c5e29ec24e109d7705ed3d2545011d518cbc60aa2100337b6c |
+| BASIS Independent McLean 2024-2025 High School Profile | https://basisindependent.com/wp-content/uploads/2025/01/BIM-High-School-Profile-2024-25.pdf | 2025-01-07 | 1292826073fe0603efbdebf834f1092396b72a9e8915ad77dd39ace79fba5345 |
 | NCES CCD 2021-22 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/Data/zip/ccd_SCH_052_2122_l_1a_071722.zip | 2022-07-17 | 2c10f2bc915608c9eb1a84a6cb7a7b833a42b4149eb98b4a85e4a09309d4fd7b |
 | NCES CCD 2022-23 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/data/zip/ccd_sch_052_2223_l_1a_083023.zip | 2023-08-30 | 98f3556a9117c30c56bc5d3339b2b32fd27a1eb7def3b26e54def812ef7c493f |
 | NCES CCD 2023-24 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_2324_l_1a_073124.zip | 2024-07-31 | 06bd50eede0c036e4c92b6464b69f192ff3b8f9f739b403c2b218a9f6ec3e239 |
@@ -59,7 +64,6 @@ separate. No enrollment value is estimated from adjacent years.
 | NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A1904530 | 2023-24 | 42bcc983440da3bfe35a3872d100fac5b109d29325a32e6a01990fb456859558 |
 | NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=A9304211 | 2023-24 | e9e10a4d4240fdcb031e1f85a2670b11877d53d253de84a31ea46bf08fc72412 |
 | NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_detail.asp?Search=1&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1&ID=K9306124 | 2023-24 | a0716b809695eddf3031be8577afd7637f5465630e713db26e9f23ea6031817d |
-| NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=BASIS%20Independent%20McLean&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | 3c7bb62118b2b125339e824076211c07c26093868213313806fe0e59843ce167 |
 | NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=Flint%20Hill%20School&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | 82f2bb009e2b2f5b80af7c7a5368ea58fa5179e394050b8ba96a2d0a7c1cfaa8 |
 | NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=Loudoun%20School%20for%20Advanced%20Studies&State=51&NumOfStudentsRange=more&IncGrade=12&LoGrade=-1&HiGrade=-1 | 2023-24 | 22a764eeb79b3945c4db64d82ff1d5e9ab6ba6abb9829008773639f83cc633fc |
 | NCES Private School Search locator (PSS 2023-24) | https://nces.ed.gov/surveys/pss/privateschoolsearch/school_list.asp?Search=1&SchoolName=Oakcrest&State=51&NumOfStudentsRange=more&LoGrade=-1&HiGrade=-1 | 2023-24 | add5d078bc20009acba0d0100de62f8c9f50a8165f5999a4a33d94697fc90991 |
@@ -75,4 +79,5 @@ separate. No enrollment value is estimated from adjacent years.
 - Public Class 2026 comes from the NCES CCD 2024-25 school membership file when an extracted row is available.
 - Private-school PSS rows use `P290` for grade-11 enrollment and preserve `F_P290` as `pss_imputation_flag`.
 - The 2023-24 NCES Private School Search locator supplement is an official interim Class 2025 denominator source. It uses the locator file-layout field `PSS_ENROLL_11` and records `pss_imputation_flag` as `not_available_locator` because the detail pages do not expose `F_P290`.
+- Exact targeted supplements override an unavailable default CCD/PSS row only when the mapped-year Grade 11 count is stated by an official local membership report, official school profile, or an identity-reconciled PSS row set.
 - PSS non-survey years without a public-use or locator source row remain blank with `private_pss_not_survey_year` rather than borrowing adjacent survey years.

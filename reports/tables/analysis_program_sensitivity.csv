@@ -1,5 +1,5 @@
 class_year,program_school,program_nmsf_count,program_grade11_enrollment,program_rate_input_compatible,base_public_observed_count_including_program,base_public_observed_count_excluding_program,count_difference_due_to_program,covered_rate_including_program,covered_rate_excluding_program
-2023,H-B Woodlawn Secondary Program,3.000000,,False,167.000000,164.000000,3.000000,0.555217,0.555217
-2024,H-B Woodlawn Secondary Program,1.000000,,False,176.000000,175.000000,1.000000,0.587820,0.587820
-2025,H-B Woodlawn Secondary Program,3.000000,,False,173.000000,170.000000,3.000000,0.583250,0.583250
-2026,H-B Woodlawn Secondary Program,6.000000,,False,237.000000,231.000000,6.000000,0.748687,0.748687
+2023,H-B Woodlawn Secondary Program,3.000000,109.000000,True,167.000000,164.000000,3.000000,0.563295,0.555217
+2024,H-B Woodlawn Secondary Program,1.000000,109.000000,True,176.000000,175.000000,1.000000,0.589023,0.587820
+2025,H-B Woodlawn Secondary Program,3.000000,115.000000,True,173.000000,170.000000,3.000000,0.563573,0.555883
+2026,H-B Woodlawn Secondary Program,6.000000,110.000000,True,237.000000,231.000000,6.000000,0.765405,0.748687

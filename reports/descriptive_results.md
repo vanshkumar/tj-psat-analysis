@@ -35,24 +35,24 @@ Pathway heatmap values are covered-subset aggregates. Treat them as full pathway
 
 | NMSF status | Rows |
 | --- | --- |
-| missing_source | 200 |
+| missing_source | 196 |
 | not_operating | 9 |
-| verified_count | 269 |
-| verified_zero | 130 |
+| verified_count | 271 |
+| verified_zero | 132 |
 
 | Rate status | Rows |
 | --- | --- |
-| calculated | 351 |
-| missing_grade11_enrollment | 48 |
+| calculated | 362 |
+| missing_grade11_enrollment | 41 |
 | missing_nmsf_and_grade11_enrollment | 61 |
-| missing_nmsf_count | 139 |
+| missing_nmsf_count | 135 |
 | not_operating | 9 |
 
 | Pathway coverage status | Rows |
 | --- | --- |
-| complete_compatible_coverage | 306 |
-| no_compatible_rows | 237 |
-| partial_compatible_coverage | 65 |
+| complete_compatible_coverage | 339 |
+| no_compatible_rows | 221 |
+| partial_compatible_coverage | 48 |
 
 ## TJ-Zone Count Summary
 
@@ -62,43 +62,43 @@ Pathway heatmap values are covered-subset aggregates. Treat them as full pathway
 | 2020 | 237 | 48 | 80 | 48 | 157 |
 | 2021 | 212 | 49 | 80 | 49 | 132 |
 | 2022 | 215 | 50 | 71 | 50 | 144 |
-| 2023 | 323 | 0 | 191 | 0 | 132 |
-| 2024 | 364 | 0 | 199 | 0 | 165 |
-| 2025 | 288 | 5 | 207 | 5 | 81 |
+| 2023 | 325 | 0 | 193 | 0 | 132 |
+| 2024 | 367 | 0 | 202 | 0 | 165 |
+| 2025 | 288 | 1 | 207 | 1 | 81 |
 | 2026 | 385 | 0 | 272 | 0 | 113 |
 
 ## Virginia Statewide Shares
 
-Shares are calculated only when the class year has a source-backed statewide total and the group has no missing NMSF rows.
+Shares use the source-backed Virginia school-location media-packet total so the denominator matches the location-based school counts. Official NMSC state-selection-unit totals are retained separately.
 
 | Class | Group | Count | VA total | Share % | Coverage note |
 | --- | --- | --- | --- | --- | --- |
-| 2023 | TJ-zone including TJHSST | 323 | 400 | 80.750000 | source-backed count and complete Virginia list statewide denominator |
-| 2023 | TJHSST | 132 | 400 | 33.000000 | source-backed count and complete Virginia list statewide denominator |
-| 2023 | Conventional base public | 164 | 400 | 41.000000 | source-backed count and complete Virginia list statewide denominator |
-| 2023 | Private/homeschool unallocated | 24 | 400 | 6.000000 | source-backed count and complete Virginia list statewide denominator |
-| 2023 | TJ-zone excluding TJHSST | 191 | 400 | 47.750000 | source-backed count and complete Virginia list statewide denominator |
-| 2023 | Virginia outside TJ-zone | 77 | 400 | 19.250000 | source-backed count and complete Virginia list statewide denominator |
-| 2024 | TJ-zone including TJHSST | 364 | 470 | 77.446809 | source-backed count and complete Virginia list statewide denominator |
-| 2024 | TJHSST | 165 | 470 | 35.106383 | source-backed count and complete Virginia list statewide denominator |
-| 2024 | Conventional base public | 175 | 470 | 37.234043 | source-backed count and complete Virginia list statewide denominator |
-| 2024 | Private/homeschool unallocated | 23 | 470 | 4.893617 | source-backed count and complete Virginia list statewide denominator |
-| 2024 | TJ-zone excluding TJHSST | 199 | 470 | 42.340426 | source-backed count and complete Virginia list statewide denominator |
-| 2024 | Virginia outside TJ-zone | 106 | 470 | 22.553191 | source-backed count and complete Virginia list statewide denominator |
-| 2025 | TJ-zone including TJHSST | (missing) | (missing) | (missing) | statewide total not source-backed for this class year |
-| 2025 | TJHSST | 81 | (missing) | (missing) | statewide total not source-backed for this class year |
-| 2025 | Conventional base public | (missing) | (missing) | (missing) | statewide total not source-backed for this class year |
-| 2025 | Private/homeschool unallocated | 34 | (missing) | (missing) | statewide total not source-backed for this class year |
-| 2025 | TJ-zone excluding TJHSST | (missing) | (missing) | (missing) | statewide total not source-backed for this class year |
-| 2025 | Virginia outside TJ-zone | (missing) | (missing) | (missing) | statewide total not source-backed for this class year |
-| 2026 | TJ-zone including TJHSST | 385 | 494 | 77.935223 | source-backed count; statewide denominator pending 2026 guide reconciliation |
-| 2026 | TJHSST | 113 | 494 | 22.874494 | source-backed count; statewide denominator pending 2026 guide reconciliation |
-| 2026 | Conventional base public | 231 | 494 | 46.761134 | source-backed count; statewide denominator pending 2026 guide reconciliation |
-| 2026 | Private/homeschool unallocated | 35 | 494 | 7.085020 | source-backed count; statewide denominator pending 2026 guide reconciliation |
-| 2026 | TJ-zone excluding TJHSST | 272 | 494 | 55.060729 | source-backed count; statewide denominator pending 2026 guide reconciliation |
-| 2026 | Virginia outside TJ-zone | 109 | 494 | 22.064777 | source-backed count; statewide denominator pending 2026 guide reconciliation |
+| 2023 | TJ-zone including TJHSST | 325 | 400 | 81.250000 | source-backed count and scope-matched Virginia school-location denominator |
+| 2023 | TJHSST | 132 | 400 | 33.000000 | source-backed count and scope-matched Virginia school-location denominator |
+| 2023 | Conventional base public | 164 | 400 | 41.000000 | source-backed count and scope-matched Virginia school-location denominator |
+| 2023 | Private/homeschool unallocated | 26 | 400 | 6.500000 | source-backed count and scope-matched Virginia school-location denominator |
+| 2023 | TJ-zone excluding TJHSST | 193 | 400 | 48.250000 | source-backed count and scope-matched Virginia school-location denominator |
+| 2023 | Virginia outside TJ-zone | 75 | 400 | 18.750000 | source-backed count and scope-matched Virginia school-location denominator |
+| 2024 | TJ-zone including TJHSST | 367 | 470 | 78.085106 | source-backed count and scope-matched Virginia school-location denominator |
+| 2024 | TJHSST | 165 | 470 | 35.106383 | source-backed count and scope-matched Virginia school-location denominator |
+| 2024 | Conventional base public | 175 | 470 | 37.234043 | source-backed count and scope-matched Virginia school-location denominator |
+| 2024 | Private/homeschool unallocated | 26 | 470 | 5.531915 | source-backed count and scope-matched Virginia school-location denominator |
+| 2024 | TJ-zone excluding TJHSST | 202 | 470 | 42.978723 | source-backed count and scope-matched Virginia school-location denominator |
+| 2024 | Virginia outside TJ-zone | 103 | 470 | 21.914894 | source-backed count and scope-matched Virginia school-location denominator |
+| 2025 | TJ-zone including TJHSST | (missing) | (missing) | (missing) | Virginia school-location total not source-backed for this class year |
+| 2025 | TJHSST | 81 | (missing) | (missing) | Virginia school-location total not source-backed for this class year |
+| 2025 | Conventional base public | (missing) | (missing) | (missing) | Virginia school-location total not source-backed for this class year |
+| 2025 | Private/homeschool unallocated | 34 | (missing) | (missing) | Virginia school-location total not source-backed for this class year |
+| 2025 | TJ-zone excluding TJHSST | (missing) | (missing) | (missing) | Virginia school-location total not source-backed for this class year |
+| 2025 | Virginia outside TJ-zone | (missing) | (missing) | (missing) | Virginia school-location total not source-backed for this class year |
+| 2026 | TJ-zone including TJHSST | 385 | 494 | 77.935223 | source-backed count and scope-matched Virginia school-location denominator |
+| 2026 | TJHSST | 113 | 494 | 22.874494 | source-backed count and scope-matched Virginia school-location denominator |
+| 2026 | Conventional base public | 231 | 494 | 46.761134 | source-backed count and scope-matched Virginia school-location denominator |
+| 2026 | Private/homeschool unallocated | 35 | 494 | 7.085020 | source-backed count and scope-matched Virginia school-location denominator |
+| 2026 | TJ-zone excluding TJHSST | 272 | 494 | 55.060729 | source-backed count and scope-matched Virginia school-location denominator |
+| 2026 | Virginia outside TJ-zone | 109 | 494 | 22.064777 | source-backed count and scope-matched Virginia school-location denominator |
 
-Class 2026 statewide shares use the committed supplied-list snapshot total of 494; the public NMSC 2026 guide cross-check lists Virginia at 489. Treat those shares as provisional until the statewide denominator discrepancy is reconciled.
+NMSC state-selection-unit totals are 397, 467, and 489 for Classes 2023, 2024, and 2026, compared with school-location totals of 400, 470, and 494. Classes 2023 and 2026 reconcile through boarding-school blocks; two Class 2024 students remain scope-unresolved.
 
 ## Pre/Post Summary
 
@@ -106,11 +106,11 @@ The pre period is Classes 2023-2024 and the post period is Classes 2025-2026. Ob
 
 | Period | Group | Observed total | Annual average | Missing NMSF rows | Covered rate | Small-number warning |
 | --- | --- | --- | --- | --- | --- | --- |
-| pre_2023_2024 | Base public schools | 343 | 171.500000 | 0 | 0.571583 | false |
-| pre_2023_2024 | Private schools | 47 | 23.500000 | 0 | 1.239669 | false |
+| pre_2023_2024 | Base public schools | 343 | 171.500000 | 0 | 0.576209 | false |
+| pre_2023_2024 | Private schools | 52 | 26.000000 | 0 | 1.430031 | false |
 | pre_2023_2024 | TJHSST | 297 | 148.500000 | 0 | 32.926829 | false |
-| post_2025_2026 | Base public schools | 410 | 205.000000 | 5 | 0.668322 | false |
-| post_2025_2026 | Private schools | 69 | 34.500000 | 0 | 1.622718 | false |
+| post_2025_2026 | Base public schools | 410 | 205.000000 | 1 | 0.664926 | false |
+| post_2025_2026 | Private schools | 69 | 34.500000 | 0 | 2.748815 | false |
 | post_2025_2026 | TJHSST | 194 | 97.000000 | 0 | 18.889971 | false |
 
 ## Warnings
@@ -122,5 +122,5 @@ The pre period is Classes 2023-2024 and the post period is Classes 2025-2026. Ob
 
 ## Cutoff And Statewide Placeholder Gap
 
-Virginia cutoff statuses in the analysis panel: `not_sourced`. Statewide total statuses: `not_sourced, source_backed_total`.
+Virginia cutoff statuses in the analysis panel: `not_sourced`. Statewide total statuses: `not_sourced, source_backed_state_selection_unit_total`.
 No Virginia Selection Index cutoff change is annotated in the figures because the cutoff fields are not sourced in the current panel.

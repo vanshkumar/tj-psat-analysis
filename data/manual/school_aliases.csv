@@ -96,6 +96,7 @@ trinity_school_at_meadow_view,Trinity School at Meadow View,Trinity School at Me
 immanuel_christian_high_school,Immanuel Christian High School,Immanuel Christian High School,IMMANUEL CHRISTIAN HIGH,canonical_name,true,,seed_workbook_raw,
 immanuel_christian_high_school,Immanuel Christian High School,Immanuel Christian School,IMMANUEL CHRISTIAN SCHOOL,source_name_variant,true,,local_media_source_alias,Patch Vienna 2025 omits High from the school name.
 ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,Ideaventions Academy for Mathematics & Science,IDEAVENTIONS ACADEMY FOR MATHEMATICS AND SCIENCE,canonical_name,true,,seed_workbook_raw,
+ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,Ideaventions Academy for Math and Science,IDEAVENTIONS ACADEMY FOR MATH AND SCIENCE,source_name_variant,true,,local_media_source_alias,Complete NMSC Virginia lists use Math rather than Mathematics.
 ideaventions_academy_for_mathematics_science,Ideaventions Academy for Mathematics & Science,Ideaventions Academy of Math and Science,IDEAVENTIONS ACADEMY OF MATH AND SCIENCE,source_name_variant,true,,local_media_source_alias,Patch Vienna 2025 uses this wording.
 new_school_of_northern_virginia,New School of Northern Virginia,New School of Northern Virginia,NEW SCHOOL OF NORTHERN VIRGINIA,canonical_name,true,,seed_workbook_raw,
 pinnacle_academy,Pinnacle Academy,Pinnacle Academy,PINNACLE ACADEMY,canonical_name,true,,seed_workbook_raw,

@@ -22,30 +22,37 @@ class FocalPeriodCompletionTest(unittest.TestCase):
             root=ROOT,
         )
 
-        self.assertIn("| missing_source | 5 |", report)
-        self.assertIn("| 2025 | LCPS | public | 4 |", report)
+        self.assertIn("| missing_source | 1 |", report)
+        self.assertNotIn("| 2025 | LCPS | public |", report)
         self.assertIn("| 2025 | Falls Church City | public | 1 |", report)
-        self.assertIn("| 2025 | LCPS | Woodgrove High School | public |", report)
+        self.assertNotIn("| 2025 | LCPS | Woodgrove High School | public |", report)
         self.assertIn("| 2025 | Falls Church City | Meridian High School | public |", report)
         self.assertIn("## NMSC Virginia List Integration", report)
-        self.assertIn("| 2023 | nmsc_virginia_2023_semifinalists | 400 |", report)
-        self.assertIn("| 2024 | nmsc_virginia_2024_semifinalists | 470 |", report)
-        self.assertIn("| 2026 | nmsc_virginia_2026_semifinalists | 494 |", report)
+        self.assertIn("| 2023 | 400 | 397 | nmsc_virginia_2023_semifinalists |", report)
+        self.assertIn("| 2024 | 470 | 467 | nmsc_virginia_2024_semifinalists |", report)
+        self.assertIn("| 2025 | not sourced | not sourced |", report)
+        self.assertIn("| 2026 | 494 | 489 | nmsc_virginia_2026_semifinalists |", report)
+        self.assertIn("Virginia-location media-list totals (400, 470, and 494)", report)
+        self.assertIn("official NMSC Virginia selection-unit totals (397, 467, and 489)", report)
+        self.assertIn("These are different scopes, not competing estimates", report)
+        self.assertIn("scope-matched numerators", report)
+        self.assertIn("Class 2025 lacks a source-backed total in either scope", report)
         self.assertIn("## Targeted Class 2025 Row Search", report)
-        self.assertIn("Recovering the full Class 2025 statewide packet", report)
-        self.assertIn("not required to close this public-source cleanup pass", report)
-        self.assertIn("LCPS total-only coverage and Patch omission cannot support zero inference", report)
+        self.assertIn("42 directly school-attributed LCPS-public identities", report)
+        self.assertIn("15 official TJHSST identities", report)
+        self.assertIn("four LCPS rows as verified zeros", report)
+        self.assertIn("four reported finalists do not establish the semifinalist count", report)
         self.assertIn("Official press release only; no school-by-school list.", report)
         self.assertIn("does not create `verified_count`, `verified_zero`, or Virginia-share rows", report)
         self.assertIn("## Broad Source-Discovery Log", report)
-        self.assertIn("Class 2025 statewide list/total", report)
+        self.assertIn("No source-backed statewide denominator is available for Class 2025", report)
         self.assertIn("never use Patch absence for zero inference", report)
         self.assertIn(
-            "optional future work, not a prerequisite for closing the public-source cleanup pass",
+            "deleted Class 2025 Virginia gallery images",
             report,
         )
 
-    def test_targeted_class_2025_rows_remain_missing_source(self) -> None:
+    def test_targeted_class_2025_rows_record_four_lcps_zeros_and_one_meridian_gap(self) -> None:
         self.assertEqual(len(TARGETED_CLASS_2025_ROW_SEARCHES), 5)
 
         schools = {search.school for search in TARGETED_CLASS_2025_ROW_SEARCHES}
@@ -60,9 +67,10 @@ class FocalPeriodCompletionTest(unittest.TestCase):
             },
         )
 
-        combined_actions = " ".join(search.action for search in TARGETED_CLASS_2025_ROW_SEARCHES)
-        self.assertIn("Retain as `missing_source`", combined_actions)
-        self.assertNotIn("verified_zero", combined_actions)
+        actions = {search.school: search.action for search in TARGETED_CLASS_2025_ROW_SEARCHES}
+        self.assertEqual(actions["Meridian High School"], "Retain as `missing_source`; no zero inference.")
+        for school in schools - {"Meridian High School"}:
+            self.assertIn("verified_zero", actions[school])
 
     def test_nmsc_press_release_files_are_archived(self) -> None:
         for source in NMSC_PRESS_RELEASES:
@@ -70,12 +78,13 @@ class FocalPeriodCompletionTest(unittest.TestCase):
             self.assertTrue(archive_path.exists(), source.archived_file_path)
             self.assertGreater(archive_path.stat().st_size, 100_000)
 
-    def test_source_discovery_attempts_do_not_resolve_counts(self) -> None:
+    def test_source_discovery_attempts_distinguish_archive_absence_from_reconciliation(self) -> None:
         self.assertGreaterEqual(len(SOURCE_DISCOVERY_ATTEMPTS), 4)
 
         combined_actions = " ".join(attempt.action for attempt in SOURCE_DISCOVERY_ATTEMPTS)
         self.assertIn("do not create counts or zeros", combined_actions)
         self.assertIn("not as evidence of zero semifinalists", combined_actions)
+        self.assertIn("verify zero for the four absent", combined_actions)
 
 
 if __name__ == "__main__":

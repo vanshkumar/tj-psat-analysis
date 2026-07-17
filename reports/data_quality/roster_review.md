@@ -9,7 +9,7 @@ or ambiguous school metadata.
 | Output | Rows |
 | --- | --- |
 | data/processed/school_roster.csv | 76 |
-| data/manual/school_aliases.csv | 105 |
+| data/manual/school_aliases.csv | 106 |
 | data/manual/school_history.csv | 8 |
 | data/manual/public_school_nces_ids.csv | 60 |
 

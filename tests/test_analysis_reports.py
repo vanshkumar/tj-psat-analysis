@@ -22,17 +22,17 @@ class AnalysisReportsTest(unittest.TestCase):
 
         self.assertAlmostEqual(
             float(rows[2024]["tjhsst_share_of_balanced_public_nmsf_pct"]),
-            49.848942598,
+            49.107143,
             places=6,
         )
         self.assertAlmostEqual(
             float(rows[2025]["tjhsst_share_of_balanced_public_nmsf_pct"]),
-            32.270916335,
+            31.889764,
             places=6,
         )
         self.assertAlmostEqual(
             float(rows[2026]["tjhsst_share_of_balanced_public_nmsf_pct"]),
-            33.531157270,
+            32.753623,
             places=6,
         )
 
@@ -49,9 +49,9 @@ class AnalysisReportsTest(unittest.TestCase):
         common_offset = float(common["base_excess_as_pct_of_tjhsst_shortfall"])
         extended_offset = float(extended["base_excess_as_pct_of_tjhsst_shortfall"])
 
-        self.assertAlmostEqual(raw_offset, 65.048543689, places=6)
-        self.assertAlmostEqual(common_offset, 37.2820719996, places=6)
-        self.assertAlmostEqual(extended_offset, 36.3269791144, places=6)
+        self.assertAlmostEqual(raw_offset, 65.048544, places=6)
+        self.assertAlmostEqual(common_offset, 37.432683, places=6)
+        self.assertAlmostEqual(extended_offset, 36.473732, places=6)
         self.assertLess(common_offset, raw_offset)
         self.assertGreater(
             float(common["balanced_public_shortfall_vs_component_baseline"]),
@@ -97,11 +97,11 @@ class AnalysisReportsTest(unittest.TestCase):
             self.assertEqual(row["balanced_public_shortfall_positive"], "True")
 
         offsets = [float(row["base_excess_as_pct_of_tjhsst_shortfall"]) for row in grid]
-        self.assertAlmostEqual(min(offsets), 11.080144, places=6)
-        self.assertAlmostEqual(max(offsets), 79.543798, places=6)
+        self.assertAlmostEqual(min(offsets), 10.596271, places=6)
+        self.assertAlmostEqual(max(offsets), 80.717783, places=6)
         self.assertAlmostEqual(
             float(benchmark[0]["base_excess_as_pct_of_tjhsst_shortfall"]),
-            45.544913,
+            45.895610,
             places=6,
         )
 
@@ -122,7 +122,7 @@ class AnalysisReportsTest(unittest.TestCase):
                     "required_relative_participation_change_pct"
                 ]
             ),
-            -13.327164,
+            -13.087150,
             places=6,
         )
         self.assertAlmostEqual(
@@ -131,7 +131,7 @@ class AnalysisReportsTest(unittest.TestCase):
                     "required_relative_participation_change_pct"
                 ]
             ),
-            -2.167305,
+            -0.995798,
             places=6,
         )
 
@@ -152,6 +152,15 @@ class AnalysisReportsTest(unittest.TestCase):
         self.assertIn("Every combination in the wider group-specific ±10% grid", report)
         self.assertIn("do not establish that the admissions policy caused", report)
         self.assertIn("median TJHSST student or academic culture declined", report)
+
+    def test_conclusion_graphic_uses_current_panel_and_state_scopes(self) -> None:
+        graphic = (ROOT / "reports" / "conclusion_graphic.svg").read_text(encoding="utf-8")
+        self.assertIn("fixed 59-school public rate panel", graphic)
+        self.assertIn("57 conventional + H-B", graphic)
+        self.assertIn("37.4%", graphic)
+        self.assertIn("Location totals: 470 / 494", graphic)
+        self.assertIn("Official state-unit totals: 467 / 489", graphic)
+        self.assertNotIn("53 schools", graphic)
 
 
 if __name__ == "__main__":

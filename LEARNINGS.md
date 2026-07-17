@@ -335,7 +335,7 @@
 - Confidence: high
 
 **2026-06-22 - Private-school interpretation wording**
-- Observation: The private-school focal-period data support a count-level statement (47 pre-period NMSFs versus 69 post-period NMSFs) even though missing denominator, residence, eligibility, and counterfactual data prevent a measured offset estimate.
+- Observation: The corrected private-school focal-period data support a count-level statement (52 pre-period NMSFs versus 69 post-period NMSFs) even though missing denominator, residence, eligibility, and counterfactual data prevent a measured offset estimate.
 - Action: Phrase private-school findings as "private count increase observed, private offset unresolved" rather than implying the private data are unusable or that the increase is a displacement channel.
 - Confidence: high
 
@@ -350,8 +350,8 @@
 - Confidence: high
 
 **2026-07-16 - Conclusion graphic replacement**
-- Observation: `README.md` embeds the conclusion graphic directly from `reports/conclusion_graphic.png`.
-- Action: Replace that asset in place when updating the conclusion graphic so the README reference remains valid without a documentation edit.
+- Observation: `README.md` embeds the data-driven `reports/conclusion_graphic.svg`; `reports/conclusion_graphic.png` is a raster snapshot for compatibility.
+- Action: Regenerate the SVG with `scripts/build_conclusion_graphic.py` after analysis-table changes and refresh the PNG snapshot when publishing raster artifacts.
 - Confidence: high
 
 **2026-07-16 - Conclusion artifact consistency audit**
@@ -365,13 +365,53 @@
 - Confidence: high
 
 **2026-07-16 - Missing-data limitation audit**
-- Observation: The five missing Class 2025 public NMSF rows are excluded from the 53-school balanced base-public panel and therefore limit full-zone and pathway totals rather than directly entering the fixed-panel estimates; those five schools total 3, 9, and 7 NMSFs in the fully observed Classes 2023, 2024, and 2026.
-- Action: Distinguish the Class 2025 full-zone count gap from the larger participation, applicant-pathway, private-denominator, and counterfactual-data limitations; do not impute the five missing school counts from adjacent years.
+- Observation: After the LCPS named-list reconciliation, Meridian High School is the sole missing Class 2025 public NMSF row; it is excluded from the fixed balanced public panel and therefore limits the full-zone total rather than directly entering the fixed-panel estimates.
+- Action: Distinguish the remaining Class 2025 full-zone count gap from the larger participation, applicant-pathway, private-denominator, and counterfactual-data limitations; do not impute Meridian's missing count from adjacent years or its four known finalists.
 - Confidence: high
 
 **2026-07-16 - PSAT participation sensitivity**
-- Observation: College Board's Virginia reports show 11th-grade PSAT/NMSQT participation at 50%, 50%, 49%, and 49% for Classes 2023-2026; applying that benchmark or a group-specific ±10% relative-change grid preserves the pooled TJHSST decline, positive base-public increase, partial offset, and combined-public shortfall, while the standardized offset spans 11.1%-79.5% and near-zero annual comparisons can flip sign.
+- Observation: College Board's Virginia reports show 11th-grade PSAT/NMSQT participation at 50%, 50%, 49%, and 49% for Classes 2023-2026; applying that benchmark or a group-specific ±10% relative-change grid preserves the pooled TJHSST decline, positive base-public increase, partial offset, and combined-public shortfall, while the current 59-school public panel's standardized offset spans 10.6%-80.7% and near-zero annual comparisons can flip sign.
 - Action: Describe the pooled participation-sensitivity direction as robust only within the tested range, treat the exact offset percentage and near-flat annual directions as imprecise, and replace the benchmark scenarios when school-level participation becomes available.
+- Confidence: high
+
+**2026-07-16 - Complete-list zero-inference audit**
+- Observation: The Class 2023 and 2024 Virginia snapshots contain positive Ideaventions rows under the unmatched source wording `IDEAVENTIONS ACADEMY FOR MATH AND SCIENCE` (2 and 3 NMSFs), while the observation panel assigns that roster school `verified_zero` in both years because the exact source variant is absent from the NMSC matcher aliases.
+- Action: Add and test the exact NMSC source alias, regenerate the snapshots and downstream reports, and require review of roster-like unmatched headings before inferring zeros from a complete list.
+- Confidence: high
+
+**2026-07-16 - Omitted private/homeschool magnitude**
+- Observation: After correcting the known Ideaventions counts and closing the LCPS zeros, the current 59-school balanced public panel falls by 82 NMSFs from Class 2024 to 2025, while the 16 rostered private schools gain 8; Meridian is the only remaining public full-zone count gap. Missing private denominators cannot alter that count arithmetic.
+- Action: Treat private-denominator gaps as a limitation on rate and standardized-offset precision, not as a plausible standalone explanation for the Class 2025 regional count drop; quantify the omitted-count increase required whenever discussing the residual private/homeschool channel.
+- Confidence: high
+
+**2026-07-16 - LCPS Class 2025 named-list reconciliation**
+- Observation: The 57 distinct identities in the official LCPS Class 2025 release partition exactly into 42 Patch-attributed LCPS-public students and 15 students on FCPS's official TJHSST list; this exhausts the named scope and verifies zero for Loudoun Valley, Park View, Tuscarora, and Woodgrove without allocating the unattributed total or splitting TJHSST.
+- Action: When a district release omits schools, permit zero inference only after exact identity-level reconciliation to school-attributed and excluded-scope sources; archive count-only partition evidence with every supporting URL, date, and validated content hash.
+- Confidence: high
+
+**2026-07-17 - Focal-period coverage status**
+- Observation: The generated focal-period completion report and processed panel show only Meridian High School Class 2025 as `missing_source`, while the hand-maintained README still lists the four LCPS rows that the named-list reconciliation has since closed as verified zeros.
+- Action: Use generated coverage reports and processed outputs as the status source of truth during an active reconciliation pass, then update the README coverage summary before publishing the reconciled state.
+- Confidence: high
+
+**2026-07-17 - H-B Woodlawn enrollment source**
+- Observation: APS September 30 membership summaries report exact H-B Woodlawn Grade 11 membership of 109, 109, 115, and 110 for the school years mapped to Classes 2023-2026, while NCES CCD treats the alternative-school entity's grade membership as not applicable.
+- Action: Use the official APS membership summaries for H-B Woodlawn denominators instead of treating the CCD nonvalue as missing or attempting to reassign program students to other schools.
+- Confidence: high
+
+**2026-07-17 - Targeted private-school denominators**
+- Observation: Exact school-year Grade 11 values can sometimes be recovered from official private-school profiles when PSS is unavailable, but several profiles publish only total enrollment or senior-class size; the two 2023-24 LSAS locator identities also conflict on Grade 11 enrollment.
+- Action: Accept a private-school profile only when it states the exact mapped-year Grade 11 count, and retain ambiguous or total-only rows as denominator gaps rather than estimating them.
+- Confidence: high
+
+**2026-07-17 - Statewide selection-unit scope**
+- Observation: NMSC Guide state-selection-unit totals are 397, 467, and 489 for Classes 2023, 2024, and 2026, versus Virginia-location media-packet totals of 400, 470, and 494. Boarding-school blocks exactly reconcile Classes 2023 and 2026; one Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved.
+- Action: Preserve location-based packet totals separately from official state-selection-unit totals, align numerators containing boarding schools to the chosen denominator scope, and do not publish a fully scope-matched Class 2024 private/all-school share until the remaining two-person difference is resolved.
+- Confidence: high
+
+**2026-07-17 - Targeted enrollment overlays**
+- Observation: Overlaying exact APS and private-school Grade 11 supplements after the default CCD/PSS sector logic makes H-B Woodlawn rate-compatible across Classes 2023-2026 and changes the balanced public panel, Arlington pathway coverage, participation sensitivity, and every derived rate table.
+- Action: Apply targeted exact-source rows last in the enrollment builder, then regenerate the enrollment panel, analysis panel, descriptive outputs, and analysis reports together; do not update denominator tables without rebuilding the dependent panel membership and sensitivity outputs.
 - Confidence: high
 
 ## What Has Failed
@@ -390,8 +430,3 @@
 - Observation: Fresh CI installs can resolve NumPy stubs that use Python 3.12 `type` statement syntax, while `pyproject.toml` previously configured mypy with `python_version = "3.10"` despite CI running Python 3.12.
 - Action: Keep `[tool.mypy].python_version` aligned with the GitHub Actions Python runner unless dependency pins are tightened to stubs compatible with an older type-check target.
 - Confidence: high
-
-**2026-06-22 - NMSC Virginia statewide total cross-check**
-- Observation: The public 2026 NMSC Guide lists Virginia with 489 semifinalists, while the current supplied-list snapshot/parser totals 494 name-like Class 2026 Virginia lines and carries 494 into statewide-share tables.
-- Action: Reconcile supplied-list totals against the NMSC Guide table before treating statewide-normalized shares as final; do not let the discrepancy affect school-level local conclusions without checking whether any rostered school counts are implicated.
-- Confidence: medium

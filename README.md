@@ -1,6 +1,6 @@
 # TJHSST-Area PSAT Analysis
 
-![Summary of the main findings](reports/conclusion_graphic.png)
+![Summary of the main findings](reports/conclusion_graphic.svg)
 
 This repository builds a sourced, reproducible panel for studying National Merit
 Semifinalist (NMSF) outcomes in the TJHSST geographic area. It combines a
@@ -30,9 +30,9 @@ defensible conclusions are:
 - TJHSST's NMSF count and enrollment-normalized rate fall sharply in Class 2025
   and partially rebound in Class 2026, while remaining below the pre-policy
   range.
-- A balanced 53-school conventional base-public panel is nearly flat in Class
-  2025 and rises in Class 2026. The increase is delayed and heterogeneous rather
-  than a uniform regional shift.
+- A balanced base-public panel comprising 57 conventional high schools plus H-B
+  Woodlawn is nearly flat in Class 2025 and rises in Class 2026. The increase is
+  delayed and heterogeneous rather than a uniform regional shift.
 - The combined local public rate nearly returns to its Class 2024 level in Class
   2026, but pooling Classes 2025-2026 and standardizing for enrollment still
   leaves a shortfall relative to the groups' prior rates. These annual and pooled
@@ -42,11 +42,11 @@ defensible conclusions are:
   PSAT/NMSQT participation is 50% for Classes 2023-2024 and 49% for Classes
   2025-2026. Applying that benchmark or a wider group-specific ±10% stress grid
   preserves the pooled TJHSST decline, positive base-public increase, partial
-  offset, and combined-public shortfall. The offset itself ranges from 11.1% to
-  79.5%, so its direction is more robust than its magnitude; near-zero annual
+  offset, and combined-public shortfall. The offset itself ranges from 10.6% to
+  80.7%, so its direction is more robust than its magnitude; near-zero annual
   comparisons can flip sign.
 - The 16 rostered private schools have complete source-backed focal-period counts:
-  47 NMSFs in Classes 2023-2024 and 69 in Classes 2025-2026. Missing comparable
+  52 NMSFs in Classes 2023-2024 and 69 in Classes 2025-2026. Missing comparable
   denominators, residence, eligibility, and counterfactual-placement data prevent
   treating that increase as a measured displacement offset.
 
@@ -57,21 +57,34 @@ and integrity summary.
 
 - The canonical panel contains 608 rows: 76 schools across Classes 2019-2026.
 - Classes 2023, 2024, and 2026 have complete source-backed NMSF count coverage.
-- Class 2025 retains five public `missing_source` rows: Meridian, Loudoun Valley,
-  Park View, Tuscarora, and Woodgrove high schools. Their absence from incomplete
-  sources is not evidence of zero.
-- The fixed public rate panel contains TJHSST and 53 conventional base public
-  schools with compatible counts and denominators in every focal year.
-- The Class 2026 complete-list snapshot totals 494 Virginia semifinalists, while
-  the public NMSC guide lists 489. Local school counts and zero inference are
-  unchanged, but 2026 statewide-share metrics remain provisional.
+- Class 2025 retains one public `missing_source` row, Meridian High School. Its
+  absence from incomplete sources is not evidence of zero; a named-list
+  reconciliation now establishes verified zeros for the four formerly missing
+  LCPS rows.
+- The fixed public rate panel contains TJHSST, 57 conventional base public
+  schools, and H-B Woodlawn with compatible counts and denominators in every
+  focal year.
+- Targeted official Grade 11 sources add H-B Woodlawn denominators of 109, 109,
+  115, and 110 for Classes 2023-2026; Loudoun School for Advanced Studies at 11
+  for Class 2023; and BASIS Independent McLean at 29 and 40 for Classes 2025 and
+  2026.
+- Forty-one focal private school-year denominators remain unresolved without
+  adjacent-year estimation: five in Class 2023 (Flint Hill, Oakcrest, Potomac,
+  Pinnacle, and Seton), all 16 in Class 2024, five in Class 2025 (Flint Hill,
+  Oakcrest, Potomac, Loudoun School for Advanced Studies, and Seton), and 15 in
+  Class 2026 (all rostered private schools except BASIS Independent McLean).
+- Virginia school-location media-packet totals are 400, 470, and 494 for Classes
+  2023, 2024, and 2026; the official NMSC state-selection-unit totals are 397,
+  467, and 489. Class 2025 is absent from both canonical source series. The two
+  scopes are retained separately: boarding-school blocks reconcile Classes 2023
+  and 2026, while two Class 2024 students remain scope-unresolved.
 - Historical non-FCPS Classes 2019-2022 source backfill is optional and is not
   required for the current focal-period conclusions.
 
 The highest-value additions are a complete Class 2025 Virginia school list,
-school-level PSAT participation and score distributions, exact-year private
-grade-11 denominators, TJHSST applicant/offer/enrollment records by source school
-and allocation pool, and broader upper-tail outcomes.
+school-level PSAT participation and score distributions, the remaining exact-year
+private grade-11 denominators, TJHSST applicant/offer/enrollment records by source
+school and allocation pool, and broader upper-tail outcomes.
 
 ## Documentation and outputs
 
@@ -82,8 +95,8 @@ The repository intentionally keeps only two hand-maintained entry points:
   semantics.
 
 Analytical Markdown, CSV, and SVG outputs under `reports/` are generated from
-committed inputs. `reports/conclusion_graphic.png` is the presentation graphic
-embedded above.
+committed inputs. `reports/conclusion_graphic.svg` is the data-driven presentation
+graphic embedded above; `reports/conclusion_graphic.png` is its raster snapshot.
 
 - `reports/analysis.md`: consolidated findings, robustness checks, limitations,
   and reproduction/integrity record.
@@ -108,6 +121,7 @@ dev`. Then regenerate the committed artifacts in dependency order:
 ```bash
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_seed_data.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_school_roster.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/ingest_nmsc_virginia_lists.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_enrollment_panel.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/apply_nmsf_counts.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_observations.py
@@ -116,6 +130,7 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_focal_period_comple
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_panel.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_descriptive_outputs.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_reports.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_conclusion_graphic.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 ```
 

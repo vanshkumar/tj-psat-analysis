@@ -222,6 +222,12 @@ def _excluded_snapshot_rows(
             continue
         for row in load_csv_rows(snapshot_path):
             record_type = row.get("snapshot_record_type", "observation_count")
+            if record_type in {
+                "reconciliation_input_total",
+                "reconciliation_partition_count",
+                "identity_spelling_resolution",
+            }:
+                continue
             if record_type != "observation_count":
                 output.append((source, row))
     return output
@@ -288,8 +294,11 @@ def _source_reconciliation_rows(
                 "Complete Virginia count-only snapshot total; only still-missing positive roster rows "
                 "are imported from this source."
             )
-            if source_id == "nmsc_virginia_2026_semifinalists":
-                notes += " Snapshot total pending reconciliation against public NMSC guide total of 489."
+            if source_id.startswith("nmsc_virginia_"):
+                notes += (
+                    " This is a Virginia school-location total; official NMSC state-selection-unit "
+                    "totals are stored separately."
+                )
         else:
             excluded = excluded_totals[source_id]
             reconciled = in_panel + excluded

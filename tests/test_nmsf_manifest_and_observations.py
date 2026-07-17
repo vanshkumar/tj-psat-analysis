@@ -50,6 +50,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
                 "lcps_2023_semifinalists",
                 "lcps_2024_semifinalists",
                 "lcps_2025_semifinalists",
+                "lcps_2025_named_list_reconciliation",
                 "lcps_2026_semifinalists",
                 "nmsc_virginia_2023_semifinalists",
                 "nmsc_virginia_2024_semifinalists",
@@ -217,6 +218,30 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(len(records), 1)
         self.assertEqual(records[0].nmsf_status, "verified_count")
 
+    def test_nmsc_ideaventions_source_variant_matches_canonical_roster(self) -> None:
+        for class_year, expected_count in ((2023, "2"), (2024, "3")):
+            snapshot_path = (
+                ROOT
+                / "data"
+                / "raw"
+                / "nmsf"
+                / "virginia"
+                / f"virginia_{class_year}_semifinalists_snapshot.csv"
+            )
+            with snapshot_path.open(newline="", encoding="utf-8") as handle:
+                rows = list(csv.DictReader(handle))
+            ideaventions = [
+                row
+                for row in rows
+                if row["school_name_source"].endswith("IDEAVENTIONS ACADEMY FOR MATH AND SCIENCE")
+            ][0]
+            self.assertEqual(
+                ideaventions["matched_school_id"],
+                "ideaventions_academy_for_mathematics_science",
+            )
+            self.assertEqual(ideaventions["nmsf_count"], expected_count)
+            self.assertEqual(ideaventions["snapshot_record_type"], "observation_count")
+
     def test_observation_layer_has_one_row_per_school_class_year(self) -> None:
         self.assertEqual(len(self.rows), 76 * 8)
         self.assertEqual(len({(row["school_id"], row["class_year"]) for row in self.rows}), len(self.rows))
@@ -226,9 +251,9 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
 
     def test_fcps_counts_and_verified_zero_inference(self) -> None:
         statuses = Counter(row["nmsf_status"] for row in self.rows)
-        self.assertEqual(statuses["verified_count"], 269)
-        self.assertEqual(statuses["verified_zero"], 130)
-        self.assertEqual(statuses["missing_source"], 200)
+        self.assertEqual(statuses["verified_count"], 271)
+        self.assertEqual(statuses["verified_zero"], 132)
+        self.assertEqual(statuses["missing_source"], 196)
         self.assertEqual(statuses["not_operating"], 9)
 
         tj_2019 = self._lookup("thomas_jefferson_high_school_for_science_and_technology", 2019)
@@ -336,10 +361,16 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(loudoun_school_advanced_2026["nmsf_status"], "verified_zero")
         self.assertEqual(loudoun_school_advanced_2026["source_id"], "nmsc_virginia_2026_semifinalists")
 
-        woodgrove_2025 = self._lookup("woodgrove_high_school", 2025)
-        self.assertEqual(woodgrove_2025["nmsf_count"], "")
-        self.assertEqual(woodgrove_2025["nmsf_status"], "missing_source")
-        self.assertEqual(woodgrove_2025["source_id"], "")
+        for school_id in {
+            "loudoun_valley_high_school",
+            "park_view_high_school",
+            "tuscarora_high_school",
+            "woodgrove_high_school",
+        }:
+            lcps_2025_zero = self._lookup(school_id, 2025)
+            self.assertEqual(lcps_2025_zero["nmsf_count"], "0")
+            self.assertEqual(lcps_2025_zero["nmsf_status"], "verified_zero")
+            self.assertEqual(lcps_2025_zero["source_id"], "lcps_2025_named_list_reconciliation")
 
         freedom_lcps_2026 = self._lookup("freedom_high_school_south_riding", 2026)
         self.assertEqual(freedom_lcps_2026["nmsf_count"], "7")
@@ -417,6 +448,16 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(basis_mclean_2023["nmsf_count"], "7")
         self.assertEqual(basis_mclean_2023["nmsf_status"], "verified_count")
         self.assertEqual(basis_mclean_2023["source_id"], "nmsc_virginia_2023_semifinalists")
+
+        ideaventions_2023 = self._lookup("ideaventions_academy_for_mathematics_science", 2023)
+        self.assertEqual(ideaventions_2023["nmsf_count"], "2")
+        self.assertEqual(ideaventions_2023["nmsf_status"], "verified_count")
+        self.assertEqual(ideaventions_2023["source_id"], "nmsc_virginia_2023_semifinalists")
+
+        ideaventions_2024 = self._lookup("ideaventions_academy_for_mathematics_science", 2024)
+        self.assertEqual(ideaventions_2024["nmsf_count"], "3")
+        self.assertEqual(ideaventions_2024["nmsf_status"], "verified_count")
+        self.assertEqual(ideaventions_2024["source_id"], "nmsc_virginia_2024_semifinalists")
 
         madeira_2023 = self._lookup("the_madeira_school", 2023)
         self.assertEqual(madeira_2023["nmsf_count"], "1")
@@ -513,11 +554,7 @@ class NmsfManifestAndObservationsTest(unittest.TestCase):
         self.assertEqual(
             missing_focal_rows,
             {
-                ("loudoun_valley_high_school", "2025"),
                 ("meridian_high_school", "2025"),
-                ("park_view_high_school", "2025"),
-                ("tuscarora_high_school", "2025"),
-                ("woodgrove_high_school", "2025"),
             },
         )
 

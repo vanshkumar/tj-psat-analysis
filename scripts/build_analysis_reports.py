@@ -11,10 +11,10 @@ reports/analysis.md
 reports/tables/analysis_*.csv
 docs/source_notes/analysis_research_sources.md
 
-The canonical panel provides source-backed Virginia statewide-total values for
-complete NMSC Virginia list years. Virginia cutoff values remain supplemental
-secondary-source checks and are not written back into the panel's not_sourced
-placeholder fields.
+The canonical panel provides both official NMSC Virginia state-selection-unit
+totals and Virginia school-location media-list totals where each scope is
+source-backed. Virginia cutoff values remain supplemental secondary-source
+checks and are not written back into the panel's not_sourced placeholder fields.
 """
 
 from __future__ import annotations
@@ -79,11 +79,12 @@ VA_PSAT_PARTICIPATION: dict[int, dict[str, str | int]] = {
     },
 }
 PARTICIPATION_STRESS_CHANGES = [-0.10, -0.05, 0.0, 0.05, 0.10]
-STATEWIDE_2026_RECONCILIATION_NOTE = (
-    "Class 2026 statewide-denominator caveat: the committed supplied-list snapshot totals "
-    "494, while the public 2026 NMSC guide lists Virginia at 489 semifinalists. Treat "
-    "statewide shares using the 2026 denominator as provisional until reconciled; local "
-    "school counts and focal coverage are unchanged."
+STATEWIDE_SCOPE_NOTE = (
+    "Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, "
+    "2024, and 2026; official NMSC state-selection-unit totals are 397, 467, and 489. "
+    "Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains "
+    "part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. "
+    "The two denominator scopes are retained separately."
 )
 
 URLS = {
@@ -111,12 +112,13 @@ class StateTotalMetadata(TypedDict):
     status_label: str
     source_url: str
     source_title: str
+    reconciliation_status: str
 
 
 def state_total_metadata(df: pd.DataFrame, year: int) -> StateTotalMetadata:
     year_rows = df[df["class_year"].eq(year)]
     source_backed = year_rows[
-        year_rows["statewide_nmsf_semifinalist_total_status"].eq("source_backed_total")
+        year_rows["statewide_nmsf_semifinalist_total_status"].eq("source_backed_state_selection_unit_total")
         & year_rows["statewide_nmsf_semifinalist_total"].notna()
     ]
     if not source_backed.empty:
@@ -126,10 +128,11 @@ def state_total_metadata(df: pd.DataFrame, year: int) -> StateTotalMetadata:
         representative = source_backed.iloc[0]
         return {
             "total": float(totals[0]),
-            "status": "source_backed_total",
-            "status_label": "source-backed",
+            "status": "source_backed_state_selection_unit_total",
+            "status_label": "source-backed state unit",
             "source_url": str(representative["statewide_nmsf_semifinalist_total_source_url"]),
             "source_title": str(representative["statewide_nmsf_semifinalist_total_source_title"]),
+            "reconciliation_status": str(representative["state_selection_unit_reconciliation_status"]),
         }
     if year in VA_STATE_TOTAL_SECONDARY:
         return {
@@ -138,6 +141,7 @@ def state_total_metadata(df: pd.DataFrame, year: int) -> StateTotalMetadata:
             "status_label": "secondary",
             "source_url": STATE_TOTAL_SOURCE,
             "source_title": "Compass National Merit Semifinalists and Commended Students by State",
+            "reconciliation_status": "secondary_total_no_location_reconciliation",
         }
     return {
         "total": np.nan,
@@ -145,6 +149,36 @@ def state_total_metadata(df: pd.DataFrame, year: int) -> StateTotalMetadata:
         "status_label": "missing",
         "source_url": "",
         "source_title": "",
+        "reconciliation_status": "not_sourced",
+    }
+
+
+def location_total_metadata(df: pd.DataFrame, year: int) -> StateTotalMetadata:
+    year_rows = df[df["class_year"].eq(year)]
+    source_backed = year_rows[
+        year_rows["virginia_location_nmsf_semifinalist_total_status"].eq("source_backed_location_total")
+        & year_rows["virginia_location_nmsf_semifinalist_total"].notna()
+    ]
+    if source_backed.empty:
+        return {
+            "total": np.nan,
+            "status": "not_sourced",
+            "status_label": "missing",
+            "source_url": "",
+            "source_title": "",
+            "reconciliation_status": "not_sourced",
+        }
+    totals = sorted({int(value) for value in source_backed["virginia_location_nmsf_semifinalist_total"]})
+    if len(totals) != 1:
+        raise ValueError(f"Class {year} has inconsistent Virginia-location totals: {totals}")
+    representative = source_backed.iloc[0]
+    return {
+        "total": float(totals[0]),
+        "status": "source_backed_location_total",
+        "status_label": "source-backed location",
+        "source_url": str(representative["virginia_location_nmsf_semifinalist_total_source_url"]),
+        "source_title": str(representative["virginia_location_nmsf_semifinalist_total_source_title"]),
+        "reconciliation_status": str(representative["state_selection_unit_reconciliation_status"]),
     }
 
 
@@ -313,6 +347,7 @@ def main() -> None:
         "grade11_enrollment",
         "nmsf_per_100_juniors",
         "statewide_nmsf_semifinalist_total",
+        "virginia_location_nmsf_semifinalist_total",
     ]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     for col in ["nmsf_count_available", "rate_input_compatible", "grade11_enrollment_available"]:
@@ -329,6 +364,7 @@ def main() -> None:
     is_base_public = is_conventional_public | is_program
     is_public_any = is_base_public | df["analytical_unit_type"].eq("public_governor_school")
     state_total_by_year = {year: state_total_metadata(df, year) for year in FOCAL_YEARS}
+    location_total_by_year = {year: location_total_metadata(df, year) for year in FOCAL_YEARS}
 
     # Full-sample focal-year group summaries.
     summary_rows: list[dict] = []
@@ -395,11 +431,12 @@ def main() -> None:
     public_rate_mask = is_public_any
     balanced_public_rate_ids = ids_complete(df, "rate_input_compatible", FOCAL_YEARS, public_rate_mask)
     balanced_base_rate_ids = sorted(set(balanced_public_rate_ids) - {TJ_ID})
-    # By construction these are conventional public high schools; H-B lacks all denominators.
+    # The exact APS supplements make H-B rate-compatible in every focal year, so the
+    # balanced public panel now includes that program and tests its exclusion separately.
     br_rows: list[dict] = []
     for ids, name in [
         (balanced_public_rate_ids, "Balanced public including TJHSST"),
-        (balanced_base_rate_ids, "Balanced conventional base public"),
+        (balanced_base_rate_ids, "Balanced base public including program"),
         ([TJ_ID], "TJHSST"),
     ]:
         br_rows.extend(balanced_rate_summary(df, ids, name))
@@ -411,7 +448,7 @@ def main() -> None:
         tj_value = lookup(balanced_rates, "TJHSST", year, "nmsf_count")
         base_value = lookup(
             balanced_rates,
-            "Balanced conventional base public",
+            "Balanced base public including program",
             year,
             "nmsf_count",
         )
@@ -532,31 +569,59 @@ def main() -> None:
     state_groups = [
         (balanced_count_ids, "Balanced count all schools"),
         (balanced_public_rate_ids, "Balanced public including TJHSST"),
-        (balanced_base_rate_ids, "Balanced conventional base public"),
+        (balanced_base_rate_ids, "Balanced base public including program"),
         ([TJ_ID], "TJHSST"),
         (private_balanced_ids, "Balanced private schools"),
     ]
     for year in FOCAL_YEARS:
         state_total = state_total_by_year[year]
-        total = float(state_total["total"])
+        selection_total = float(state_total["total"])
+        location_total = float(location_total_by_year[year]["total"])
         for ids, name in state_groups:
             y = df[df["school_id"].isin(ids) & df["class_year"].eq(year)]
             count = y["nmsf_count"].sum()
+            includes_private = name in {"Balanced count all schools", "Balanced private schools"}
+            boarding_adjustment = 0.0
+            selection_scope_compatible = True
+            selection_scope_status = "scope_matched"
+            if includes_private and year in {2023, 2024, 2026}:
+                boarding_adjustment = {2023: 1.0, 2024: 1.0, 2026: 4.0}[year]
+            if year == 2024:
+                selection_scope_compatible = False
+                selection_scope_status = "two_student_location_difference_unresolved"
+            elif includes_private and year == 2025:
+                selection_scope_compatible = False
+                selection_scope_status = "boarding_adjustment_not_reconciled_for_secondary_total"
+            elif state_total["status"].startswith("supplemental_secondary"):
+                selection_scope_status = "secondary_state_unit_denominator"
+            selection_count = count - boarding_adjustment
             state_rows.append(
                 {
                     "class_year": year,
                     "group": name,
                     "group_nmsf_count": count,
-                    "virginia_selection_index_cutoff": VA_CUTOFF[year],
-                    "virginia_statewide_semifinalist_total": total,
-                    "group_share_of_statewide_total_pct": 100 * count / total
-                    if pd.notna(total) and total > 0
+                    "virginia_location_semifinalist_total": location_total,
+                    "group_share_of_virginia_location_total_pct": 100 * count / location_total
+                    if pd.notna(location_total) and location_total > 0
                     else np.nan,
+                    "state_selection_unit_numerator_adjustment": boarding_adjustment,
+                    "state_selection_unit_group_nmsf_count": selection_count
+                    if selection_scope_compatible
+                    else np.nan,
+                    "virginia_selection_index_cutoff": VA_CUTOFF[year],
+                    "virginia_statewide_semifinalist_total": selection_total,
+                    "group_share_of_statewide_total_pct": 100 * selection_count / selection_total
+                    if selection_scope_compatible and pd.notna(selection_total) and selection_total > 0
+                    else np.nan,
+                    "selection_unit_numerator_scope_status": selection_scope_status,
                     "source_status": (f"cutoff_secondary_state_total_{state_total['status']}"),
                     "state_total_status": state_total["status"],
                     "state_total_source_title": state_total["source_title"],
                     "cutoff_source_url": CUTOFF_SOURCE,
                     "state_total_source_url": state_total["source_url"],
+                    "location_total_status": location_total_by_year[year]["status"],
+                    "location_total_source_url": location_total_by_year[year]["source_url"],
+                    "state_selection_unit_reconciliation_status": state_total["reconciliation_status"],
                 }
             )
     state_sens = pd.DataFrame(state_rows)
@@ -600,7 +665,7 @@ def main() -> None:
     timing = pd.DataFrame(timing_rows)
     write_csv(timing, "analysis_cohort_timing.csv")
 
-    # School-level changes within balanced conventional public rate panel.
+    # School-level changes within the balanced base-public panel, including H-B.
     base = df[df["school_id"].isin(balanced_base_rate_ids) & df["class_year"].isin(FOCAL_YEARS)].copy()
     count_wide = base.pivot(
         index=["school_id", "school", "tj_pathway"], columns="class_year", values="nmsf_count"
@@ -691,7 +756,7 @@ def main() -> None:
 
     # Change summary.
     change_rows = []
-    for group in ["Balanced public including TJHSST", "Balanced conventional base public", "TJHSST"]:
+    for group in ["Balanced public including TJHSST", "Balanced base public including program", "TJHSST"]:
         for metric, col in [("raw_count", "nmsf_count"), ("rate_per_100_grade11", "nmsf_per_100_grade11")]:
             vals = {y: lookup(balanced_rates, group, y, col) for y in FOCAL_YEARS}
             for start, end in [(2024, 2025), (2025, 2026), (2024, 2026)]:
@@ -730,14 +795,15 @@ def main() -> None:
     tj_enroll = {y: lookup(balanced_rates, "TJHSST", y, "grade11_enrollment") for y in FOCAL_YEARS}
     tj_rate = {y: lookup(balanced_rates, "TJHSST", y, "nmsf_per_100_grade11") for y in FOCAL_YEARS}
     base_count = {
-        y: lookup(balanced_rates, "Balanced conventional base public", y, "nmsf_count") for y in FOCAL_YEARS
+        y: lookup(balanced_rates, "Balanced base public including program", y, "nmsf_count")
+        for y in FOCAL_YEARS
     }
     base_enroll = {
-        y: lookup(balanced_rates, "Balanced conventional base public", y, "grade11_enrollment")
+        y: lookup(balanced_rates, "Balanced base public including program", y, "grade11_enrollment")
         for y in FOCAL_YEARS
     }
     base_rate = {
-        y: lookup(balanced_rates, "Balanced conventional base public", y, "nmsf_per_100_grade11")
+        y: lookup(balanced_rates, "Balanced base public including program", y, "nmsf_per_100_grade11")
         for y in FOCAL_YEARS
     }
     pub_count = {
@@ -770,10 +836,10 @@ def main() -> None:
         balanced_rates, "Balanced public including TJHSST", [2025, 2026]
     )
     pre_base_count, pre_base_enroll, pre_base_rate = pooled_rate(
-        balanced_rates, "Balanced conventional base public", [2023, 2024]
+        balanced_rates, "Balanced base public including program", [2023, 2024]
     )
     post_base_count, post_base_enroll, post_base_rate = pooled_rate(
-        balanced_rates, "Balanced conventional base public", [2025, 2026]
+        balanced_rates, "Balanced base public including program", [2025, 2026]
     )
     pre_tj_count, pre_tj_enroll, pre_tj_rate = pooled_rate(balanced_rates, "TJHSST", [2023, 2024])
     post_tj_count, post_tj_enroll, post_tj_rate = pooled_rate(balanced_rates, "TJHSST", [2025, 2026])
@@ -1056,12 +1122,17 @@ def main() -> None:
     )
 
     # Internal checks for the canonical focal panels.
-    assert len(balanced_count_ids) == 71
-    assert len(balanced_public_rate_ids) == 54
-    assert len(balanced_base_rate_ids) == 53
+    assert len(balanced_count_ids) == 75
+    assert len(balanced_public_rate_ids) == 59
+    assert len(balanced_base_rate_ids) == 58
     assert len(private_balanced_ids) == 16
     assert (tj_count[2024], tj_count[2025], tj_count[2026]) == (165, 81, 113)
-    assert (base_count[2023], base_count[2024], base_count[2025], base_count[2026]) == (161, 166, 170, 224)
+    assert (base_count[2023], base_count[2024], base_count[2025], base_count[2026]) == (
+        167,
+        171,
+        173,
+        232,
+    )
     assert stress_grid["tjhsst_participant_yield_below_pre"].all()
     assert stress_grid["base_public_participant_yield_above_pre"].all()
     assert stress_grid["partial_offset"].all()
@@ -1113,28 +1184,37 @@ def main() -> None:
     state_md_rows = []
     public_state_share: dict[int, float] = {}
     tj_state_share: dict[int, float] = {}
+    public_location_share: dict[int, float] = {}
+    tj_location_share: dict[int, float] = {}
     for y in FOCAL_YEARS:
-        pub_share = state_sens[
+        public_row = state_sens[
             (state_sens["class_year"] == y) & (state_sens["group"] == "Balanced public including TJHSST")
-        ]["group_share_of_statewide_total_pct"].iloc[0]
-        public_state_share[y] = pub_share
-        base_share = state_sens[
-            (state_sens["class_year"] == y) & (state_sens["group"] == "Balanced conventional base public")
-        ]["group_share_of_statewide_total_pct"].iloc[0]
-        tj_share = state_sens[(state_sens["class_year"] == y) & (state_sens["group"] == "TJHSST")][
-            "group_share_of_statewide_total_pct"
         ].iloc[0]
+        pub_share = public_row["group_share_of_statewide_total_pct"]
+        public_state_share[y] = pub_share
+        public_location_share[y] = public_row["group_share_of_virginia_location_total_pct"]
+        base_share = state_sens[
+            (state_sens["class_year"] == y)
+            & (state_sens["group"] == "Balanced base public including program")
+        ]["group_share_of_statewide_total_pct"].iloc[0]
+        tj_row = state_sens[(state_sens["class_year"] == y) & (state_sens["group"] == "TJHSST")].iloc[0]
+        tj_share = tj_row["group_share_of_statewide_total_pct"]
         tj_state_share[y] = tj_share
+        tj_location_share[y] = tj_row["group_share_of_virginia_location_total_pct"]
         state_total = state_total_by_year[y]
+        location_metadata = location_total_by_year[y]
         state_md_rows.append(
             [
                 y,
                 VA_CUTOFF[y],
                 fmt_int(state_total["total"]),
                 state_total["status_label"],
+                fmt_int(location_metadata["total"]),
+                fmt_pct(public_location_share[y]),
                 fmt_pct(pub_share),
                 fmt_pct(base_share),
                 fmt_pct(tj_share),
+                state_total["reconciliation_status"].replace("_", " "),
             ]
         )
 
@@ -1144,8 +1224,10 @@ def main() -> None:
             [
                 int(r["class_year"]),
                 fmt_int(r["program_nmsf_count"]),
+                fmt_int(r["program_grade11_enrollment"]),
                 fmt_int(r["base_public_observed_count_including_program"]),
                 fmt_int(r["base_public_observed_count_excluding_program"]),
+                fmt_rate(r["covered_rate_including_program"]),
                 fmt_rate(r["covered_rate_excluding_program"]),
             ]
         )
@@ -1176,7 +1258,7 @@ def main() -> None:
             fmt_pct(pct_change(post_pub_rate, pre_pub_rate), sign=True),
         ],
         [
-            "Balanced conventional base public",
+            "Balanced base public including program",
             fmt_int(pre_base_count),
             fmt_int(post_base_count),
             f"+{fmt_int(base_pooled_gain)}",
@@ -1266,11 +1348,11 @@ The principal discontinuity is not an enrollment artifact. From Class 2024 to Cl
 
 The same break appears as deconcentration within the local public right tail. TJHSST's share of NMSFs in the balanced public panel falls from **{fmt_pct(tj_public_share[2024])} in Class 2024** to **{fmt_pct(tj_public_share[2025])} in Class 2025** and **{fmt_pct(tj_public_share[2026])} in Class 2026**. This is direct evidence that exceptional PSAT outcomes became less concentrated at TJHSST; it is not evidence about median achievement or school culture as a whole.
 
-Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2024), "observed_nmsf_total"].iloc[0])} in Class 2024 to {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2025), "observed_nmsf_total"].iloc[0])} in Class 2025 and {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2026), "observed_nmsf_total"].iloc[0])} in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced {len(balanced_base_rate_ids)}-school conventional public rate panel, the immediate Class 2025 change is nearly flat: **{fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 ({fmt_pct(pct_change(base_rate[2025], base_rate[2024]), sign=True)})**. The larger increase appears in Class 2026, to **{fmt_rate(base_rate[2026])} ({fmt_pct(pct_change(base_rate[2026], base_rate[2025]), sign=True)} versus 2025)**.
+Excluding TJHSST reverses the raw-count direction: observed non-TJ counts rise from {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2024), "observed_nmsf_total"].iloc[0])} in Class 2024 to {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2025), "observed_nmsf_total"].iloc[0])} in Class 2025 and {fmt_int(obs_ex_tj.loc[obs_ex_tj.class_year.eq(2026), "observed_nmsf_total"].iloc[0])} in Class 2026. Because private and other source coverage changes, that raw reversal is not itself a clean time trend. In the balanced {len(balanced_base_rate_ids)}-school base-public rate panel including H-B Woodlawn, the immediate Class 2025 change is nearly flat: **{fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 ({fmt_pct(pct_change(base_rate[2025], base_rate[2024]), sign=True)})**. The larger increase appears in Class 2026, to **{fmt_rate(base_rate[2026])} ({fmt_pct(pct_change(base_rate[2026], base_rate[2025]), sign=True)} versus 2025)**.
 
 ## 3. Balanced-panel sensitivity
 
-The balanced count panel includes **{len(balanced_count_ids)} schools** with source-backed counts in every focal year: {len(conventional_balanced_ids)} conventional public high schools, one public secondary program, {len(private_balanced_ids)} private schools, and TJHSST. The balanced public rate panel includes **{len(balanced_public_rate_ids)} schools** with both counts and enrollment in every year: {len(balanced_base_rate_ids)} conventional base public schools plus TJHSST.
+The balanced count panel includes **{len(balanced_count_ids)} schools** with source-backed counts in every focal year: {len(conventional_balanced_ids)} conventional public high schools, one public secondary program, {len(private_balanced_ids)} private schools, and TJHSST. The balanced public rate panel includes **{len(balanced_public_rate_ids)} schools** with both counts and enrollment in every year: {len(balanced_base_rate_ids) - 1} conventional base public schools, H-B Woodlawn, and TJHSST.
 
 Pooled 2023-2024 versus 2025-2026 rates are secondary summaries because they conceal the very different 2025 and 2026 patterns:
 
@@ -1317,11 +1399,11 @@ That is a real private-sector right-tail count signal. The limitation is narrowe
 
 ## 6. Excluding non-conventional programs
 
-H-B Woodlawn is the only `public_secondary_program` row. It has no grade-11 denominator in the panel, so it never contributes to a covered rate.
+H-B Woodlawn is the only `public_secondary_program` row. Official APS membership reports now provide its exact Grade 11 denominators for all four focal years, so it enters the balanced public rate panel. The exclusion check below shows the corresponding conventional-public result.
 
-{md_table(["Class", "H-B count", "Base-public count incl. program", "Count excl. program", "Covered conventional-public rate"], program_md_rows)}
+{md_table(["Class", "H-B count", "H-B Grade 11", "Base count incl. program", "Count excl. program", "Rate incl. program", "Conventional-public rate"], program_md_rows)}
 
-Excluding it changes the observed base-public count by only 1-6 students per year and leaves every covered rate unchanged. The main findings are not driven by the program row.
+Excluding it changes the observed base-public count by only 1-6 students per year and produces the separately reported conventional-public rate. The main findings are not driven by the program row.
 
 The {manual_review_rows}-row manual-review queue includes {manual_queue_summary}. They are not added because doing so could double count schools or TJHSST, turn source gaps into zeros, or mix resident totals with school totals.
 
@@ -1333,13 +1415,13 @@ For the balanced base-public panel, by contrast, 2023-2025 are nearly flat ({fmt
 
 ## 8. Virginia cutoff and statewide normalization
 
-More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors nationally and are named on a state-representational basis.[^nmsc] The canonical panel now carries source-backed Virginia statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media lists; the Class 2025 statewide total remains unsourced in the panel. Virginia cutoff values are still supplemental secondary-source checks.[^cutoffs][^state]
+More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors nationally and are named on a state-representational basis.[^nmsc] For Classes 2023, 2024, and 2026, the canonical panel now carries both official NMSC Virginia state-selection-unit totals and complete-media-list totals for students attending Virginia-located schools. Both scopes remain unsourced for Class 2025 in the canonical panel. Virginia cutoff values are still supplemental secondary-source checks.[^cutoffs][^state]
 
-{md_table(["Class", "VA cutoff", "VA total", "Total status", "Balanced public share", "Base-public share", "TJHSST share"], state_md_rows)}
+{md_table(["Class", "VA cutoff", "State-unit total", "Total status", "Location total", "Public location share", "Public state-unit share", "Base-public state-unit share", "TJHSST state-unit share", "Scope status"], state_md_rows)}
 
-{STATEWIDE_2026_RECONCILIATION_NOTE}
+{STATEWIDE_SCOPE_NOTE}
 
-Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. On the mixed-source statewide denominator, the balanced public share falls from **{fmt_pct(public_state_share[2024])} in 2024** to **{fmt_pct(public_state_share[2025])} in 2025** and recovers only to **{fmt_pct(public_state_share[2026])} in 2026**. TJHSST's share remains far below 2024 ({fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}). These figures strengthen the conclusion that 2026 is a partial, not complete, recovery relative to Virginia, with Class 2025 still relying on a secondary statewide denominator.
+Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. The scope-matched school-location comparison shows the balanced public share falling from **{fmt_pct(public_location_share[2024])} in 2024** to **{fmt_pct(public_location_share[2026])} in 2026**; no comparable Class 2025 location packet is available. On the state-selection-unit sensitivity, Class 2024 is withheld because two packet students remain unidentified, while the secondary Class 2025 public share is **{fmt_pct(public_state_share[2025])}** and the source-backed Class 2026 share is **{fmt_pct(public_state_share[2026])}**. TJHSST's scope-matched location share also remains far below 2024 ({fmt_pct(tj_location_share[2024])} to {fmt_pct(tj_location_share[2026])}). These figures support a partial, not complete, 2026 recovery relative to Virginia without mixing the two denominator scopes into a single three-year series.
 
 ## 9. COVID, digital testing, and cohort timing
 
@@ -1360,7 +1442,7 @@ The archived annual Notice 3355 documents themselves were not recovered. The off
 
 ## Robustness conclusion
 
-The TJHSST decline in the first affected class is large in both raw counts and enrollment-normalized rates, and it is not explained by the H-B Woodlawn program or simple enrollment growth. Conventional base-school rates do not show an immediate offset in Class 2025; a substantial increase appears in Class 2026. Combining TJHSST and base schools produces a near return to the 2024 local rate by 2026, but only a partial recovery after supplemental statewide normalization. Private-school counts are now complete and show a material post-period increase, but denominator and eligibility limits prevent interpreting that count increase as a measured displacement offset. These are descriptive findings, not causal estimates.
+The TJHSST decline in the first affected class is large in both raw counts and enrollment-normalized rates, and it is not explained by the H-B Woodlawn program or simple enrollment growth. The base-public rate panel including H-B does not show an immediate offset in Class 2025; the conventional-public exclusion yields the same qualitative result, and a substantial increase appears in Class 2026. Combining TJHSST and base schools produces a near return to the 2024 local rate by 2026, but only a partial recovery after supplemental statewide normalization. Private-school counts are now complete and show a material post-period increase, but denominator and eligibility limits prevent interpreting that count increase as a measured displacement offset. These are descriptive findings, not causal estimates.
 
 ## Generated supporting tables
 
@@ -1387,7 +1469,7 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 
 [^nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, {URLS["nmsc_2026"]}.
 [^cutoffs]: Compass Education Group, *Historical National Merit Cutoffs 2008 to Present*, {URLS["cutoffs"]}. Secondary source; not written into the canonical panel.
-[^state]: Source-backed statewide totals for Classes 2023, 2024, and 2026 come from the complete NMSC Virginia media-list snapshots recorded in `data/sources/virginia_statewide_totals.csv`; Class 2025 uses Compass Education Group's secondary statewide total, {URLS["state_totals"]}, only for this supplemental sensitivity table. The 2026 statewide total is pending reconciliation against the public NMSC guide total.
+[^state]: Official NMSC guides provide Virginia state-selection-unit totals for Classes 2023, 2024, and 2026; complete media-list snapshots independently provide Virginia school-location totals. Both scopes are recorded in `data/sources/virginia_statewide_totals.csv`. Class 2025 uses Compass Education Group's secondary state total, {URLS["state_totals"]}, only for the clearly labeled sensitivity column.
 [^virtual]: Fairfax County Public Schools, *FCPS 2020-21 Evaluation Report*, {URLS["fcps_virtual_eval"]}.
 [^inperson]: Fairfax County Public Schools, *FCPS This Week — August 25, 2021*, {URLS["fcps_in_person_2021"]}.
 [^digital]: College Board, *How to Get Ready for the Digital PSAT/NMSQT*, {URLS["collegeboard_digital"]}.
@@ -1422,9 +1504,9 @@ The source-backed Virginia benchmark and proportional sensitivity grid bound thi
 
 ## 3. Statewide normalization and test-form changes
 
-Virginia's canonical cutoff columns remain blank with `not_sourced` status. The panel now has source-backed statewide totals for Classes 2023, 2024, and 2026 from complete NMSC Virginia media-list snapshots, while Class 2025 remains blank because no comparable complete list has been found. The supplemental analysis uses Compass only for cutoff values and the Class 2025 statewide-total sensitivity value; those secondary values are labeled and may be revised.
+Virginia's canonical cutoff columns remain blank with `not_sourced` status. For Classes 2023, 2024, and 2026, the panel keeps official NMSC state-selection-unit totals separate from complete-media-list Virginia school-location totals. Class 2025 remains blank in both canonical scope fields because neither a primary state-unit total nor a comparable complete list has been found. The supplemental analysis uses Compass only for cutoff values and the Class 2025 state-total sensitivity value; those secondary values are labeled and may be revised.
 
-{STATEWIDE_2026_RECONCILIATION_NOTE}
+{STATEWIDE_SCOPE_NOTE}
 
 The focal policy boundary also coincides with the 2023 move to the digital PSAT/NMSQT.[^digital] Class 2025 is the first policy-affected TJHSST class and the first digital-PSAT NMSF class. That coincidence makes it impossible, with these data alone, to attribute the break uniquely to admissions policy.
 
@@ -1461,7 +1543,7 @@ Likewise, non-roster programs, homeschool/online categories, and duplicate sourc
 
 ## 8. Program and school-structure differences
 
-H-B Woodlawn is a public secondary program rather than a conventional base high school and lacks a grade-11 denominator. Excluding it barely changes raw counts and does not change covered rates, but the broader roster still mixes school types with different selection, attendance, and program structures.
+H-B Woodlawn is a public secondary program rather than a conventional base high school. Official APS reports now supply exact Grade 11 denominators for every focal year, so the primary balanced public panel includes it and the program-sensitivity table reports the conventional-public exclusion. The broader roster still mixes school types with different selection, attendance, and program structures.
 
 School openings, renames, relocations, boundary changes, and grade configurations can affect both counts and denominators. History flags are present, but no model adjusts for every local structural change.
 
@@ -1515,7 +1597,7 @@ Generated: {TODAY}
 
 The strongest descriptive finding is a large, enrollment-adjusted decline in TJHSST's National Merit Semifinalist right tail beginning with the first class admitted under the post-2020 process. The first affected class, 2025, is the sharpest break. Class 2026 rebounds, but TJHSST remains below every pre-policy class in the available 2019-2024 TJ series.
 
-Continuously observed conventional public base schools do **not** show an immediate offset in Class 2025: their aggregate rate is nearly unchanged from 2024. They rise substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; a supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to {fmt_pct(rate_adjusted_offset_common)}. Private-school counts also rise by {fmt_int(private_pooled_gain)} across the pooled post period, but denominator and eligibility data are not complete enough to determine whether that count increase represents an offset.
+The continuously observed base-public panel, including H-B Woodlawn, does **not** show an immediate offset in Class 2025: its aggregate rate is nearly unchanged from 2024. The conventional-public exclusion yields the same qualitative result. The panel rises substantially in Class 2026. When TJHSST and those base schools are combined, the local grade-11-normalized rate nearly returns to its 2024 level by 2026; supplemental Virginia-wide normalization shows only a partial recovery. Across the pooled 2025-2026 period, the raw-count decomposition says base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline, but an enrollment-standardized decomposition reduces that estimate to {fmt_pct(rate_adjusted_offset_common)}. Private-school counts also rise by {fmt_int(private_pooled_gain)} across the pooled post period, but denominator and eligibility data are not complete enough to determine whether that count increase represents an offset.
 
 This pattern is consistent with a reduction in the concentration of the extreme PSAT right tail at TJHSST and some later increase at base schools. It does not prove that the admissions change caused either pattern or that broader academic culture declined.
 
@@ -1537,7 +1619,7 @@ Thus, 2025 is an exceptional discontinuity, while 2026 provides evidence of pers
 
 ### 3. The immediate base-public offset is small; the 2026 increase is large
 
-In the balanced {len(balanced_base_rate_ids)}-school conventional public panel:
+In the balanced {len(balanced_base_rate_ids)}-school base-public panel including H-B Woodlawn:
 
 - Class 2023: **{fmt_int(base_count[2023])} / {fmt_int(base_enroll[2023])} = {fmt_rate(base_rate[2023])} per 100**.
 - Class 2024: **{fmt_int(base_count[2024])} / {fmt_int(base_enroll[2024])} = {fmt_rate(base_rate[2024])}**.
@@ -1556,7 +1638,7 @@ For the balanced {len(balanced_public_rate_ids)}-school public panel including T
 
 The composition of that public right tail changes sharply even where the combined rate nearly recovers: TJHSST's share of balanced public NMSFs falls from **{fmt_pct(tj_public_share[2024])} in 2024** to **{fmt_pct(tj_public_share[2025])} in 2025** and **{fmt_pct(tj_public_share[2026])} in 2026**. The clearest supported conclusion is therefore deconcentration of exceptional PSAT outcomes away from TJHSST, not a demonstrated decline in the whole region's academic culture.
 
-This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. Using source-backed statewide totals for 2024 and 2026 plus a secondary fallback for the unresolved Class 2025 total, the balanced public panel's share is approximately **{fmt_pct(public_state_share[2024])} in 2024, {fmt_pct(public_state_share[2025])} in 2025, and {fmt_pct(public_state_share[2026])} in 2026**. TJHSST's own share falls from **{fmt_pct(tj_state_share[2024])} to {fmt_pct(tj_state_share[2025])} to {fmt_pct(tj_state_share[2026])}**.[^state] The 2026 statewide denominator is provisional pending reconciliation against the NMSC guide total, so this caveat affects statewide-share interpretation but not local school counts.
+This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. On the scope-matched school-location series, the balanced public panel's share changes from **{fmt_pct(public_location_share[2024])} in 2024 to {fmt_pct(public_location_share[2026])} in 2026**; no Class 2025 location packet is available. On the state-selection-unit sensitivity, Class 2024 is withheld because two location-list students remain unidentified, the secondary Class 2025 value is **{fmt_pct(public_state_share[2025])}**, and the source-backed Class 2026 value is **{fmt_pct(public_state_share[2026])}**. TJHSST's school-location share changes from **{fmt_pct(tj_location_share[2024])} to {fmt_pct(tj_location_share[2026])}**.[^state] These scope qualifications affect statewide-share interpretation but not local school counts.
 
 ### 5. Private schools show count growth, but not a measurable complete offset
 
@@ -1566,7 +1648,7 @@ The defensible conclusion is therefore “private count increase observed, priva
 
 ### 6. Non-conventional programs do not drive the result
 
-Removing H-B Woodlawn changes base-public raw counts by 3, 1, 3, and 6 in Classes 2023-2026 and changes no rate because its grade-11 denominator is unavailable. Excluded manual-review rows cannot be safely added without resolving duplicates and scope.
+Removing H-B Woodlawn changes base-public raw counts by 3, 1, 3, and 6 in Classes 2023-2026. Its newly sourced Grade 11 denominators are 109, 109, 115, and 110, so the program-sensitivity table now shows both the rate including H-B and the conventional-public rate. Excluded manual-review rows cannot be safely added without resolving duplicates and scope.
 
 ## Plausible interpretations, not established causes
 
@@ -1584,7 +1666,7 @@ Removing H-B Woodlawn changes base-public raw counts by 3, 1, 3, and 6 in Classe
 
 ## Assessment of the working hypothesis
 
-The evidence **supports a narrow descriptive version** of the hypothesis: the first two post-policy cohorts show a large reduction in TJHSST's NMSF rate, and the first affected cohort does not show a full same-year offset at continuously observed conventional public base schools. The second affected cohort shows a material base-school increase and a partial combined-zone recovery.
+The evidence **supports a narrow descriptive version** of the hypothesis: the first two post-policy cohorts show a large reduction in TJHSST's NMSF rate, and the first affected cohort does not show a full same-year offset in either the balanced base-public panel or its conventional-public exclusion. The second affected cohort shows a material base-school increase and a partial combined-zone recovery.
 
 The evidence **does not yet support the causal context-effect version**. The analysis needs school-level PSAT participation and distributions, private-school denominator/eligibility context, sourced historical Virginia benchmarks, actual applicant/offer/enrollment data by allocation pool, and a credible comparison design before attributing the net regional pattern to TJHSST peer effects or the admissions policy.
 
@@ -1593,7 +1675,7 @@ The evidence **does not yet support the causal context-effect version**. The ana
 The highest-value follow-on is not more NMSF name counting. It is obtaining: (1) school-level PSAT participation and score distributions; (2) TJ applicant, offer, waitpool, acceptance, and enrollment counts by source school and allocated/unallocated pool; and (3) one or more broader upper-tail measures such as SAT threshold rates, AP 5 rates, or contest outcomes. Those data would distinguish score-production changes from participation, threshold, and redistribution effects.
 
 [^nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, {URLS["nmsc_2026"]}.
-[^state]: The canonical panel includes source-backed NMSC Virginia statewide totals for Classes 2023, 2024, and 2026; Class 2025 uses the secondary Compass statewide total only for this sensitivity check. Virginia cutoff values are also secondary Compass values: {URLS["cutoffs"]} and {URLS["state_totals"]}. The 2026 statewide total is pending reconciliation against the public NMSC guide total.
+[^state]: The canonical panel includes separate official NMSC Virginia state-selection-unit totals and complete-media-list Virginia school-location totals for Classes 2023, 2024, and 2026. Class 2025 uses the secondary Compass state total only for the labeled state-unit sensitivity; no Class 2025 location total is available. Virginia cutoff values are also secondary Compass values: {URLS["cutoffs"]} and {URLS["state_totals"]}.
 [^policy]: Fairfax County School Board, December 17, 2020 minutes, {URLS["board_minutes_2020"]}; FCPS Class 2025/2026 documentation in the March 4, 2022 court filing and Regulation 3355.14 exhibit, {URLS["court_filing"]}; Regulation 3355.15, {URLS["reg3355_15"]}.
 """
 
@@ -1623,7 +1705,7 @@ The clearest result is a sharp and persistent reduction in the concentration of 
 
 The composition of the area's extreme PSAT right tail changes materially. TJHSST's share of NMSFs in the balanced public panel falls from **{fmt_pct(tj_public_share[2024])} in 2024** to **{fmt_pct(tj_public_share[2025])} in 2025** and **{fmt_pct(tj_public_share[2026])} in 2026**. That is strong descriptive evidence of **deconcentration away from TJHSST**.
 
-Base-school gains are delayed and incomplete. The balanced conventional-public rate is nearly flat from 2024 to 2025 ({fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 juniors), then rises to {fmt_rate(base_rate[2026])} in 2026. The increase is heterogeneous across schools and pathways rather than a uniform zone-wide shift.
+Base-school gains are delayed and incomplete. The balanced base-public rate including H-B Woodlawn is nearly flat from 2024 to 2025 ({fmt_rate(base_rate[2024])} to {fmt_rate(base_rate[2025])} per 100 juniors), then rises to {fmt_rate(base_rate[2026])} in 2026. The conventional-public exclusion yields the same qualitative result. The increase is heterogeneous across schools and pathways rather than a uniform zone-wide shift.
 
 ## How much of the TJHSST decline appears elsewhere?
 
@@ -1645,9 +1727,9 @@ It should not be folded into the public-school offset estimate as if it were a m
 
 These results do not establish that the admissions policy caused the changes, that the median TJHSST student or academic culture declined, or that any named base-school gain came from students who otherwise would have attended TJHSST. NMSF is a narrow extreme-right-tail outcome, and the timing also overlaps the digital PSAT transition, possible participation changes, and COVID recovery.
 
-The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Class 2025 retains five public-school source gaps. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools, including {len(balanced_base_rate_ids)} conventional base schools plus TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
+The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Meridian High School is the sole remaining Class 2025 public NMSF source gap. The fixed public rate panel contains {len(balanced_public_rate_ids)} schools: {len(balanced_base_rate_ids) - 1} conventional base schools, H-B Woodlawn, and TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
 
-Supplemental statewide shares are useful context, but the 2026 statewide denominator is provisional pending reconciliation between the committed supplied-list snapshot and the public NMSC guide total.
+Supplemental statewide shares are useful context only when their numerator and denominator scopes match. The analysis therefore retains separate Virginia school-location and official state-selection-unit totals, withholds the Class 2024 state-unit share where two students remain scope-unresolved, and labels the Class 2025 state-unit sensitivity as secondary.
 
 ## Highest-value next evidence
 
@@ -1669,7 +1751,7 @@ Generated: {TODAY}
 ## Headline descriptive results
 
 - TJHSST pooled NMSF rate: {fmt_rate(pre_tj_rate)} per 100 juniors in Classes 2023-2024 versus {fmt_rate(post_tj_rate)} in Classes 2025-2026 ({fmt_pct(pct_change(post_tj_rate, pre_tj_rate))}).
-- Balanced {len(balanced_base_rate_ids)}-school conventional public base panel: {fmt_rate(pre_base_rate)} versus {fmt_rate(post_base_rate)} ({fmt_pct(pct_change(post_base_rate, pre_base_rate), sign=True)}).
+- Balanced {len(balanced_base_rate_ids)}-school base-public panel including H-B Woodlawn: {fmt_rate(pre_base_rate)} versus {fmt_rate(post_base_rate)} ({fmt_pct(pct_change(post_base_rate, pre_base_rate), sign=True)}).
 - Balanced {len(balanced_public_rate_ids)}-school public panel including TJHSST: {fmt_rate(pre_pub_rate)} versus {fmt_rate(post_pub_rate)} ({fmt_pct(pct_change(post_pub_rate, pre_pub_rate))}).
 - TJHSST's share of balanced public NMSFs falls from {fmt_pct(tj_public_share[2024])} in Class 2024 to {fmt_pct(tj_public_share[2025])} in Class 2025 and {fmt_pct(tj_public_share[2026])} in Class 2026.
 - Raw pooled counts imply that base-school gains offset {fmt_pct(offset_pct)} of TJHSST's decline; the enrollment-standardized decomposition reduces the offset to {fmt_pct(rate_adjusted_offset_common)} and leaves a {fmt_rate(public_shortfall_common, 1)}-student combined-public shortfall relative to component-specific baseline rates.
@@ -1702,7 +1784,7 @@ The script rebuilds this report, its research-source note, and supporting tables
 
 The public-data phase is complete at the documented stopping point. After the broad complete-list and denominator pass, do not continue low-yield school-by-school scraping unless a new source can resolve multiple rows or a whole class-year scope.
 
-{STATEWIDE_2026_RECONCILIATION_NOTE}
+{STATEWIDE_SCOPE_NOTE}
 
 ## Source boundary
 
@@ -1735,7 +1817,7 @@ Historical Regulations 3355.14 and 3355.15, Regulation 3355.16, official FCPS Cl
 
 Generated: {TODAY}
 
-This file records external sources used for interpretation and supplemental checks. The canonical panel includes source-backed Virginia statewide totals for complete-list years.
+This file records external sources used for interpretation and supplemental checks. For Classes 2023, 2024, and 2026, the canonical panel keeps official NMSC Virginia state-selection-unit totals separate from complete-media-list totals for students attending Virginia-located schools.
 
 ## Primary sources
 
@@ -1764,17 +1846,20 @@ This file records external sources used for interpretation and supplemental chec
 - Compass historical state cutoffs: {URLS["cutoffs"]}
 - Compass semifinalist totals by state: {URLS["state_totals"]} (Class 2025 statewide-total sensitivity only)
 
-## Source-backed Virginia list totals
+## Source-backed Virginia totals by scope
 
-- Class 2023 complete NMSC Virginia list: {state_total_by_year[2023]["source_url"]}
-- Class 2024 complete NMSC Virginia list: {state_total_by_year[2024]["source_url"]}
-- Class 2026 complete NMSC Virginia list: {state_total_by_year[2026]["source_url"]}
+- Class 2023 official NMSC state-selection-unit guide: {state_total_by_year[2023]["source_url"]}
+- Class 2024 official NMSC state-selection-unit guide: {state_total_by_year[2024]["source_url"]}
+- Class 2026 official NMSC state-selection-unit guide: {state_total_by_year[2026]["source_url"]}
+- Class 2023 complete Virginia school-location list: {location_total_by_year[2023]["source_url"]}
+- Class 2024 complete Virginia school-location list: {location_total_by_year[2024]["source_url"]}
+- Class 2026 complete Virginia school-location list: {location_total_by_year[2026]["source_url"]}
 
-The source-backed statewide totals are written to `data/sources/virginia_statewide_totals.csv` and carried into the panel for Classes 2023, 2024, and 2026. Compass remains a secondary source for Virginia cutoff values and for the unresolved Class 2025 statewide-total sensitivity value. NMSC's official guide is the source for its warning that program data do not measure school, district, or state educational quality.
+The official state-unit totals (397, 467, and 489) and the corresponding school-location totals (400, 470, and 494) are written to `data/sources/virginia_statewide_totals.csv` and carried into distinct panel fields. Compass remains a secondary source for Virginia cutoff values and for the unresolved Class 2025 state-total sensitivity value. NMSC's official guide is also the source for its warning that program data do not measure school, district, or state educational quality.
 
 ## Statewide-total reconciliation caveat
 
-{STATEWIDE_2026_RECONCILIATION_NOTE}
+{STATEWIDE_SCOPE_NOTE}
 
 ## Unresolved source gap
 
