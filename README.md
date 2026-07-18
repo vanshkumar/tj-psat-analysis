@@ -103,7 +103,7 @@ The repository intentionally keeps only two hand-maintained entry points:
 
 Analytical Markdown, CSV, and SVG outputs under `reports/` are generated from
 committed inputs. `reports/conclusion_graphic.png` is the presentation graphic
-embedded above; `reports/conclusion_graphic.svg` is the reproducible vector summary.
+embedded above.
 
 - `reports/analysis.md`: consolidated findings, robustness checks, limitations,
   and reproduction/integrity record.
@@ -140,7 +140,6 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_focal_period_comple
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_panel.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_descriptive_outputs.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_analysis_reports.py
-UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_conclusion_graphic.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/validate_nmsf_sources.py data/interim/panel_nmsf.csv
 ```
 

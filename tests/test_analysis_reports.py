@@ -182,14 +182,11 @@ class AnalysisReportsTest(unittest.TestCase):
         self.assertIn("do not establish that the admissions policy caused", report)
         self.assertIn("median TJHSST student or academic culture declined", report)
 
-    def test_conclusion_graphic_uses_current_panel_and_state_scopes(self) -> None:
-        graphic = (ROOT / "reports" / "conclusion_graphic.svg").read_text(encoding="utf-8")
-        self.assertIn("fixed 59-school public rate panel", graphic)
-        self.assertIn("57 conventional + H-B", graphic)
-        self.assertIn("37.4%", graphic)
-        self.assertIn("Location totals: 470 / 494", graphic)
-        self.assertIn("Official state-unit totals: 467 / 489", graphic)
-        self.assertNotIn("53 schools", graphic)
+    def test_conclusion_graphic_is_png_only(self) -> None:
+        graphic = ROOT / "reports" / "conclusion_graphic.png"
+        self.assertTrue(graphic.is_file())
+        self.assertTrue(graphic.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"))
+        self.assertFalse((ROOT / "reports" / "conclusion_graphic.svg").exists())
 
 
 if __name__ == "__main__":
