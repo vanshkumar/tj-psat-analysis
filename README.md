@@ -1,6 +1,6 @@
 # TJHSST-Area PSAT Analysis
 
-![Summary of the main findings](reports/conclusion_graphic.svg)
+![Summary of the main findings](reports/conclusion_graphic.png)
 
 This repository builds a sourced, reproducible panel for studying National Merit
 Semifinalist (NMSF) outcomes in the TJHSST geographic area. It combines a
@@ -102,8 +102,8 @@ The repository intentionally keeps only two hand-maintained entry points:
   semantics.
 
 Analytical Markdown, CSV, and SVG outputs under `reports/` are generated from
-committed inputs. `reports/conclusion_graphic.svg` is the data-driven presentation
-graphic embedded above; `reports/conclusion_graphic.png` is its raster snapshot.
+committed inputs. `reports/conclusion_graphic.png` is the presentation graphic
+embedded above; `reports/conclusion_graphic.svg` is the reproducible vector summary.
 
 - `reports/analysis.md`: consolidated findings, robustness checks, limitations,
   and reproduction/integrity record.
