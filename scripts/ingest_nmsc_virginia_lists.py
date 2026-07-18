@@ -17,6 +17,7 @@ from tj_psat_analysis.nmsf.virginia_list import (  # noqa: E402
     combine_statewide_total_rows,
     parse_virginia_list_text,
     read_pdf_lines,
+    selection_unit_only_statewide_total_row,
     snapshot_rows,
     statewide_total_row,
     write_snapshot_csv,
@@ -127,6 +128,7 @@ def main() -> int:
     alias_rows = load_csv_rows(args.school_aliases_csv)
     selection_rows = {row["class_year"]: row for row in load_csv_rows(args.selection_unit_totals_csv)}
     statewide_rows = []
+    location_years: set[str] = set()
     for source in SOURCES:
         if not source.pdf_path.exists():
             raise FileNotFoundError(
@@ -162,11 +164,17 @@ def main() -> int:
                 selection_unit_row=selection_row,
             )
         )
+        location_years.add(str(source.class_year))
         print(
             f"{source.class_year}: wrote {source.snapshot_path} "
             f"({len(rows)} schools, statewide total {statewide_total}, sha256 {digest})"
         )
 
+    for class_year, selection_row in selection_rows.items():
+        if class_year not in location_years:
+            statewide_rows.append(selection_unit_only_statewide_total_row(selection_row))
+
+    statewide_rows.sort(key=lambda row: int(row["class_year"]))
     write_statewide_totals_csv(args.statewide_totals_csv, statewide_rows)
     print(f"wrote {args.statewide_totals_csv}")
     return 0

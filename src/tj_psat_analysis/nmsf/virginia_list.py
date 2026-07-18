@@ -25,6 +25,8 @@ SNAPSHOT_FIELDNAMES = (
 
 STATEWIDE_TOTAL_FIELDNAMES = (
     "class_year",
+    "va_nmsf_selection_index_cutoff",
+    "va_nmsf_selection_index_cutoff_status",
     "statewide_nmsf_semifinalist_total",
     "statewide_nmsf_semifinalist_total_status",
     "source_id",
@@ -240,6 +242,23 @@ def combine_statewide_total_rows(
     )
     combined["state_selection_unit_reconciliation_notes"] = selection_unit_row.get("reconciliation_notes", "")
     return {field: combined.get(field, "") for field in STATEWIDE_TOTAL_FIELDNAMES}
+
+
+def selection_unit_only_statewide_total_row(
+    selection_unit_row: Mapping[str, str],
+) -> dict[str, str]:
+    """Create a canonical row when the official guide exists but no location list does."""
+
+    class_year = selection_unit_row.get("class_year", "")
+    location_row = {
+        "class_year": class_year,
+        "virginia_location_nmsf_semifinalist_total": "",
+        "virginia_location_nmsf_semifinalist_total_status": "not_sourced",
+    }
+    return combine_statewide_total_rows(
+        location_row=location_row,
+        selection_unit_row=selection_unit_row,
+    )
 
 
 def write_snapshot_csv(path: Path, rows: Sequence[Mapping[str, str]]) -> None:

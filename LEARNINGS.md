@@ -340,7 +340,7 @@
 - Confidence: high
 
 **2026-06-23 - Cutoff caveat wording**
-- Observation: Supplemental Virginia NMSF cutoffs stay in a narrow high-end band over the study window, with Compass focal values of 219, 222, and 224 for Classes 2024-2026; local conclusions are not primarily cutoff-driven.
+- Observation: Official NMSC Guide values put Virginia's focal NMSF cutoffs at 221, 219, 222, and 224 for Classes 2023-2026; local conclusions are not primarily cutoff-driven.
 - Action: Avoid framing "changing Virginia cutoffs and score distributions" as a major standalone confound in conclusions; keep cutoff discussion as statewide-normalization context in robustness materials.
 - Confidence: high
 
@@ -405,13 +405,18 @@
 - Confidence: high
 
 **2026-07-17 - Statewide selection-unit scope**
-- Observation: NMSC Guide state-selection-unit totals are 397, 467, and 489 for Classes 2023, 2024, and 2026, versus Virginia-location media-packet totals of 400, 470, and 494. Boarding-school blocks exactly reconcile Classes 2023 and 2026; one Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved.
-- Action: Preserve location-based packet totals separately from official state-selection-unit totals, align numerators containing boarding schools to the chosen denominator scope, and do not publish a fully scope-matched Class 2024 private/all-school share until the remaining two-person difference is resolved.
+- Observation: NMSC Guide state-selection-unit totals are 397, 467, 394, and 489 for Classes 2023-2026, while Virginia-location media-packet totals are available only for Classes 2023, 2024, and 2026 at 400, 470, and 494. Boarding-school blocks exactly reconcile Classes 2023 and 2026; one Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved.
+- Action: Preserve selection-unit rows even when no location list exists, validate their source metadata independently, align numerators to the chosen denominator scope, and withhold private/all-school state-unit shares when boarding/location scope cannot be reconciled.
 - Confidence: high
 
 **2026-07-17 - Targeted enrollment overlays**
 - Observation: Overlaying exact APS and private-school Grade 11 supplements after the default CCD/PSS sector logic makes H-B Woodlawn rate-compatible across Classes 2023-2026 and changes the balanced public panel, Arlington pathway coverage, participation sensitivity, and every derived rate table.
 - Action: Apply targeted exact-source rows last in the enrollment builder, then regenerate the enrollment panel, analysis panel, descriptive outputs, and analysis reports together; do not update denominator tables without rebuilding the dependent panel membership and sensitivity outputs.
+- Confidence: high
+
+**2026-07-17 - Suppressed admissions workbook ingestion**
+- Observation: The FCPS-origin Class 2025 source-school workbook has 125 rows, uses `TS` for cells of 10 or fewer, and stores cohort GPA summaries in workbook-level cells that overlap the first source-school row.
+- Action: Preserve source-school labels verbatim, represent `TS` as missing with 0-10 disclosure bounds rather than imputing a count, keep GPA summaries separate, and do not join the middle-school rows to high-school outcome rates.
 - Confidence: high
 
 ## What Has Failed

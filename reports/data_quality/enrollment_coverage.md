@@ -21,9 +21,9 @@ separate. No enrollment value is estimated from adjacent years.
 | locator_search_not_found | 4 |
 | not_operating | 9 |
 | private_pss_id_pending | 6 |
-| private_pss_not_survey_year | 63 |
+| private_pss_not_survey_year | 61 |
 | pss_row_not_found | 10 |
-| reported | 497 |
+| reported | 499 |
 | source_row_not_found | 4 |
 
 ## Class-Year Coverage
@@ -35,9 +35,9 @@ separate. No enrollment value is estimated from adjacent years.
 | 2021 | 2019-20 | 63 | 2 | 76 |
 | 2022 | 2020-21 | 56 | 1 | 76 |
 | 2023 | 2021-22 | 71 | 0 | 76 |
-| 2024 | 2022-23 | 60 | 0 | 76 |
+| 2024 | 2022-23 | 61 | 0 | 76 |
 | 2025 | 2023-24 | 71 | 0 | 76 |
-| 2026 | 2024-25 | 61 | 0 | 76 |
+| 2026 | 2024-25 | 62 | 0 | 76 |
 
 ## Source Files
 
@@ -49,6 +49,7 @@ separate. No enrollment value is estimated from adjacent years.
 | APS September 30, 2024 Membership Summary | https://www.apsva.us/wp-content/uploads/sites/57/2024/10/U-MEM_281_SummaryALL_Final_10_4_2024.pdf | 2024-09-30 | 4bae96d09aec31fa1af96ca5aa50953eeaaeb0c2cc53977c4a2cf4704ed75562 |
 | BASIS Independent McLean 2023-2024 High School Profile | https://basisindependent.com/wp-content/uploads/2024/07/BIM-2023-2024-High-School-Profile.pdf | 2024-06-10 | 2c75acbd48ab06c5e29ec24e109d7705ed3d2545011d518cbc60aa2100337b6c |
 | BASIS Independent McLean 2024-2025 High School Profile | https://basisindependent.com/wp-content/uploads/2025/01/BIM-High-School-Profile-2024-25.pdf | 2025-01-07 | 1292826073fe0603efbdebf834f1092396b72a9e8915ad77dd39ace79fba5345 |
+| Immanuel Christian School 2024-2025 School Profile | https://www.icsva.org/wp-content/uploads/2025/02/ImmanuelChristianSchool_SchoolProfile_2024-2025_FullSize.pdf | 2024-09 | 5688d905b23be2f5cea0963dfc3fcdf3e88f2629365ff40e71259de85d8976fb |
 | NCES CCD 2021-22 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/Data/zip/ccd_SCH_052_2122_l_1a_071722.zip | 2022-07-17 | 2c10f2bc915608c9eb1a84a6cb7a7b833a42b4149eb98b4a85e4a09309d4fd7b |
 | NCES CCD 2022-23 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/data/zip/ccd_sch_052_2223_l_1a_083023.zip | 2023-08-30 | 98f3556a9117c30c56bc5d3339b2b32fd27a1eb7def3b26e54def812ef7c493f |
 | NCES CCD 2023-24 Public Elementary/Secondary School Universe Survey Data, v.1a, School Membership | https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_2324_l_1a_073124.zip | 2024-07-31 | 06bd50eede0c036e4c92b6464b69f192ff3b8f9f739b403c2b218a9f6ec3e239 |
@@ -72,6 +73,7 @@ separate. No enrollment value is estimated from adjacent years.
 | NCES Private School Universe Survey (PSS) 2017-18 Public-Use CSV | https://nces.ed.gov/surveys/pss/zip/pss1718_pu_csv.zip | 2020-10-13 | 57b8f78cad046f2c50e1c82ba16ef892e5d322af573ab307a574e8ea45845d33 |
 | NCES Private School Universe Survey (PSS) 2019-20 Public-Use CSV | https://nces.ed.gov/surveys/pss/zip/pss1920_pu_csv.zip | 2021-09-24 | e382b00c0b6c88bf2b6618ce6b5a74907c2a8509a5d01c94d4f00c810ea3bfb7 |
 | NCES Private School Universe Survey (PSS) 2021-22 Public-Use CSV | https://nces.ed.gov/surveys/pss/zip/pss2122_pu_csv.zip | 2023-09-22 | 82acee7abc91dc2b07863405ca3fa172904fc45bf66f54191bbc0b0ad79022b1 |
+| Trinity Christian School 2023-2024 Upper School Profile | https://www.tcsfairfax.org/fs/resource-manager/view/869f8eb4-002c-47f9-943e-2ab24db24b9b | 2023-24 | b6e383ecb5face0e9c873bf08e8e6f1c334e7f85189ff186edd175fbef6f2d88 |
 
 ## Source Rules
 

@@ -16,10 +16,10 @@ class_year,school_group,operating_school_rows,nmsf_count_available_rows,missing_
 2023,Private schools,16,16,0,11,11,26,14,979,1.430031,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2024,TJHSST,1,1,0,1,1,165,165,441,37.414966,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
 2024,Base public schools,59,59,0,59,59,176,176,29880,0.589023,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
-2024,Private schools,16,16,0,0,0,26,,,,complete_nmsf_count_coverage,no_compatible_rate_coverage,false
+2024,Private schools,16,16,0,1,1,26,1,91,1.098901,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2025,TJHSST,1,1,0,1,1,81,81,504,16.071429,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
 2025,Base public schools,59,58,1,59,58,173,173,30697,0.563573,partial_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2025,Private schools,16,16,0,11,11,34,20,1015,1.970443,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
 2026,TJHSST,1,1,0,1,1,113,113,523,21.606119,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
 2026,Base public schools,59,59,0,59,59,237,237,30964,0.765405,complete_nmsf_count_coverage,complete_compatible_rate_coverage,false
-2026,Private schools,16,16,0,1,1,35,9,40,22.500000,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false
+2026,Private schools,16,16,0,2,2,35,10,89,11.235955,complete_nmsf_count_coverage,partial_compatible_rate_coverage,false

@@ -67,24 +67,31 @@ and integrity summary.
 - Targeted official Grade 11 sources add H-B Woodlawn denominators of 109, 109,
   115, and 110 for Classes 2023-2026; Loudoun School for Advanced Studies at 11
   for Class 2023; and BASIS Independent McLean at 29 and 40 for Classes 2025 and
-  2026.
-- Forty-one focal private school-year denominators remain unresolved without
+  2026; Trinity Christian at 91 for Class 2024; and Immanuel Christian at 49 for
+  Class 2026.
+- Thirty-nine focal private school-year denominators remain unresolved without
   adjacent-year estimation: five in Class 2023 (Flint Hill, Oakcrest, Potomac,
-  Pinnacle, and Seton), all 16 in Class 2024, five in Class 2025 (Flint Hill,
-  Oakcrest, Potomac, Loudoun School for Advanced Studies, and Seton), and 15 in
-  Class 2026 (all rostered private schools except BASIS Independent McLean).
+  Pinnacle, and Seton), 15 in Class 2024 (all except Trinity Christian), five in
+  Class 2025 (Flint Hill, Oakcrest, Potomac, Loudoun School for Advanced Studies,
+  and Seton), and 14 in Class 2026 (all except BASIS Independent McLean and
+  Immanuel Christian).
 - Virginia school-location media-packet totals are 400, 470, and 494 for Classes
   2023, 2024, and 2026; the official NMSC state-selection-unit totals are 397,
-  467, and 489. Class 2025 is absent from both canonical source series. The two
-  scopes are retained separately: boarding-school blocks reconcile Classes 2023
-  and 2026, while two Class 2024 students remain scope-unresolved.
+  467, 394, and 489 for Classes 2023-2026. Official focal cutoffs are 221, 219,
+  222, and 224. Class 2025 still lacks the complete location list. The two scopes
+  are retained separately: boarding-school blocks reconcile Classes 2023 and
+  2026, while two Class 2024 students remain scope-unresolved.
+- An FCPS-origin Class 2025 admissions workbook provides source-school applicants,
+  waitpool, and offers, but cells of 10 or fewer are suppressed. It reduces the
+  admissions-data gap without supplying acceptance, enrollment, allocation-pool,
+  counterfactual, or comparable Class 2026 data.
 - Historical non-FCPS Classes 2019-2022 source backfill is optional and is not
   required for the current focal-period conclusions.
 
 The highest-value additions are a complete Class 2025 Virginia school list,
 school-level PSAT participation and score distributions, the remaining exact-year
-private grade-11 denominators, TJHSST applicant/offer/enrollment records by source
-school and allocation pool, and broader upper-tail outcomes.
+private grade-11 denominators, complete TJHSST applicant/offer/acceptance/enrollment
+records by source school and allocation pool, and broader upper-tail outcomes.
 
 ## Documentation and outputs
 
@@ -107,6 +114,8 @@ graphic embedded above; `reports/conclusion_graphic.png` is its raster snapshot.
 - `reports/tables/` and `reports/figures/`: machine-readable analytical tables
   and rendered charts.
 - `data/processed/analysis_panel.csv`: canonical analytical panel.
+- `data/processed/tjhsst_class_2025_admissions_by_source_school.csv`: partial
+  source-school admissions extract with explicit FERPA suppression statuses.
 
 Source-specific notes live next to the source artifacts. `data/raw/nmsf/README.md`
 documents the count-only NMSF snapshots, and
@@ -123,6 +132,7 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_seed_data.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_school_roster.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/ingest_nmsc_virginia_lists.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_enrollment_panel.py
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/ingest_tjhsst_admissions.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/apply_nmsf_counts.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_observations.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/build_nmsf_pilot_2023_2026.py

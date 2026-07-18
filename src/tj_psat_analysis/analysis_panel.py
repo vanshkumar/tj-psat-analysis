@@ -248,9 +248,9 @@ def final_panel_checks(rows: Sequence[Mapping[str, object]]) -> list[dict[str, s
         _check_row("rate_null_behavior", not invalid_rates, _count_detail(invalid_rates)),
         _check_row("pathway_bucket_flags", not pathway_observed_flags, _count_detail(pathway_observed_flags)),
         _check_row(
-            "selection_index_placeholder",
-            {str(row["va_nmsf_selection_index_cutoff_status"]) for row in rows} == {"not_sourced"},
-            "Virginia cutoff columns are documented placeholders.",
+            "selection_index_source_metadata",
+            not _cutoff_source_violations(rows),
+            "Sourced Virginia cutoffs include official guide metadata.",
         ),
         _check_row(
             "statewide_total_source_metadata",
@@ -272,6 +272,18 @@ def _statewide_total_source_violations(rows: Sequence[Mapping[str, object]]) -> 
             continue
         if status != "source_backed_state_selection_unit_total":
             violations.append(row)
+            continue
+        if not all(
+            str(row.get(field, "")).strip()
+            for field in (
+                "statewide_nmsf_semifinalist_total_source_title",
+                "statewide_nmsf_semifinalist_total_source_url",
+                "statewide_nmsf_semifinalist_total_source_date",
+                "statewide_nmsf_semifinalist_total_source_hash",
+            )
+        ):
+            violations.append(row)
+            continue
         location_total = str(row.get("virginia_location_nmsf_semifinalist_total", "")).strip()
         location_status = str(row.get("virginia_location_nmsf_semifinalist_total_status", "")).strip()
         if not location_total:
@@ -292,13 +304,28 @@ def _statewide_total_source_violations(rows: Sequence[Mapping[str, object]]) -> 
         ):
             violations.append(row)
             continue
+    return violations
+
+
+def _cutoff_source_violations(rows: Sequence[Mapping[str, object]]) -> list[Mapping[str, object]]:
+    violations: list[Mapping[str, object]] = []
+    for row in rows:
+        cutoff = str(row.get("va_nmsf_selection_index_cutoff", "")).strip()
+        status = str(row.get("va_nmsf_selection_index_cutoff_status", "")).strip()
+        if not cutoff:
+            if status != "not_sourced":
+                violations.append(row)
+            continue
+        if status != "source_backed_nmsc_guide":
+            violations.append(row)
+            continue
         if not all(
             str(row.get(field, "")).strip()
             for field in (
-                "statewide_nmsf_semifinalist_total_source_title",
-                "statewide_nmsf_semifinalist_total_source_url",
-                "statewide_nmsf_semifinalist_total_source_date",
-                "statewide_nmsf_semifinalist_total_source_hash",
+                "va_nmsf_selection_index_cutoff_source_title",
+                "va_nmsf_selection_index_cutoff_source_url",
+                "va_nmsf_selection_index_cutoff_source_date",
+                "va_nmsf_selection_index_cutoff_source_hash",
             )
         ):
             violations.append(row)
@@ -384,7 +411,7 @@ def build_final_panel_report(
         "- Pathway totals sum only rows with compatible NMSF and denominator coverage.",
         "- `missing_source` remains missing and is not converted to zero.",
         "- Grade-11 enrollment is an outcome denominator, not an admissions-seat allocation input.",
-        "- Virginia cutoff fields remain `not_sourced` until reliable sources are added.",
+        "- Virginia cutoff fields are source-backed from annual NMSC Guides for Classes 2023-2026.",
         (
             "- Virginia school-location totals come from complete media-list packets; official "
             "state-selection-unit totals come from annual NMSC Guides."
@@ -483,12 +510,14 @@ def _analysis_row(
         "has_school_opening_flag": _bool_text(_has_event(history_events, "opening")),
         "has_school_rename_flag": _bool_text(_has_event(history_events, "rename")),
         "has_school_relocation_flag": _bool_text(_has_event(history_events, "relocation")),
-        "va_nmsf_selection_index_cutoff": "",
-        "va_nmsf_selection_index_cutoff_status": "not_sourced",
-        "va_nmsf_selection_index_cutoff_source_title": "",
-        "va_nmsf_selection_index_cutoff_source_url": "",
-        "va_nmsf_selection_index_cutoff_source_date": "",
-        "va_nmsf_selection_index_cutoff_source_hash": "",
+        "va_nmsf_selection_index_cutoff": statewide_total_row.get("va_nmsf_selection_index_cutoff", ""),
+        "va_nmsf_selection_index_cutoff_status": statewide_total_row.get(
+            "va_nmsf_selection_index_cutoff_status", "not_sourced"
+        ),
+        "va_nmsf_selection_index_cutoff_source_title": statewide_total_row.get("source_title", ""),
+        "va_nmsf_selection_index_cutoff_source_url": statewide_total_row.get("source_url", ""),
+        "va_nmsf_selection_index_cutoff_source_date": statewide_total_row.get("source_date", ""),
+        "va_nmsf_selection_index_cutoff_source_hash": statewide_total_row.get("source_hash", ""),
         "statewide_nmsf_semifinalist_total": statewide_total_row.get("statewide_nmsf_semifinalist_total", ""),
         "statewide_nmsf_semifinalist_total_status": statewide_total_row.get(
             "statewide_nmsf_semifinalist_total_status", "not_sourced"

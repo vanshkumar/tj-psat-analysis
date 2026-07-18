@@ -83,9 +83,9 @@ class EnrollmentPanelTest(unittest.TestCase):
         self.assertEqual(trinity_2023["pss_imputation_flag"], "0")
         self.assertEqual(trinity_2023["pss_ppin"], "K9306124")
 
-        trinity_2024 = self._lookup("trinity_christian_school", 2024)
-        self.assertEqual(trinity_2024["grade11_enrollment"], "")
-        self.assertEqual(trinity_2024["enrollment_status"], "private_pss_not_survey_year")
+        flint_2024 = self._lookup("flint_hill_school", 2024)
+        self.assertEqual(flint_2024["grade11_enrollment"], "")
+        self.assertEqual(flint_2024["enrollment_status"], "private_pss_not_survey_year")
 
     def test_private_pss_locator_supplies_class_2025_denominators(self) -> None:
         trinity_2025 = self._lookup("trinity_christian_school", 2025)
@@ -113,6 +113,8 @@ class EnrollmentPanelTest(unittest.TestCase):
             ("loudoun_school_for_advanced_studies", 2023): "11",
             ("basis_independent_mclean", 2025): "29",
             ("basis_independent_mclean", 2026): "40",
+            ("trinity_christian_school", 2024): "91",
+            ("immanuel_christian_high_school", 2026): "49",
         }
         for (school_id, class_year), count in expected.items():
             row = self._lookup(school_id, class_year)
@@ -127,6 +129,14 @@ class EnrollmentPanelTest(unittest.TestCase):
         self.assertIn(
             "basisindependent.com",
             self._lookup("basis_independent_mclean", 2026)["enrollment_source_url"],
+        )
+        self.assertIn(
+            "tcsfairfax.org",
+            self._lookup("trinity_christian_school", 2024)["enrollment_source_url"],
+        )
+        self.assertIn(
+            "icsva.org",
+            self._lookup("immanuel_christian_high_school", 2026)["enrollment_source_url"],
         )
 
     def test_missingness_and_not_operating_are_distinct(self) -> None:

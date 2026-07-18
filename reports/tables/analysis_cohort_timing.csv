@@ -1,9 +1,9 @@
-class_year,qualifying_psat_year,tjhsst_admissions_regime,policy_exposure,psat_format,timing_context,virginia_cutoff_supplemental,cutoff_source_status
+class_year,qualifying_psat_year,tjhsst_admissions_regime,policy_exposure,psat_format,timing_context,virginia_selection_index_cutoff,cutoff_source_status
 2019,2017,Pre-change test-based admissions process,Pre-policy class,Paper,Pre-COVID; paper PSAT/NMSQT,,not_added
 2020,2018,Pre-change test-based admissions process,Pre-policy class,Paper,Pre-COVID; paper PSAT/NMSQT,,not_added
 2021,2019,Pre-change test-based admissions process,Pre-policy class,Paper,Pre-COVID; paper PSAT/NMSQT,,not_added
 2022,2020,Pre-change test-based admissions process,Pre-policy class,Paper,Acute pandemic disruption; national PSAT participation sharply reduced,,not_added
-2023,2021,Pre-change test-based admissions process,Pre-policy class,Paper,Pandemic-recovery year with uneven return to in-person schooling,221.000000,supplemental_secondary
-2024,2022,Pre-change test-based admissions process,Pre-policy class,Paper,Later recovery; paper PSAT/NMSQT,219.000000,supplemental_secondary
-2025,2023,Post-2020 holistic/allocation process,First affected class,Digital,First digital PSAT/NMSQT administration,222.000000,supplemental_secondary
-2026,2024,Post-2020 holistic/allocation process,Second affected class,Digital,Second digital PSAT/NMSQT administration,224.000000,supplemental_secondary
+2023,2021,Pre-change test-based admissions process,Pre-policy class,Paper,Pandemic-recovery year with uneven return to in-person schooling,221.000000,source_backed_nmsc_guide
+2024,2022,Pre-change test-based admissions process,Pre-policy class,Paper,Later recovery; paper PSAT/NMSQT,219.000000,source_backed_nmsc_guide
+2025,2023,Post-2020 holistic/allocation process,First affected class,Digital,First digital PSAT/NMSQT administration,222.000000,source_backed_nmsc_guide
+2026,2024,Post-2020 holistic/allocation process,Second affected class,Digital,Second digital PSAT/NMSQT administration,224.000000,source_backed_nmsc_guide

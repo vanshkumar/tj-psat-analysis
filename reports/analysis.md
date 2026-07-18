@@ -1,6 +1,6 @@
 # Analysis and Findings
 
-Generated: 2026-07-16
+Generated: 2026-07-17
 
 ## Conclusions
 
@@ -32,7 +32,7 @@ The most defensible interpretation is therefore **partial and delayed redistribu
 
 The private-school bucket is not blank. Across the 16 rostered private schools, source-backed counts rise from **52 in Classes 2023-2024 to 69 in Classes 2025-2026**, an observed increase of **17 NMSFs**. That supports a descriptive statement that the rostered private sector's right-tail count increased in the post period.
 
-It should not be folded into the public-school offset estimate as if it were a measured displacement channel. Comparable grade-11 private denominators are missing for Classes 2024 and 2026, and the counts do not identify whether students lived in the TJHSST service area, were TJ-eligible, applied to TJHSST, or would otherwise have attended TJHSST or a particular base public school.
+It should not be folded into the public-school offset estimate as if it were a measured displacement channel. Grade-11 private denominator coverage remains sparse and unbalanced, and the counts do not identify whether students lived in the TJHSST service area, were TJ-eligible, applied to TJHSST, or would otherwise have attended TJHSST or a particular base public school.
 
 ### What the data do not establish
 
@@ -40,7 +40,7 @@ These results do not establish that the admissions policy caused the changes, th
 
 The current panel is strongest for public-school counts and denominators: Classes 2023, 2024, and 2026 have complete NMSF count coverage, while Meridian High School is the sole remaining Class 2025 public NMSF source gap. The fixed public rate panel contains 59 schools: 57 conventional base schools, H-B Woodlawn, and TJHSST. Private-school focal-period counts are complete and show a post-period increase, but missing denominators and residence/eligibility counterfactuals prevent a credible private-school rate or offset estimate.
 
-Supplemental statewide shares are useful context only when their numerator and denominator scopes match. The analysis therefore retains separate Virginia school-location and official state-selection-unit totals, withholds the Class 2024 state-unit share where two students remain scope-unresolved, and labels the Class 2025 state-unit sensitivity as secondary.
+Supplemental statewide shares are useful context only when their numerator and denominator scopes match. The analysis therefore retains separate Virginia school-location and official state-selection-unit totals, withholds the Class 2024 state-unit share where two students remain scope-unresolved, and uses the official Class 2025 state-unit total while leaving its location share blank.
 
 ### Highest-value next evidence
 
@@ -95,11 +95,11 @@ For the balanced 59-school public panel including TJHSST, the rate is **1.115 in
 
 The composition of that public right tail changes sharply even where the combined rate nearly recovers: TJHSST's share of balanced public NMSFs falls from **49.1% in 2024** to **31.9% in 2025** and **32.8% in 2026**. The clearest supported conclusion is therefore deconcentration of exceptional PSAT outcomes away from TJHSST, not a demonstrated decline in the whole region's academic culture.
 
-This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. On the scope-matched school-location series, the balanced public panel's share changes from **71.5% in 2024 to 69.8% in 2026**; no Class 2025 location packet is available. On the state-selection-unit sensitivity, Class 2024 is withheld because two location-list students remain unidentified, the secondary Class 2025 value is **64.5%**, and the source-backed Class 2026 value is **70.6%**. TJHSST's school-location share changes from **35.1% to 22.9%**.[^findings_state] These scope qualifications affect statewide-share interpretation but not local school counts.
+This local near-recovery does not mean the regional right tail fully recovered relative to Virginia. On the scope-matched school-location series, the balanced public panel's share changes from **71.5% in 2024 to 69.8% in 2026**; no Class 2025 location packet is available. On the official state-selection-unit comparison, Class 2024 is withheld because two location-list students remain unidentified, the Class 2025 value is **64.5%**, and the Class 2026 value is **70.6%**. TJHSST's school-location share changes from **35.1% to 22.9%**.[^findings_state] These scope qualifications affect statewide-share interpretation but not local school counts.
 
 #### 5. Private schools show count growth, but not a measurable complete offset
 
-The full observed private total is now count-complete: **26, 26, 34, and 35** for Classes 2023-2026 across all 16 rostered private schools. Pooled private counts rise from **52 pre-period NMSFs to 69 post-period NMSFs**, so the data do show private-sector right-tail growth in the rostered area. The 2023-24 NCES locator pass adds Class 2025 denominators for 11 private rows, but Classes 2024 and 2026 still lack private denominator coverage, so there is no balanced private denominator panel across Classes 2023-2026.
+The full observed private total is now count-complete: **26, 26, 34, and 35** for Classes 2023-2026 across all 16 rostered private schools. Pooled private counts rise from **52 pre-period NMSFs to 69 post-period NMSFs**, so the data do show private-sector right-tail growth in the rostered area. Private rate coverage is 11/16 schools in 2023, 1/16 schools in 2024, 11/16 schools in 2025, and 2/16 schools in 2026; there is still no balanced private denominator panel across Classes 2023-2026.
 
 The defensible conclusion is therefore “private count increase observed, private offset unresolved,” not “private offset observed,” because counts alone do not identify normalized rates, residency, eligibility, applications, or counterfactual school placement.
 
@@ -125,14 +125,14 @@ Removing H-B Woodlawn changes base-public raw counts by 3, 1, 3, and 6 in Classe
 
 The evidence **supports a narrow descriptive version** of the hypothesis: the first two post-policy cohorts show a large reduction in TJHSST's NMSF rate, and the first affected cohort does not show a full same-year offset in either the balanced base-public panel or its conventional-public exclusion. The second affected cohort shows a material base-school increase and a partial combined-zone recovery.
 
-The evidence **does not yet support the causal context-effect version**. The analysis needs school-level PSAT participation and distributions, private-school denominator/eligibility context, sourced historical Virginia benchmarks, actual applicant/offer/enrollment data by allocation pool, and a credible comparison design before attributing the net regional pattern to TJHSST peer effects or the admissions policy.
+The evidence **does not yet support the causal context-effect version**. The analysis needs school-level PSAT participation and distributions, fuller private-school denominator/eligibility context, complete applicant/offer/acceptance/enrollment data by allocation pool, and a credible comparison design before attributing the net regional pattern to TJHSST peer effects or the admissions policy.
 
 ### Priority next evidence
 
 The highest-value follow-on is not more NMSF name counting. It is obtaining: (1) school-level PSAT participation and score distributions; (2) TJ applicant, offer, waitpool, acceptance, and enrollment counts by source school and allocated/unallocated pool; and (3) one or more broader upper-tail measures such as SAT threshold rates, AP 5 rates, or contest outcomes. Those data would distinguish score-production changes from participation, threshold, and redistribution effects.
 
 [^findings_nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, https://www.nationalmerit.org/s/1758/images/gid2/editor_documents/guide_to_the_national_merit_scholarship_program.pdf?gid=2&pgid=61.
-[^findings_state]: The canonical panel includes separate official NMSC Virginia state-selection-unit totals and complete-media-list Virginia school-location totals for Classes 2023, 2024, and 2026. Class 2025 uses the secondary Compass state total only for the labeled state-unit sensitivity; no Class 2025 location total is available. Virginia cutoff values are also secondary Compass values: https://www.compassprep.com/historical-national-merit-cutoffs/ and https://www.compassprep.com/national-merit-semifinalists-by-state/.
+[^findings_state]: The canonical panel includes official NMSC Virginia cutoffs and state-selection-unit totals for Classes 2023-2026, plus complete-media-list Virginia school-location totals for Classes 2023, 2024, and 2026. No Class 2025 location total is available.
 [^findings_policy]: Fairfax County School Board, December 17, 2020 minutes, https://go.boarddocs.com/vsba/fairfax/Board.nsf/files/BY5JH34D3388/%24file/12-17-20%20ERM%20FINAL.pdf; FCPS Class 2025/2026 documentation in the March 4, 2022 court filing and Regulation 3355.14 exhibit, https://www.ffxnow.com/files/2022/03/FCPS-Brief-in-Support-of-Motion-to-Stay-Pending-Appeal.pdf; Regulation 3355.15, https://valor-dictus.com/wp-content/uploads/2022/05/R3355.pdf.
 
 ## Robustness Checks
@@ -151,9 +151,9 @@ The primary robustness window is Classes 2023-2026. Full-zone count coverage is 
 | Class | Count coverage | Rate-compatible coverage | Observed total | Covered rate /100 |
 |---|---|---|---|---|
 | 2023 | 76/76 (100.0%) | 71/76 (93.4%) | 325 | 1.007 |
-| 2024 | 76/76 (100.0%) | 60/76 (78.9%) | 367 | 1.125 |
+| 2024 | 76/76 (100.0%) | 61/76 (80.3%) | 367 | 1.125 |
 | 2025 | 75/76 (98.7%) | 70/76 (92.1%) | 288 | 0.851 |
-| 2026 | 76/76 (100.0%) | 61/76 (80.3%) | 385 | 1.139 |
+| 2026 | 76/76 (100.0%) | 62/76 (81.6%) | 385 | 1.140 |
 
 The complete Virginia lists close count coverage for Classes 2023, 2024, and 2026, leaving Class 2025 as the only focal count gap. Rate-compatible coverage is still narrower: private-school denominators remain sparse and several public denominators or school-year observations are unavailable. This is why the balanced panels below are the cleanest like-for-like checks.
 
@@ -235,13 +235,13 @@ The sensitivity check therefore supports the pooled conclusion of a large TJHSST
 | Class | Private count rows observed | Missing rows | Full observed total | Balanced 16-school total | Rate-compatible rows |
 |---|---|---|---|---|---|
 | 2023 | 16/16 | 0 | 26 | 26 | 11 |
-| 2024 | 16/16 | 0 | 26 | 26 | 0 |
+| 2024 | 16/16 | 0 | 26 | 26 | 1 |
 | 2025 | 16/16 | 0 | 34 | 34 | 11 |
-| 2026 | 16/16 | 0 | 35 | 35 | 1 |
+| 2026 | 16/16 | 0 | 35 | 35 | 2 |
 
 All 16 rostered private-school rows now have source-backed focal-period counts after the complete-list integration. Their observed total is **26 in 2023, 26 in 2024, 34 in 2025, and 35 in 2026**. Pooled private counts therefore rise from **52 in Classes 2023-2024 to 69 in Classes 2025-2026**, a **17-student observed count increase** in the rostered private-school bucket.
 
-That is a real private-sector right-tail count signal. The limitation is narrower: counts alone still do not identify enrollment-normalized rates, residency, TJ eligibility, applications, or counterfactual base schools. No rate-compatible private panel exists for Classes 2024-2026 because private denominators remain unavailable in 2024 and 2026.
+That is a real private-sector right-tail count signal. The limitation is narrower: counts alone still do not identify complete enrollment-normalized rates, residency, TJ eligibility, applications, or counterfactual base schools. Private rate coverage is 11/16 schools in 2023, 1/16 schools in 2024, 11/16 schools in 2025, and 2/16 schools in 2026; the newly recovered Class 2024 and 2026 profiles improve coverage but do not create a balanced four-year private panel.
 
 ### 6. Excluding non-conventional programs
 
@@ -266,18 +266,18 @@ For the balanced base-public panel, by contrast, 2023-2025 are nearly flat (0.56
 
 ### 8. Virginia cutoff and statewide normalization
 
-More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors nationally and are named on a state-representational basis.[^robustness_nmsc] For Classes 2023, 2024, and 2026, the canonical panel now carries both official NMSC Virginia state-selection-unit totals and complete-media-list totals for students attending Virginia-located schools. Both scopes remain unsourced for Class 2025 in the canonical panel. Virginia cutoff values are still supplemental secondary-source checks.[^robustness_cutoffs][^robustness_state]
+More than 16,000 Semifinalists represent less than 1% of U.S. graduating seniors nationally and are named on a state-representational basis.[^robustness_nmsc] Annual official NMSC Guides now source the Virginia Selection Index cutoff and state-selection-unit total for every focal class. Complete-media-list totals for students attending Virginia-located schools remain available only for Classes 2023, 2024, and 2026.[^robustness_state]
 
 | Class | VA cutoff | State-unit total | Total status | Location total | Public location share | Public state-unit share | Base-public state-unit share | TJHSST state-unit share | Scope status |
 |---|---|---|---|---|---|---|---|---|---|
 | 2023 | 221 | 397 | source-backed state unit | 400 | 74.8% | 75.3% | 42.1% | 33.2% | exact boarding scope reconciliation |
 | 2024 | 219 | 467 | source-backed state unit | 470 | 71.5% | — | — | — | partial scope reconciliation |
-| 2025 | 222 | 394 | secondary | — | — | 64.5% | 43.9% | 20.6% | secondary total no location reconciliation |
+| 2025 | 222 | 394 | source-backed state unit | — | — | 64.5% | 43.9% | 20.6% | location total not sourced |
 | 2026 | 224 | 489 | source-backed state unit | 494 | 69.8% | 70.6% | 47.4% | 23.1% | exact boarding scope reconciliation |
 
-Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, 2024, and 2026; official NMSC state-selection-unit totals are 397, 467, and 489. Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. The two denominator scopes are retained separately.
+Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, 2024, and 2026; official NMSC state-selection-unit totals are 397, 467, 394, and 489 for Classes 2023-2026. Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. Class 2025 has no complete location list, so its private/all-school selection-unit scope cannot be reconciled. The two denominator scopes are retained separately.
 
-Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. The scope-matched school-location comparison shows the balanced public share falling from **71.5% in 2024** to **69.8% in 2026**; no comparable Class 2025 location packet is available. On the state-selection-unit sensitivity, Class 2024 is withheld because two packet students remain unidentified, while the secondary Class 2025 public share is **64.5%** and the source-backed Class 2026 share is **70.6%**. TJHSST's scope-matched location share also remains far below 2024 (35.1% to 22.9%). These figures support a partial, not complete, 2026 recovery relative to Virginia without mixing the two denominator scopes into a single three-year series.
+Virginia's cutoff moved within a narrow high-end band in the focal period: 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That movement is real, but it is not a satisfying standalone explanation for the TJHSST break or the delayed base-school pattern. The scope-matched school-location comparison shows the balanced public share falling from **71.5% in 2024** to **69.8% in 2026**; no comparable Class 2025 location packet is available. On the official state-selection-unit comparison, Class 2024 is withheld because two packet students remain unidentified, while the Class 2025 public share is **64.5%** and the Class 2026 share is **70.6%**. TJHSST's scope-matched location share also remains far below 2024 (35.1% to 22.9%). These figures support a partial, not complete, 2026 recovery relative to Virginia without mixing the two denominator scopes into a single three-year series.
 
 ### 9. COVID, digital testing, and cohort timing
 
@@ -324,8 +324,7 @@ The TJHSST decline in the first affected class is large in both raw counts and e
 - `reports/tables/analysis_pathway_rate_sensitivity.csv`
 
 [^robustness_nmsc]: National Merit Scholarship Corporation, *Information about the 2026 National Merit Scholarship Competition*, https://www.nationalmerit.org/s/1758/images/gid2/editor_documents/guide_to_the_national_merit_scholarship_program.pdf?gid=2&pgid=61.
-[^robustness_cutoffs]: Compass Education Group, *Historical National Merit Cutoffs 2008 to Present*, https://www.compassprep.com/historical-national-merit-cutoffs/. Secondary source; not written into the canonical panel.
-[^robustness_state]: Official NMSC guides provide Virginia state-selection-unit totals for Classes 2023, 2024, and 2026; complete media-list snapshots independently provide Virginia school-location totals. Both scopes are recorded in `data/sources/virginia_statewide_totals.csv`. Class 2025 uses Compass Education Group's secondary state total, https://www.compassprep.com/national-merit-semifinalists-by-state/, only for the clearly labeled sensitivity column.
+[^robustness_state]: Official NMSC Guides provide Virginia cutoffs and state-selection-unit totals for Classes 2023-2026; complete media-list snapshots independently provide Virginia school-location totals for Classes 2023, 2024, and 2026. Both scopes are recorded in `data/sources/virginia_statewide_totals.csv`.
 [^robustness_virtual]: Fairfax County Public Schools, *FCPS 2020-21 Evaluation Report*, https://www.fcps.edu/sites/default/files/media/pdf/FCPS_2020_21_Evaluation_Report_0.pdf.
 [^robustness_inperson]: Fairfax County Public Schools, *FCPS This Week — August 25, 2021*, https://www.fcps.edu/sites/default/files/2022-02/Award%20Vax%20Up%20FCPS%20This%20Week%20-%20August%2025%2C%202021.pdf.
 [^robustness_digital]: College Board, *How to Get Ready for the Digital PSAT/NMSQT*, https://blog.collegeboard.org/how-get-ready-digital-psat-nmsqt.
@@ -357,13 +356,13 @@ The source-backed Virginia benchmark and proportional sensitivity grid bound thi
 
 ### 3. Statewide normalization and test-form changes
 
-Virginia's canonical cutoff columns remain blank with `not_sourced` status. For Classes 2023, 2024, and 2026, the panel keeps official NMSC state-selection-unit totals separate from complete-media-list Virginia school-location totals. Class 2025 remains blank in both canonical scope fields because neither a primary state-unit total nor a comparable complete list has been found. The supplemental analysis uses Compass only for cutoff values and the Class 2025 state-total sensitivity value; those secondary values are labeled and may be revised.
+Virginia's canonical cutoff columns are source-backed from annual NMSC Guides for Classes 2023-2026. The panel keeps official NMSC state-selection-unit totals separate from complete-media-list Virginia school-location totals. Class 2025 now has the primary state-unit total of 394, while its location total remains blank because no complete list has been recovered.
 
-Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, 2024, and 2026; official NMSC state-selection-unit totals are 397, 467, and 489. Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. The two denominator scopes are retained separately.
+Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, 2024, and 2026; official NMSC state-selection-unit totals are 397, 467, 394, and 489 for Classes 2023-2026. Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. Class 2025 has no complete location list, so its private/all-school selection-unit scope cannot be reconciled. The two denominator scopes are retained separately.
 
 The focal policy boundary also coincides with the 2023 move to the digital PSAT/NMSQT.[^limitations_digital] Class 2025 is the first policy-affected TJHSST class and the first digital-PSAT NMSF class. That coincidence makes it impossible, with these data alone, to attribute the break uniquely to admissions policy.
 
-A state cutoff does not fully standardize cohorts, but the focal cutoff movement should not be overstated. The supplemental values put Virginia at 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That is useful context for statewide-share sensitivity, not a primary standalone explanation for the local TJHSST and base-school pattern. The unresolved Class 2025 statewide denominator still limits statewide normalization.
+A state cutoff does not fully standardize cohorts, but the focal cutoff movement should not be overstated. The official Guide values put Virginia at 219 in Class 2024, 222 in Class 2025, and 224 in Class 2026. That is useful context for statewide-share sensitivity, not a primary standalone explanation for the local TJHSST and base-school pattern. The missing Class 2025 location list still limits location-scope normalization and boarding-school reconciliation.
 
 ### 4. Incomplete and changing source coverage
 
@@ -371,8 +370,8 @@ The panel is explicit about missingness, but the remaining gaps matter:
 
 - In Classes 2019-2022, 48-50 of 76 rows lack source-backed NMSF counts. Full-zone historical totals are therefore not comparable with 2023-2026.
 - Private count coverage is complete for Classes 2023-2026 after integrating the complete Virginia lists.
-- Rate-compatible private coverage is 11/16 schools in 2023, 0/16 schools in 2024, 11/16 schools in 2025, and 1/16 schools in 2026.
-- The official LCPS Class 2025 release is total-only and cannot establish school-level counts or zeros; some LCPS school rows remain missing.
+- Rate-compatible private coverage is 11/16 schools in 2023, 1/16 schools in 2024, 11/16 schools in 2025, and 2/16 schools in 2026.
+- The official LCPS Class 2025 release is total-only, but exact identity-level reconciliation with school-attributed and TJHSST lists closes the four previously missing LCPS rows as verified zeros. Meridian High School remains the sole focal public count gap.
 
 The balanced panels improve comparability by holding schools fixed, but they answer a narrower question about continuously observed schools and may not represent omitted schools.
 
@@ -380,13 +379,15 @@ The balanced panels improve comparability by holding schools fixed, but they ans
 
 Private-school location does not prove that a student resided in the TJHSST service area, was eligible for TJHSST, applied to TJHSST, or would otherwise have attended a particular base school. The admissions rule places non-public applicants in the unallocated pool rather than assigning them by the private school's location. The private-school analysis is therefore a geographic outcome bucket, not a measured displacement channel.
 
-All 16 rostered private schools now have complete 2023-2026 counts, and those counts are informative: the bucket rises from **52 observed NMSFs in Classes 2023-2024 to 69 in Classes 2025-2026**. The 2023-24 NCES locator pass adds rate-compatible Class 2025 denominators for 11 private rows, but no balanced private rate panel spans Classes 2023-2026 because Classes 2024 and 2026 still lack private denominator coverage. The project can report the private count increase, but it still cannot estimate a complete private-school rate trend or displacement offset.
+All 16 rostered private schools now have complete 2023-2026 counts, and those counts are informative: the bucket rises from **52 observed NMSFs in Classes 2023-2024 to 69 in Classes 2025-2026**. Rate coverage is 11/16 schools in 2023, 1/16 schools in 2024, 11/16 schools in 2025, and 2/16 schools in 2026. The new Trinity and Immanuel profiles improve Classes 2024 and 2026, but no balanced private rate panel spans all four classes. The project can report the private count increase, but it still cannot estimate a complete private-school rate trend or displacement offset.
 
 ### 6. Grade-11 enrollment is not an admissions allocation denominator
 
 The rate denominator measures the size of the outcome cohort at the high school. TJHSST admissions allocations are based on public schools' eighth-grade populations under the post-2020 process, not on high-school grade-11 enrollment.[^limitations_current] These denominators serve different purposes and must not be conflated.
 
-The panel also lacks applicants, eligible applicants, offers, waitpool outcomes, acceptances, enrolled students, allocated/unallocated seat status, and the eighth-grade population inputs used in each admissions cycle. Without those data, the analysis cannot quantify how many high scorers were actually redistributed by the policy.
+The recovered Class 2025 FCPS-origin source-school workbook supplies exact applicant cells for 58 of 125 rows, waitpool cells for 32, and offer cells for 10; the remaining 67, 93, and 115 cells are respectively suppressed as 10 or fewer.[^limitations_admissions] It does not supply eligible-applicant counts, acceptances, enrolled students, allocation-pool status, counterfactual schools, or a Class 2026 equivalent. Without those data, the analysis cannot quantify how many high scorers were actually redistributed by the policy.
+
+[^limitations_admissions]: FCPS-origin FOIA workbook mirrored by FCAG, *TJHSST Class of 2025 Admissions by Middle School*, https://www.fcag.org/2025%20by%20Middle%20School.xlsx.
 
 ### 7. TJHSST cannot be reassigned to base schools
 
@@ -476,7 +477,7 @@ The script rebuilds this report, its research-source note, and supporting tables
 - Canonical panel rows: 608
 - Canonical schools: 76
 - Class years: 2019-2026
-- Canonical panel SHA-256: `fe9446e9e8dc8d60e6b66d4bae94368d9c4c5dbbd1f3d094c0c83389c240ea86`
+- Canonical panel SHA-256: `f2f315d995c11f527bdfbe6c0355de2f30cac129b55afa4407dc01616628f48f`
 - Balanced count schools: 75
 - Balanced public rate schools: 59
 - Balanced private count schools: 16
@@ -485,7 +486,7 @@ The script rebuilds this report, its research-source note, and supporting tables
 
 The public-data phase is complete at the documented stopping point. After the broad complete-list and denominator pass, do not continue low-yield school-by-school scraping unless a new source can resolve multiple rows or a whole class-year scope.
 
-Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, 2024, and 2026; official NMSC state-selection-unit totals are 397, 467, and 489. Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. The two denominator scopes are retained separately.
+Virginia school-location media-packet totals are 400, 470, and 494 for Classes 2023, 2024, and 2026; official NMSC state-selection-unit totals are 397, 467, 394, and 489 for Classes 2023-2026. Boarding-school blocks reconcile Classes 2023 and 2026. One Madeira student explains part of the Class 2024 difference, while two Class 2024 students remain scope-unresolved. Class 2025 has no complete location list, so its private/all-school selection-unit scope cannot be reconciled. The two denominator scopes are retained separately.
 
 ### Source boundary
 

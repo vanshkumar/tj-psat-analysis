@@ -117,7 +117,11 @@ class DescriptiveOutputsTest(unittest.TestCase):
         self.assertEqual(tj_2025["virginia_location_nmsf_semifinalist_total"], "")
         self.assertEqual(tj_2025["virginia_location_total_status"], "not_sourced")
         self.assertEqual(tj_2025["share_of_virginia_location_total_pct"], "")
-        self.assertEqual(tj_2025["state_selection_unit_nmsf_semifinalist_total"], "")
+        self.assertEqual(tj_2025["state_selection_unit_nmsf_semifinalist_total"], "394")
+        self.assertEqual(
+            tj_2025["state_selection_unit_total_status"],
+            "source_backed_state_selection_unit_total",
+        )
 
     def test_pathway_heatmap_uses_covered_subset_fields(self) -> None:
         arlington_2026 = [
@@ -135,14 +139,17 @@ class DescriptiveOutputsTest(unittest.TestCase):
         self.assertEqual(arlington_2026["pathway_coverage_status"], "complete_compatible_coverage")
         self.assertIn("covered subset only", arlington_2026["pathway_interpretation_note"])
 
-    def test_unsourced_cutoff_placeholders_are_not_annotated_in_figures(self) -> None:
+    def test_source_backed_focal_cutoffs_are_documented_without_figure_annotation(self) -> None:
         report = self.outputs["descriptive_report"].read_text(encoding="utf-8")
-        self.assertIn("Virginia cutoff statuses in the analysis panel: `not_sourced`", report)
+        self.assertIn(
+            "Virginia cutoff statuses in the analysis panel: `not_sourced, source_backed_nmsc_guide`",
+            report,
+        )
         self.assertIn(
             "Statewide total statuses: `not_sourced, source_backed_state_selection_unit_total`",
             report,
         )
-        self.assertIn("No Virginia Selection Index cutoff change is annotated", report)
+        self.assertIn("Virginia Selection Index cutoffs are source-backed", report)
         for figure_key in FIGURE_FILENAMES:
             figure_text = self.outputs[f"figure_{figure_key}"].read_text(encoding="utf-8")
             self.assertNotIn("Selection Index", figure_text)

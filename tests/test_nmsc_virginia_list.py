@@ -7,7 +7,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from tj_psat_analysis.nmsf.virginia_list import parse_virginia_list_text  # noqa: E402
+from tj_psat_analysis.nmsf.virginia_list import (  # noqa: E402
+    parse_virginia_list_text,
+    selection_unit_only_statewide_total_row,
+)
 
 
 class NmscVirginiaListParserTest(unittest.TestCase):
@@ -51,6 +54,29 @@ class NmscVirginiaListParserTest(unittest.TestCase):
         self.assertEqual(counts["freedom_high_school_south_riding"], 2)
         self.assertEqual(counts["freedom_high_school_woodbridge"], 1)
         self.assertEqual(counts["basis_independent_mclean"], 1)
+
+    def test_selection_unit_only_row_preserves_missing_location_scope(self) -> None:
+        row = selection_unit_only_statewide_total_row(
+            {
+                "class_year": "2025",
+                "va_nmsf_selection_index_cutoff": "222",
+                "va_nmsf_selection_index_cutoff_status": "source_backed_nmsc_guide",
+                "statewide_nmsf_semifinalist_total": "394",
+                "statewide_nmsf_semifinalist_total_status": "source_backed_state_selection_unit_total",
+                "source_title": "Guide to the National Merit Scholarship Program - 2025 Program",
+                "source_url": "https://example.com/guide.pdf",
+                "source_date": "2025-01-18",
+                "source_hash": "a" * 64,
+                "nmsc_guide_virginia_school_count": "110",
+                "reconciliation_status": "location_total_not_sourced",
+                "reconciliation_notes": "No location list.",
+            }
+        )
+        self.assertEqual(row["va_nmsf_selection_index_cutoff"], "222")
+        self.assertEqual(row["statewide_nmsf_semifinalist_total"], "394")
+        self.assertEqual(row["nmsc_guide_virginia_school_count"], "110")
+        self.assertEqual(row["virginia_location_nmsf_semifinalist_total"], "")
+        self.assertEqual(row["virginia_location_nmsf_semifinalist_total_status"], "not_sourced")
 
 
 if __name__ == "__main__":

@@ -144,6 +144,35 @@ class AnalysisReportsTest(unittest.TestCase):
         pooled_keys = [(-float(row["rate_point_change"]), row["school_id"]) for row in pooled_rows]
         self.assertEqual(pooled_keys, sorted(pooled_keys))
 
+    def test_class_2025_state_normalization_uses_official_nmsc_guide(self) -> None:
+        rows = [
+            row
+            for row in read_rows(TABLES / "analysis_state_normalization_supplemental.csv")
+            if row["class_year"] == "2025"
+        ]
+        public = [row for row in rows if row["group"] == "Balanced public including TJHSST"][0]
+        private = [row for row in rows if row["group"] == "Balanced private schools"][0]
+        self.assertEqual(public["virginia_statewide_semifinalist_total"], "394.000000")
+        self.assertEqual(public["state_total_status"], "source_backed_state_selection_unit_total")
+        self.assertIn("web.archive.org", public["state_total_source_url"])
+        self.assertTrue(public["group_share_of_statewide_total_pct"])
+        self.assertEqual(private["group_share_of_statewide_total_pct"], "")
+        self.assertEqual(
+            private["selection_unit_numerator_scope_status"],
+            "boarding_adjustment_not_reconciled_without_location_list",
+        )
+
+    def test_partial_class_2025_admissions_source_is_documented(self) -> None:
+        rows = {
+            row["metric"]: row
+            for row in read_rows(TABLES / "analysis_tjhsst_class_2025_admissions_coverage.csv")
+        }
+        self.assertEqual(rows["applicants"]["exact_rows"], "58")
+        self.assertEqual(rows["offered"]["suppressed_rows"], "115")
+        report = (ROOT / "reports" / "analysis.md").read_text(encoding="utf-8")
+        self.assertIn("FCPS-origin source-school workbook", report)
+        self.assertIn("suppressed as 10 or fewer", report)
+
     def test_consolidated_report_preserves_claim_boundary(self) -> None:
         report = (ROOT / "reports" / "analysis.md").read_text(encoding="utf-8")
         self.assertIn("deconcentration away from TJHSST", report)

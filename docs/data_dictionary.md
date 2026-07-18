@@ -8,7 +8,7 @@
 - `data/interim/public_grade11_enrollment_2024_25.csv`: Class 2026 public-school grade 11 enrollment extracted from the NCES CCD 2024-25 school membership file by NCES school ID.
 - `data/interim/private_grade11_enrollment.csv`: private-school PSS survey-year grade 11 enrollment extract using `P290`, with `F_P290` preserved as `pss_imputation_flag`.
 - `data/interim/private_grade11_enrollment_pss_locator_2023_24.csv`: interim Class 2025 private-school denominator supplement parsed from archived NCES Private School Search 2023-24 locator pages using `PSS_ENROLL_11`; unresolved locator searches remain blank.
-- `data/sources/targeted_grade11_enrollment.csv`: exact mapped-year Grade 11 supplements with source metadata and hashes. It supplies H-B Woodlawn for Classes 2023-2026 (109, 109, 115, and 110), Loudoun School for Advanced Studies for Class 2023 (11), and BASIS Independent McLean for Classes 2025-2026 (29 and 40).
+- `data/sources/targeted_grade11_enrollment.csv`: exact mapped-year Grade 11 supplements with source metadata and hashes. It supplies H-B Woodlawn for Classes 2023-2026 (109, 109, 115, and 110), Loudoun School for Advanced Studies for Class 2023 (11), BASIS Independent McLean for Classes 2025-2026 (29 and 40), Trinity Christian for Class 2024 (91), and Immanuel Christian for Class 2026 (49).
 - `data/interim/panel_seed.csv`: school-by-class-year panel with blank NMSF counts and source-pending statuses.
 - `data/interim/panel_nmsf.csv`: legacy interim seed panel plus source-backed NMSF count transcriptions from `data/sources/nmsf_counts.csv`; it is not the final analytical panel because it is seed-based and does not include all processed denominator updates.
 - `data/processed/analysis_panel.csv`: analytical panel joining the canonical roster, class-year mapping, NMSF observations, enrollment denominators, school-history flags, row-level rates, and covered-subset pathway aggregates.
@@ -16,6 +16,8 @@
 - `data/processed/nmsf_observations_2023_2026.csv`: focal-period slice filtered from `data/processed/nmsf_observations.csv` for Classes 2023-2026.
 - `data/processed/school_roster.csv`: roster with canonical school IDs, pathway status, pathway assignment method, pathway source metadata, sector, district, NCES IDs where source-backed, and operating-year boundaries.
 - `data/processed/enrollment_panel.csv`: school-by-class-year grade-11 enrollment denominator panel for public and private schools, with source metadata and explicit missingness statuses.
+- `data/processed/tjhsst_class_2025_admissions_by_source_school.csv`: verbatim source-school rows from the FCPS-origin Class 2025 FOIA workbook. Exact cells are numeric; `TS` cells remain blank with `suppressed_10_or_fewer` status and bounds 0-10.
+- `data/processed/tjhsst_class_2025_admissions_summary.csv`: workbook-level GPA summary cells plus exact/suppressed cell-coverage counts for applicants, waitpool, and offers.
 - `data/manual/school_aliases.csv`: deterministic alias table. Rows with `join_allowed=false` are known ambiguous aliases and must not be used for automatic observation joins.
 - `data/manual/school_history.csv`: source-noted rename, opening, and relocation events used to keep historical names and not-operating years explicit.
 - `data/manual/public_school_nces_ids.csv`: source-backed public-school NCES IDs matched from the NCES CCD 2023-24 directory by division and normalized alias.
@@ -28,7 +30,8 @@
 - `reports/data_quality/nmsf_reconciliation_2023_2026.md`: focal-period reconciliation summary, including source reported totals, in-panel totals, excluded count-only snapshot totals, and remaining source gaps.
 - `reports/data_quality/manual_review_queue.csv`: review queue for missing school-year sources plus source rows excluded from the panel, such as jurisdictional TJHSST subsets and non-roster schools. Use the reconciliation report's Source Gaps table, not the raw queue length, for the true unresolved-observation count.
 - `reports/data_quality/final_panel_checks.md`: validation summary for the analytical panel, including uniqueness, source-provenance, rate-null, pathway-flag, and placeholder checks.
-- `reports/descriptive_results.md`: descriptive report generated from `analysis_panel.csv`, with figure/table inventory, source-status summaries, TJ-zone count summaries, pre/post summaries, small-number warnings, and the unsourced Virginia-cutoff placeholder note.
+- `reports/data_quality/tjhsst_class_2025_admissions.md`: provenance, coverage, suppression, and remaining-gap report for the partial Class 2025 source-school admissions workbook.
+- `reports/descriptive_results.md`: descriptive report generated from `analysis_panel.csv`, with figure/table inventory, source-status summaries, TJ-zone count summaries, pre/post summaries, small-number warnings, and official focal cutoff coverage.
 - `reports/tables/school_counts_by_year.csv`: school-by-class raw NMSF counts, count statuses, source metadata, and count-missingness notes.
 - `reports/tables/school_rates_by_year.csv`: school-by-class NMSF per 100 juniors, grade-11 denominators, rate statuses, and missingness notes.
 - `reports/tables/pathway_by_class_heatmap.csv`: source table for the pathway heatmap; all values are covered-subset aggregates with pathway coverage-status fields.
@@ -39,7 +42,8 @@
 - `reports/figures/*.svg`: dependency-light SVG charts generated by `scripts/build_descriptive_outputs.py`.
 - `reports/analysis.md`: consolidated findings, robustness, limitations, and integrity report generated by `scripts/build_analysis_reports.py`.
 - `reports/conclusion_graphic.svg`: README infographic generated from committed analysis tables by `scripts/build_conclusion_graphic.py`; the PNG beside it is a raster snapshot.
-- `reports/tables/analysis_*.csv`: supporting analysis and robustness tables generated by `scripts/build_analysis_reports.py`; supplemental cutoff/statewide fields in these tables are not written back to the canonical panel.
+- `reports/tables/analysis_*.csv`: supporting analysis and robustness tables generated by `scripts/build_analysis_reports.py`, plus the separately generated Class 2025 admissions coverage table.
+- `reports/tables/analysis_tjhsst_class_2025_admissions_coverage.csv`: exact-cell and suppression coverage for the partial admissions workbook; exact-cell sums are lower bounds, not full totals.
 - `reports/tables/analysis_psat_participation_benchmark.csv`: source-backed Virginia Class 2023-2026 PSAT/NMSQT participation benchmark from College Board state reports; these statewide values are sensitivity inputs, not school-level estimates.
 - `reports/tables/analysis_participation_sensitivity.csv`: pooled TJHSST/base-public results under the Virginia benchmark and a group-specific ±10% post/pre participation grid, including participant-yield proxies, standardized offsets, and public shortfalls.
 - `reports/tables/analysis_participation_break_even.csv`: relative participation changes required to eliminate or reverse selected pooled and annual findings; thresholds are mechanical break-even checks, not observed participation estimates.
@@ -58,11 +62,13 @@
 - `data/sources/nmsf_counts.csv`: manual NMSF count transcriptions from named public sources. Each row must include source ID, provider, class year, school name, count, status, title, URL, date, scope, and completeness notes.
 - `data/sources/source_manifest.yml`: source-level registry with publisher, publication date, URL, retrieval date, source type, completeness scope, zero-inference scope, parser name/version, notes, and computed source hashes for NMSF count sources.
 - `data/sources/targeted_grade11_enrollment.csv`: official local-membership, private-school-profile, and identity-reconciled PSS Grade 11 supplements applied only to the exact mapped school year.
-- `data/sources/virginia_statewide_totals.csv`: canonical dual-scope source table. Its primary statewide fields contain official NMSC Guide state-selection-unit totals of 397, 467, and 489, while its `virginia_location_*` fields preserve media-packet school-location totals of 400, 470, and 494 for Classes 2023, 2024, and 2026. It also carries the scope-reconciliation metadata; Class 2025 has no source-backed row.
-- `data/sources/virginia_state_selection_unit_totals.csv`: official NMSC Guide input table used to build the state-selection-unit side of the canonical dual-scope table, including boarding-location and unresolved-difference reconciliation fields. Class 2025 has no source-backed row.
+- `data/sources/tjhsst_admissions_sources.csv`: source registry for the FCPS-origin Class 2025 admissions workbook, including its FCAG public mirror, file hash, sheet, provenance, and disclosure rule.
+- `data/sources/virginia_statewide_totals.csv`: canonical dual-scope source table. Its primary fields contain official NMSC Guide cutoffs of 221, 219, 222, and 224 and state-selection-unit totals of 397, 467, 394, and 489 for Classes 2023-2026. Its `virginia_location_*` fields preserve media-packet school-location totals of 400, 470, and 494 for Classes 2023, 2024, and 2026; the Class 2025 location fields remain blank.
+- `data/sources/virginia_state_selection_unit_totals.csv`: official NMSC Guide input table used to build the cutoff and state-selection-unit side of the canonical dual-scope table, including boarding-location and unresolved-difference reconciliation fields.
 - `data/raw/nmsf/*/*_snapshot.csv`: count-only archived snapshots for source-backed NMSF releases. Student names are intentionally omitted. Rows with `snapshot_record_type=observation_count` feed `data/sources/nmsf_counts.csv`; rows with other record types are retained only for reconciliation or review.
 - `data/raw/enrollment/pss_locator_2023_24/*.html`: archived NCES Private School Search locator pages used by the interim Class 2025 private-school denominator supplement. They are enrollment sources only, not NMSF count sources.
-- `data/raw/enrollment/targeted_grade11/`: archived APS membership summaries and BASIS high-school profiles supporting the targeted Grade 11 supplements. The LSAS Class 2023 value comes from the separately referenced official NCES PSS ZIP.
+- `data/raw/enrollment/targeted_grade11/`: archived APS membership summaries and BASIS, Trinity, and Immanuel school profiles supporting targeted Grade 11 supplements. The LSAS Class 2023 value comes from the separately referenced official NCES PSS ZIP.
+- `data/raw/admissions/fcps/`: unchanged Class 2025 admissions workbook and provenance/suppression notes. These middle-school/category rows are not joined to the canonical high-school panel.
 
 ## NMSF Source Rules
 
@@ -79,6 +85,15 @@
 - `source_hash` values for manual transcriptions are computed from the source metadata plus sorted transcribed count rows.
 - APS and LCPS releases may list resident students attending TJHSST, and PWCS releases may list former PWCS middle-school students attending TJHSST. Those TJHSST subset references are retained in count-only snapshots for source-total reconciliation, but they are not imported as separate observations because TJHSST remains one school row.
 - A total-only or unattributed district release, such as the official LCPS Class 2025 release, can be archived for reconciliation as `source_incomplete` but cannot create school-level observations or verified zeros.
+
+## TJHSST Admissions Source-School Rules
+
+- The Class 2025 admissions workbook is a separate middle-school/category dataset; it is not merged into the high-school NMSF panel or treated as a student-placement crosswalk.
+- `reported_exact` means the workbook exposes an exact integer. `suppressed_10_or_fewer` means the source cell contains `TS`; the numeric field remains blank with documented bounds 0-10. `TS` is never converted to zero, ten, or an imputed value.
+- Source-school names are preserved verbatim, including truncated labels in the workbook.
+- The workbook-level waitpool and not-offered GPA averages are stored in the summary output and are not attributed to the school appearing on row 2.
+- School-level offer rates are not calculated because disclosure-threshold selection makes exact rows systematically non-comparable with suppressed rows.
+- The source does not establish acceptances, enrollment, allocation-pool status, TJ eligibility, or counterfactual high schools.
 
 ## Analysis Panel Variables
 
@@ -97,8 +112,8 @@
 - School-history fields: `school_history_event_types`, `row_history_flags`, `has_school_opening_flag`, `has_school_rename_flag`, and `has_school_relocation_flag` are derived from `data/manual/school_history.csv`.
 - Pathway aggregate fields are repeated on every row in a pathway/class-year group. `pathway_nmsf_count_covered`, `pathway_grade11_enrollment_covered`, and `pathway_nmsf_per_100_juniors_covered` use only rows where `rate_input_compatible=true`.
 - `pathway_operating_school_rows`, `pathway_compatible_school_rows`, `pathway_missing_nmsf_school_rows`, `pathway_missing_enrollment_school_rows`, `pathway_incompatible_school_rows`, `pathway_coverage_status`, and `pathway_has_complete_compatible_coverage` describe whether those pathway aggregates cover the full operating bucket.
-- Virginia NMSF Selection Index cutoff fields are placeholders: `va_nmsf_selection_index_cutoff` is blank and `va_nmsf_selection_index_cutoff_status=not_sourced` until reliable class-year sources are added.
-- `statewide_nmsf_semifinalist_total` and its status/source fields contain official NMSC state-selection-unit totals for Classes 2023, 2024, and 2026: 397, 467, and 489. They are blank with `statewide_nmsf_semifinalist_total_status=not_sourced` for Class 2025 and other unsourced years.
+- `va_nmsf_selection_index_cutoff` and its status/source fields contain official NMSC Guide values for Classes 2023-2026: 221, 219, 222, and 224. Other years remain `not_sourced`.
+- `statewide_nmsf_semifinalist_total` and its status/source fields contain official NMSC state-selection-unit totals for Classes 2023-2026: 397, 467, 394, and 489. Other unsourced years remain blank.
 - `virginia_location_nmsf_semifinalist_total` and its status/source fields contain the school-location media-packet totals for Classes 2023, 2024, and 2026: 400, 470, and 494. They are blank with `virginia_location_nmsf_semifinalist_total_status=not_sourced` for Class 2025 and other unsourced years.
 - `nmsc_guide_virginia_school_count`, `known_boarding_location_count`, `unresolved_location_difference`, `state_selection_unit_reconciliation_status`, and `state_selection_unit_reconciliation_notes` preserve the evidence connecting the two scopes. Boarding-school blocks reconcile Classes 2023 and 2026; two Class 2024 students remain scope-unresolved. Location-based shares must use the location total, while a state-unit share requires a scope-compatible numerator.
 - `denominator_type=grade11_enrollment_outcome_denominator` and `admissions_seat_allocation_input_status=not_included_requires_sourced_8th_grade_population` make clear that this panel does not use grade-11 enrollment as an admissions-seat allocation input.
@@ -110,7 +125,7 @@
 - `school_group=Base public schools` excludes the single TJHSST row; TJHSST is shown as its own group.
 - Private-school rows remain `Private/homeschool unallocated` analytical buckets and are not allocated to public pathways by school location.
 - Pathway heatmap values come from the repeated covered-subset pathway fields in `analysis_panel.csv`; check `pathway_coverage_status` before treating them as complete pathway totals.
-- Virginia cutoff placeholders and source-backed statewide-total coverage are documented in `reports/descriptive_results.md`; descriptive figures do not annotate cutoff changes until those fields are source-backed.
+- Official focal cutoffs and statewide-total coverage are documented in `reports/descriptive_results.md`; descriptive figures remain focused on school counts and rates rather than adding a cutoff scale.
 
 ## Enrollment Statuses
 
@@ -135,9 +150,9 @@
 After targeted supplements, the unresolved focal private denominators are:
 
 - Class 2023: Flint Hill, Oakcrest, Potomac, Pinnacle Academy, and Seton School.
-- Class 2024: all 16 rostered private schools.
+- Class 2024: all rostered private schools except Trinity Christian.
 - Class 2025: Flint Hill, Oakcrest, Potomac, Loudoun School for Advanced Studies, and Seton School.
-- Class 2026: all 15 rostered private schools other than BASIS Independent McLean.
+- Class 2026: all rostered private schools except BASIS Independent McLean and Immanuel Christian.
 
 ## Enrollment Source Variables
 
@@ -145,7 +160,7 @@ After targeted supplements, the unresolved focal private denominators are:
 - Private PSS rows use `P290` for grade-11 enrollment.
 - Private PSS rows preserve `F_P290` in `pss_imputation_flag` when present.
 - The interim 2023-24 NCES Private School Search locator supplement uses `PSS_ENROLL_11` for Class 2025 private-school grade-11 enrollment and records `pss_imputation_flag=not_available_locator` because locator detail pages do not expose `F_P290`.
-- Exact targeted supplements override an unavailable default CCD/PSS row only for the documented school/class-year key. H-B Woodlawn uses the official APS Grade 11 membership row; LSAS Class 2023 uses the common `P290=11` reported by both same-address PSS identities with no imputation; BASIS Classes 2025-2026 use the Grade 11 boxes in official school profiles.
+- Exact targeted supplements override an unavailable default CCD/PSS row only for the documented school/class-year key. H-B Woodlawn uses the official APS Grade 11 membership row; LSAS Class 2023 uses the common `P290=11` reported by both same-address PSS identities with no imputation; BASIS Classes 2025-2026 and Immanuel Class 2026 use official Grade 11 profile counts; Trinity Class 2024 uses the profile's explicitly labeled end-of-Grade-11 cohort, not its current senior count.
 - No enrollment value is estimated from adjacent school years.
 
 ## Roster Statuses

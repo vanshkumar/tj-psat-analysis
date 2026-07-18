@@ -805,10 +805,11 @@ def build_descriptive_report(
         ),
         "",
         (
-            "NMSC state-selection-unit totals are 397, 467, and 489 for Classes 2023, 2024, "
-            "and 2026, compared with school-location totals of 400, 470, and 494. Classes 2023 "
-            "and 2026 reconcile through boarding-school blocks; two Class 2024 students remain "
-            "scope-unresolved."
+            "NMSC state-selection-unit totals are 397, 467, 394, and 489 for Classes 2023-2026, "
+            "while school-location totals are available only for Classes 2023, 2024, and 2026 "
+            "at 400, 470, and 494. Classes 2023 and 2026 reconcile through boarding-school "
+            "blocks; two Class 2024 students remain scope-unresolved, and Class 2025 has no "
+            "location list to reconcile."
         ),
         "",
         "## Pre/Post Summary",
@@ -858,15 +859,16 @@ def build_descriptive_report(
             "pathway outcomes."
         ),
         "",
-        "## Cutoff And Statewide Placeholder Gap",
+        "## Cutoff And Statewide Source Coverage",
         "",
         (
             f"Virginia cutoff statuses in the analysis panel: `{', '.join(cutoff_statuses)}`. "
             f"Statewide total statuses: `{', '.join(statewide_statuses)}`."
         ),
         (
-            "No Virginia Selection Index cutoff change is annotated in the figures because the "
-            "cutoff fields are not sourced in the current panel."
+            "Virginia Selection Index cutoffs are source-backed from annual NMSC Guides for "
+            "Classes 2023-2026. The figures remain focused on school counts and rates rather "
+            "than adding a second cutoff scale."
         ),
         "",
     ]

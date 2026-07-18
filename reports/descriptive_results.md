@@ -42,8 +42,8 @@ Pathway heatmap values are covered-subset aggregates. Treat them as full pathway
 
 | Rate status | Rows |
 | --- | --- |
-| calculated | 362 |
-| missing_grade11_enrollment | 41 |
+| calculated | 364 |
+| missing_grade11_enrollment | 39 |
 | missing_nmsf_and_grade11_enrollment | 61 |
 | missing_nmsf_count | 135 |
 | not_operating | 9 |
@@ -51,8 +51,8 @@ Pathway heatmap values are covered-subset aggregates. Treat them as full pathway
 | Pathway coverage status | Rows |
 | --- | --- |
 | complete_compatible_coverage | 339 |
-| no_compatible_rows | 221 |
-| partial_compatible_coverage | 48 |
+| no_compatible_rows | 205 |
+| partial_compatible_coverage | 64 |
 
 ## TJ-Zone Count Summary
 
@@ -98,7 +98,7 @@ Shares use the source-backed Virginia school-location media-packet total so the 
 | 2026 | TJ-zone excluding TJHSST | 272 | 494 | 55.060729 | source-backed count and scope-matched Virginia school-location denominator |
 | 2026 | Virginia outside TJ-zone | 109 | 494 | 22.064777 | source-backed count and scope-matched Virginia school-location denominator |
 
-NMSC state-selection-unit totals are 397, 467, and 489 for Classes 2023, 2024, and 2026, compared with school-location totals of 400, 470, and 494. Classes 2023 and 2026 reconcile through boarding-school blocks; two Class 2024 students remain scope-unresolved.
+NMSC state-selection-unit totals are 397, 467, 394, and 489 for Classes 2023-2026, while school-location totals are available only for Classes 2023, 2024, and 2026 at 400, 470, and 494. Classes 2023 and 2026 reconcile through boarding-school blocks; two Class 2024 students remain scope-unresolved, and Class 2025 has no location list to reconcile.
 
 ## Pre/Post Summary
 
@@ -107,10 +107,10 @@ The pre period is Classes 2023-2024 and the post period is Classes 2025-2026. Ob
 | Period | Group | Observed total | Annual average | Missing NMSF rows | Covered rate | Small-number warning |
 | --- | --- | --- | --- | --- | --- | --- |
 | pre_2023_2024 | Base public schools | 343 | 171.500000 | 0 | 0.576209 | false |
-| pre_2023_2024 | Private schools | 52 | 26.000000 | 0 | 1.430031 | false |
+| pre_2023_2024 | Private schools | 52 | 26.000000 | 0 | 1.401869 | false |
 | pre_2023_2024 | TJHSST | 297 | 148.500000 | 0 | 32.926829 | false |
 | post_2025_2026 | Base public schools | 410 | 205.000000 | 1 | 0.664926 | false |
-| post_2025_2026 | Private schools | 69 | 34.500000 | 0 | 2.748815 | false |
+| post_2025_2026 | Private schools | 69 | 34.500000 | 0 | 2.717391 | false |
 | post_2025_2026 | TJHSST | 194 | 97.000000 | 0 | 18.889971 | false |
 
 ## Warnings
@@ -120,7 +120,7 @@ The pre period is Classes 2023-2024 and the post period is Classes 2025-2026. Ob
 - TJHSST is kept as one school row and is not split back to base public schools.
 - Public pathway buckets are analytical geographies, not observed TJHSST admissions pathway outcomes.
 
-## Cutoff And Statewide Placeholder Gap
+## Cutoff And Statewide Source Coverage
 
-Virginia cutoff statuses in the analysis panel: `not_sourced`. Statewide total statuses: `not_sourced, source_backed_state_selection_unit_total`.
-No Virginia Selection Index cutoff change is annotated in the figures because the cutoff fields are not sourced in the current panel.
+Virginia cutoff statuses in the analysis panel: `not_sourced, source_backed_nmsc_guide`. Statewide total statuses: `not_sourced, source_backed_state_selection_unit_total`.
+Virginia Selection Index cutoffs are source-backed from annual NMSC Guides for Classes 2023-2026. The figures remain focused on school counts and rates rather than adding a second cutoff scale.

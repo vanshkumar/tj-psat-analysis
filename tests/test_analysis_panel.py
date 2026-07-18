@@ -125,8 +125,10 @@ class AnalysisPanelTest(unittest.TestCase):
         )
 
         self.assertEqual(
-            {row["va_nmsf_selection_index_cutoff_status"] for row in self.panel}, {"not_sourced"}
+            {row["va_nmsf_selection_index_cutoff_status"] for row in self.panel},
+            {"not_sourced", "source_backed_nmsc_guide"},
         )
+        self.assertEqual(self._lookup("wakefield_high_school", 2025)["va_nmsf_selection_index_cutoff"], "222")
         self.assertEqual(
             {row["statewide_nmsf_semifinalist_total_status"] for row in self.panel},
             {"not_sourced", "source_backed_state_selection_unit_total"},
@@ -142,7 +144,15 @@ class AnalysisPanelTest(unittest.TestCase):
             self._lookup("wakefield_high_school", 2024)["state_selection_unit_reconciliation_status"],
             "partial_scope_reconciliation",
         )
-        self.assertEqual(self._lookup("wakefield_high_school", 2025)["statewide_nmsf_semifinalist_total"], "")
+        wakefield_2025 = self._lookup("wakefield_high_school", 2025)
+        self.assertEqual(wakefield_2025["statewide_nmsf_semifinalist_total"], "394")
+        self.assertEqual(wakefield_2025["nmsc_guide_virginia_school_count"], "110")
+        self.assertEqual(wakefield_2025["virginia_location_nmsf_semifinalist_total"], "")
+        self.assertEqual(wakefield_2025["virginia_location_nmsf_semifinalist_total_status"], "not_sourced")
+        self.assertEqual(
+            wakefield_2025["statewide_nmsf_semifinalist_total_source_hash"],
+            "908235a4c5311ec23aed1d9a42d4835d29b860d0575f23912b2dc1a784c5328b",
+        )
         self.assertEqual(
             {row["denominator_type"] for row in self.panel},
             {"grade11_enrollment_outcome_denominator"},

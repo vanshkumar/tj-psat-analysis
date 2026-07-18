@@ -389,9 +389,9 @@ def build_focal_period_completion_report(
         "those class years. These packets are location lists: their totals include Semifinalists "
         "grouped under Virginia-located schools, including students who may belong to NMSC's "
         "separate U.S. boarding-school selection unit. NMSC's guides report the Virginia state "
-        "selection unit separately. Class 2025 lacks a source-backed total in either scope, so "
-        "statewide-share metrics remain blank there; the remaining row-level gaps are handled "
-        "individually below.",
+        "selection unit separately. The official Class 2025 state-selection-unit total is now "
+        "source-backed, but its complete Virginia-location list remains unavailable; the remaining "
+        "row-level gaps are handled individually below.",
         "",
         _markdown_table(
             [
@@ -411,11 +411,11 @@ def build_focal_period_completion_report(
         (
             "Statewide scope rule: use the Virginia-location media-list totals (400, 470, and "
             "494) only with location-scoped numerators. Use the official NMSC Virginia "
-            "selection-unit totals (397, 467, and 489) only with numerators that exclude students "
+            "selection-unit totals (397, 467, 394, and 489) only with numerators that exclude students "
             "assigned to other NMSC selection units. These are different scopes, not competing "
             "estimates. Do not substitute an official selection-unit denominator beneath an "
-            "unadjusted location-list numerator. No source-backed statewide denominator is "
-            "available for Class 2025 in either scope."
+            "unadjusted location-list numerator. Class 2025 has an official selection-unit "
+            "denominator but no source-backed location denominator."
         ),
         "",
         "## Targeted Class 2025 Row Search",
@@ -495,7 +495,7 @@ def build_focal_period_completion_report(
         "- Use the supplied complete NMSC Virginia lists for Classes 2023, 2024, and 2026 as "
         "source-backed count, zero-inference, and Virginia-location-total sources; do not label "
         "their totals as official Virginia selection-unit totals.",
-        "- Preserve the official NMSC Virginia selection-unit totals of 397, 467, and 489 as a "
+        "- Preserve the official NMSC Virginia selection-unit totals of 397, 467, 394, and 489 as a "
         "separate statewide scope and require scope-matched numerators before calculating shares.",
         "- Do not infer zeros for missing public or private rows from these press releases.",
         "- Treat recovery of the deleted Class 2025 Virginia gallery images or another complete "
@@ -504,9 +504,9 @@ def build_focal_period_completion_report(
         "the source exhausts the official named population and keeps TJHSST as one row.",
         "- Retain Meridian High School Class 2025 as `missing_source`; four reported finalists do "
         "not establish the semifinalist count.",
-        "- Publish Virginia statewide-share metrics only when both numerator and denominator use "
-        "the same documented scope; leave Class 2025 shares blank until a source-backed statewide "
-        "total is added.",
+        "- Publish Virginia statewide-share metrics only when numerator and denominator use the "
+        "same documented scope; Class 2025 location shares remain blank, and private/all-school "
+        "selection-unit shares remain withheld until boarding scope can be reconciled.",
         "",
     ]
     return "\n".join(lines)
